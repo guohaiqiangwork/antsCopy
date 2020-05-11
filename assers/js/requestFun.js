@@ -1581,6 +1581,29 @@ function getQueryProtocol(mui,data,callback) {
 	});
 };
 
+// 获取入网图片
+function getQueryNetworkAccess(mui,data,callback) {
+	mui.ajax(requserUrl + "/queryNetworkAccess", {
+		timeout: 20000,
+		type: 'get',
+		data:data,
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
 
 
 // 郭海强 end

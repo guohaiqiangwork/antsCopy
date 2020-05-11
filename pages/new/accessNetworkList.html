@@ -80,10 +80,11 @@
 					// console.log(JSON.stringify(data))
 					if (data.code == 200) {
 						var data = data.data
+						// console.log(JSON.stringify(data))
 						var fragmentplanList = document.createDocumentFragment();
 						$.each(data, function(items) {
 							var profitList =
-								'<div class="div_display list_one">' +
+								'<div class="div_display list_one" data-id=' + data[items].goodsId + '>' +
 								'<div class="width25">' +
 								'<img src="' + data[items].goodsPicture + '" class="img_left" >' +
 								'</div>' +
@@ -110,6 +111,9 @@
 				$$.openWindow({
 					url: '../../pages/machineAccess.html',
 					id: 'machineAccess',
+					extras:{
+						'goodsId':$(this).attr('data-id')
+					},
 					show: {
 						aniShow: "slide-in-right"
 					}

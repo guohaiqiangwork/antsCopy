@@ -18,7 +18,9 @@
 		</header>
 		<div class="content" style="margin-bottom: 1.5rem;">
 			<div class="down">
-				<img src="../assers/image/activity.png" class="width100">
+				<!-- <img src="../assers/image/activity.png" class="width100"> -->
+				
+				<img class="width100" id="pictures">
 			</div>  
 		</div>
 	</body>
@@ -30,6 +32,7 @@
 		(function($, doc, $$, undefined) {
 			$$.init();
 			var _self;
+			var urlD;
 			if (window.plus) {
 				plusReady();
 			} else {
@@ -45,6 +48,15 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
+				console.log(_self.goodsId)
+				var data ={
+					goodsId:  _self.goodsId
+				}
+				getQueryNetworkAccess(mui,data, function(data) {
+					console.log(JSON.stringify(data));
+					$("#pictures").attr("src", data.data.networkAccess);
+					urlD = data.data.url
+				});
 
 			}
 			$('.down').on('tap',function(){
@@ -55,7 +67,8 @@
 				//         id: "download"
 				//     });
 				
-				 plus.runtime.openURL("http://apps.weilapay.com/appDownload_zgsh.html");//成功跳转了
+				plus.runtime.openURL(urlD);//成功跳转了
+				 // plus.runtime.openURL("http://apps.weilapay.com/appDownload_zgsh.html");//成功跳转了
 
 				// window.open('http://apps.weilapay.com/appDownload_zgsh.html')
 			})
