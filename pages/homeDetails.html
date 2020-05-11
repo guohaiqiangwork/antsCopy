@@ -95,7 +95,7 @@
 				getPrductDetail(mui, _self.productId, function(data) {
 					$(".mrPage").remove();
 					if (data.code == 200) { 
-						console.log(JSON.stringify(data))
+						/* console.log(JSON.stringify(data)) */
 						$('#title').text(data.data.goodsName);
 						$('#price').text('¥' + data.data.goodsPrice);
 						$('#phone').text( "客服电话:" +data.data.phone)
@@ -129,7 +129,7 @@
 						if(data.data.isProtocol== 2){
 							$("#details").append(
 							'<div class="div_display display_space goCooperation" data-id="' + data.data.goodsId + '" style="background-color: #A8181B;height: .94rem;line-height: .94rem;">'+
-								'<div class="font_size30 font_colorff">' + data.data.protocolName + '</div>' +
+								'<div class="font_size30 font_colorff margin_left3">《' + data.data.protocolName + '》</div>' +
 								'<div class="margin_right3">'+
 									'<img src="../assers/image/rightf.png"  style="width: .14rem;height: .24rem;">'+
 								'</div>'+ 

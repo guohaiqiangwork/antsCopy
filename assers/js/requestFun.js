@@ -1559,7 +1559,7 @@ function getDeleteMessage(mui,data,callback) {
 };
 // 获取协议内容
 function getQueryProtocol(mui,data,callback) {
-	mui.ajax(requserUrl + " /goods/queryProtocol", {
+	mui.ajax(requserUrl + "/goods/queryProtocol", {
 		timeout: 20000,
 		type: 'get',
 		data:data,

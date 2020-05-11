@@ -21,7 +21,7 @@
 			<img class="width100" id="pictures">
 			
 			
-			<div class="font_size32 text_center font_width600">
+		<!-- 	<div class="font_size32 text_center font_width600">
 				《中付中pos代理合作补充协议》
 			</div>
 			<div class="font_size28 font_width600 margin_top3">
@@ -74,7 +74,7 @@
 				<p>
 					3、用户B推广用户C使用中pos，用户C的D0费率同样为0.55%，但是用户C每交易一万元，用户B会得到大约2.08元的分润返佣，用户B的D0实际费率约为0.529%（52.92元/万）,同时用户A会得到大约0.89元的分润返佣，用户A的D0实际费率约为0.52%（52元/万）。</p>
 				<p> 4、用户C推广用户D使用中pos，用户D的D0费率同样为0.55%，但是用户D每交易一万元，用户C会得到大约2.08元的分润返佣，用户C的D0实际费率约为0.529%（52.92元/</p>
-			</div>
+			</div> -->
 		</div>
 
 
@@ -105,9 +105,12 @@
 				});
 				_self = plus.webview.currentWebview();
 				console.log(_self.goodsId);
-				getQueryProtocol(mui, _self.goodsId, function(data) {
+				var data ={
+					goodsId:  _self.goodsId
+				}
+				getQueryProtocol(mui,data, function(data) {
 					console.log(JSON.stringify(data));
-					$("#pictures").attr("src", data.data.goodsPictures[0]);
+					$("#pictures").attr("src", data.data.protocol);
 				});
 			}
 
