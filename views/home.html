@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<!-- 引用外部css -->
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/home.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/common.css" />
+
+		<style>
+			#slide {
+				position: absolute;
+				height: 0.9rem;
+				width: 5.9rem;
+				color: #FA8E93;
+				overflow: hidden;
+				margin-left: 0.5rem;
+			}
+
+			#slide p {
+				height: 0.9rem;
+				/*  */
+				line-height: 0.9rem;
+				/*  */
+				overflow: hidden;
+				margin-left: 0.3rem;
+			}
+
+			#slide span {
+				float: left
+			}
+
+			.mui-table-view li {
+				height: 1.5rem;
+				margin-top: 0.65rem;
+				margin-bottom: 0.2rem;
+				border-bottom: #EEEEEE solid 1px;
+				font-size: 0.3rem;
+				color: #333333;
+			}
+
+			.mui-media-object {
+				width: 1.6rem;
+				height: 1.6rem;
+			}
+
+			.mui-content {
+				background-color: transparent;
+			}
+
+			.mui-slider {
+				height: 3.5rem;
+				/* 轮播图背景宽 */
+			}
+
+			.mui-slider-indicator {
+				bottom: 0.05rem;
+				/* 轮播图小圆点位置 */
+			}
+
+			.mui-slider-indicator .mui-indicator {
+				display: inline-block;
+				width: 10px;
+				height: 4px;
+				margin: 1px 6px;
+				cursor: pointer;
+				border-radius: 5px;
+				background: #FFC2BE;
+				-webkit-box-shadow: 0 0 1px 1px rgba(255, 194, 190, .7);
+				box-shadow: 0 0 1px 1px rgba(255, 194, 190, .7);
+			}
+
+			.mui-slider-indicator .mui-active.mui-indicator {
+				background: #FF392B;
+				width: 18px;
+			}
+
+			.right_img {
+				width: .14rem;
+				height: .24rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="topDivId" style="position: fixed;background: linear-gradient(to right, #FFD2B0, #FF7467);width: 100%;height: 0.8rem;">
+			<!--  -->
+			<div class="div_display">
+				<!-- 消息 -->
+				<div class="header_title_left margin_top2" id="messageId">
+					<div class="header_title_leftT" style="margin-top: 0.001rem;"></div>
+					<img src="../assers/image/homeMsg.png" class="header_title_lefth">
+				</div>
+			</div>
+		</div>
+		<div style="height: 0.65rem;"></div>
+		<!-- 页面头部 -->
+		<div class="home_top_moudel">
+			<div class="text_center font_colorff">
+				<div class="text-center font_size32 padding_top5 goTotalPaid" id="homeProfit">
+					支付累计总收益
+					<img src="../assers/image/rightf.png" class="right_img margin_left2">
+				</div>
+				<div class="font_size50 margin_top2 goTotalPaid" id="payTotalAmount">
+					0
+				</div>
+				<div class="div_display margin_top10 goTatalD">
+					<div class="text_center" style="margin-left: 1.3rem;">
+						<div class="font_size26">
+							本月交易量(万元)
+						</div>
+						<div class="font_size36 " id="myThisMouthTransAmount">
+							0
+						</div>
+					</div>
+					<div class="text_center" style="margin-left: 1.3rem;">
+						<div class="font_size26">
+							本月支付收益(元)
+						</div>
+						<div class="font_size36 " id="myThisMouthAmout">
+							0
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 新增内容 -->
+		<div class="div_display">
+			<div class="top_home goTatalD">
+				<div class="font_size26 margin_top3">
+					分润收益(元)
+				</div>
+				<div class="font_size36 margin_top2" id="mySplitRunInCome">
+					0
+				</div>
+			</div>
+			<div class="top_home goTatalD" style="margin-left: .15rem;">
+				<div class="font_size26 margin_top3">
+					推广收益(元)
+				</div>
+				<div class="font_size36 margin_top2" id="myPromoteInCome">
+					0
+				</div>
+			</div>
+			<div class="top_home goTatalD" style="margin-left: .15rem;">
+				<div class="font_size26 margin_top3">
+					激活与达标(元)
+				</div>
+				<div class="font_size36 margin_top2" id="myActiveInCome">
+					0
+				</div>
+			</div>
+		</div>
+
+		<!-- 我的团队 -->
+		<div class="my_team">
+			<div class="div_display font_colorff my_team_list">
+				<div class="font_size26 width70">
+					我的团队
+				</div>
+				<div class="font_size36 width30 text_right">
+					<span id="teams"></span>人
+					<img src="../assers/image/rightf.png" class="right_img">
+				</div>
+			</div>
+		</div>
+		<!-- 广告栏 -->
+		<div class="div_display advertisement_div margin_top2">
+			<div>
+				<img src="../assers/image/messG.png" class="advertisement_div_img">
+			</div>
+
+			<div id="slide">
+				<div id="slide1" style=""></div>
+				<div id='slide2' style="position: relative;bottom: 10px;"></div>
+			</div>
+		</div>
+
+		<!-- 快捷操作 -->
+		<!-- <div style="margin-top: 0.3rem;">
+			<div class="div_display">
+				<div class="margin_left2 goOperation" href="../pages/myImplements.html" data-id='myImplements'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home1.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						我的机具
+					</div>
+				</div>
+				<div class="margin_left7 goOperation" href="../pages/implementsAllocation.html" data-id='implementsAllocation'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home2.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						机具调拨
+					</div>
+				</div>
+				<div class="margin_left7 goOperation" href="../pages/machineAccess.html" data-id='machineAccess'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home3.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						机具入网
+					</div>
+				</div>
+				<div class="margin_left7 goOperation" href="../pages/myAgent.html" data-id='myAgent'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home4.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						我的代理
+					</div>
+				</div>
+			</div>
+		</div>
+ -->
+
+
+		<!-- <div class="mui-slider-indicator mui-slider-indicatorTwo">
+								</div> -->
+		<!-- 轮播 -->
+		<div class="lun_bo_div">
+			<div class="mui-content lobotuTitle" id="goActive">
+				<div class="lunbo">
+					<div class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 产品收益 -->
+		<div class="product_moudel_width">
+			<div class="margin_top3 div_display margin_bot3">
+				<img src="../assers/image/15516@2x.png" class="img1">
+				<div class="div1" style="margin-top: 0.06rem">产品收益</div>
+			</div>
+			<!-- one -->
+			<div class="" id="product">
+				<!-- </div>
+			<div class="prroduct_bj_img">
+				<div class="width25 text_center product_img_item">
+					<div class="font_size32 font_color33">
+						2023
+					</div>
+					<div class="font_size28 font_color66">
+						交易笔数
+					</div>
+				</div>
+				<div class="width25 text_center product_img_item">
+					<div class="font_size32 font_color33">
+						2003
+					</div>
+					<div class="font_size28 font_color66">
+						激活台数
+					</div>
+				</div>
+				<div class="width25 text_center">
+					<div class="font_size32 font_color33">
+						20323
+					</div>
+					<div class="font_size28 font_color66">
+						交易金额
+					</div>
+				</div>
+				<div class="width25 text_center font_size28 font_colorff font_width700">
+					<div class="">
+						据可靠
+					</div>
+					<div class="">
+						pos
+					</div>
+				</div>
+			</div>
+			<div class="prroduct_bj_img1">
+				<div class="width25 text_center product_img_item">
+					<div class="font_size32 font_color33">
+						2023
+					</div>
+					<div class="font_size28 font_color66">
+						交易笔数
+					</div>
+				</div>
+				<div class="width25 text_center product_img_item">
+					<div class="font_size32 font_color33">
+						2003
+					</div>
+					<div class="font_size28 font_color66">
+						激活台数
+					</div>
+				</div>
+				<div class="width25 text_center">
+					<div class="font_size32 font_color33">
+						20323
+					</div>
+					<div class="font_size28 font_color66">
+						交易金额
+					</div>
+				</div>
+				<div class="width25 text_center font_size28 font_colorff font_width700">
+					<div class="">
+						据可靠
+					</div>
+					<div class="">
+						pos
+					</div>
+				</div>
+			</div>
+		 -->
+			</div>
+		</div>
+		<!-- 精彩活动 -->
+		<div class="activity_moudel">
+			<div class="margin_top3 div_display">
+				<img src="../assers/image/jc_activities.png" class="img2">
+				<div class="div1" style="margin-top: 0.06rem">精彩活动</div>
+			</div>
+			<div class="" id="activity_img">
+			</div>
+		</div>
+		<!-- 排行榜 -->
+		<div id="rankingListId" style="display: none;">
+			<!-- <div id="rankingListTwoId"> -->
+			<div class="margin_top3">
+				<img src="../assers/image/15516@2x.png" class="img1">
+				<div class="div1">排行榜</div>
+			</div>
+			<div id="rankingList_listId">
+				<!-- <div id="listCountID" class="div_backgroun_one">
+					<div class="div_display">
+						<div class="margin_left3 margin_top35">
+							<img src="../assers/image/home/reward3.png" style="width: 0.4rem;height: 0.5rem;">
+						</div>
+						<div class="margin_left2 margin_top2">
+							<img src="../assers/image/5116@2x.png" class="listCountID_img_heard">
+						</div>
+						<div class="margin_left2 margin_top2 font_colorff">
+							<div class="font_size30">
+								免费的深刻理解
+							</div>
+							<div class="div_display font_size28">
+								<img src="../assers/image/home/money.png" class="listCountID_img_money">
+								23423423423423432
+							</div>
+						</div>
+					</div> -->
+				<!-- <div style="width: 1.99rem;height: 1.41rem;float: left;">
+							<div id="listimageId" style="margin-top: 0.5rem;margin-left: 0.1rem;float: left;"><img src="../assers/image/home/reward3.png"
+								 style="width: 0.37rem;height: 0.45rem;"></div>
+							<div class="margin_left3" style="float: left;margin-top: 0.4rem;">
+								<img src=' + newData[i].avatar + ' style="width: 0.8rem;border-radius: .4rem;">
+							</div>
+						</div>
+						<div style="width: 4.3rem;height: 1.41rem;float: left;">
+							<div class="margin_top4">房贷首付</div>
+							<div id="">
+								<img src="../assers/image/home/5518@2x.png" style="width: 0.27rem;height: 0.27rem;float: left;margin-top: 0.09rem;">
+								<div class="margin_left2" style="float: left;">32324242342</div>
+							</div>
+						</div>
+				 -->
+			</div>
+
+		</div>
+		<!-- </div> -->
+		</div>
+
+
+		<!-- 产品推荐 -->
+		<!-- <div class="">
+			<div class="div_display margin_left2 margin_top4">
+				<div class="font_color33 font_size34 font_width700" style="width: 7rem;">
+					产品推荐
+				</div>
+				<div class="">
+					<img src="../assers/image/going.png" class="product_img">
+				</div>
+			</div>
+			
+			<div class="product_list_model">
+				<div class="font_size30 font_colorff margin_left4 padding_top3">
+					考拉超收移动POS机
+				</div>
+				<div class="product_list_btn">
+					￥500000
+				</div>
+				<div class="font_size26 font_colorff margin_left3 margin_top3" id="goDetails">
+					查看详情
+				</div>
+			</div>
+			<div class="product_list_model">
+				<div class="font_size30 font_colorff margin_left4 padding_top3">
+					考拉超收移动POS机
+				</div>
+				<div class="product_list_btn">
+					￥500000
+				</div>
+				<div class="font_size26 font_colorff margin_left3 margin_top3">
+					查看详情
+				</div>
+			</div>
+			<div class="product_list_model">
+				<div class="font_size30 font_colorff margin_left4 padding_top3">
+					考拉超收移动POS机
+				</div>
+				<div class="product_list_btn">
+					￥500000
+				</div>
+				<div class="font_size26 font_colorff margin_left3 margin_top3">
+					查看详情
+				</div>
+			</div>
+		</div> -->
+
+
+		<!-- 热门新闻 -->
+		<div class="margin_top3" style="display: none;">
+			<div id="">
+				<img src="../assers/image/5445@2x.png" style="width: .36rem;" class="margin_left3">
+				<span class="font_size34 font_color33 font_width700">
+					热门新闻
+				</span>
+			</div>
+
+			<!-- 列表 -->
+			<ul class="mui-table-view" style="width: 90%;margin: 0 auto;">
+				<!-- <li>
+				<img class="mui-media-object mui-pull-right"  src="../assers/image/23423423.png">
+				<div class="mui-media-body journalism_left">的发生都可健康减肥离开的时间发了快递就是六块腹肌的苏里科夫绝世独立开发建设路口</div>
+				</li> -->
+			</ul>
+		</div>
+	</body>
+
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/variousMethods.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/rem_reset.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var MyMar;
+			var slide;
+			var slide2;
+			var slide1;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏		
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条			
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				/* 获取精彩活动 */
+				get_findALl(mui, function(data) {
+					var dataList = data.data;
+					if (data.code == 200) {
+						// 首页活动图
+						var orderList =
+							'<div class="margin_top3 div_display aa">' +
+							'<div class="activity_moudel_left">' +
+							'<img src="' + dataList[2].banner + '" data-id=' + dataList[2].id +
+							' class="activity_moudel_imgl div_border_radius3 goActivity">' +
+							'</div>' +
+							'<div class="activity_moudel_left margin_left3">' +
+							'<img src="' + dataList[1].banner + '" data-id=' + dataList[1].id +
+							'  class="activity_moudel_imgr div_border_radius3 goActivity">' +
+							'<img src="' + dataList[0].banner + '" data-id=' + dataList[0].id +
+							' class="margin_top2 activity_moudel_imgr div_border_radius3 goActivity">' +
+							'</div>' +
+							'</div>';
+
+						$("#activity_img").append($(orderList));
+					} else {
+						tipShow(data.message);
+					}
+				});
+
+				//监听消息返回刷新消息
+				window.addEventListener('refreshHomeNews', function(event) {
+					getHasMessage();
+				});
+				window.addEventListener('refreshIndexCountHome', function(event) {
+					var mar = plus.storage.getItem('mar');
+					//console.log("mar=="+mar);
+					if (mar == '2') { //关闭
+						updataTime("", "", "");
+					} else {
+						updataTime(slide, slide1, slide2);
+					}
+				});
+
+				// 获取首页顶部数据
+				getIndexAmountCount(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						$('#payTotalAmount').text(data.data.payTotalAmount); //支付累计总收益
+						$('#myThisMouthTransAmount').text(data.data.myThisMouthTransAmount); //本月交易量
+						$('#myThisMouthAmout').text(data.data.myThisMouthAmout); //本月支付收益
+						$('#mySplitRunInCome').text(data.data.mySplitRunInCome); //分润收益
+						$('#myPromoteInCome').text(data.data.myPromoteInCome); //推广收益
+						$('#myActiveInCome').text(data.data.myActiveInCome); //激活与达标
+						$('#teams').text(data.data.teams); //团队人数
+					} else {
+						tipShow(data.message);
+					}
+				});
+				// 获取产品收益
+				getIndexBrandCount(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						if (data.data.length == 0) {
+							$('.product_moudel_width').css('display', 'none')
+						} else {
+							var data = data.data;
+							var fragmentplanList = document.createDocumentFragment();
+							$.each(data, function(items) {
+								if (items % 2 == 1) {
+									data[items].bg = 'prroduct_bj_img'
+								} else {
+									data[items].bg = 'prroduct_bj_img1'
+								}
+								var profitList =
+									'<div class="' + data[items].bg + '">' +
+									'<div class="width25 text_center product_img_item">' +
+									'<div class="font_size32 font_color33">' +
+									data[items].transNum +
+									'</div>' +
+									'<div class="font_size28 font_color66">交易笔数</div>' +
+									'</div>' +
+									'<div class="width25 text_center product_img_item">' +
+									'<div class="font_size32 font_color33">' +
+									data[items].activNum +
+									'</div>' +
+									'<div class="font_size28 font_color66">激活台数</div>' +
+									'</div>' +
+									'<div class="width25 text_center">' +
+									'<div class="font_size32 font_color33">' +
+									data[items].transAmount +
+									'</div>' +
+									'<div class="font_size28 font_color66">交易金额</div>' +
+									'</div>' +
+									'<div class="width25 text_center font_size28 font_colorff font_width700">' +
+									'<div class="">' +
+									data[items].brandName +
+									'</div>' +
+									'<div class="">pos</div>' +
+									'</div>' +
+									'</div>';
+								$(fragmentplanList).append(profitList);
+							})
+							$("#product").append($(fragmentplanList));
+
+						}
+					} else {
+						tipShow(data.message);
+					}
+				});
+
+				getImage(); // 轮播获取
+				getHasMessage() //获取首页消息
+				getNewsApiList() //获取广告；
+				get_NewList(); /* 获取新闻list */
+				// 获取排名
+				settleApi(mui, function(data) {
+					return;
+					var newData = data.data;
+
+					if (newData.length == 0) {
+						$("#rankingListId").css("display", "none");
+						return false;
+					}
+					//console.log("2222"+newData.length);
+
+					if (data.code == 200) {
+						var fragmentplanList = document.createDocumentFragment();
+						var ii;
+						if (newData.length < 1) {
+							return;
+						}
+						for (i = 0; i < newData.length; i++) {
+							var label;
+							var bjS;
+							var imgF;
+							var colorF;
+							if (i == 0) {
+								label = '<img src="../assers/image/home/reward1.png" style="width: .4rem;height: .5rem;">';
+								bjS = 'div_backgroun_one'
+								imgF = '../assers/image/home/money.png';
+								colorF = 'font_colorff'
+							} else if (i == 1) {
+								label = '<img src="../assers/image/home/reward2.png" style="width:.4rem;height: .5rem;">';
+								bjS = 'div_backgroun_two'
+								imgF = '../assers/image/home/money.png';
+								colorF = 'font_colorff'
+							} else if (i == 2) {
+								label = '<img src="../assers/image/home/reward3.png" style="width: .4rem;height: .5rem;">';
+								bjS = 'div_backgroun_three';
+								imgF = '../assers/image/home/money.png';
+								colorF = 'font_colorff'
+							} else {
+								ii = i + 1;
+								bjS = 'div_backgroun_foure';
+								label = '<span style="margin-left: 0.1rem;margin-right: 0.05rem;">' + ii + '<span>';
+								imgF = '../assers/image/home/5518@2x.png';
+								colorF = 'font_color33'
+							}
+							var orderLi =
+								'<div id="listCountID" class="' + bjS + '">' +
+								'<div class="div_display">' +
+								'<div class="margin_left3 margin_top35">' + label +
+								'</div>' +
+								'<div class="margin_left2 margin_top2">' +
+								'<img src=' + newData[i].avatar + '  class="listCountID_img_heard">' +
+								'</div>' +
+								'<div class="margin_left2 margin_top2  ' + colorF + '">' +
+								'<div class="font_size30">' +
+								newData[i].NAME +
+								'</div>' +
+								'<div class="div_display font_size28">' +
+								'<img src=' + imgF + ' class="listCountID_img_money">' +
+								newData[i].total +
+								'</div>' +
+								'</div>' +
+								'</div>' +
+								'</div>';
+
+							$(fragmentplanList).append(orderLi);
+						}
+						/* 删除子标签 */
+						$('#rankingList_listId').empty();
+						$("#rankingList_listId").append($(fragmentplanList));
+					} else {
+						tipShow(data.message);
+					}
+				});
+			}
+
+			/* 获取新闻list */
+			function get_NewList() {
+				return;
+				getNewList(mui, function(data) {
+					if (data.code == 200) {
+						var newData = data.data;
+						var fragmentplanList = document.createDocumentFragment();
+						var titleclass;
+						for (i = 0; i < newData.length; i++) {
+							//console.log(newData[i].title.length);
+							if (newData[i].title.length < 15) {
+								titleclass = 'padding-top: 0.2rem;';
+							} else {
+								titleclass = '';
+							}
+							var orderLi =
+								'<li data-id=' + newData[i].id + '>' +
+								'<img class="mui-media-object mui-pull-right" style="min-width: 1.6rem;height: 1.6rem;margin-top: -.4rem;border-radius:.1rem" src=' +
+								newData[i].titlePicture + '>' +
+								'<div class="mui-media-body journalism_left" style="' + titleclass + '">' + newData[i].title + '</div>' +
+								'</li>';
+							$(fragmentplanList).append(orderLi);
+						}
+						/* 删除子标签 */
+						$('.mui-table-view').empty();
+						$(".mui-table-view").append($(fragmentplanList));
+					} else {
+						tipShow(data.message);
+					}
+				});
+			}
+
+			/* 新闻列表点击事件 */
+			$(".mui-table-view").on("tap", "li", function() {
+				var rowId = $(this).attr("data-id");
+				$$.openWindow({
+					url: '../pages/newDetails.html',
+					id: 'newDetails',
+					extras: {
+						"rowId": rowId,
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+
+			// 获取首页消息
+			function getHasMessage() {
+				hasMessage(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						if (data.data) {
+							//有新消息,显示红点
+							$("#messageId").find("div").addClass("div_backgroun_jb");
+						} else {
+							//没有新消息,不显示红点
+							$("#messageId").find("div").removeClass("div_backgroun_jb");
+						}
+					} else {
+						tipShow(data.message);
+					}
+				});
+			}
+
+			/* 去消息页面 */
+			var messageId = doc.getElementById('messageId');
+			messageId.onclick = function() {
+				$$.openWindow({
+					url: '../pages/newsPage.html',
+					id: 'newsPage',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			};
+			/* 轮播图 */
+			function getImage() {
+				getLB(mui, "", function(data) {
+					// alert(JSON.stringify(data))
+					if (data.code == 200) {
+						var dataList = data.data;
+						var length = dataList.length
+						if (length != 0) {
+							if (length == 1) {
+								$('.mui-slider-group').append('<div class="mui-slider-item " data-id=' + dataList[0].id +
+									'><img class="lunbo-img" src="' + dataList[0].carousel +
+									'" /></div>');
+							} else {
+								$('.mui-slider-group').append(
+									'<div class="mui-slider-item mui-slider-item-duplicate " data-id=' + dataList[length - 1].id +
+									'><img class="lunbo-img" src="' + dataList[length -
+										1].carousel +
+									'" /></div>');
+								$('.mui-slider-indicatorTwo').append('<div class="mui-indicator mui-active"></div>');
+								for (var i = 0; i < length; i++) {
+									if (i == 0) {
+										$('.mui-slider-group').append('<div class="mui-slider-item mui-active" data-id=' + dataList[i].id +
+											'><img class="lunbo-img" src="' + dataList[i].carousel +
+											'" /></div>');
+									} else {
+										$('.mui-slider-group').append('<div class="mui-slider-item " data-id=' + dataList[i].id +
+											'><img class="lunbo-img" src="' + dataList[i].carousel +
+											'" /></div>');
+									}
+								}
+								$('.mui-slider-group').append(
+									'<div class="mui-slider-item mui-slider-item-duplicate " data-id=' + dataList[0].id +
+									'><img class="lunbo-img" src="' + dataList[0].carousel +
+									'" /></div>');
+								for (var i = 0; i < length - 1; i++) {
+									$('.mui-slider-indicatorTwo').append('<div class="mui-indicator"></div>');
+								}
+							}
+							var gallery = mui('.mui-slider');
+							gallery.slider({
+								interval: 2000 //自动轮播周期，若为0则不自动播放，默认为0；
+							});
+						}
+					} else {
+						tipShow(data.message);
+					}
+				})
+			}
+			// 去轮播活动页面
+			$('#goActive').on('tap', '.mui-slider-item', function() {
+				$$.openWindow({
+					url: '../pages/activity.html',
+					id: 'activity',
+					extras: {
+						"activityId": $(this).attr('data-id'),
+						"falgUrl": 'lb'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			});
+
+			$('#activity_img').on('tap', '.goActivity', function() {
+				$$.openWindow({
+					url: '../pages/activity.html',
+					id: 'activity',
+					extras: {
+						"activityId": $(this).attr('data-id'),
+						"falgUrl": 'banner'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			});
+			// 获取轮播广告
+			function getNewsApiList() {
+				getNewsApi(mui, function(data) {
+					if (data.code == 200) {
+						var fragmentplanList = document.createDocumentFragment();
+						$.each(data.data, function(items) {
+							var orderLiTwo = '<p class="countClass" count-id=' + data.data[items].id + '><span>' + data.data[items].title +
+								'</span></p>';
+							$(fragmentplanList).append(orderLiTwo);
+						});
+						$("#slide1").append($(fragmentplanList));
+
+						slide = document.getElementById("slide");
+						slide2 = document.getElementById("slide2");
+						slide1 = document.getElementById("slide1");
+						slide2.innerHTML = slide1.innerHTML
+
+						updataTime(slide, slide1, slide2)
+					} else {
+						tipShow(data.message);
+					}
+				});
+			}
+
+			/* 通告去详情页 */
+			$("#slide1").on("tap", ".countClass", function() {
+				var id = $(this).attr("count-id");
+				$$.openWindow({
+					url: "../pages/noticeDetails.html",
+					id: "noticeDetails",
+					extras: {
+						"rowId": id,
+					},
+					styles: {
+						statusbar: {
+							background: "#fff"
+						}
+					}
+				});
+			});
+
+			//快捷操作
+			$('.goOperation').on('tap', function(e) {
+				// 获取页面ID
+				var urlId = $(this).attr("data-id");
+				// 获取路径
+				var urlRout = this.getAttribute('href');
+				if (urlRout && urlId) {
+					$$.openWindow({
+						url: urlRout,
+						id: urlId,
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				} else {
+					console.log('缺少页面路径')
+
+				}
+			});
+
+			// 去首页详情
+			$('#goDetails').on('tap', function() {
+				$$.openWindow({
+					url: "../pages/homeDetails.html",
+					id: "homeDetails",
+					styles: {
+						statusbar: {
+							background: "#fff"
+						}
+					}
+				});
+			})
+
+			// 去首页收益
+			$('.goTotalPaid').on('tap', function() {
+				$$.openWindow({
+					// url: '../pages/home/revenueInformation.html',
+					// id: 'revenueInformation',
+					url: '../pages/new/totalPaid.html',
+					id: 'totalPaid',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+
+			})
+			// 去总收益详情
+			$('.goTatalD').on('tap', function() {
+				$$.openWindow({
+					url: "../pages/new/totalDetail.html",
+					id: "totalDetail",
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 去我的团队
+			$('.my_team').on('tap', function() {
+				$$.openWindow({
+					url: '../pages/myAgent.html',
+					id: 'myAgent',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+
+
+
+
+			// 双击退出应用
+			var backButtonPress = 0;
+			mui.back = function(event) {
+				backButtonPress++;
+				if (backButtonPress > 1) {
+					plus.runtime.quit();
+				} else {
+					plus.nativeUI.toast('再按退出应用');
+				}
+				setTimeout(function() {
+					backButtonPress = 0;
+				}, 1000);
+				return false;
+			}
+
+		})(jQuery, document, mui);
+	</script>

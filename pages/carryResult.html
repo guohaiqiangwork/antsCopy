@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+
+		<style type="text/css">
+			.btn_bottom {
+				height:45px;
+				font-size: .34rem;
+				padding-top: .25rem;
+				text-align: center;
+				position: absolute;
+				bottom: 0.3rem;
+				left: 0.3rem;
+				width: 6.9rem;
+				border-radius: 0.67rem;
+			}
+			body {
+			    background: #F4F4F4;
+			}
+			html {
+			    background: #F4F4F4;
+			}
+		</style>
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white title_height">
+			<i class="mui-action-back btn_bottom2"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			提现结果
+		</header>
+		<!-- <header class="header_white font_size34 font_color33 title_height">
+			<i class="btn_bottom2" style="touch-action: none;float: left;margin-left: 0.3rem;margin-top: 0.1rem;"><img src="../assers/image/returnButton.png"  style="width: .22rem;height: .38rem;"></i>
+			<span style="margin-right: 0.4rem;font-size: 0.35rem;">提现结果</span>
+		</header> -->
+		
+		<div class="content" style="background-color: #FFFFFF;width: 6.9rem;height: 7rem;margin: 1.2rem auto;border-radius: 0.2rem;">
+			<div class="text_center font_size32 font_color33 font_width800">
+				<div style="padding-top: .8rem;">
+					<img id="tubiao" style="width: 1.26rem;height: 1.26rem;">
+				</div>
+				<div id="staty" style="margin-top: 0.1rem;">
+					提现受理中
+				</div> 
+				<div id="time">
+					预计2小时内到账
+				</div>
+			</div>
+			<div class=" font_size28 font_color33" style="width: 7rem;margin-left: .5rem;margin-top: 0.8rem;">
+				<div class="div_display margin_top3">
+					<div class="width30">
+						提现金额:
+					</div>
+					<div class="">
+						<span id="amount" style="font-family: sans-serif;"></span> (手续费: <span id="handfree" style="font-family: sans-serif;"></span>)
+					</div>
+				</div>
+				<div class="div_display margin_top3">
+					<div class="width30">
+						实际到账金额:
+					</div>
+					<div class="" id="actualAmount" style="font-family: sans-serif;">
+						<!-- ￥1.00 -->
+					</div>
+				</div>
+				<div class="div_display margin_top3">
+					<div class="width30">
+						到账银行卡:
+					</div>
+					<div class="">
+						<span id="bankName" style="font-family: sans-serif;"></span><span id='bankCode' style="font-family: sans-serif;"></span>
+					</div>
+				</div>
+				<!-- <div class="div_display margin_top3">
+					<div class="width30">
+						订单编号:
+					</div>
+					<div class="" id="orderNo" style="font-family: sans-serif;">
+						20195465431216544657
+					</div>
+				</div> -->
+				<div id="timeId" class="div_display margin_top3">
+					<div class="width30 orderTime">
+						
+					</div>
+					<div class="" id="createTime" style="font-family: sans-serif;">
+						<!-- 2019-08-09 12:30:15 -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="div_btn_jb font_colorff  btn_bottom btn_bottom2">
+			完成
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				if(_self.style){
+					$(".btn_bottom").css("display","none")
+				}
+				  
+				
+				//alert(_self.bankCId);
+				getAccountDe(mui, _self.bankCId, function(data) {
+					//alert("123===="+JSON.stringify(data));
+					if (data.code == 200) {
+						$('#bankCode').text('(' + data.data.bankCode + ')');
+						$('#amount').text('¥' + data.data.amount);
+						$('#orderNo').text(data.data.orderNo);
+						$('#createTime').text(data.data.createTime);
+						$('#handfree').text('¥' + data.data.handfree);
+						$('#actualAmount').text('¥' + data.data.actualAmount);
+						$('#taxes').text('¥' + data.data.taxes);
+						$('#bankName').text(data.data.bankName);
+						
+						//0-受理中，1-已打款，2-打款失败，3-待打款(暂停处理)，4-打款失败（已退款，退汇或者冲正)，5-取消支付
+						
+						$('#staty').text('提现受理中');
+						if (data.data.state == 0 || data.data.state == 3) {
+							$('#staty').text('提现受理中');
+							$('.orderTime').text('提现时间:');
+							$("#tubiao").attr("src","../assers/image/carryS.png")
+						} else {
+							$('#time').css('display', 'none')
+							$('.orderTime').text('到账时间:');
+							if(data.data.state == 1){//成功
+								$("#tubiao").attr("src","../assers/image/zhengq.png")
+								$('#staty').text('提现完成');
+							}else if(data.data.state == 5 || data.data.state == 4 || data.data.state == 2){//取消
+								$("#tubiao").attr("src","../assers/image/cuowu.png")
+								$("#timeId").css("display","none");
+								$('#staty').text('提现失败');
+							}else{
+								$("#tubiao").attr("src","../assers/image/carryS.png");
+								$("#timeId").css("display","black");
+								$('#staty').text(_self.styleText);
+							}
+						}
+					} else {
+						tipShow(data.message)
+					}
+				})
+				
+				/* if (payParams == "成功") {
+				 	$(".paySucceed").css("display", "block");
+				 	$(".payError").css("display", "none");
+				} else {
+				 	$(".paySucceed").css("display", "none");
+				 	$(".payError").css("display", "block");
+				 	$(".payContent").text(payParams);
+				} */
+
+			}
+			// 去首页
+			$('.btn_bottom2').on('tap', function() {
+				if(_self.style){
+					$$.openWindow({
+						url: 'txRecord.html',
+						id: 'txRecord',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				}else{
+					$$.openWindow({
+						url: '../pages/balance.html',
+						id: 'balance',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				}
+			})
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			机具入网
+		</header>
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<div class="down">
+				<img src="../assers/image/activity.png" class="width100">
+			</div>  
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+			}
+			$('.down').on('tap',function(){
+				//内部浏览器  放在外页加点击事件
+				
+				//     mui.openWindow({
+				//         url: "../pages/new/download.html?url=" + "http://apps.weilapay.com/appDownload_zgsh.html",
+				//         id: "download"
+				//     });
+				
+				 plus.runtime.openURL("http://apps.weilapay.com/appDownload_zgsh.html");//成功跳转了
+
+				// window.open('http://apps.weilapay.com/appDownload_zgsh.html')
+			})
+			// 立即购买
+			$('.homeDetails_btn').on('tap',function(){
+				$$.openWindow({
+					url: '../pages/homeOrder.html',
+					id: 'homeOrder',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

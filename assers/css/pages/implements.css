@@ -1,0 +1,299 @@
+.implements_top {
+	background-color: #FFFFFF;
+	height: 1rem;
+	padding-top: .2rem;
+}
+
+.implements_moudel {
+	width: 7rem;
+	height: 2.4rem;
+	background-color: #FFFFFF;
+	margin-left: .3rem;
+	margin-top: .2rem;
+	font-size: .28rem;
+	color: #303030;
+}
+
+.implements_moudel_img {
+	background-image: url(../../image/pages/implement.png);
+	background-size: 100%;
+	border-radius: 0.2rem;
+}
+
+.implements_moudel_img1 {
+	background-image: url(../../image/pages/implement1.png);
+	background-size: 100%;
+	border-radius: 0.2rem;
+}
+.implements_moudel_img2 {
+	background-image: url(../../image/pages/implement.png);
+	background-size: 100%;
+	border-radius: 0.2rem;
+}
+
+.implements_moudel_left {
+	width: .3rem;
+	height: .3rem;
+	background-color: #F4F4F4;
+	border-radius: 50%;
+	margin-left: -.15rem;
+}
+
+.implements_moudel_border {
+	border-bottom: 1px dotted #EBEAEB;
+	width: 6.3rem;
+	height: 1px;
+	margin-left: .2rem;
+	margin-top: .13rem;
+}
+
+.implements_moudel_right {
+	width: .3rem;
+	height: .3rem;
+	background-color: #F4F4F4;
+	border-radius: 50%;
+	margin-left: .2rem;
+	margin-right: -.15rem;
+}
+
+.implements_img {
+	width: .23rem;
+	height: .13rem;
+	margin-left: .1rem;
+}
+
+/* 机具划拨 */
+.header_tab {
+	width: 7.5rem;
+	background-color: #FFFFFF;
+	height: 1rem;
+	z-index: 999;
+	position: fixed;
+	top: .8rem;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.tab_swich {
+	color: #666666;
+	width: 50%;
+	font-size: .32rem;
+	text-align: center;
+	margin-top: .2rem;
+}
+
+.selection {
+	color: #FF0301 !important;
+	font-weight: 700;
+}
+
+.allocation_name {
+	height: 1rem;
+	background-color: #FFFFFF;
+	font-size: .3rem;
+	color: #FFFFFF;
+	width: 7.5rem;
+	margin-top: 1.6rem;
+	padding-top: .3rem;
+	padding-left: .3rem;
+	background: linear-gradient(to right, #FF765A, #FF0100);
+}
+
+.allocation_colleague {
+	height: 2.2rem;
+	background-color: #FFFFFF;
+	width: 7rem;
+	margin-left: .3rem;
+	border-radius: .2rem;
+}
+
+.allocation_content {
+	width: 6.9rem;
+	margin-left: .3rem;
+	padding-top: .4rem;
+}
+
+.allocation_btn {
+	margin-top: 0.1rem;
+	width: 1.8rem;
+	height: 32px;
+	border-radius: .4rem;
+	background: linear-gradient(to right, #f79885, #FF765A, #FF0100);
+	text-align: center;
+	padding-top: .15rem;
+	font-size: .3rem;
+	color: #FFFFFF;
+	font-weight: 700;
+}
+
+.receive_btn {
+	width: 1.7rem;
+	height: .6rem;
+	border-radius: .3rem;
+	text-align: center;
+	font-size: .26rem;
+	color: #FFFFFF;
+	padding-top: .1rem;
+}
+
+/* 调拨 */
+.allocationD_top {
+	height: .9rem;
+	/* background: linear-gradient(to right, #FF7156, #FF0100);
+	background: linear-gradient(to right, #466194, #272E48); */
+	font-size: .32rem;
+	color: #FFFFFF;
+	font-weight: 700;
+	padding-top: .26rem;
+}
+
+.allocationD_img {
+	width: .1rem;
+	height: .18rem;
+}
+
+.allocationD_reason {
+	width: 7rem;
+	margin-left: .25rem;
+}
+
+.allocationD_moudel {
+	height: 1.4rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+}
+
+.allocationD_btn {
+	width: 7rem;
+	height: .9rem;
+	border-radius: .5rem;
+	background: linear-gradient(to right, #f79885, #FF765A, #FF0100);
+	text-align: center;
+	padding-top: .25rem;
+	font-size: .3rem;
+	color: #FFFFFF;
+	font-weight: 700;
+	position: fixed;
+	bottom: .2rem;
+}
+
+.alloctionM_moudel {
+	height: 2.1rem;
+	margin-top: .3rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	padding-top: .3rem;
+	padding-left: .3rem;
+}
+
+.allocationM_text {
+	width: 4.2rem;
+	height: .8rem;
+	margin-left: .3rem;
+}
+
+.alloctionM_detail_moudel {
+	height: 2.5rem;
+	margin-top: .3rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	padding-top: .4rem;
+	padding-left: .3rem;
+	font-size: .3rem;
+}
+
+.alloctionM_btn {
+	position: fixed;
+	bottom: .3rem;
+}
+
+.alloctionM_btn_left {
+	height: .9rem;
+	width: 3.5rem;
+	border: 2px solid #FF0201;
+	text-align: center;
+	color: #FF0201;
+	font-size: .3rem;
+	padding-top: .2rem;
+	border-top-left-radius: .5rem;
+	border-bottom-left-radius: .5rem;
+	border-right: none;
+}
+
+.alloctionM_btn_right {
+	height: .9rem;
+	width: 3.5rem;
+	border: 2px solid #FF0201;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: .3rem;
+	padding-top: .2rem;
+	border-top-right-radius: .5rem;
+	border-bottom-right-radius: .5rem;
+	border-left: none;
+	background: linear-gradient(to right, #FF765A, #FF0100);
+}
+
+/* 调拨记录 */
+.tab_swich1 {
+	color: #666666;
+	width: 33%;
+	font-size: .33rem;
+	text-align: center;
+	margin-top: .3rem;
+}
+
+.alloction_record_img {
+	background-image: url(../../image/pages/implement2.png);
+	background-size: 100%;
+	border-radius: 0.2rem;
+}
+/* 我的收益 */
+.profit_moudel{
+	height: 1.7rem;
+	-background-color: #FFFFFF;
+	border-radius: .2rem;
+	color: #FFFFFF;
+}
+.profit_moudel_img1 {
+	background-image: url(../../image/pages/profit1.png);
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+.profit_moudel_img2 {
+	background-image: url(../../image/pages/profit2.png);
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+.profit_moudel_img3 {
+	background-image: url(../../image/pages/profit3.png);
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+.profit_moudel_img4 {
+	background-image: url(../../image/pages/profit4.png);
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+.profitD_moudel{
+	height: 2.4rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	margin-top: .2rem;
+}
+.myProfitDeta_moudel{
+	width: 7rem;
+	margin-left: .3rem;
+	border-bottom: 1px solid #CCCCCC;
+	padding-bottom: .3rem;
+}
+
+/*机具调拨 */
+.implements_alloction_moudel{
+	width: 7rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	margin-left: .3rem;
+	margin-top: .2rem;
+	padding-top: .4rem;
+	padding-left: .3rem;
+}

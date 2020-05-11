@@ -1,0 +1,88 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			body {
+			    background: #F4F4F4;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back" id="returnTopPage_set"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			信息详情
+		</header>
+		
+		<div class="content" style="width: 6.9rem;margin-left: 0.3rem;">
+			
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	
+	<script>
+		(function($, doc, $$) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				//返回上一页
+				var returnTopPage_set = doc.getElementById("returnTopPage_set");
+				returnTopPage_set.onclick = function() {
+					plus.nativeUI.closeWaiting();
+					mui.back();
+					var list = plus.webview.currentWebview().opener();
+					mui.fire(list, 'refreshHomeNewsTwo');
+				}
+				var messageId = _self.messageId;
+				/* 获取消息详情内容 */
+				MessageDetail(mui,messageId,function(data){
+					console.log("22222data: " + JSON.stringify(data));
+					if (data.code == 200) {
+						var detailsData = data.data;
+						var list = 
+						'<div class="margin_top4 font_size32 font_width700 font_color33 margin_top3">' +
+							detailsData.title+
+						'</div>' +
+						'<div class="font_size28 font_color33 margin_top3">' +
+							detailsData.content+
+						'</div>';
+						$(".content").append(list);
+					} else {
+						tipShow(data.message);
+					}
+				});
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>
+

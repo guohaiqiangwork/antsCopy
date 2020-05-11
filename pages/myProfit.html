@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/implements.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			.allocationD_reason {
+				margin-left: .25rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			我的收益 
+		</header>
+		<div class="content">
+			<div class="allocationD_reason" style="margin-top: 1.2rem;">
+				<!-- 默认页面 -->
+				<div class="profit_moudel margin_top3 goProfitD" style="background-color: #FFFFFF;">
+					<div class="div_display">
+						<div class="width55 margin_left3 margin_top7 font_size30 back_gd_DC" style="width: 2.88rem;height: 0.32rem;">
+							<!-- 考拉超收移动POS机 -->
+						</div>
+						<div class="width40 margin_top4">
+							<div class="font_size30 back_gd_DC" style="width: .9rem;height: 0.34rem;margin-left: 1.62rem;">
+								<!-- '总金额' -->
+							</div>
+							<div class="font_size44 margin_top1 back_gd_DC" style="width: 2.02rem;height: 0.46rem;margin-left: 1.06rem;margin-top: 0.12rem;">
+								<!-- 50,000.0 -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="profit_moudel margin_top3 goProfitD" style="background-color: #FFFFFF;">
+					<div class="div_display">
+						<div class="width55 margin_left3 margin_top7 font_size30 back_gd_DC" style="width: 2.88rem;height: 0.32rem;">
+							<!-- 考拉超收移动POS机 -->
+						</div>
+						<div class="width40 margin_top4">
+							<div class="font_size30 back_gd_DC" style="width: .9rem;height: 0.34rem;margin-left: 1.62rem;">
+								<!-- '总金额' -->
+							</div>
+							<div class="font_size44 margin_top1 back_gd_DC" style="width: 2.02rem;height: 0.46rem;margin-left: 1.06rem;margin-top: 0.12rem;">
+								<!-- 50,000.0 -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- 缺省页 -->
+			<div id="cartDefaultId" style="display: none;">
+				<div id="cartDefaultId_one">
+					<img src="../assers/image/default/money.png">
+				</div>
+				<div id="cartDefaultId_two">
+					<span>暂无收益</span>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				var keywords = {
+					agentId: plus.storage.getItem('memberId'),
+				}
+				// 查询我的收益
+				getMyEarnings(mui, keywords, function(data) {
+					console.log(JSON.stringify(data))
+					if (data.code == 200) {
+						var data = data.data;
+						if(data.length == 0){
+							$('#cartDefaultId').css('display' ,'block')
+						}else{
+							$('#cartDefaultId').css('display' ,'none')
+						}
+						
+						var fragmentplanList = document.createDocumentFragment();
+						var goodsName;
+						$(".goProfitD").remove();
+						$.each(data, function(items) {
+							if (data[items].style == 1) {
+								data[items].style = "profit_moudel_img1"
+							} else if (data[items].style == 2) {
+								data[items].style = "profit_moudel_img2"
+							} else if (data[items].style == 3) {
+								data[items].style = "profit_moudel_img3"
+							}
+							if(data[items].goodsName.length > 10){
+								goodsName = data[items].goodsName.substring(10, 0) + "...";
+							}else{
+								goodsName = data[items].goodsName;
+							}
+							
+							
+							var profitList =
+								'<div class="profit_moudel  margin_top3 goProfitD ' + data[items].style + '" data-id=' + data[items].serialNumber +
+								'>' +
+								'<div class="div_display">' +
+								'<div class="width55 margin_left3 margin_top4 font_size30">' +
+								data[items].serialNumber + 
+								'</div>' +
+								'<div class="width55 margin_top9 font_size30" style="position: absolute;right:2.8rem">' +
+								goodsName +
+								'</div>' +
+								'<div class="width40 margin_top4">' +
+								'<div class="font_size30" style="text-align: center;">总金额</div>' +
+								'<div class="font_size44 margin_top1" style="text-align: center;">' +
+								data[items].sum +
+								'</div>' +
+								'</div>' +
+								'<div class="margin_top7 margin_right3">' +
+								'<img src="../assers/image/going1.png" style="width: .14rem;height: .24rem;">' +
+								'</div>' +
+								'</div>' +
+								'</div>';
+							$(fragmentplanList).append(profitList);
+						})
+						$(".allocationD_reason").append($(fragmentplanList));
+					} else {
+						tipShow(data.message);
+					}
+				})
+			}
+			// 调拨详情  
+			$('.allocationD_reason').on('tap', '.goProfitD', function() {
+				$$.openWindow({
+					url: '../pages/myProfitD.html',
+					id: 'myProfitD',
+					extras: {
+						"serialNumber": $(this).attr('data-id')
+					},
+					createNew: 'true',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

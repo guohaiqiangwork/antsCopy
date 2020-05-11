@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height" style="z-index: 999;">
+			<i class="returnPageId" style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			<div style="width: 6.7rem;">
+				支付结果
+			</div>
+		</header>
+		<div class="content">
+			<div class="payResuit_module">
+				<!-- 支付成功 -->
+				<div id="successId" style="display: none;">
+					<div class="text_center padding_top8">
+						<img src="../assers/image/payimg/payok.png" class="payResuit_img" >
+					</div>
+					<div class="font_size32 font_color33 text_center font_width700">
+						支付成功
+					</div>
+				</div>
+				<!-- 支付失败 --> 
+				<div id="failId" style="display: none;">
+					<div class="text_center padding_top8">
+						<img src="../assers/image/payimg/payC.png" class="payResuit_img" >
+					</div>
+					<div class="font_size32 font_color33 text_center font_width700">
+						支付失败
+					</div>
+				</div>
+				<div class="div_display margin_top8">
+					<div class="font_size30 font_color66 margin_left3 width30">
+						支付金额
+					</div>
+					<div id="moneyId" class="font_size30 font_color33">
+						￥20,000.00
+					</div>
+				</div>
+				<div class="div_display margin_top3">
+					<div class="font_size30 font_color66 margin_left3 width30">
+						支付类型
+					</div>
+					<div id="payTypeId" class="font_size30 font_color33">
+						工商银行(3202)
+					</div>
+				</div>
+				<div class="div_display margin_top3">
+					<div class="font_size30 font_color66 margin_left3 width30">
+						订单编号
+					</div>
+					<div id="orderNoId" class="font_size30 font_color33">
+						<!-- 20195465431216544657 -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="homeDetails_bottom_div" style="background-color: #F4F4F4;">
+			<div id="button1" class="homeDetails_btn returnPageId" style="display: none;">
+				完成
+			</div>
+			<div  id="button2" class="homeDetails_btn"  style="display: none;">
+				重新支付
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				$("#button2").on("tap",function(){
+					plus.webview.currentWebview().close();
+				});
+				
+				$(".returnPageId").on("tap",function(){
+					$$.openWindow({
+						url: '../../views/index.html',
+						id: 'index',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+					/* setTimeout(function(){
+					    mui.currentWebview.close(); 
+					},500); */
+				});
+				
+				if(_self.payParams == "success"){
+					$("#successId").css("display","block");
+					$("#button1").css("display","block");
+				}else{
+					$("#failId").css("display","block");
+					$("#button2").css("display","block");
+				}
+				$("#moneyId").text( '¥' + _self.money);
+				$("#orderNoId").text(_self.orderNo);
+				$("#payTypeId").text(_self.type);
+			}
+			
+		})(jQuery, document, mui);
+	</script>
+
+</html>

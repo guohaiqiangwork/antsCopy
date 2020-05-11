@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height" style="position: fixed;top: 0;z-index: 999;">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			商品详情
+		</header>
+		
+		<div class="content">
+			<!-- 轮播图 -->
+			<div class="lobotuTitleDetails back_gd_DC" style="height: 7.5rem">
+				<div class="lunbo">
+					<div class="mui-slider">
+						<div class="mui-slider-group mui-slider-loop">
+			
+						</div>
+						<div class="mui-slider-indicator" style="display: none;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="display: none;" id="oneimg">
+				<img class="width100" id="pictures">
+			</div>
+			
+			<div class="margin_top3 margin_left3">
+				<!-- 默认页 -->
+				<div class="back_gd_DC mrPage" style="width: 2.92rem;height: 0.32rem;">
+				</div>
+				<div class="back_gd_DC mrPage" style="width: 1.83rem;height: 0.37rem;margin-top: 0.2rem;">
+				</div>
+				
+				<div class="font_size34 font_color33" id="title">
+					<!-- 考拉超收移动POS机 -->
+				</div>
+				<!-- <div class="font_colorff0 text_left padding_right3 margin_top3 margin_bot3" id="price">
+					
+				</div> -->
+				<div class="font_size30 text_left padding_right3 margin_top3 margin_bot3" id="phone">
+					
+				</div>
+			</div>  
+			
+			<div class="margin_top10 back_gd_DC" id="details" style="width: 100%;height: 1rem;margin-top: 1rem;">
+				<!-- <img src="../assers/image/pages/homeDetails2.png" class="width100"> -->
+			</div>
+		</div>
+		
+		<div class="homeDetails_bottom_div">
+			<div class="homeDetails_btn">
+				立即购买
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/variousMethods.js"></script>
+	
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var phoneC;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				// 获取产品详情
+				getPrductDetail(mui, _self.productId, function(data) {
+					$(".mrPage").remove();
+					if (data.code == 200) { 
+						console.log(JSON.stringify(data))
+						$('#title').text(data.data.goodsName);
+						$('#price').text('¥' + data.data.goodsPrice);
+						$('#phone').text( "客服电话:" +data.data.phone)
+						phoneC= data.data.phone;
+						/* $("#pictures").attr("src", data.data.goodsPictures[0]); */
+						//轮播图方法
+						var goodsPicturesdata = data.data.goodsPictures;
+						if(goodsPicturesdata.length == 1 ){
+							$("#oneimg").css('display', 'block');
+							$(".lobotuTitleDetails").css("display","none");
+							$("#pictures").attr("src", data.data.goodsPictures[0]);
+						}else{
+							rotationChartFunc(goodsPicturesdata,goodsPicturesdata.length,2);
+						}
+						
+						var fragmentplanList = document.createDocumentFragment();
+						$.each(data.data.goodsDetails, function(items){
+							mum = 0.15*items;
+							var details;
+							if(items == 0){
+								details =
+									'<img src="' + data.data.goodsDetails[items] + '"  class="width100">' ;
+							}else{
+								details =
+									'<img src="' + data.data.goodsDetails[items] + '"  class="width100" style="position: relative;bottom: '+mum+'rem;">';
+							} 
+							$(fragmentplanList).append(details);
+						});
+						
+						$("#details").append($(fragmentplanList));
+						if(data.data.isProtocol== 2){
+							$("#details").append(
+							'<div class="div_display display_space goCooperation" data-id="' + data.data.goodsId + '" style="background-color: #A8181B;height: .94rem;line-height: .94rem;">'+
+								'<div class="font_size30 font_colorff">' + data.data.protocolName + '</div>' +
+								'<div class="margin_right3">'+
+									'<img src="../assers/image/rightf.png"  style="width: .14rem;height: .24rem;">'+
+								'</div>'+ 
+							'</div>')
+						}
+						
+						$("#details").append('<div style="height: 1.5rem;"></div>');
+						
+					} else {
+						tipShow(data.message)
+					}
+				});
+				
+				// 立即购买
+				$('.homeDetails_btn').on('tap', function() {
+					$$.openWindow({
+						url: '../pages/homeOrder.html',
+						id: 'homeOrder',
+						createNew:true,
+						extras: {
+							"productIdD": _self.productId,
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				})
+				
+				// 去合作协议
+				$('#details').on('tap','.goCooperation',function(){
+					$$.openWindow({
+						url: '../pages/new/cooperation.html',
+						id: 'cooperation',
+						createNew:true,
+						extras:{
+							'goodsId':$(this).attr('data-id')
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				
+				/* 联系客户 */
+				$("#phone").on("tap", function(e) {
+					if (plus.os.name == "Android") {
+						var btnArray = ['拨打', '取消'];
+						var phone = phoneC;
+						mui.confirm(phone, '提示', btnArray, function(e) {
+							if (e.index == 0) {
+								plus.device.dial(phone, false);
+							}
+				
+						});
+					} else {
+						var UIAPP = plus.ios.importClass("UIApplication");
+						var NSURL = plus.ios.importClass("NSURL");
+						var app = UIAPP.sharedApplication();
+						app.openURL(NSURL.URLWithString("tel://" + phone));
+					}
+				
+				});
+				
+			}
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

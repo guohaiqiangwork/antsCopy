@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>公告详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			img{
+				width: 6.9rem;
+			}
+		</style>
+	</head>
+
+	<body onselectstart="return false;">
+		<header class="header_white title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			公告详情
+		</header>
+		
+		<div class="content" style="width: 90%;margin: 1.5rem auto;">
+			<div id="titleId" class="font_color33 font_size40 font_width700 margin_bot3">
+				
+			</div>
+			<div id="contentId" class="font_size28 font_color33">
+				
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				getNotice(mui,_self.rowId,function(data){
+					if (data.code == 200) {
+						$("#titleId").append(data.data.title);
+						$("#contentId").append(data.data.content);
+					} else {
+						tipShow(data.message);
+					}
+				});
+				
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>
+
+

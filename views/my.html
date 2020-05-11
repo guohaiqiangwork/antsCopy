@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+		<link rel="stylesheet" href="../assers/css/views/my.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<style type="text/css">
+			.header_title_leftI {
+				height: .42rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" style="background-color: #F4F4F4;">
+		<header class="header_white" style="height:1rem ;background: linear-gradient(to right, #FFD2B0, #FF7467);">
+			<div class="div_display" style="margin-top: 0.09rem;">
+				<!-- 消息 -->
+				<div class="header_title_left " id="messageId" >
+					<div class=" header_title_leftT " style="margin-top: 0.11rem;"></div>
+					<img src="../assers/image/homeMsg.png" class="header_title_leftI">
+				</div>
+				<!-- 设置 -->
+				<div class="header_title_right" id="goSetUp" style="height: 0.7rem;">
+					<img src="../assers/image/views/my-title-right.png" class="header_title_rightI">
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<!-- 个人中心头部 -->
+			<div class="my_bj">
+				<!-- 个人信息 -->
+				<div class="div_display">
+					<div class="margin_left6">
+						<img id="hederImg" class="top_img">
+					</div>
+					<div class="margin_top5 margin_left3" style="width: 3rem;">
+						<div id="nameId" class="font_size36 font_colorff" style="height: 0.5rem;">
+							<!-- 蚂蚁招财 -->
+						</div>
+						<div class="div_display vipf_moudel" style="">
+							<div class="margin_left1">
+								<img src="../assers/image/views/vipf.png" style="width: .50rem;height: .22rem;margin-bottom: 0.12rem;">
+							</div>
+							<div class="vip_moudel_font" id="LEVEL">
+								1
+							</div>
+						</div>
+					</div>
+					<div class="margin_top3" style="margin-left: .3rem;">
+						<!-- <div class="font_size30 font_colorff" id="equityId">
+							会员权益
+						</div> -->
+						<div class="right_hui" id="equityId">
+							<img src="../assers/image/mtTop2.png" style="width: .26rem;height: .32rem;">
+							会员权益
+						</div>
+						<!-- <div class="margin_top3 margin_left7">
+							<img src="../assers/image/5059@2x.png" class="top_img_er">
+						</div> -->
+					</div>
+				</div>
+				<!-- 账号余额 -->
+				<div class="div_display margin_top8 margin_left6 font_colorff">
+					<div class="font_size28">
+						账户余额(元)
+					</div>
+					<div class="font_size40 margin_left2 width45" id="balance">
+						0
+					</div>
+					<div class="my_btn_top" id="viewDetailse">
+						提现
+					</div>
+					<!-- <div style="margin-left: 1rem;" id="balance">
+						<div class="font_size30" style="text-align: center;">
+							账户余额 (元)
+						</div>
+						<div class="font_size50 margin_top2" id="balanceMoneyId" style="width: 4rem;text-align: center;">
+							--
+						</div>
+					</div>
+					<div class="margin_top3  font_size28" id="viewDetailse" style="margin-left: 0.4rem;">
+						查看详情 
+						<img src="../assers/image/return11.png" style="width: 0.09rem;height: 0.16rem;position: relative;bottom: 0.04rem;left: 0.1rem;">
+					</div>
+				 -->
+				</div>
+			</div>
+
+			<!-- 个人中心 -->
+			<div class="my_total_moudel">
+				<div class="gomyTotal">
+					<div class="font_size30">
+						总收益(元)
+						<img src="../assers/image/rightf.png" class="my_jt_img margin_left1">
+					</div>
+					<div class="font_size44 margin_top1" id="totalAmount">
+						0
+					</div>
+				</div>
+				<div class="div_display margin_top4 gomyTotalD">
+					<div class="width50 ">
+						<div class="font_size26">
+							本月支付收益(元)
+						</div>
+						<div class="font_size36" id="payAmount">
+							0
+						</div>
+					</div>
+					<div class="width50">
+						<div class="font_size26">
+							本月商城收益(元)
+						</div>
+						<div class="font_size36" id="mallAmount">
+							0
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="">
+				<img src="../assers/image/myTop3.png" class="top_img_er">
+			</div>
+
+			<div class="div_display">
+				<div class="my__img goMyOrder" data-id="100">
+					<div class="font_colorf2 margin_left3 margin_top7 " >
+						商城订单
+					</div>
+				</div>
+				<div class="my_shop_img goMyOrder">
+					<div class="font_color1f margin_left3 margin_top7 ">
+						机具订单
+					</div>
+				</div>
+			</div>
+
+			<div class="">
+				<img src="../assers/image/myTop6.png" class="top_img_er1" style="height: 1.7rem;">
+			</div>
+			<!-- 我的订单 -->
+			<div class="" style="margin-top: .4rem;display: none;">
+				<div class="div_display margin_top3">
+					<div class="goMyOrder" data-id="100" style="margin-left: 1.01rem;">
+						<div style="padding-left: 0.14rem;">
+							<img src="../assers/image/views/order0.png" class="my_order_img">
+						</div>
+						<div class="font_size28">
+							商城订单
+						</div>
+					</div>
+					<div class="goMyOrder" style="margin-left: 1.05rem;">
+						<div style="padding-left: 0.14rem;">
+							<img src="../assers/image/views/order1.png" class="my_order_img">
+						</div>
+						<div class="font_size28">
+							机具订单
+						</div>
+					</div>
+					<!-- <div class=" goMyOrder margin_left3 " data-id="1">
+						<div class="padding_left3">
+							<img src="../assers/image/views/order2.png" class="my_order_img">
+						</div>
+						<div class="font_size28 padding_left2">
+							待支付
+						</div>
+					</div>
+					<div class=" goMyOrder margin_left4" data-id="3">
+						<div class="padding_left3">
+							<img src="../assers/image/views/order3.png" class="my_order_img">
+						</div>
+						<div class="font_size28 padding_left2">
+							待收货
+						</div>
+					</div>
+					<div class="goMyOrder margin_left4" data-id="4">
+						<div class="padding_left3">
+							<img src="../assers/image/views/order4.png" class="my_order_img">
+						</div>
+						<div class="font_size28 padding_left2">
+							已完成
+						</div>
+					</div> -->
+					<div class="goImplements" href="../pages/alloctionRecord.html" data-id='alloctionRecord' style="margin-left: 1.05rem;">
+						<div class="padding-left: 0.14rem;">
+							<img src="../assers/image/views/orderjl.png" class="my_order_img" style="margin-left: 0.1rem;">
+						</div>
+						<div class="font_size28">
+							调拨记录
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 广告位置 -->
+			<!-- <div class="">
+				<img src="../assers/image/views/my-Advertisement.png" class="advertisement_img">
+			</div> -->
+			<!-- 二人赚机具 -->
+			<div class="margin_left3 margin_top6" style="display: none;">
+				<div class="font_size32 font_color00 font_width700">
+					机具管理
+				</div>
+				<div class="div_display margin_top3 font_size28 font_color33">
+					<div class="implements_width goImplements" href="../pages/myImplements.html" data-id='myImplements' style="margin-left: 0.7rem;">
+						<div class="margin_left1">
+							<img src="../assers/image/views/Implements1.png" class="implements_img" style="margin-left: 0.06rem;">
+						</div>
+						<div class="">
+							我的机具
+						</div>
+					</div>
+					<div class="implements_width goImplements" href="../pages/implementsAllocation.html" data-id='implementsAllocation'
+					 style="margin-left: 0.32rem;">
+						<div class="margin_left1">
+							<img src="../assers/image/views/Implements2.png" class="implements_img" style="margin-left: 0.05rem;">
+						</div>
+						<div class="">
+							机具调拨
+						</div>
+					</div>
+					<!-- <div class="implements_width">
+						<div class="margin_left1">
+							<img src="../assers/image/views/Implements3.png" class="implements_img">
+						</div>
+						<div class="">
+							机具激活
+						</div>
+					</div> -->
+					<!-- <div class="implements_width goImplements" href="../pages/alloctionRecord.html" data-id='alloctionRecord'>
+						<div class="margin_left3">
+							<img src="../assers/image/views/Implements4.png" class="implements_img">
+						</div>
+						<div class="">
+							调拨记录 
+						</div>
+					</div> -->
+					<div class="goImplements" href="../pages/myProfit.html" data-id='myProfit' style="margin-left: 0.2rem;">
+						<div class="margin_left1">
+							<img src="../assers/image/views/Implements5.png" class="implements_img" style="margin-left: 0.06rem;">
+						</div>
+						<div class="">
+							我的收益
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- 我的代理 -->
+			<div class="agent_modular" style="display: none;">
+				<div class="font_size34  font_width700 margin_left3 padding_top3">
+					我的代理
+				</div>
+				<div class="div_display">
+					<div class="agent_width">
+						<div class="font_size40" id="mySum">
+							--
+						</div>
+						<div class="font_size30 margin_top3">
+							个人交易量/万元
+						</div>
+					</div>
+					<div class="agent_width">
+						<div class="font_size40" id="totalSum">
+							--
+						</div>
+						<div class="font_size30 margin_top3">
+							团队交易量/万元
+						</div>
+					</div>
+					<div class="agent_width">
+						<div class="font_size40" id="num">
+							--
+						</div>
+						<div class="font_size30 margin_top3">
+							总人数
+						</div>
+					</div>
+					<div class="margin_top7" style="margin-left: 0.8rem;">
+						<img src="../assers/image/going.png" class="agent_going">
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/variousMethods.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var txParms = true; //控制提现按钮不重复点击
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				/* 监听更新页面 */
+				window.addEventListener('refreshMajorGuestCount_my', function(event) {
+					/* 查询用户信息*/
+					get_myMassage();
+				});
+
+				// 查询我的数据
+				getPersonCenter(mui, function(data) {
+					if (data.code == 200) {
+						$('#totalAmount').text(data.data.totalAmount); //总收益
+						$('#payAmount').text(data.data.payAmount); //本月支付收益
+						$('#mallAmount').text(data.data.mallAmount); //本月商城收益
+						$('#balance').text(data.data.balance); //余额
+
+					} else {
+						tipShow(data.message);
+					}
+				});
+
+				/* 查询用户信息*/
+				get_myMassage();
+
+				function get_myMassage() {
+					myMassage(mui, plus.storage.getItem('memberId'), function(data) {
+						//console.log("查询用户信息="+JSON.stringify(data)); 
+						if (data.code == 200) {
+							//余额 
+							// $("#balanceMoneyId").text(data.data.balance);
+							//头像
+							if (data.data.avatar) {
+								$('#hederImg').attr('src', "");
+								$('#hederImg').attr('src', data.data.avatar);
+							}
+							//名字
+							if (data.data.name) {
+								$('#nameId').text(data.data.name);
+							}
+
+						} else {
+							tipShow(data.message);
+						}
+					});
+				}
+
+				//获取等级
+				getTeamDetails(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						$('#LEVEL').text(data.data[0].LEVEL);
+					}
+				});
+
+				// 获取消息
+				hasMessage(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						if (data.data) {
+							//有新消息,显示红点
+							$("#messageId").find("div").addClass("div_backgroun_jb");
+						} else {
+							//没有新消息,不显示红点
+							$("#messageId").find("div").removeClass("div_backgroun_jb");
+						}
+					} else {
+						tipShow(data.message);
+					}
+				});
+
+				// 获取我的代理数据
+				getAgency(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						$('#totalSum').text(data.data[0].totalSum)
+						$('#mySum').text(data.data[0].mySum)
+						$('#num').text(data.data[0].num)
+					} else {
+						tipShow(data.message);
+					}
+				})
+				/* 去消息页面 */
+				var messageId = doc.getElementById('messageId');
+				messageId.onclick = function() {
+					$$.openWindow({
+						url: '../pages/newsPage.html',
+						id: 'newsPage',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				};
+				//机具页面管理
+				$('.goImplements').on('tap', function(e) {
+					// 获取页面ID
+					var urlId = $(this).attr("data-id");
+					// 获取路径
+					var urlRout = this.getAttribute('href');
+					if (urlRout && urlId) {
+						$$.openWindow({
+							url: urlRout,
+							id: urlId,
+							createNew: true,
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					} else {
+						console.log('缺少页面路径')
+
+					}
+				});
+
+				/* 查看详情 */
+				// $("#viewDetailse").on("tap", function() {
+				// 	$$.openWindow({
+				// 		url: '../pages/balance.html',
+				// 		id: 'balanceTix',
+				// 		show: {
+				// 			aniShow: "slide-in-right"
+				// 		}
+				// 	});
+				// });
+				// 去提现
+				$("#viewDetailse").on("tap", function() {
+					if (txParms) {
+						txParms = false;
+						plus.storage.setItem("returnPage", 'my');
+						//查询是否实名认证
+						getHasVerific(mui, plus.storage.getItem('memberId'), function(data) {
+							if (data.code == 200) {
+
+								// 查询银行卡列表
+								getBankFindAll(mui, plus.storage.getItem('memberId'), function(data) {
+									if (data.code == 200) {
+										if (data.data.length == 0) {
+											tipShow("添加银行卡");
+											mui.openWindow({
+												url: '../pages/bankCard.html',
+												id: 'bankCard',
+												createNew: true,
+												show: {
+													aniShow: "slide-in-right"
+												}
+											});
+										} else {
+											mui.openWindow({
+												url: '../pages/balanceTix.html',
+												id: 'balanceTix',
+												createNew: true,
+												extras: {
+													"txType": "余额提现",
+													"moneyNum": $("#balance").text(),
+												},
+												show: {
+													aniShow: "slide-in-right"
+												}
+											});
+										}
+									} else {
+										tipShow(data.message)
+									}
+								});
+							} else {
+								tipShow(data.message);
+								mui.openWindow({
+									url: '../pages/realName.html',
+									id: 'realName',
+									show: {
+										aniShow: "slide-in-right"
+									}
+								});
+							}
+						});
+
+						setTimeout(function() {
+							txParms = true;
+						}, 1000)
+					}
+				});
+
+				/* 余额 */
+				$("#balance").on("tap", function() {
+					return
+					$$.openWindow({
+						url: '../pages/balance.html',
+						id: 'balance',
+						createNew: true,
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				// 我的二维码
+				$(".top_img_er").on('tap', function() {
+					$$.openWindow({
+						url: '../pages/myQRCode.html',
+						id: 'myQrCode',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				})
+				/* 会员权益 */
+				$("#equityId").on("tap", function() {
+					$$.openWindow({
+						url: '../pages/equity.html',
+						id: 'equity',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				// 去我的订单
+				$('.goMyOrder').on('tap', function() {
+					if ($(this).attr('data-id') == 100) {
+						//商城订单
+						$$.openWindow({
+							url: '../pages/shopping/jfmyOrder.html',
+							id: 'myOrder',
+							extras: {
+								orderType: "",
+							},
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					} else {
+						$$.openWindow({
+							url: '../pages/myOrder.html',
+							id: 'myOrder',
+							extras: {
+								orderType: "",
+							},
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					}
+				});
+				// 去设置页面
+				$('#goSetUp').on('tap', function() {
+					plus.storage.setItem('mar', '2');
+					updataTime("", "", "");
+					$$.openWindow({
+						url: '../pages/setUp.html',
+						id: 'setUp',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				// 我的代理
+				$('.agent_modular').on('tap', function() {
+					$$.openWindow({
+						url: '../pages/myAgent.html',
+						id: 'myAgent',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				// 去总收益
+				$('.gomyTotal').on('tap', function() {
+					$$.openWindow({
+						url: '../pages/new/myTotal.html',
+						id: 'myTotal',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				// 去总收益详情
+				$('.gomyTotalD').on('tap', function() {
+					$$.openWindow({
+						url: '../pages/new/myTotalDetail.html',
+						id: 'myTotalDetail',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+
+				// 双击退出应用
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if (backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+				}
+
+
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

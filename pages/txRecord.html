@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>提现记录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;">
+		<header class="header_white title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			提现记录
+		</header>
+		
+		<div style="height: 1.3rem;"></div>
+		
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<div id="listId">
+					
+					<!-- <div style="width: 90%;margin: 10px auto;height: 1.1rem;border-bottom: #CCCCCC solid 1px;">
+						<div style="float: left;width: 50%;">
+							<div class="font_color33 font_size30">提现到银行卡</div>
+							<div class="font_color33 font_size28">已到账</div>
+						</div>
+						
+						<div style="float: left;width: 45%;text-align: right;">
+							<div class="font_color99 font_size26">2020-02-18</div>
+							<div class="font_color33 font_size34">-200.00</div>
+						</div>
+						
+						<div id="aaa" style="float: right;line-height: 0.8rem;">
+							<input type="image" style="width: 0.11rem;height: 0.19rem;" src="../assers/image/packRight.png" />
+						</div>
+					</div> -->
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		<!-- 缺省页 -->
+		<div class="nothing1" style="display: none;width: 4.12rem;height: 3.35;margin: 1rem auto;">
+			<img src="../assers/image/default/txRecord.png" class="width_height100">
+			<p style="margin-left: 0.8rem;">您还没有进行提现</p>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					style: 'circle',
+					callback: pulldownRefresh
+				},
+				up: {
+					auto: true,
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh,
+				}
+			}
+		});
+		
+		var _self;
+		var count = 0; //当前页数
+		var pageParams = 1; //下一页数
+		var boolenParams = true; //控制不重复请求
+		var priceSorted = "1";
+		var dataBase;
+		
+		function pullupRefresh() {
+			plus.navigator.setFullscreen(false);
+			//强制竖屏
+			plus.screen.lockOrientation("portrait-primary");
+			//强制隐藏滚动条
+			plus.webview.currentWebview().setStyle({
+				scrollIndicator: 'none'
+			});
+			_self = plus.webview.currentWebview();
+		
+			if (boolenParams) {
+				//如果后端返回数据就继续可以下拉加载请求数据，如果返回空就不请求后端，显示没有更多数据了
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > pageParams)); //参数为true代表没有更多数据了。
+				boolenParams = false;
+		
+				var table = document.body.querySelector('.mui-table-view');
+				var cells = document.body.querySelectorAll('.mui-table-view-cell');
+				var newCount = cells.length > 0 ? 5 : 10; //首次加载10条，满屏
+		
+				/* ----------------------默认加载list ----------------*/
+				dataBase = {
+					data:{
+						memberId: plus.storage.getItem('memberId'),
+					},
+					pageNum:count,
+					pageSize:20 
+				};
+				getList()
+				
+			} else {
+				//tipShow("数据加载中...");
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+			}
+		}
+		
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+		function pulldownRefresh() {
+			setTimeout(function() {
+				pullupRefresh();
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			}, 1500);
+		}
+		
+		/* 请求数据 */
+		function getList(){
+			getWithdrawalsRecord(mui, dataBase, function(data) {
+				if (data.code == 200) {
+					var fragmentplanList = document.createDocumentFragment();
+					var dataList = data.data.records;
+					if(dataList.length == 0){
+						//无数据
+						if (count == 1) {
+							$(".mui-pull").css("display", "none");
+							$('.nothing1').css('display' ,'block')
+						}
+					}else{
+						++pageParams;
+						$(".mui-pull").css("display", "block");
+						$('.nothing1').css('display' ,'none')
+					} 
+					
+					var style;
+					$.each(dataList, function(k) {
+						if(dataList[k].state == 0 || dataList[k].state == 3){
+							style = "受理中";
+						}else if(dataList[k].state == 5 || dataList[k].state == 4 || dataList[k].state == 2){
+							style = "提现失败";
+						}else if(dataList[k].state == 1){
+							style = "提现完成";
+						}else{
+							style = "处理";
+						}
+						
+						
+						var orderLiTwo = 
+						'<div class="row" styleText='+style +' orderNo='+dataList[k].orderNo+' style="width: 90%;margin: 10px auto;height: 1.1rem;border-bottom: #CCCCCC solid 1px;">'+
+						'<div style="float: left;width: 50%;">'+
+							'<div class="font_color33 font_size30">提现到银行卡</div>'+
+							'<div class="font_color33 font_size28">'+style+'</div>'+
+						'</div>'+
+						
+						'<div style="float: left;width: 45%;text-align: right;">'+
+							'<div class="font_color99 font_size26">'+dataList[k].createTime+'</div>'+
+							'<div class="font_color33 font_size34">-'+dataList[k].amount+'</div>'+
+						'</div>'+
+						
+						'<div class="backRight" style="float: right;line-height: 0.8rem;width: 0.3rem;text-align: right;">'+
+							'<input type="image" style="width: 0.11rem;height: 0.19rem;" src="../assers/image/packRight.png" />'+
+						'</div>'+
+					'</div>';
+						$(fragmentplanList).append(orderLiTwo);
+					});
+					$("#listId").append($(fragmentplanList));
+					$('#listId .listcla:nth-child('+dataList.length+') .margin_top4').css({"margin-bottom":"0.8rem"});
+				} else {
+					tipShow(data.message);
+				}
+				boolenParams = true;
+			});
+		}
+		
+		$("#listId").on("tap",".row",function(){
+			var orderNo = $(this).attr("orderNo");
+			var styleText = $(this).attr("styleText");
+			mui.openWindow({
+				url: 'carryResult.html',
+				id: 'carryResult',
+				extras: {
+					"bankCId": orderNo,
+					"style":"txRceord",
+					'styleText':styleText
+				},
+				show: {
+					aniShow: "slide-in-right"
+				}
+			});
+		});
+		
+		/* 判断状态 
+		* 0-受理中，1-已打款，2-打款失败，3-待打款(暂停处理)，
+		* 4-打款失败（已退款，退汇或者冲正)，5-取消支付
+		*
+		*/
+		function getTyle(num){
+			var day;
+			switch (num) {
+			    case 0:
+			        day = "受理中";
+			        break;
+			    case 1:
+			        day = "已打款";
+			         break;
+			    case 2:
+			        day = "打款失败";
+			         break;
+			    case 3:
+			        day = "待打款";
+			         break;
+			    case 4:
+			        day = "打款失败";
+			         break;
+			    case 5:
+			        day = "取消支付";
+			         break;
+				default:
+				    day = "出现故障";
+				     break;
+			} 
+			return day;
+		}
+		
+	</script>
+
+</html>
+
+

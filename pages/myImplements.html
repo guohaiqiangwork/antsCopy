@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link href="../assers/css/mui.picker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/pages/implements.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+
+		<style type="text/css">
+			.implements_moudel {
+				border-radius: 0.2rem;
+				margin-left: .25rem;
+				margin-top: .3rem;
+			}
+
+			.content {
+				margin-top: 0.88rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			我的机具
+		</header>
+		<div class="content">
+			<!-- 选项卡 -->
+			<div class="div_display implements_top">
+				<div style="margin-left: .96rem;width: 3rem;" id='showUserPicker'>
+					<div class="font_color33 font_size30" id="implementsName" style="float: left;">
+						机具名称
+					</div>
+					<div style="float: left;">
+						<img src="../assers/image/downJt.png" class="implements_img">
+					</div>
+				</div>
+				<div class="" style="width: 2.5rem;" id='showUserPickerStart'>
+					<div style="float: right;">
+						<img src="../assers/image/downJt.png" class="implements_img">
+					</div>
+					<div class="font_color33 font_size30" id="implementsStart" style="float: right;">
+						机具状态
+					</div>
+				</div>
+			</div>
+			<div class="" id="myImpleList">
+				<div class="mrPage" style="margin: 0.3rem;">
+					<div style="width: 6.9rem;height: 2.54rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+						<div id="" style="width:6.9rem;height: 0.89rem;background-color: #DCDCDC;border-radius: 0.2rem 0.2rem 0 0;">
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.25rem;">
+							</div>
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.25rem;float: right;">
+							</div>
+						</div>
+
+						<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.25rem;">
+						</div>
+						<div id="" style="width: 1.19rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.7rem;right: 0.25rem;float: right;">
+						</div>
+					</div>
+				</div>
+				<div class="mrPage" style="margin: 0.3rem;">
+					<div style="width: 6.9rem;height: 2.54rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+						<div id="" style="width:6.9rem;height: 0.89rem;background-color: #DCDCDC;border-radius: 0.2rem 0.2rem 0 0;">
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.25rem;">
+							</div>
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.25rem;float: right;">
+							</div>
+						</div>
+
+						<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.25rem;">
+						</div>
+						<div id="" style="width: 1.19rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.7rem;right: 0.25rem;float: right;">
+						</div>
+					</div>
+				</div>
+				<div class="mrPage" style="margin: 0.3rem;">
+					<div style="width: 6.9rem;height: 2.54rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+						<div id="" style="width:6.9rem;height: 0.89rem;background-color: #DCDCDC;border-radius: 0.2rem 0.2rem 0 0;">
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.25rem;">
+							</div>
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.25rem;float: right;">
+							</div>
+						</div>
+
+						<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.25rem;">
+						</div>
+						<div id="" style="width: 1.19rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.7rem;right: 0.25rem;float: right;">
+						</div>
+					</div>
+				</div>
+				<div class="mrPage" style="margin: 0.3rem;">
+					<div style="width: 6.9rem;height: 2.54rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+						<div id="" style="width:6.9rem;height: 0.89rem;background-color: #DCDCDC;border-radius: 0.2rem 0.2rem 0 0;">
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.25rem;">
+							</div>
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.25rem;float: right;">
+							</div>
+						</div>
+
+						<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.25rem;">
+						</div>
+						<div id="" style="width: 1.19rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.7rem;right: 0.25rem;float: right;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 模块 -->
+
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/mui.picker.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				// 获取机具名称下拉数据
+				getGoodsName(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						//机具名称
+						var nameVal;
+						var userPicker1 = new mui.PopPicker();
+						userPicker1.setData(data.data);
+						var showUserPickerButton = doc.getElementById('showUserPicker');
+						var implementsName = doc.getElementById('implementsName');
+						var getName = doc.getElementById('getName');
+						showUserPickerButton.addEventListener('tap', function(event) {
+							userPicker1.show(function(items) {
+								console.log(JSON.stringify(items[0]))
+								if (items[0].length > 6) {
+									nameVal = items[0].substring(7, 0) + "...";
+								} else if (items[0]) {
+									nameVal = '机具名称'
+								} else {
+									nameVal = items[0];
+								}
+								implementsName.innerText = nameVal; //页面赋值
+								keyword.goodsName = items[0]; //接口参数赋值
+								if (nameVal == '机具名称') {
+									return;
+								} else {
+									myImplementList();
+								}
+							});
+						}, false);
+					}
+				});
+				//机具状态
+				var userPicker = new mui.PopPicker();
+				userPicker.setData([
+					/* {
+						value: '1',
+						text: '待激活'
+					}, */
+					{
+						value: '1',
+						text: '未激活'
+					}, {
+						value: '2',
+						text: '已激活'
+					}
+				]);
+				var showUserPickerSButton = doc.getElementById('showUserPickerStart');
+				var implementsStart = doc.getElementById('implementsStart');
+				showUserPickerSButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						//console.log("111==="+JSON.stringify(items));
+						implementsStart.innerText = items[0].text; //页面赋值
+						keyword.status = items[0].value; //接口参数赋值
+						myImplementList();
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+
+				var keyword = {
+					agentId: plus.storage.getItem('memberId'),
+					goodsName: '',
+					status: ''
+				}
+				myImplementList();
+
+				function myImplementList() {
+					// 获取我的机具列表
+					getMyItem(mui, keyword, function(data) {
+						$(".mrPage").remove();
+						//console.log("结果="+ JSON.stringify(data));
+						if (data.code == 200) {
+							if (data.data.length > 0) {
+								$(".nothing").css("display", "none");
+								var fragmentplanList = document.createDocumentFragment();
+								var goodsName;
+								$.each(data.data, function(items) {
+									goodsName = data.data[items].goodsName
+									if (goodsName.length > 14) {
+										goodsName = data.data[items].goodsName.substring(14, 0) + "...";
+									}
+
+									if (data.data[items].status == '待激活') {
+										status_img = 'implements_moudel_img1'
+									} else if (data.data[items].status == '已激活') {
+										status_img = 'implements_moudel_img1'
+									} else if (data.data[items].status == '未激活') {
+										status_img = 'implements_moudel_img'
+									}
+									var myList =
+										'<div class="implements_moudel  ' + status_img + '">' +
+										//头部
+										'<div class="div_display padding_top3 font_size32 font_colorff">' +
+										'<div class="width80 margin_left3 font_width700">' +
+										goodsName +
+										'</div>' +
+										'<div class="width20 text_right margin_right3">' +
+										data.data[items].status +
+										'</div>' +
+										'</div>' +
+										//机具型号
+										'<div class="div_display font_size28 font_color33 margin_top5">' +
+										'<div class="margin_left3">机具型号</div>' +
+										'<div class="margin_left4">' +
+										data.data[items].serialModel +
+										'</div>' +
+										'</div>' +
+										'<div class="div_display font_size28 font_color33 margin_top2">' +
+										'<div class="margin_left3">机具编号</div>' +
+										'<div class="margin_left4">' +
+										data.data[items].serialNumber +
+										'</div>' +
+										'</div>' +
+										'</div>';
+									$(fragmentplanList).append(myList);
+								})
+								$(".implements_moudel").remove();
+								$(".kon").remove();
+								$("#myImpleList").append($(fragmentplanList));
+								$("#myImpleList").append('<div class="kon" style="height:1rem"></div>');
+							} else {
+								$(".implements_moudel").remove();
+								$(".kon").remove();
+								var nothingIMg =
+									'<div class="nothing" style="margin-top: 1rem;">' +
+									'<img src="../assers/image/default/noImplement.png" class="" style="margin-top: 1.5rem;width:4.2rem;height:3.5rem">' +
+									'<p>暂无机具</p>' +
+									'</div>';
+								$("#myImpleList").append(nothingIMg);
+							}
+
+						}
+					})
+
+				}
+
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

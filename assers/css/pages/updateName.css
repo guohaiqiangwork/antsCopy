@@ -1,0 +1,263 @@
+#result{
+	width: 7.1rem;
+	height: 3.0em;
+	margin-left: 0.2rem;
+	margin-right: 0.2rem;
+	margin-top: 0.22rem;
+}
+
+body{
+	background-color: #FAFAFA;
+}
+
+.content div span{
+	font-size: 0.28rem;
+	color: #999999;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.content div{
+	text-align: center;
+}
+
+.content div button{
+	width: 5.2rem;
+	height: 0.9rem;
+	background: linear-gradient(to right, #FF342D, #FF5882);
+	border-radius:1rem;
+	color: #FFFFFF;
+	font-size: 0.32rem;
+}
+
+.content div:nth-child(3){
+	margin-top: 0.4rem;
+}
+
+#result{
+	border: 0;
+	margin-top: 0.7rem;
+}
+
+.title{
+	height: 1.26rem;
+	line-height: 1.26rem;
+}
+
+.title i img{
+	width: 22px;
+	height: 22px;
+}
+
+
+/* 设置提现密码样式 */
+#setPassword_body{
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 0.9rem;
+	line-height: 0.9rem;
+}
+
+#setPassword_body span{
+	margin-left: 0.4rem;
+}
+
+#setPassword_body input{
+	width: 60%;
+	background:none;  
+	outline:none;  
+	border:none;
+}
+
+#insert_id{
+	background: linear-gradient(to right, #FF342D , #FF5882);
+	height: 1.07rem;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	line-height: 1.07rem;
+}
+
+#insert_id span{
+	color: #FFFFFF;
+	font-size: 0.34rem;
+}
+
+
+/* 余额提现页面 样式 */
+body{
+	background-color: #FAFAFA;
+}
+
+#balanceBody_id{
+	height: 5.95rem;
+	margin-top: 0.31rem;
+}
+
+#balanceBody_id ul{
+	background-color: #FFFFFF;
+	height: 5.95rem;
+	width: 6.9rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left:0px;
+}
+
+li{
+	list-style: none;
+}
+
+.li_one{
+	margin-left: auto;
+	margin-right: auto;
+	height: 1.62rem;
+	width: 5.79rem;
+	border-bottom: 1px solid #A0A0A0;
+}
+
+.li_one div:nth-child(1){
+	float: left;
+	height: 1.42rem;
+	width: 1.3rem;
+	color: #303030;
+	font-size: 0.24rem;
+	line-height: 1.42rem;
+}
+
+
+.li_one div:nth-child(2){
+	margin-left: 15px;
+	float: left;
+	width: 2.7rem;
+	font-size: 0.24rem;
+}
+
+.li_two_div{
+	line-height: 1.42rem;
+	float: right;
+	width: 30px;
+	text-align: center;
+}
+
+.li_two_div img{
+	width: 0.124rem;
+	height: 0.214rem;
+}
+
+.li_two{
+	color: #303030;
+	font-size: 0.24rem;
+	margin-top: 0.39rem;
+	margin-left: 0.55rem;
+}
+
+.li_three{
+	color: #303030;
+	font-size: 0.6rem;
+	width: 5.79rem;
+	border-bottom: 1px solid #A0A0A0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: .2rem;
+	line-height: .6rem;
+}
+
+.li_four{
+	font-size: 0.24rem;
+	color: #A0A0A0;
+	margin-left: 0.55rem;
+	margin-top: 0.29rem;
+}
+
+.li_four span:nth-child(2){
+	color: #FF342D;
+}
+
+.li_five{
+	width: 6.2rem;
+	height: .9rem;
+	background: linear-gradient(to right, #FF342D , #FF5882);
+	border-radius: 0.45rem;
+	margin: 0 auto;
+	line-height: .9rem;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 0.32rem;
+	margin-top: 0.32rem;
+}
+
+#balbnce_money{
+	border: 0;
+	width: 80%;
+	
+}
+
+.mui-btn, button, input[type=button], input[type=reset], input[type=submit]{
+	border: 1px solid #FAFAFA;
+}
+
+
+/* 选择银行卡样式 */
+.imgClass{
+	width: 0.43rem;
+	float: left;
+	margin-top: 0.25rem;
+}
+
+.spanClass{
+	position: relative;
+	top: .2rem;
+	font-size: .3rem;
+}
+
+
+.mui-table-view-radio .mui-table-view-cell .mui-navigate-right:after {
+    font-size: 0.45rem;
+    font-weight: 600;
+    right: 9px;
+    content: '';
+    color: #FFFFFF;
+    border: 1px solid;
+    border-radius: 0.4rem;
+	background-color: #FF342D;
+	z-index: 99;
+}
+
+
+.mui-table-view-cell{
+	width: 90%;
+	margin-left: 0.4rem;
+	height: .8rem;
+	-background-color: #0076FF;
+}
+
+.mui-navigate-right{
+	height: .7rem;
+	line-height: 0.7rem;
+	font-size: 0.3rem;
+	-background-color: #007AFF;
+}
+
+
+.imgClass{
+	width: 0.43rem;
+	float: left;
+	margin-top: 0.25rem;
+}
+
+.spanClass{
+	margin-left: 0.1rem;
+	margin-top: 0.05rem;
+	float: left;
+	font-size: .3rem;
+}
+
+
+.mui-table-view-cell>a:not(.mui-btn) {
+    position: static;
+}
+
+.mui-popover.mui-popover-action .mui-table-view{
+	color: #303030;
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>分类</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" href="../../assers/css/mobileReset.css">
+		<link rel="stylesheet" type="text/css" href="../../assers/css/shoppging/home.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			.product_module{
+				height: 1.6rem;
+				padding: 0.29rem 0.2rem;
+			}
+			.product_module div:nth-child(2){
+				float: left;
+				line-height: 0.7rem;
+				margin-left: 0.18rem;
+			}
+			.product_moudel_img {
+			    width: 1.29rem;
+			    height: 1.02rem;
+				float: left;
+			}
+			
+		</style>
+	</head>
+
+	<body onselectstart="return false;">
+		<header class="header_white title_height">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			分类
+		</header>
+		
+		<div class="content">
+			<!-- 搜索框 -->
+			<div id="searchId" style="background-color: #FFFFFF;position: absolute;top: 1rem;left: 0.4rem;z-index: 2;"">
+				<div>
+					<img style="width: 0.29rem;" src="../../assers/image/shopping/7258@2x.png">
+				</div>
+				<div style="line-height: 0.33rem;width: 85%;">
+					<input id="search" class="font_color99 font_size26" style="-webkit-user-select:text !important;width: 100%;" placeholder="请输入要搜索的内容" />
+				</div> 
+			</div>
+			 
+			<!-- 商品分类list部分 -->
+			<div id="productList" style="margin-top: 2rem;">
+				<!-- <div class="product_module">
+					<div class="product_moudel_img">
+						<img src="../../assers/image/shopping/5453@2x.png" class="product_moudel_img">
+					</div>
+					<div class="font_size30 font_color33 margin_left2 margin_top2">电子数码</div>
+				</div> -->
+			</div>	
+			
+			<!-- 缺省页 -->
+			<div class="nothing" style="display: none;z-index: 0;margin-top: 1.37rem;">
+				<img src="../../assers/image/default/search.png" class="width_height100">
+				<p>没有找到相关宝贝</p>
+			</div>
+			
+		</div>
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				getClass({name:""});//获取list
+				
+				/* 监听键盘搜索按钮 */
+				doc.getElementById("search").addEventListener("keypress", function(event) {
+					if (event.keyCode == "13") {
+						var nameVal = doc.getElementById("search").value.replace(/\s*/g, "");
+						doc.activeElement.blur(); //收起虚拟键盘
+						getSearch(nameVal); //完成搜索事件
+						event.preventDefault(); // 阻止默认事件---阻止页面刷新
+					}
+				});
+				
+				//去搜索页
+				function getSearch(nameVal){
+					$$.openWindow({
+						url: '../../pages/shopping/search.html',
+						id: 'search',
+						extras: {
+							"nameVal": nameVal
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				}
+				
+				/* 去分类商品 */
+				$('#productList').on('tap', '.product_module', function() {
+					$$.openWindow({
+						url: 'classifyShopp.html',
+						id: 'classifyShopp',
+						extras: {
+							"classifyName": $(this).attr("classifyName"),
+							"classifyId": $(this).attr("classifyId"),
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					}); 
+				});
+				
+				//获取分类列表
+				function getClass(nameVal){
+					getjfClassify(mui,nameVal,function(data){
+						if(data.code == 200){ 
+							var tjData = data.data;
+							var fragmentplanList = document.createDocumentFragment();
+							if(tjData.length == 0){
+								$('.nothing').css('display' ,'block');
+								$(".product_module").remove();
+							}else{
+								$('.nothing').css('display' ,'none');
+								for(i=0;i<tjData.length;i++){
+									var goodsList =
+										'<div class="product_module" classifyName='+tjData[i].name+' classifyId='+tjData[i].id+'>'+
+											'<div class="product_moudel_img">'+
+												'<img src='+tjData[i].picture+' class="product_moudel_img">'+
+											'</div>'+
+											'<div class="font_size30 font_color33 margin_left2 margin_top2">'+tjData[i].name+'</div>'+
+										'</div>';
+									$(fragmentplanList).append(goodsList);
+								}
+								$(".product_module").remove();
+								$("#productList").append($(fragmentplanList));
+							}
+							
+						}else{
+							tipShow(data.message);
+						}
+					});
+				}
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>
+

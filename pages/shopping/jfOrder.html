@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../assers/css/views/home.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+
+		<style type="text/css">
+			#remark {
+				text-align: right;
+				border: none;
+				margin-right: 0.2rem;
+			}
+			input[type=number]{
+				width: 1.1rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../../assers/image/returnButton.png" class="headder_img"></i>
+			填写订单
+		</header>
+		<div class="content">
+			<!-- 地址块 -->
+			<div class="homeOrder_address" id="addressMoudelNo" style="display: none;">
+				<div class="goAddressf" style="width: 6.47rem;height: 1.75rem;position: absolute;top: 1.55rem;left: 0.49rem;border-radius: 0.1rem;border: #CCCCCC dashed 1px;"></div>
+				<div class="text_center font_size30 font_color66 padding_top8 goAddressf" id="goAddressE">
+					<img id="updateAddId" style="width: 0.3rem;position: relative;top: 0.06rem;" src="../../assers/image/default/updateAddress.png">
+					添加收货地址
+				</div>
+			</div>
+			<div class="homeOrder_address" id="addressMoudel" style="display: none;">
+				<div class="margin_left3 padding_top3">
+					<div class="div_display">
+						<div class="width80">
+							<div class="div_display">
+								<img id="codeAddressId" src="../../assers/image/mr.png" style="width: 0.7rem;height: 0.31rem;position: relative;top: 0.23rem;margin-right: 0.2rem;">
+								<div class="font_color33 font_size28 margin_top2 div_display">
+									<div class="name font_width700 font_color33 font_size30">
+
+									</div>
+									<div class="phone margin_left2 font_width700 font_color33 font_size30">
+
+									</div>
+								</div>
+							</div>
+							<div class="font_size28 font_color66" id="province">
+								<!-- 北京市门头沟区 -->
+							</div>
+
+						</div>
+						<div class="width20 text_right " id='goAddress'>
+							<img src="../../assers/image/going.png" class="homeOrder_address_img">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 商品块 -->
+			<div class="product_moudel" style="height: 5.7rem;">
+				<!-- 商品数量 -->
+				<div class="div_display">
+					<div class="margin_left3 margin_top3">
+						<img class="homeOrder_img" id="pictures" style="border-radius: 0.1rem;">
+					</div>
+					<div class="margin_left3 margin_top6">
+						<div class="font_color33 font_size30 font_width700" id="title">
+							<!-- 考拉超收移动POS机 -->
+						</div>
+						<div class="div_display margin_top2">
+							<div class="font_colorff0" id="price" style="width: 2.2rem;">
+								<span class="priceCodeClas font_size24">¥</span>
+								<span class="priceMoneyClas font_size32 font_width700"></span>
+							</div>
+							<div style="">
+								<div id="updateNumId" style="border: none;height: .48rem !important;" class="mui-numbox" data-numbox-min='1'data-numbox-max=''>
+									<button style="background-color: #FFFFFF;" class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input readonly="readonly" style="border: none;position: relative;bottom: .15rem;right: 0.2rem;padding: 0;margin: 0;background-color: #EEEEEE;text-align: center;" id="test" class="" type="number" value="1" />
+									<button style="background-color: #FFFFFF;" class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- 运费 -->
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33" style="margin-top: 0.6rem;">
+					<div class="width50">
+						运费
+					</div>
+					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
+						￥ 0.00
+					</div>
+				</div>
+				<!-- 金额 -->
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33">
+					<div class="width50">
+						商品金额
+					</div>
+					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
+						<span>￥</span>
+						<span class="price"></span>
+					</div>
+				</div>
+				<!-- 备注 -->
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33">
+					<div class="width40 margin_top2">
+						订单备注
+					</div>
+					<textarea placeholder="选填" id="remark" class="font_size26" style="position: relative;left: 0.2rem;"></textarea>
+
+					<!-- <div class="width50 text_right margin_right6">
+						<input type="" name="" id="remark" value="" placeholder="选填" class="width50" style="border: none;width: 100%;text-align: right;" />
+					</div> -->
+				</div>
+			</div>
+			<!-- 购买按钮 -->
+			<div class="div_display homeOrder_bottom_div">
+				<div class="margin_left3 margin_top3 width60 div_display">
+					<div class="font_colorff0">
+						<span class="priceCodeClas font_size24">¥</span>
+						<span id="totalMoneyId" class="priceMoneyClas font_size36 font_width700"></span>
+					</div>
+					<div class="font_size26 font_color99">(含运费)</div>
+				</div>
+				<div class="homeOrder_btn">
+					提交订单
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var shopStock;
+			// 提交订单数据
+			var keywords = {
+				num: ''
+			};
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				//初始化数量和价格
+				$("#test").val(1);   
+				var shopPrice = $("#price .priceMoneyClas").text();
+				$("#totalMoneyId").text(moneyFormat((1 - 0) * (shopPrice - 0)));
+
+				//减 数量
+				$(".mui-btn-numbox-minus").on("tap", function() {
+					var num = ($("#test").val() - 0) -1;
+					if(num < 1){
+						tipShow("最少选择1");
+					}else{
+						$("#test").val(num);
+						var shopPrice = $("#price .priceMoneyClas").text();
+						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0)));
+					}
+				});
+
+				//加 数量
+				$(".mui-btn-numbox-plus").on("tap", function() {
+					var num = ($("#test").val() - 0) +1;
+					if(num > shopStock){
+						tipShow("商品库存不足");
+					}else{
+						$("#test").val(num);
+						var shopPrice = $("#price .priceMoneyClas").text();
+						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0)));
+					}
+				});
+
+				keywords.memberId = plus.storage.getItem('memberId');
+				keywords.termId = _self.productIdD; //商品id
+
+				// 获取产品详情
+				getgoodsDetails(mui, _self.productIdD, function(data) {
+					if (data.code == 200) {
+						shopStock = data.data.num;
+						$("#updateNumId").attr("data-numbox-max", shopStock);
+						$('#title').text(data.data.goodsName);
+						$('.price').text(data.data.goodsPrice);
+						$('.priceMoneyClas').text(data.data.goodsPrice);
+						$("#pictures").attr("src", data.data.goodsPictures[0]);
+					} else {
+						tipShow(data.message);
+					}
+				});
+				// 获取收货地址
+				getUserAddress(mui, plus.storage.getItem('memberId'), function(data) {
+					// getUserAddressWati().close()
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							$('#addressMoudel').css('display', 'block');
+							data.data.forEach(function(e) {
+								e.mobile = e.mobile.substring(3, 0) + "****" + e.mobile.substring(7, 11);
+								if (e.isDefault == 1) {
+									keywords.addressId = e.id
+									$('#province').text(e.province + " " + e.city + " " + e.area + " " + e.address);
+									$('.name').text(e.receiver);
+									$('.phone').text(e.mobile);
+								}
+							});
+						} else {
+							$('#addressMoudelNo').css('display', 'block')
+						}
+					} else {
+						tipShow(data.message)
+					}
+				});
+
+			};
+			// 获取数量
+			var testBox = document.getElementById("test");
+			testBox.addEventListener('change', function() {
+				keywords.num = testBox.value;
+			});
+			// 提交订单
+			$('.homeOrder_btn').on('tap', function() {
+				keywords.remark = $('#remark').val();
+				keywords.num = $("#test").val();//数量
+				if (!keywords.addressId) {
+					tipShow("请填写地址信息");
+				} else {
+					get_jfsaveOrder(mui, keywords, function(data) {
+						if (data.code == 200) {
+							$$.openWindow({
+								url: 'jfOrderSub.html',
+								id: 'jfOrderSub',
+								createNew: true,
+								extras: {
+									"orderNo": data.data
+								},
+								show: {
+									aniShow: "slide-in-right"
+								}
+							});
+						}
+					});
+				}
+			})
+
+			// 去地址添加页面
+			$('.goAddressf').on('tap', function() {
+				$$.openWindow({
+					url: '../address.html',
+					id: 'address',
+					extras: {
+						"typeO": 'new'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 去地址列表
+			$('#goAddress').on('tap', function() {
+				$$.openWindow({
+					url: '../myAddress.html',
+					id: 'myAddress',
+					extras: {
+						pageName: 'confirmOrder'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			});
+			//监听子页面方法
+			window.addEventListener('addressFunc', function(e) {
+				//接收子页面传过来的参数
+				console.log("11==" + JSON.stringify(e.detail))
+				keywords.addressId = e.detail.data_id;
+				if (e.detail.isDefault == 2) {
+					$("#codeAddressId").css("display", "none");
+				} else {
+					$("#codeAddressId").css("display", "block");
+				}
+				$('#province').text(e.detail.province + " " + e.detail.city + " " + e.detail.area + " " + e.detail.address);
+				$('#address').text(e.detail.address);
+				$('.name').text(e.detail.receiver);
+				$('.phone').text(e.detail.mobile.substring(3, 0) + "****" + e.detail.mobile.substring(7, 11));
+				if (e.detail.isDefault == 1) { //默认
+					$('.homeOrder_address_moren').css('display', 'block')
+				} else {
+					$('.homeOrder_address_moren').css('display', 'none')
+				}
+
+			});
+			// 添加地址
+			window.addEventListener('newAddressFunc', function(e) {
+				// 获取收货地址
+				getUserAddress(mui, plus.storage.getItem('memberId'), function(data) {
+					// getUserAddressWati().close()
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							$('#addressMoudel').css('display', 'block');
+							data.data.forEach(function(e) {
+								e.mobile = e.mobile.substring(3, 0) + "****" + e.mobile.substring(7, 11);
+								if (e.isDefault == 1) {
+									keywords.addressId = e.id
+									$('#province').text(e.province + " " + e.city + " " + e.area + " " + e.address);
+									$('#address').text(e.address);
+									$('.name').text(e.receiver);
+									$('.phone').text(e.mobile);
+								}
+							});
+							$('#addressMoudelNo').css('display', 'none')
+						} else {
+							$('#addressMoudelNo').css('display', 'block')
+						}
+					} else {
+						tipShow(data.message)
+					}
+				});
+
+			});
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

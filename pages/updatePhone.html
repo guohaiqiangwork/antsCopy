@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/myAddress.css" type="text/css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<!-- 引入外部css -->
+		<link rel="stylesheet" type="text/css" href="../assers/css/pages/updatePhone.css" />
+		
+		<style type="text/css">
+			.content {
+			    margin-top: 0.88rem;
+			}
+			#addressEditor ._one {
+			    width: 6.9rem;
+				margin-left: 0.3rem;
+			}
+			#yzm {
+			    border-left: solid 1px #F5F8FC;
+				margin-right: 0.1rem;
+				width: 2rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white title_height">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			更换手机号
+		</header>
+		<div class="content contentList">
+			<div id='addressEditor'>
+				<div class="_one">
+					<div id="" style="width: 1.4rem;float: left;font-size: 0.3rem;" class="font_color33 margin_top2">
+						我的手机
+					</div>
+					<div class="_right">
+						<input style="font-size: 0.3rem;" id="phoneParaTwo" readonly type="text">
+					</div>
+				</div>
+				
+				<div class="_one">
+					<div id="" style="width: 1.4rem;float: left;font-size: 0.3rem;" class="font_color33 margin_top2">
+						更换手机
+					</div>
+					<div class="_right">
+						<input style="font-size: 0.30rem;" id="phonePara" oninput="value=value.replace(/[^\d]/g,'')" maxlength="11" type="number" placeholder="请输入更换手机">
+					</div>
+				</div>
+				
+				<div class="_one" style="border: none;">
+					<div style="width: 1rem;float: left;font-size: 0.3rem;" class="font_color33 margin_top2">
+						验证码
+					</div>
+					<div class="_right" style="width: 2.4rem;margin-left: 0.45rem;">
+						<input style="font-size: 0.30rem;" id='userResult' type="number" placeholder="请输入验证码">
+					</div>
+					<div type="button" id="yzm">获取验证码</div>
+				</div>
+				
+				<div class="setUp_btn div_backgroun_jb" id="insertName">
+					确认更换
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/mui.picker.min.js"></script>
+	<script src="../assers/js/mui.picker.js"></script>
+	<script src="../assers/js/mui.dtpicker.js"></script>
+	<script src="../assers/js/mui.poppicker.js"></script>
+	<script src="../assers/js/city.data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../assers/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../assers/js/commonFun.js" type="text/javascript"></script>
+
+	<script src="../assers/js/requestFun.js" type="text/javascript"></script>
+	<script>
+		(function($, doc) {
+			$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				var phoneParaTwo = doc.getElementById('phoneParaTwo');
+				phoneParaTwo.value = _self.teltphoneVla;
+				
+				//点击获取验证码
+				var yzm = document.getElementById('yzm');
+				//是否可以点击【获取验证码按钮开关】
+				var onOff = true;
+				var reg = new RegExp(/^\d{6}$/); //6位数字验证
+				//code_4用于注册信息时的验证，验证码，获取与输入的一致
+				var code_4 = '';
+				yzm.onclick = function() {
+					if (phonePara.value.length != 11) {
+						tipShow('请输入正确手机号')
+						return
+					};
+					if (!/^1[3456789]\d{9}$/.test(phonePara.value)) {
+						tipShow('请输入正确手机号')
+						return
+					};
+					//如果onOff标志false则，不执行任何操作
+					if (!onOff)
+						return;
+					//循环周期60s
+					var times = 60;
+					//获取验证码
+					var data1 = {
+						phone: phonePara.value
+					};
+					var getCodeWati = plus.nativeUI.showWaiting("获取中...");
+					getCode(mui, data1, function(data) {
+						getCodeWati.close();
+						if (data.code == 200) {
+							console.log('验证码获取成功' + data.data)
+						} else {
+							console.log('验证码获取失败' + data.message)
+						}
+					});
+					//使用定时器，一秒触发一次事件，如果结束，则关闭定时器
+					var timer = setInterval(function() {
+						//事件处理，一秒一次
+						times--;
+						if (times < 1) {
+							//执行结束，则可以再次点击
+							yzm.innerHTML = "重新获取";
+							onOff = true;
+							clearInterval(timer);
+						} else {
+							var text = times + 's';
+							yzm.innerHTML = text;
+							onOff = false;
+						}
+					}, 1000);
+				};
+
+				var phonePara = doc.getElementById('phonePara');
+				phonePara.value = "";
+
+
+				/* 更改手机号 */
+				var insertName = doc.getElementById("insertName");
+				var userResult = doc.getElementById("userResult");
+				insertName.onclick = function() {
+					if (!phonePara.value) {
+						tipShow("请填写手机号");
+						return;
+					}
+					if (phonePara.value.length < 11) {
+						tipShow("请填写正确手机号");
+						return;
+					}
+					if (phonePara.value == _self.teltphoneVla) {
+						tipShow("手机号没有更改");
+						return;
+					}
+					if (!userResult.value) {
+						tipShow("请填写验证码");
+						return;
+					}
+
+					/* 请求接口更改手机号 */
+					var dataBase = {
+						code: userResult.value.replace(/\s*/g, ""),
+						mobile: phonePara.value.replace(/\s*/g, ""),
+						memberId: plus.storage.getItem('memberId')
+					};
+					updateMobile(mui, dataBase, function(data) {
+						if (data.code == 200) {
+							/* 手机号修改成功 */
+							mui.alert('保存成功！', '提示', function() {
+								plus.nativeUI.closeWaiting();
+								mui.back();
+								var list = plus.webview.currentWebview().opener();
+								mui.fire(list, 'refreshMajorGuestCount');
+							});
+						} else {
+							tipShow(data.message);
+						}
+					})
+
+				}
+			}
+		})(mui, document);
+	</script>
+
+</html>

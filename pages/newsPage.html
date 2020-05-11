@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+
+
+		<style type="text/css">
+			p {
+				margin-bottom: 5px;
+			}
+			#findMessageId{  
+				position: relative;
+				bottom: 0.25rem;
+				left: 0.1rem;
+			}
+			.massage_moudel {
+			    margin-left: .25rem;
+			}
+			#delete{
+				display: none;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
+			}
+			#pay{
+				display: none;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
+			}
+			.buttonClass{
+				width: 50%;
+				border-top: #CCCCCC solid 1px;
+				line-height: 0.93rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<!-- <header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back" id="returnTopPage_set"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			消息中心
+		</header> -->
+		<header class="header_white font_size34 font_color33 title_height">
+			<div class="div_display">
+				<div class="width40">
+					<i class="mui-action-back" id="returnTopPage_set"><img src="../assers/image/returnButton.png" style="width: .16rem;height:.28rem;"></i>
+				</div>
+				<div style="width: 2rem;">
+					消息中心
+				</div>
+				<div class="width40 text_right" id="detalList" style="font-size: 0.3rem;margin-right: 0.3rem;">
+					删除全部
+				</div>
+			</div>
+		</header>
+
+		<div class="refreshHomeNewsTwo margin_top5">
+		<!-- 	<div class="padding_top6 gotoDetails" messageId=' + row.id + '>
+				<div class="massage_time">
+					 3143242
+				</div>
+				<div class="massage_moudel">
+					<div class="div_display">
+						<div class="font_color33 font_size30 width90 font_width700">
+							fa结束了看法
+						</div>
+						<div class="width50" >
+							<div class=' + yuanqParams + '></div>
+						</div>
+					</div>
+					<div class="font_color33 font_size26">
+						jdslkj klj 
+					</div>
+					<div class="div_display">
+						<div class="width80">
+							
+						</div>
+						<div class="">
+							<img src="../assers/image/detal.png" style="width: .2rem;height: .24rem;">
+						</div>
+						<div class="font_size24 margin_left1">
+							删除
+						</div>
+					</div>
+				
+				</div>
+			</div> -->
+			<!-- 消息列表 -->
+			<div id="massageListId" style="margin-top: .3rem;">
+				<!-- 默认页面 -->
+				<div class="padding_top10 mrPage">
+					<div class="massage_time back_gd_DC" style="width: 3.62rem;height: 0.5rem;">
+						<!-- 2020年02月11日   10:23 -->
+					</div>
+					<div class="massage_moudel">
+						<div class="div_display">
+							<div class="font_color33 font_size30 back_gd_DC" style="width: 3rem;height: 0.32rem;">
+								<!-- 考拉超收移动POS机 -->
+							</div>
+							
+						</div>
+						<div class="font_color33 font_size26 back_gd_DC" style="width: 6.29rem;height: 0.26rem;margin-top: 0.2rem;">
+							<!-- 戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩...... -->
+						</div>
+						<div class="font_color33 font_size26 back_gd_DC" style="width: 6.29rem;height: 0.26rem;margin-top: 0.1rem;">
+							<!-- 戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩...... -->
+						</div>
+					</div>
+				</div>
+				<div class="padding_top10 mrPage">
+					<div class="massage_time back_gd_DC" style="width: 3.62rem;height: 0.5rem;">
+						<!-- 2020年02月11日   10:23 -->
+					</div>
+					<div class="massage_moudel">
+						<div class="div_display">
+							<div class="font_color33 font_size30 back_gd_DC" style="width: 3rem;height: 0.32rem;">
+								<!-- 考拉超收移动POS机 -->
+							</div>
+							
+						</div>
+						<div class="font_color33 font_size26 back_gd_DC" style="width: 6.29rem;height: 0.26rem;margin-top: 0.2rem;">
+							<!-- 戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩...... -->
+						</div>
+						<div class="font_color33 font_size26 back_gd_DC" style="width: 6.29rem;height: 0.26rem;margin-top: 0.1rem;">
+							<!-- 戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩戴口罩...... -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<!-- 最底部的已查看全部消息 -->
+	<!-- 		<div class="bottomClass" style="display: none;margin-bottom: 0.5rem;">
+				<span>—— 已查看完全部消息 ——</span>
+			</div>
+
+ -->
+			<!-- 缺省页 -->
+			<div id="cartDefaultId" style="display: none;">
+				<div id="cartDefaultId_one">
+					<img src="../assers/image/default/news.png">
+				</div>
+				<div id="cartDefaultId_two">
+					<span>暂无消息</span>
+				</div>
+			</div>
+
+		</div>
+		
+		
+		<!-- 删除订单 -->
+		<div id="delete" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+			<div class="margin_top10 font_color33 font_size34 text_center">
+				确认删除订单？
+			</div>
+			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
+				<div class="text_center buttonClass" id="qxdId" style="float: left;">
+					取消
+				</div>
+				<div class="text_center buttonClass" id="deleteId" style="float: right;border-left: #CCCCCC solid 1px;">
+					确认
+				</div>
+			</div>
+		</div>
+		<!-- 删除全部 -->
+		<div id="pay" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+			<div class="margin_top10 font_color33 font_size34 text_center">
+			是否删除所有消息？
+			</div>
+			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
+				<div class="text_center buttonClass" id="qxdAllId" style="float: left;">
+					取消
+				</div>
+				<div class="text_center buttonClass" id="deleteAllId" style="float: right;border-left: #CCCCCC solid 1px;">
+					确认
+				</div>
+			</div>
+		</div>
+			
+
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/commonFun.js" type="text/javascript"></script>
+
+	<script>
+		(function($, doc, $$) {
+			$$.init();
+			var _self;
+			var msgId;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				//返回上一页
+				var returnTopPage_set = doc.getElementById("returnTopPage_set");
+				returnTopPage_set.onclick = function() {
+					plus.nativeUI.closeWaiting();
+					mui.back();
+					var list = plus.webview.currentWebview().opener();
+					mui.fire(list, 'refreshHomeNews');
+				}
+				
+				//监听消息返回刷新消息
+				window.addEventListener('refreshHomeNewsTwo', function(event) {
+					console.log('3');
+					$('#massageListId').html("");
+					getNewMessage();
+				});
+				getNewMessage();
+				/* 获取消息列表 */
+				function getNewMessage() {
+				
+					messageList(mui, plus.storage.getItem('memberId'), function(data) {
+						$(".mrPage").remove();
+						if (data.code == 200) {
+							var messageData = data.data;
+							//console.log("000=="+JSON.stringify(messageData));
+							if (messageData.length != 0) {
+								$(".bottomClass").css("display", "block");
+								$("#cartDefaultId").css("display", "none");
+								var fragmentplanList = document.createDocumentFragment();
+								var title;
+								mui.each(messageData, function(index, row) {
+									title = row.title;
+									if(title.length > 14){
+										title = title.substring(0,13)+"...";
+									}
+									var yuanqParams = "";
+									if (row.isRead == "0") {
+										yuanqParams = "news_title_leftT";
+									} else {
+										yuanqParams = "";
+									}
+									var list =
+										'<div class="padding_top6 " >' +
+											'<div class="massage_time">' +
+												 row.createTime +
+											'</div>' +
+											'<div class="massage_moudel">' +
+												'<div class="div_display gotoDetails" messageId=' + row.id + '>' +
+													'<div class="font_color33 font_size30 width90 font_width700">' +
+														title  +
+													'</div>' +
+													'<div class="width50" id="findMessageId" messageId=' + row.id + '>' +
+														'<div class=' + yuanqParams + '></div>' +
+													'</div>' +
+												'</div>' +
+												'<div class="font_color33 font_size26" style="height:1rem">' +
+														row.content + 
+												'</div>'+
+												'<div class="div_display">' +
+													'<div style="width:83%"></div>' +
+													'<div class="delectMsg"  messageId=' + row.id + '>' +
+														'<img src="../assers/image/detal.png" style="width: .2rem;height: .24rem;">' +
+													'</div>' +
+													'<div class="font_size24 margin_left1 delectMsg"  messageId=' + row.id + '>删除</div>' +
+												'</div>' +
+																
+											'</div>' +
+										'</div>';
+									$(fragmentplanList).append(list);
+								});
+								/* 删除子标签 */
+								// $('#massageListId').empty();
+								$("#massageListId").append($(fragmentplanList));
+								$("#massageListId").append('<div style="height:1rem"></div>');
+							} else {
+								$("#cartDefaultId").css("display", "block");
+							}
+						} else {
+							tipShow(data.message);
+						}
+					});
+				};
+
+
+				/* 查看消息 */
+				$('#massageListId').on("tap", ".gotoDetails", function() {
+					$$.openWindow({
+						url: 'newsPageDetails.html',
+						id: 'newsPageDetails',
+						extras: {
+							"messageId": $(this).attr('messageId')
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				
+				// 取消删除
+				$('#qxdId').on('tap', function() {
+					$("#delete").css("display", "none");
+					mui('#delete').popover('hide');
+				})
+				// 确认删除
+				$('#deleteId').on('tap', function() {
+					var data ={
+						msgId:msgId
+					}
+					getDeleteMessage(mui,data,function(data){
+						console.log(JSON.stringify(data))
+						if(data.code == 200 ){
+							plus.webview.currentWebview().reload(true);
+						}else{
+							tipShow(data.message);
+						}
+					})
+								
+				})
+				
+				// 删除单个
+				$('#massageListId').on("tap", ".delectMsg", function() {
+					$("#delete").css("display", "bloak");
+					mui('#delete').popover('show');
+					msgId = $(this).attr('messageId');			
+				});
+				// 删除全部
+				$('#detalList').on('tap',function(){
+					$("#pay").css("display", "bloak");
+					mui('#pay').popover('show');
+					
+				})
+				
+				// 取消删除
+				$('#qxdAllId').on('tap', function() {
+					$("#pay").css("display", "none");
+					mui('#pay').popover('hide');
+				})
+				// 确认删除
+				$('#deleteAllId').on('tap', function() {
+					var data = {
+						memberId:plus.storage.getItem('memberId')
+					}
+					getDeleteAll(mui,data,function(data){
+						console.log(JSON.stringify(data))
+						if(data.code == 200 ){
+							plus.webview.currentWebview().reload(true);
+						}else{
+							tipShow(data.message);
+						}
+					})
+										
+				})
+				
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

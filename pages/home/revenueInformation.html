@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>收益信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<!-- <link rel="stylesheet" href="../../assers/css/mobileReset.css"> -->
+		<link rel="stylesheet" type="text/css" href="../../assers/css/pages/homeContent.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;" style="background-color: #F4F4F4;">
+		<header class="header_white title_height">
+			<i class="mui-action-back"><img src="../../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			收益信息
+		</header>
+
+		<div class="content">
+			<!-- 时间选择 -->
+			<div class="div_display time_title" style="margin-top: -2%;">
+				<div class="width50 display_center div_display left_time" id='pickDateBtn'>
+					<div id="startTime" class="font_size26 font_color33"></div>
+					<img src="../../assers/image/downJt.png" class="dowm_img">
+				</div>
+				<div class="width50 display_center div_display" id='endPickDateBtn'>
+					<div id="endTime" class="font_size26 font_color33"></div>
+					<img src="../../assers/image/downJt.png" class="dowm_img">
+				</div>
+			</div>
+			<div class="chart" id="pieChart"></div>
+			<!-- 块展示 -->
+			<div class="moudel_block">
+				<div class="title_moudel">
+					<img src="../../assers/image/ren.png" class="ren_width">
+					<span class="font_size30 font_coloref font_width700">代理商收益</span>
+				</div>
+				<div class="font_size34 font_coloref font_width700 margin_top3">
+					+<span id="totalSplitRun"></span> 元
+				</div>
+				<div class="div_display font_size26  margin_top3">
+					<div class="width20">
+						交易额
+					</div>
+					<div class="width35 text_right">
+						<span id="transAmount"></span>元/<span id="transNum"></span>笔
+					</div>
+					<div class="width15 text_right">
+						分润
+					</div>
+					<div class="width35 text_right">
+						<span id="totalSplitRun1">
+							0
+						</span>元
+					</div>
+
+				</div>
+			</div>
+
+			<div class="moudel_block margin_top3">
+				<div class="title_moudel div_display left_right">
+					<div class="">
+						<img src="../../assers/image/qian.png" class="ren_width">
+						<span class="font_size30 font_color4c font_width700">我的收益</span>
+					</div>
+					<div class="goDetail">
+						<span class="font_size26">查看详情</span>
+						<img src="../../assers/image/@2x.png" class="right_width">
+					</div>
+
+				</div>
+				<div class="font_size34 font_color4c font_width700 margin_top3">
+					+<span id="myTotalSplitRun">
+
+					</span>元
+				</div>
+				<div class="div_display font_size26  margin_top3">
+					<div class="width20 font_color66">
+						交易额
+					</div>
+					<div class="width35 text_right">
+						<span id="myTotalSplitRun1">0</span>元/<span id="myTransNum"></span>笔
+					</div>
+					<div class="width15 text_right font_color66">
+						分润
+					</div>
+					<div class="width35 text_right">
+						<span id="myTotalSplitRun2">
+							0
+						</span>元
+					</div>
+				</div>
+				<!-- <div class="div_display font_size26 margin_top2">
+					<div class="width20 font_color66">
+						激活金额
+					</div>
+					<div class="width35 text_left">
+						1000.00元/10台
+					</div>
+				</div> -->
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../../assers/js/echarts.min.js"></script>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var dDate = new Date();
+			var year = new Date().getFullYear();
+			var month = new Date().getMonth() + 1;
+			var day = new Date().getDate();
+			// 获取接口数据
+			var keyword = {
+				memberId: '',
+				startTime: year + '-' + month + '-' + day,
+				endTime: year + '-' + month + '-' + day
+			}
+			// 图表数据
+			var chartList = [];
+			console.log(year + '年1s' + month + '月' + day);
+			$('#startTime').text(year + '年' + month + '月' + day + "日"); //开始时间
+			$('#endTime').text(year + '年' + month + '月' + day + "日"); //结束时间
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				keyword.memberId = plus.storage.getItem('memberId');
+				//获取详情
+				function getTBData() {
+					var d1 = new Date(keyword.startTime.replace(/\-/g, "\/"));
+					var d2 = new Date(keyword.endTime.replace(/\-/g, "\/"));
+					if (d2 < d1) {
+						alert("结束时间不能小于开始时间！");
+						$('#endTime').text(year + '年' + month + '月' + day + "日"); //结束时间
+						keyword.endTime = year + '-' + month + '-' + day;
+						return false;
+					}
+					getCountDetailView(mui, keyword, function(data) {
+						// console.log(JSON.stringify(data))
+						if (data.code == 200) {
+							// 代理商收益
+							var agentData = data.data.agentIncome
+							$('#totalSplitRun').text(agentData.totalSplitRun) //分润金额
+							$('#totalSplitRun1').text(agentData.totalSplitRun) //分润金额
+							$('#transAmount').text(agentData.transAmount) //交易金额
+							$('#transNum').text(agentData.transNum) //交易笔数
+							// 我的收益 
+							var myIncome = data.data.myIncome
+							$('#myTotalSplitRun').text(myIncome.totalSplitRun) //分润金额
+							$('#myTotalSplitRun1').text(myIncome.transAmount) //分润金额
+							$('#myTotalSplitRun2').text(myIncome.totalSplitRun) //分润金额
+							$('#myTransAmount').text(myIncome.transAmount) //交易金额
+							$('#myTransNum').text(myIncome.transNum) //分润金额
+							// 图表数据
+							var chartD = data.data.chart
+							var chartList = [{
+								value: chartD.totalSplitRun,
+								name: '代理商收益:' + chartD.totalSplitRun
+							}, {
+								value: chartD.totalTrans,
+								name: '我的收益:' + chartD.totalTrans
+							}]
+							// getOption('33322');
+							var byId = function(id) {
+								return document.getElementById(id);
+							};
+							var pieChart = echarts.init(byId('pieChart'));
+							pieChart.setOption(getOption(chartList));
+						} else {
+							tipShow(data.message);
+						}
+					});
+
+
+				}
+
+
+				getTBData();
+				// 点击时间选择器开始时间
+				document.getElementById("pickDateBtn").addEventListener('tap', function() {
+					dDate.setFullYear(year, month - 1, day); //默认时间
+					var minDate = new Date();
+					minDate.setFullYear(2010, 0, 1); //最小时间
+					var maxDate = new Date();
+					maxDate.setFullYear(year, month - 1, day); //最大时间
+					plus.nativeUI.pickDate(function(e) {
+						var d = e.date;
+						startTime.innerText = d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+						keyword.startTime = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+						getTBData();
+					}, function(e) {
+						startTime.innerText = "您没有选择日期";
+					}, {
+						title: "请选择日期",
+						date: dDate,
+						minDate: minDate,
+						maxDate: maxDate
+					});
+				});
+				// 结束时间
+				document.getElementById("endPickDateBtn").addEventListener('tap', function() {
+					dDate.setFullYear(year, month - 1, day); //默认时间
+					var minDate = new Date();
+					minDate.setFullYear(2010, 0, 1); //最小时间
+					var maxDate = new Date();
+					maxDate.setFullYear(year, month - 1, day); //最大时间
+					plus.nativeUI.pickDate(function(e) {
+						var d = e.date;
+						endTime.innerText = d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+						keyword.endTime = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+						getTBData();
+					}, function(e) {
+						endTime.innerText = "您没有选择日期";
+					}, {
+						title: "请选择日期",
+						date: dDate,
+						minDate: minDate,
+						maxDate: maxDate
+					});
+				});
+			}
+			$('.goDetail').on('tap', function() {
+				$$.openWindow({
+					url: '../../pages/home/myMoney.html',
+					id: 'myMoney',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+
+		})(jQuery, document, mui);
+	</script>
+	<script type="text/javascript">
+		var getOption = function(chartType) {
+			var chartOption = {
+				calculable: false,
+				legend: {
+					left: '40%',
+					top: 'center',
+					orient: 'vertical',
+					align: 'left',
+					itemGap: 20, // 间隔
+					itemWidth: 10, // 图形宽度。
+					itemHeight: 10, // 图形高度。
+					textStyle: {
+						color: '#333',
+						fontWeight: 'bold',
+						fontSize: '14'
+					},
+				},
+				series: [{
+					type: 'pie',
+					radius: [8, 40],
+					center: ['20%', '50%'],
+					roseType: 'radius',
+					label: {
+						show: false
+					},
+					data: chartType,
+					minAngle: 3, // 防止某个值过小导致扇区太小影响交互。
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					},
+					color: ['#EE5454', '#4C78DC']
+				}]
+
+			}
+			return chartOption;
+		};
+	</script>
+</html>

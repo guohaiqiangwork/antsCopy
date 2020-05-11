@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/myAddress.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/mui.picker.min.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			.mui-switch-blue.mui-active {
+			    border: 2px solid #FF342D;
+			    background: linear-gradient(to right, #FF342D, #FF5882);
+			}
+			body {
+			    background: #F4F4F4;
+			}
+			#addressEditor{
+				background-color: #FFFFFF;
+				height: 6.3rem;
+			}
+			.content {
+			    margin-top: 0.86rem;
+			}
+		</style>
+	</head>
+
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			填写收货地址
+		</header>
+		<div class="content">
+			<div id="addressEditor">
+				<div class="_one" style="background-color: #FFFFFF;">
+					<div class="_left" style="width: 1.5rem;">收货人</div>
+					<div class="_right">
+						<input style="margin-left: 0.3rem;font-size: 0.3rem;" type="text" placeholder="请填写收货人姓名" id="name" maxlength="6">
+					</div>
+				</div>
+				<div class="_one">
+					<div class="_left" style="width: 1.8rem;">手机号码</div>
+					<div class="_right">
+						<input type="text" style="font-size: 0.3rem;" required="required" maxlength="11" placeholder="请填写收货人手机号码" id="phone">
+					</div>
+				</div>
+				<div class="_one">
+					<div class="_left" style="width: 1.8rem;">所在地区</div>
+					<div class="_right">
+						<div class="div_display">
+							<div class="font_size30 margin_top2 margin_left3" id="address"></div>
+							<!-- <input type="text" placeholder="" id="address" disabled="disabled"> -->
+							<div id='showCityPicker3' style="height: 1rem;width: 0.7rem;position: absolute;right: .3rem;">
+								<img src="../assers/image/downJt.png" style="float: right; width: .3rem;height: .17rem;margin-top: .3rem;">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="_one" style="border: none;">
+					<div class="_left" style="width: 1.8rem;">详细地址</div>
+					<div class="_right">
+						<input style="font-size: 0.3rem;" type="text" placeholder="街道、楼牌号等" id="addressD" maxlength="21">
+					</div>
+				</div>
+				<div class="_one" style="background-color: #F5F8FC;height: .2rem;margin-top: 0;"></div>
+				<div class="_one">
+					<div class="_left" style="padding-left: .05rem;">设置默认地址</div>
+					<div class="_right">
+						<div class="mui-switch mui-switch-blue mui-switch-mini" id="mySwitch" style="float: right;margin-right: 0.2rem;">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+				</div>
+				<div class="_one" id="colorBlock" style="background-color: #F4F4F4;border-bottom: none;height: .2rem;margin-top: 0;"></div>
+				<div class="_one" id="delete" style="display: none;position: relative;right: 0.2rem;">
+					<div class=" _left font_colorf4">删除地址</div>
+				<div class="_right"></div>
+			</div>
+			<div id='cityResult3' class="ui-alert"></div>
+		</div>
+		<div class="bottom_btn">
+			保存
+		</div>
+
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/mui.picker.min.js"></script>
+	<script src="../assers/js/mui.picker.js"></script>
+	<script src="../assers/js/mui.dtpicker.js"></script>
+	<script src="../assers/js/mui.poppicker.js"></script>
+	<script src="../assers/js/city.data.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../assers/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script>
+		(function($, doc, $$) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			};
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				//alert(_self.typeVal)
+				if(_self.typeVal == "编辑"){
+					$(".addressType").text("编辑收货地址");
+				}else{
+					$(".addressType").text("添加收货地址");
+				}
+				_self.addressfalgId = 2
+				
+				
+				//手机键盘隐藏(简单粗暴版)
+				$('body').on('touchend', function(el) {
+					if(el.target.tagName != 'INPUT') {
+						$('input').blur()
+					}
+				});
+				
+				if (_self.addressId) {
+					$('#delete').css('display', 'block');
+					$('#colorBlock').css('background-color', '#F5F8FC');
+					
+					$('#addressEditor').css('height','7.6rem');
+					getAddressD(mui, _self.addressId, function(data) {
+						if (data.code == 200) {
+							if (data.data.isDefault == 2) {
+								$(".mui-switch").removeClass("mui-active"); //默认关闭
+							} else {
+								$(".mui-switch").addClass("mui-active") //默认打开
+							}
+							_self.addressfalgId = data.data.isDefault;
+							$('#name').val(data.data.receiver)
+							$('#phone').val(data.data.mobile)
+							$('#address').text(data.data.province + ',' + data.data.city + ',' + data.data.area)
+							$('#addressD').val(data.data.address)
+						} else if (data.code == 401 || data.code == 1500) {
+							gotoLoginIn()
+						} else {
+							tipShow(data.message)
+						}
+					});
+				}
+
+				// 处理是否默认
+				document.getElementById("mySwitch").addEventListener("toggle", function(event) {
+					if (event.detail.isActive) {
+						_self.addressfalgId = 1
+					} else {
+
+						_self.addressfalgId = 2
+					}
+				});
+				// 修改地址保存
+				$('.bottom_btn').on('tap', function() {
+					if (!$('#name').val()) {
+						tipShow('请检查你的姓名')
+						return
+					} else if (!$('#phone').val()) {
+						tipShow('请检查你的手机号')
+						return
+					} else if (!(/^1[3456789]\d{9}$/.test($('#phone').val()))) {
+						tipShow('请检查你的手机号')
+						return
+					} else if (!$('#address').text()) {
+						tipShow('请检查你的地区')
+						return
+					} else if (!$('#addressD').val()) {
+						tipShow('请检查你的详情地址')
+						return
+					}
+
+
+					// 判断是新增还是修改
+					if (_self.addressId) {
+						var str = $('#address').text(); //这是一字符串
+						var strs = new Array(); //定义一数组
+						strs = str.split(","); //字符分
+						var keyword = {
+							address: $('#addressD').val(), //具体地址
+							area: strs[2] || '', //区域
+							city: strs[1], //城市
+							id: _self.addressId, //地址主键id
+							isDefault: _self.addressfalgId, //	是否默认
+							memberId: plus.storage.getItem('memberId'), //会员主键id
+							mobile: $('#phone').val(), //收货人联系电话
+							province: strs[0], //省
+							receiver: $('#name').val() //收货人
+						}
+						var getUpdateAddressWati = plus.nativeUI.showWaiting("获取中...");
+						getUpdateAddress(mui, keyword, function(data) {
+							if (data.code == 200) {
+								getUpdateAddressWati.close();
+								var ws = plus.webview.currentWebview();
+								plus.webview.close(ws);
+								plus.webview.getWebviewById('myAddress').reload()
+								tipShow('修改成功')
+							} else if (data.code == 401 || data.code == 1500) {
+								gotoLoginIn()
+							} else {
+								tipShow(data.message)
+							}
+						});
+
+					} else {
+						var str = $('#address').text(); //这是一字符串
+						var strs = new Array(); //定义一数组
+						strs = str.split(","); //字符分
+						var keyword = {
+							address: $('#addressD').val(), //具体地址
+							area: strs[2] || '', //区域
+							city: strs[1], //城市
+							isDefault: _self.addressfalgId, //	是否默认
+							memberId: plus.storage.getItem('memberId'), //会员主键id
+							mobile: $('#phone').val(), //收货人联系电话
+							province: strs[0], //省
+							receiver: $('#name').val() //收货人
+						}
+						var getAddressSaveWati = plus.nativeUI.showWaiting("保存中...");
+						getAddressSave(mui, keyword, function(data) {
+							getAddressSaveWati.close();
+							if (data.code == 200) {
+								if(_self.typeO == 'new'){
+									var list = plus.webview.currentWebview().opener();
+									mui.fire(list,'newAddressFunc', {});
+								}
+								var ws = plus.webview.currentWebview();
+								plus.webview.close(ws);
+								if(plus.webview.getWebviewById('myAddress')){
+									plus.webview.getWebviewById('myAddress').reload()
+								}
+								
+								tipShow('新增成功')
+							} else if (data.code == 401 || data.code == 1500) {
+								gotoLoginIn()
+							} else {
+								tipShow(data.message)
+							}
+						});
+					}
+
+				})
+				// 删除地址
+				$('#delete').on('tap', function() {
+					var deleteAddressSaveWati = plus.nativeUI.showWaiting("删除中...");
+					deleteAddress(mui, _self.addressId, function(data) {
+						if (data.code == 200) {
+							deleteAddressSaveWati.close();
+							tipShow('删除成功')
+							var ws = plus.webview.currentWebview();
+							plus.webview.close(ws);
+							plus.webview.getWebviewById('myAddress').reload()
+						} else if (data.code == 401 || data.code == 1500) {
+							gotoLoginIn()
+						} else {
+							tipShow(data.message)
+						}
+					});
+				})
+			}
+		})($, document, mui);
+	</script>
+
+	<!-- 地址选择 -->
+	<script>
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				//级联示例
+				var cityPicker3 = new $.PopPicker({
+					layer: 3
+				});
+				cityPicker3.setData(cityData3);
+				var showCityPickerButton = doc.getElementById('showCityPicker3');
+				var cityResult3 = doc.getElementById('cityResult3');
+				var cityAddress = doc.getElementById('address');
+				console.log(JSON.stringify(cityAddress))
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker3.show(function(items) {
+						if (items[2].text == undefined) {
+							items[2].text = '';
+						}
+						cityAddress.innerHTML = items[0].text + ',' + items[1].text + ',' + items[2].text;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+			});
+
+		})(mui, document);
+	</script>
+
+</html>

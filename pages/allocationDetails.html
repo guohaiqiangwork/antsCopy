@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/implements.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			.content {
+			    margin-top: 0.88rem;
+			}
+			.alloctionM_btn_left {
+			    border: 1px solid #FF0201;
+				border-right: none;
+			}
+			.alloctionM_btn_right {
+			    border: 1px solid #FF0201;
+				border-left: none;
+			}
+			.allocationD_reason {
+			    margin-left: .25rem;
+			}
+			.allocationM_text {
+			    width: 5rem; 
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height returnRefreshIdFunc">
+			<i style="touch-action: none;float: left;margin-left: 0.3rem;margin-top: 0.1rem;"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			<span style="margin-right: 0.4rem;">调拨详情</span>
+		</header>
+		
+		<div class="content"> 
+			<!-- 头部 -->
+			<div id="allocationD_titlw_id" class="allocationD_top div_display back_gd_DC">
+				<div class="width40 text_right" id="leftName">
+					<!-- 王二狗 -->
+				</div>
+				<div class="margin_left3">
+					<img src="../assers/image/pages/allocationD.png" class="allocationD_img">
+					<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">
+					<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">
+				</div>
+				<div class="width40 margin_left3" id="rightName">
+					<!-- 赵麻子 -->
+				</div>
+			</div>
+			<!-- 内容区域 -->
+			<div class="allocationD_reason">
+				<!-- 原因说明 -->
+				<div class="alloctionM_moudel">
+					<div class="div_display">
+						<div class="font_color33 font_size30">
+							调拨原因
+						</div>
+						<div class="allocationM_text font_size30">
+							<!-- cause -->
+						</div>
+					</div>
+					<div class="div_display margin_top3">
+						<div class="font_color33 font_size30">
+							调拨数量
+						</div>
+						<div class="font_size30 font_color99 margin_left3 num">
+							1件
+						</div>
+					</div>
+				</div>
+				<!-- 机具详情 -->
+				<div class="" id='list'>
+					<!-- 默认页面 -->
+					<div class="mrPage" style="margin: 0.3rem 0;">
+						<div id="morPage" style="width: 7rem;height: 2.5rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+							<div id="" style="width:6.9rem;height: 0.89rem;border-radius: 0.2rem 0.2rem 0 0;">
+								<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.3rem;">
+								</div>
+								<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.3rem;float: right;">
+								</div>
+							</div>
+							<div style="border-bottom: #CCCCCC solid 1px;width: 6.3rem;margin-left: 0.3rem;"></div>
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.3rem;">
+							</div>
+							<div id="" style="width: 1.79rem;height: 0.32rem;background-color: #EEEEEE;position: relative;left: 1.5rem;top: 0.05rem;">
+							</div>
+							
+							<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.3rem;left: 0.3rem;">
+							</div>
+							<div id="" style="width: 1.79rem;height: 0.32rem;background-color: #EEEEEE;position: relative;left: 1.5rem;top: -0.04rem;">
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+				<!-- 底部操作按钮 -->
+				<div class="alloctionM_btn div_display">
+					<div class="alloctionM_btn_left goBtn" data-id='3'>
+						拒绝调拨
+					</div>
+					<div class="alloctionM_btn_right goBtn" data-id='2'>
+						接收调拨
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				$(".returnRefreshIdFunc").on("tap",function(){
+					var list = plus.webview.currentWebview().opener();
+					mui.fire(list, 'jfdbRefresh');
+					mui.currentWebview.close();
+					mui.back();
+				});
+				
+				//返回
+				$("#returnPageId").on("tap",function(){
+					mui.currentWebview.close(); 
+					mui.back();
+					
+					/* if($(".typeCla:nth-child(2)").text()  != "调拨中"){
+						$$.openWindow({
+							url: '../pages/alloctionRecord.html',
+							id: 'newsPage',
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					}else{
+						//alert("= 调拨中");
+						mui.back();
+					} */
+				});
+				
+
+				if (_self.type == 'alloctionList') {
+					$('.alloctionM_btn').css('display', 'none');
+				}
+				
+				// 获取详情
+				getList()
+				function getList(){
+					getItemAllById(mui, _self.productId, function(data) {
+						console.log("11=="+JSON.stringify(data));
+						if (data.code == 200) {
+							var cause;
+							console.log(data.data.cause)
+							if(data.data.cause.length > 32){
+								cause = data.data.cause.substring(0,31)+'...';
+							}else{
+								cause =data.data.cause
+							}
+							$('.allocationM_text').text(cause);
+							$('.num').text(data.data.num + '件');
+							var fragmentplanList = document.createDocumentFragment();
+							var goodsListD = data.data.goodsList;
+							//console.log("1111===="+data.data.status);
+							if (data.data.status == '1') {
+								$("#allocationD_titlw_id").css("background","linear-gradient(to right, #FF7156, #FF0100)");
+								data.data.status = '调拨中';
+							} else if (data.data.status == '2') {
+								$("#allocationD_titlw_id").css("background","linear-gradient(to right, #FF7156, #FF0100)");
+								data.data.status = '已接收';
+								$('.alloctionM_btn').css('display', 'none');
+							} else if (data.data.status == '3') {
+								$("#allocationD_titlw_id").css("background","linear-gradient(to right, #466194, #272E48)");
+								data.data.status = '已拒绝';
+								$('.alloctionM_btn').css('display', 'none');
+							};
+							$('#rightName').text(data.data.acceptUser);
+							$('#leftName').text(data.data.allotUser);
+							_self.allId = data.data.id
+							$(".mrPage").remove();
+							$.each(goodsListD, function(items) {
+								var receiveList =
+									'<div class="alloctionM_detail_moudel">' +
+									'<div class="div_display">' +
+									'<div class="width80">机具详情</div>' +
+									'<div class="typeCla" style="margin-left: 0.2rem;">' + data.data.status + '</div>' +
+									'</div>' +
+									'<div class="margin_right3 margin_top2" style="border-top: 1px solid #CCCCCC;"></div>' +
+									'<div class="div_display margin_top2">' +
+									'<div class="font_color33">机具名称</div>' +
+									'<div class="font_color99 margin_left3">' +
+									goodsListD[items].goodsName +
+									'</div>' +
+									'</div>' +
+									'<div class="div_display margin_top2">' +
+									'<div class="font_color33">机具编号</div>' +
+									'<div class="font_color99 margin_left3">' +
+									goodsListD[items].serialNumber +
+									'</div>' +
+									'</div>' +
+									'</div>';
+									
+								$(fragmentplanList).append(receiveList);
+							});
+							
+							$(".alloctionM_detail_moudel").remove();
+							$("#list").append($(fragmentplanList));
+							
+							if (data.data.status == '已拒绝') {
+								$('.typeCla').css('color', '#FF0302');
+							};
+							
+						}
+					});
+				}
+				
+				// 接收拒绝操作
+				$('.goBtn').on('tap', function() {
+					var keyword = {
+						id: _self.allId,
+						result: $(this).attr('data-id')
+					}
+					goAllotResult(mui, keyword, function(data) {
+						if (data.code == 200) {
+							tipShow('操作成功');
+							getList()
+						} else {
+
+						}
+					})
+				});
+
+			}
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

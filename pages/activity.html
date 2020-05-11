@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+		<style type="text/css">
+			.center_share {
+				height: 2rem;
+				padding-bottom: .3rem;
+				position: fixed;
+				bottom: 0;
+			}
+		</style>
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			<div id="titleCountId">活动详情</div>
+		</header>
+		<div class="content">
+			<div style="text-align: center;width: 7.5rem;" id="imgList">
+
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/share.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				console.log(_self.falgUrl);
+				if (_self.falgUrl == 'lb') {
+					getFind(mui, _self.activityId, function(data) {
+						console.log("22=="+JSON.stringify(data));
+						var fragmentplanList = document.createDocumentFragment();
+						if (data.code == 200) {
+							$.each(data.data, function(items) {
+								var orderLiTwo =
+									'<img style="display:block" src="' + data.data[items] + '" class="width_height100">';
+								$(fragmentplanList).append(orderLiTwo);
+							});
+							$("#imgList").append($(fragmentplanList));
+						} else {
+							tipShow(data.message)
+						}
+					});
+				} else {
+					getContentI(mui, _self.activityId, function(data) {
+						//console.log("113344=="+JSON.stringify(data));
+						var fragmentplanList = document.createDocumentFragment();
+						if (data.code == 200) {
+							$("#titleCountId").text(data.data.detailsTitle);
+							var detailsImgs = data.data.detailsImgs;
+							for(i=0;i<detailsImgs.length;i++){
+								var orderLiTwo =
+									'<div style="vertical-align: bottom">' +
+									'<img style="display:block" src="'+ detailsImgs[i] +'" class="width_height100">' +
+									'</div>';
+								$("#imgList").append($(orderLiTwo));
+							}
+							
+						} else { 
+							tipShow(data.message)
+						}
+					});
+				} 
+
+				userId = plus.storage.getItem('memberId');
+				var shares = {};
+				plus.share.getServices(function(s) {
+					if (s && s.length > 0) {
+						for (var i = 0; i < s.length; i++) {
+							var t = s[i];
+							shares[t.id] = t;
+						}
+					}
+				}, function() {
+					console.log("获取分享服务列表失败");
+				});
+				/* 点击分享按钮事件 微信*/
+				$("#wxFX").on("tap", function() {
+					if (plus.runtime.isApplicationExist({
+							pname: 'com.tencent.mm',
+							action: 'weixin://'
+						})) {
+						console.log("微信应用已安装");
+					} else {
+						$$.toast("微信应用未安装");
+						setTimeout(function() {
+							toCurrentPage();
+						}, 1500);
+						return false;
+					}
+					var shareJson = {
+						"title": "笑容",
+						"desc": "笑容app你好！"
+					};
+					var lineEndId = ['lineEnd'];
+					var ids = [{
+						id: "weixin",
+						ex: "WXSceneSession"
+					}, {
+						id: "weixin",
+						ex: "WXSceneTimeline"
+					}];
+					var i = 1
+					if (i > 0) {
+						var s_id = ids[i - 1].id;
+						var share = shares[s_id];
+						if (share) {
+							if (share.authenticated) {
+								shareMessageShare(share, ids[i - 1].ex, shareJson, userId, lineEndId);
+								mui.fire(plus.webview.getWebviewById("index.html"));
+								setTimeout(function() {
+									toCurrentPage();
+								}, 5000);
+							} else {
+								share.authorize(function() {
+									shareMessageShare(share, ids[i - 1].ex, shareJson, userId, lineEndId);
+									mui.fire(plus.webview.getWebviewById("index.html"));
+									setTimeout(function() {
+										toCurrentPage();
+									}, 5000);
+								}, function(e) {
+									console.log("认证授权失败：" + e.code + " - " + e.message);
+								});
+							}
+						} else {
+							$$.toast("分享失败，请重试");
+						}
+					}
+				});
+				$("#qqFX").on("tap", function() {
+					sqq = shares['qq'];
+					var msg = {
+						type: 'text'
+					};
+					if (false) {
+						plus.nativeUI.alert('请输入要分享的内容!');
+						return;
+					}
+					msg.title = '笑容期待您的加入';
+					msg.thumbs = ['../image/qq.png'];
+					msg.pictures = ['../image/qq.png'];
+					msg.href = requserUrlQQ;
+					sqq ? shareShare(sqq, msg) : plus.nativeUI.alert('当前环境不支持QQ分享操作!');
+				});
+			
+			};
+
+
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

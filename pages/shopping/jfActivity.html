@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商城首页搜索结果页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" href="../../assers/css/mobileReset.css">
+		<style type="text/css">
+			.center_share {
+				height: 2rem;
+				padding-bottom: .3rem;
+				position: fixed;
+				bottom: 0;
+			}
+		</style>
+		<script src="../../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../../assers/image/returnButton.png" class="headder_img"></i>
+			活动详情
+		</header>
+		<div class="content">
+			<div style="text-align: center;width: 7.5rem;" id="imgList">
+
+			</div>
+		</div>
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script src="../../assers/js/share.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				console.log("11=="+_self.activityId);
+				
+				getIntegralAct(mui, _self.activityId, function(data) {
+					var fragmentplanList = document.createDocumentFragment();
+					if (data.code == 200) {
+						$.each(data.data, function(items) {
+							var orderLiTwo =
+								'<img src="' + data.data[items] + '" class="width_height100">';
+							$(fragmentplanList).append(orderLiTwo);
+						});
+						$("#imgList").append($(fragmentplanList));
+					} else {
+						tipShow(data.message)
+					}
+
+				});
+			};
+
+
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

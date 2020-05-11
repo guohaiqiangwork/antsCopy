@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/implements.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<style>
+			.mui-numbox {
+				position: relative;
+				display: inline-block;
+				overflow: hidden;
+				width: 1.8rem;
+				height: .45rem;
+				padding: 0 !important;
+				vertical-align: top;
+				vertical-align: middle;
+				border: none !important;
+				border-radius: 3px;
+				background-color: #F4F4F4;
+			}
+
+			.mui-checkbox input[type=checkbox]:checked:before,
+			.mui-radio input[type=radio]:checked:before {
+				background: linear-gradient(to right, #FF342D, #FF5882);
+				-webkit-background-clip: text;
+				color: transparent;
+			}
+			.allocationD_top {
+			    background: linear-gradient(to right, #f79885, #FF765A, #FF0100);
+			}
+			#feedbackcontent::-webkit-input-placeholder{
+				color:#CCCCCC;
+				font-size: 0.28rem;
+			}
+			.content{
+				margin-top: 0.8rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			调拨详情
+		</header>
+		<div class="content">
+			<!-- 头部 -->
+			<div class="allocationD_top div_display">
+				<div class="width40 text_right" id="leftName">
+					<!-- 王二狗 -->
+				</div>
+				<div class="margin_left3">
+					<img src="../assers/image/pages/allocationD.png" class="allocationD_img">
+					<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">
+					<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">
+				</div>
+				<div class="width40 margin_left3" id="rightName">
+					<!-- 赵麻子 -->
+				</div>
+			</div>
+			<!-- 内容区域 -->
+			<div class="allocationD_reason">
+				<!-- 调拨原因 -->
+				<div class="font_size30 font_color33 margin_top4">
+					调拨原因
+				</div>
+				<div class="margin_top3">
+					<textarea  placeholder="请填写调拨原因" rows="" id="feedbackcontent" style="height: 2.4rem;border-radius: .2rem;border: none;font-size: 0.26rem;"></textarea>
+				</div>
+				<!-- 机具列表 -->
+				<div class="div_display margin_top6">
+					<div class="font_color33 font_size30">
+						机具列表
+					</div>
+					<div class="font_size24 font_colorff0">
+						*只可调拨未激活机具
+					</div>
+				</div>
+				<!-- 列表块 -->
+				<div style="margin-bottom: 1.2rem;" id="getAllotList">
+					<!-- 默认页面 -->
+					<div class="div_display allocationD_moudel margin_top2">
+						<div class="width15 text_center margin_top3 margin_left1">
+							<div class="mui-checkbox back_gd_DC" style="width: .5rem;height: 0.5rem;border-radius: 0.4rem;margin-top: 0.2rem;margin-left: 0.1rem;">
+								
+							</div>
+						</div>
+						<div style="width: 3.6rem;height: 0.32rem;background-color: #EEEEEE;margin-top: 0.26rem;"></div>
+						<div style="width: 4.12rem;height: 0.32rem;background-color: #EEEEEE;position: relative;top: 0.9rem;right: 2.85rem;"></div>
+					</div>
+					<div class="div_display allocationD_moudel margin_top2">
+						<div class="width15 text_center margin_top3 margin_left1">
+							<div class="mui-checkbox back_gd_DC" style="width: .5rem;height: 0.5rem;border-radius: 0.4rem;margin-top: 0.2rem;margin-left: 0.1rem;">
+								
+							</div>
+						</div>
+						<div style="width: 3.6rem;height: 0.32rem;background-color: #EEEEEE;margin-top: 0.26rem;"></div>
+						<div style="width: 4.12rem;height: 0.32rem;background-color: #EEEEEE;position: relative;top: 0.9rem;right: 2.85rem;"></div>
+					</div>
+					
+					
+				</div>
+
+				<!-- 底部按钮 -->
+				<div class="allocationD_btn">
+					立即调拨
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				$('#rightName').text(_self.name);
+				$('#leftName').text(plus.storage.getItem('userName'));
+				// 获取未激活列表
+				getAllotList(mui, plus.storage.getItem('memberId'), function(data) {
+					$(".allocationD_moudel").remove(); 
+					console.log("11====="+JSON.stringify(data))
+					if (data.code == 200) {
+						var fragmentplanList = document.createDocumentFragment();
+						$.each(data.data, function(items) {
+							var receiveList =
+								'<div class="div_display allocationD_moudel margin_top2">' +
+								'<div class="width15 text_center margin_top3 margin_left1">' +
+								'<div class="mui-checkbox">' +
+								'<input name="commodity" value="Item 1" type="checkbox" data-Params="0" data-id="' + data.data[items].id +
+								'" >' +
+								'</div>' +
+								'</div>' +
+								'<div class="margin_top3">' +
+								'<div class="div_display font_size30">' +
+								'<div class="font_color33">机具名称</div>' +
+								'<div class="font_color66 margin_left3">' +
+								data.data[items].goodsName +
+								'</div>' +
+								'</div>' +
+								'<div class="div_display font_size30 margin_top1">' +
+								'<div class="font_color33">机具编号</div>' +
+								'<div class="font_color66 margin_left3">' +
+								data.data[items].serialNumber + '</div>' +
+								'</div>' +
+								'</div>' +
+								'</div>';
+							$(fragmentplanList).append(receiveList);
+						})
+						$("#getAllotList").append($(fragmentplanList));
+					} else {
+						tipShow(data.message);
+					}
+				});
+				var idList = [];
+				var keyword = {
+					acceptUser: _self.productId,
+					allotUser: plus.storage.getItem('memberId'),
+					cause: '',
+					goodsItmeIdList: idList
+				};
+				// 立即调拨
+				$('.allocationD_btn').on('tap', function() {
+					keyword.cause = $("#feedbackcontent").val();
+					console.log("444=="+JSON.stringify(keyword))
+					getAddItem(mui, keyword, function(data) {
+						if (data.code == 200) {
+							tipShow('调拨成功');
+							$$.openWindow({
+								url: 'alloctionRecord.html',
+								id: 'alloctionRecord',
+								createNew:true,
+								show: {
+									aniShow: "slide-in-right"
+								}
+							});
+						} else {
+							tipShow(data.message);
+						}
+					});
+				});
+				// 单选input[name='commodity']-----有效
+				var $checkbox = $("input[name='commodity']");
+				mui("#getAllotList").on('change', 'input', function() {
+					var dataParams = $(this).attr("data-Params");
+
+					if (dataParams == 0) {
+						$(this).attr("data-Params", 1);
+						idList.push($(this).attr('data-id'));
+					} else {
+						$(this).attr("data-Params", 0);
+						for (var i = 0; i < idList.length; i++) {
+							if (idList[i] == $(this).attr('data-id')) {
+								idList.splice(i, 1); //删除下标为i的元素
+							}
+						}
+					}
+				});
+
+			};
+
+
+
+
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

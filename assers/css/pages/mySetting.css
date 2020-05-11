@@ -1,0 +1,143 @@
+#returnTopPage_set img {
+	width: 0.5rem;
+	float: left;
+	margin-top: .2rem;
+	margin-left: 0.2rem;
+}
+
+.settingList {
+	width: 6.8rem;
+	margin-left: .35rem;
+	margin-top: 0.1rem;
+}
+
+.settingList li {
+	width: 100%;
+	font-size: .32rem;
+	color: #1A202C;
+	line-height: 1rem;
+	border-bottom: 1px solid #E9E9E9;
+}
+
+.settingList li i {
+	float: right;
+	font-size: .5rem;
+	line-height: 1rem;
+	color: #A0A0A0;
+}
+
+.list_ul_li {
+	width: 7.5rem;
+	-margin-left: .15rem;
+	-margin-top: 1rem;
+	-border: 1px solid #E9E9E9;
+	border-radius: .2rem;
+	-padding-left: .3rem;
+	padding-right: .3rem;
+}
+
+.list_ul_li li {
+	width: 100%;
+	font-size: .32rem;
+	color: #1A202C;
+	line-height: 1rem;
+	border-bottom: 1px solid #E9E9E9;
+	list-style-type:none;
+}
+
+.list_ul_li li i {
+	float: right;
+	font-size: .5rem;
+	line-height: 1rem;
+	color: #A0A0A0;
+}
+
+.div_border_20 {
+	height: .2rem;
+	background-color: #f8f8f8;
+	float: left;
+	width: 7.5rem;
+	margin-top: -1%;
+}
+
+.div_swich {
+	width: 7.5rem;
+	float: left;
+}
+
+.mysetting_password {
+	width: 6.3rem;
+	float: left;
+	font-size: .32rem;
+	color: #1A202C;
+	padding-left: .31rem;
+	margin-top: .24rem;
+}
+
+.mysetting_password_no {
+	width: 1rem;
+	float: left;
+	margin-top: .24rem;
+}
+
+/* 关于美好同乘 */
+.about_title {
+	font-size: .32rem;
+	color: #102023;
+	text-align: center;
+}
+
+.about_content {
+	font-size: .28rem;
+	color: #393939;
+	text-indent: 2em;
+	margin-top: .34rem;
+	padding-left: .2rem;
+	padding-right: .2rem;
+}
+
+/* 支付密码设置 */
+#payPassword div {
+	font-size: .32rem;
+	color: #1A202C;
+	border-bottom: 1px solid #E9E9E9;
+	width: 95%;
+	margin-left: 2%;
+	line-height: 3;
+}
+
+#payPassword div span {
+	margin-left: .32rem;
+}
+
+#payPassword div span:last-child {
+	float: right;
+	font-size: .3rem;
+	margin-right: .3rem;
+}
+
+#payPassword div input {
+	margin-left: .32rem;
+	line-height: 1;
+}
+
+#payPassword div input:placeholder {
+	color: #A1A1A1;
+	font-size: .28rem;
+}
+
+.bottom_btn {
+	height: 1.2rem;
+	width: 7.5rem;
+	background: linear-gradient(to right, #FF342D, #FF5882);
+	text-align: center;
+	line-height: 1.2rem;
+	background-color: red;
+	color: #FFFFFF;
+	font-size: .32rem;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+	position: fixed;
+	bottom: 0;
+	z-index: 999;
+}

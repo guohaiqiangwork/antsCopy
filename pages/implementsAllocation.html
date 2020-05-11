@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>机具调拨</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/implements.css" />
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+		<script src="../assers/js/rem_reset.js"></script>
+
+		<style type="text/css">
+			.implements_alloction_moudel {
+				margin-left: .25rem;
+				margin-top: .25rem;
+			}
+
+			.implements_moudel {
+				border-radius: 0.2rem;
+			}
+
+			.implements_moudel {
+				margin-left: .25rem;
+			}
+
+			#searchId {
+				-border: #999999 solid 1px;
+				border-radius: 1rem;
+				height: 0.7rem;
+				width: 6.7rem;
+				margin: 5px auto;
+				background-color: #FFFFFF;
+			}
+
+			#searchId div {
+				float: left;
+				margin: 0.1rem 0.1rem 0.1rem 0.2rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" style="background-color: #F4F4F4!important;position: absolute;height: 100%;">
+		<header class="header_white font_size34 font_color33">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			机具调拨
+		</header>
+		<div class="content">
+			<!-- 头部导航 -->
+			<div class="div_display header_tab" style="border: none;">
+				<div class="tab_swich selection" data-id="">
+					调拨人选
+				</div>
+				<div class="tab_swich" data-id="1">
+					接收调拨
+				</div>
+			</div>
+			<!-- 调拨人选 -->
+			<div class="allocation">
+				<!-- 公司名称 -->
+				<div class="allocation_name" style="line-height: 0.6rem;">
+					<!-- 蚂蚁招财科技公司 -->
+				</div>
+				<!-- 搜索框 -->
+				<div id="searchId" style="width:7rem;">
+					<div>
+						<img style="width: 0.29rem;" src="../assers/image/shopping/7258@2x.png">
+					</div>
+					<div style="line-height: 0.3rem;width: 83%;">
+						<input id="search" class="font_size28" placeholder="请输入姓名或手机号" style="-webkit-user-select:text !important;width: 100%;color: #000000;line-height: 0.6rem;" />
+					</div>
+				</div>
+				<div class="margin_bot3">
+					<div class="implements_alloction_moudel">
+						<div class="font_width700 font_size32">
+							我的人选
+						</div>
+						<div class="margin_top3" style="border-top: 1px solid #CCCCCC;width: 6.4rem;"></div>
+						<div class="" id="myfrind">
+
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+			<!-- 接收调拨 -->
+			<div class="receive" style="display: none;margin-top: 2rem;">
+				<!-- 模块 -->
+				<!-- <div class="implements_moudel implements_moudel_img1">
+					<div class="div_display padding_top2">
+						<div class="width50 margin_left5 font_colorff font_size32 font_width700">
+							王二狗
+						</div>
+						<div class="width50 text_right margin_right5 font_size26 font_colorff">
+							2020-01-22
+						</div>
+					</div>
+					<div class="div_display  margin_top6">
+						<div class="margin_left5 width85 font_size30 font_color33">
+							机具型号
+						</div>
+						<div class="margin_left4 width15 font_size26 font_color99">
+							*1
+						</div>
+					</div>
+					<div class="margin_top2 font_color33 font_size26 goAllocation" style="margin-left: 5.2rem;">
+					
+						查看详情>
+				
+					</div>
+				</div>
+ -->
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var keyword = {
+				keyword: ''
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+
+				_self = plus.webview.currentWebview();
+				//监听 刷新
+				window.addEventListener('jfdbRefresh', function(event) {
+					obtainAllotRece(); //获取接收列表
+				});
+
+				// 查询我的公司
+				getCom(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						$('.allocation_name').text(data.data.name)
+					}
+				});
+				funMyallot(); //查询我的同事
+			}
+			// 查询我的同事
+			function funMyallot() {
+				// 我的同事查询
+				getMyAllot(mui, keyword, function(data) {
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							$(".margin_bot3").css("display", "block");
+							var fragmentplanList = document.createDocumentFragment();
+							$.each(data.data, function(items) {
+								var myLAllot =
+									'<div class="div_display margin_top3 padding_bot2">' +
+									'<div class="width30" style="margin-top: 0.1rem;font-size:0.3rem">' +
+									data.data[items].name +
+									'</div>' +
+									'<div class="width30" style="margin-top: 0.1rem;font-size:0.3rem">' +
+									data.data[items].mobile +
+									'</div>' +
+									'<div class="margin_left6" style="margin-top: -.1rem;">' +
+									'<div class="allocation_btn" data-id="' + data.data[items].id + '" data-name="' + data.data[items].name +
+									'">调拨</div>' +
+									'</div>' +
+									'</div>';
+								$(fragmentplanList).append(myLAllot);
+							})
+							$("#myfrind").append($(fragmentplanList));
+						} else {
+							var noData =
+								'<div class="nothing">' +
+								'<img style="margin: 3rem auto 0rem;" src="../assers/image/diaobo.png" class="width_height100">' +
+								'<p>没有可调拨的人选</p>' +
+								'</div>';
+							// $(".allocation").append($(noData));
+							$("#myfrind").append($(noData));
+							$(".margin_bot3").css("display", "none");
+						}
+
+					} else {
+						tipShow(data.message);
+					}
+				});
+
+			}
+
+			// 头部导航
+			$('.tab_swich').on('tap', function() {
+				if ($(this).attr("data-id") == 1) {
+					$('.allocation').css('display', 'none');
+					$('.receive').css('display', 'block');
+					// $('.receive').html('')
+					obtainAllotRece(); //获取接收列表
+				} else {
+					$('.allocation').css('display', 'block');
+					$('.receive').css('display', 'none');
+				}
+				console.log("点击的status=" + $(this).attr("data-id"));
+				$(".header_tab").find("div").removeClass("selection");
+				$(this).addClass("selection")
+			})
+			// 接收调拨列表
+			function obtainAllotRece() {
+				getAllotRece(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							var timeVal;
+							var fragmentplanList = document.createDocumentFragment();
+							$.each(data.data, function(items) {
+								timeVal = data.data[items].createTime.substring(10, 0);
+								var receiveList =
+									'<div class="implements_moudel implements_moudel_img1">' +
+									'<div class="div_display padding_top3">' +
+									'<div class="width50 margin_left3 font_colorff font_size32 font_width700">' +
+									data.data[items].name +
+									'</div>' +
+									'<div class="width50 text_right margin_right3 font_size26 font_colorff">' +
+									timeVal +
+									'</div>' +
+									'</div>' +
+									'<div class="div_display  margin_top6">' +
+									'<div class="margin_left3 width85 font_size30 font_color33">' +
+									data.data[items].posName +
+									'</div>' +
+									'<div class="font_size26 font_color99" style="margin-left: 0.15rem;">X' +
+									data.data[items].num +
+									'</div>' +
+									'</div>' +
+									'<div class="font_color33 font_size26 goAllocation" style="position: relative;bottom: 0.1rem;margin-top: 0.15rem;margin-left: 4.4rem;width: 2.8rem;padding-left: 1rem;" data-id="' +
+									data.data[items].id + '"  data-name="' + data.data[items].name +
+									'">查看详情<img src="../assers/image/@2x.png" style="width: 0.09rem;height: 0.15rem;margin-left: .1rem;"></div>' +
+									'</div>';
+								$(fragmentplanList).append(receiveList);
+							});
+							$(".implements_moudel_img1").remove();
+							$(".receive").append($(fragmentplanList));
+						} else {
+							$(".implements_moudel_img1").remove();
+							var noData =
+								'<div class="" style="width: 7.5rem;text-align: center;">' +
+								'<img style="margin: 1.2rem auto 0rem;width: 4.1rem;height: 3.5rem;" src="../assers/image/default/noOrder.png" class="width_height100">' +
+								'<p>暂无数据~</p>' +
+								'</div>';
+							$(".receive").append($(noData));
+						}
+
+					} else {
+						tipShow(data.message);
+					}
+
+				});
+
+			}
+
+			// 调拨详情
+			$('#myfrind').on('tap', '.allocation_btn', function() {
+				$$.openWindow({
+					url: '../pages/allocation.html',
+					id: 'allocation',
+					createNew: true,
+					extras: {
+						"productId": $(this).attr('data-id'),
+						"name": $(this).attr('data-name')
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 调拨
+			$('.receive').on('tap', '.goAllocation', function() {
+				$$.openWindow({
+					url: '../pages/allocationDetails.html',
+					id: 'allocationDetails',
+					extras: {
+						"productId": $(this).attr('data-id'),
+						"name": $(this).attr('data-name')
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+
+			/* 监听键盘搜索按钮 */
+			doc.getElementById("search").addEventListener("keypress", function(event) {
+				if (event.keyCode == "13") {
+					var nameVal = doc.getElementById("search").value.replace(/\s*/g, "");
+					doc.activeElement.blur(); //收起虚拟键盘
+					getSearch(nameVal); //完成搜索事件
+					doc.getElementById("search").value = "";
+					event.preventDefault(); // 阻止默认事件---阻止页面刷新
+				}
+			});
+			//查询数据
+			function getSearch(nameVal) {
+				keyword.keyword = nameVal;
+				$("#myfrind").html('')
+				funMyallot() //查询数据
+				console.log(nameVal)
+			}
+
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

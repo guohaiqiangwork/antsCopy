@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>余额</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/mobileReset.css">
+
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style>
+			#activationTx{
+				background-image: linear-gradient(to right, #FF765A , #FF0100);
+				border-radius: 0.4rem;
+				line-height: 0.75rem;
+				width: 1.8rem;
+				height: 0.7rem;
+				float: left;
+				margin-top: 0.6rem;
+				margin-left: 0.6rem;
+			}
+			#content_top_id{
+				background: url(../assers/image/5116@2x.png);
+				background-size: 100% 100%;
+			}
+			
+			.imgOneId{
+				width: 0.6rem;
+				height: 0.1rem;
+				position: relative;
+				top: 0.21rem;
+				left: 0.44rem;
+				display: none;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+			    line-height: 20px;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				color: #F52726;
+				border-bottom: 0px;
+				height: 1rem;
+				font-weight: 700;
+			}
+			/* .mui-segmented-control.mui-segmented-control-inverted:nth-child(1) .mui-control-item{
+			    position: relative;
+			    right: 0.1rem;
+			} */
+			
+		</style> 
+	</head>
+
+	<body onselectstart="return false;">
+		<header class="header_white title_height" style="position: fixed;top: 0;z-index: 999;">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			<span style="margin-left: 1.5rem;">
+				余额
+			</span>
+			<span id="txId" style="float: right;margin-right: .3rem;font-size: 0.3rem;">
+				提现记录
+			</span>
+		</header>
+		
+		<div>
+			<!-- list 以上的部分 -->
+			<div style="position: fixed;top: 0;z-index: 990;background-color: #FFFFFF;">
+				<div id="content_top_id" class="margin_auto margin_top10" style="width: 6.65rem;height: 3.91rem;border-radius: 10px;">
+					<div class="font_colorff" style="padding-top: 0.6rem;margin-left: 0.5rem;width: 3rem;">
+						<div class="font_size34 font_familyPin">
+							账户余额（元）
+						</div>
+						<div class="margin_top2 font_width500 font_size50" id="balanceMoneyId">
+							0.00
+						</div>
+						
+						<div id="activationTx" class="text_center font_size30 font_familySource" style="position: absolute;top: 1.2rem;left: 4rem;">
+							提现
+						</div>
+					</div>
+					
+					<div id="" class="margin_top6 font_colorff">
+						<div class="div_display">
+							<div id="profitId" class="text_center margin_left6">
+								<div class="font_size30">
+									分润累计金额(元)
+								</div>
+								<div class="font_size40 margin_top2" id="fy">
+									0.00
+								</div>
+							</div>
+							<div id="activationId" class="text_center margin_left6">
+								<div class="font_size30">
+									激活累计返现(元)
+								</div>
+								<div class="font_size40 margin_top2" id="jh">
+									0.00
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 选择按钮 -->
+				<div id="titleList" class="margin_top3 margin_auto" style="height: 0.74rem;border-bottom: #EEEEEE solid 2px;">
+					<div style="touch-action: none;" id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+						<div style="height: 0.85rem;" id="tab_contral">
+							<a class="mui-control-item mui-active" id="zongheId">
+								<div style="position: relative;top: 0.1rem;">今天</div> 
+								<img class="imgOneId" src="../assers/image/7131@2x.png"/ style="display: block;">
+							</a>
+							<a class="mui-control-item" id="volume_id">
+								<div style="position: relative;top: 0.1rem;">昨天</div> 
+								<img class="imgOneId" src="../assers/image/7131@2x.png"/>
+							</a>
+							<a class="mui-control-item" id="priceId1">
+								<div style="position: relative;top: 0.1rem;">一周</div>
+								<img class="imgOneId" src="../assers/image/7131@2x.png"/>
+							</a>
+							<a class="mui-control-item" id="priceId2">
+								<div style="position: relative;top: 0.1rem;">一月</div>
+								<img class="imgOneId" src="../assers/image/7131@2x.png"/>
+							</a>
+							<a class="mui-control-item" id="priceId3">
+								<div style="position: relative;top: 0.1rem;">全部</div>
+								<img class="imgOneId" src="../assers/image/7131@2x.png"/>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--下拉刷新容器-->
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="margin-top: 6rem;">
+				<div class="mui-scroll">
+					<!--数据列表-->
+					<div class="bottomList mui-table-view mui-table-view-chevron" id="lsListId">
+			
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 缺省页 -->
+		<div class="nothing" style="display: none;margin: 5.5rem auto;">
+			<img src="../assers/image/default/profit.png" class="width_height100" style="width: 3.4rem;height: 3rem;">
+			<p style="margin-top: 0.25rem;">暂无流水</p>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	
+	<script>
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					style: 'circle',
+					callback: pulldownRefresh
+				},
+				up: {
+					auto: true,
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh,
+				}
+			}
+		});
+	
+		var _self;
+		var count = 0; //当前页数
+		var pageParams = 1; //下一页数
+		var boolenParams = true; //控制不重复请求
+		var priceSorted = "1";
+		var condition = 1;//选项卡
+		var baasdate;
+		var upR;
+		var txParms = true;//控制提现按钮不重复点击
+		
+	
+		function pullupRefresh() {
+			plus.navigator.setFullscreen(false);
+			//强制竖屏
+			plus.screen.lockOrientation("portrait-primary");
+			//强制隐藏滚动条
+			plus.webview.currentWebview().setStyle({
+				scrollIndicator: 'none'
+			});
+			_self = plus.webview.currentWebview();
+			$("#activationTx").on("tap",function(){
+				if(txParms){
+					txParms = false;
+					plus.storage.setItem("returnPage",'balance');
+					//查询是否实名认证
+					getHasVerific(mui, plus.storage.getItem('memberId'), function(data) {
+						if (data.code == 200) {
+							
+							// 查询银行卡列表
+							getBankFindAll(mui, plus.storage.getItem('memberId'), function(data) {
+								if (data.code == 200) {
+									if(data.data.length == 0){
+										tipShow("添加银行卡");
+										mui.openWindow({
+											url: '../pages/bankCard.html',
+											id: 'bankCard',
+											createNew:true,
+											show: {
+												aniShow: "slide-in-right"
+											}
+										});
+									}else{
+										mui.openWindow({
+											url: '../pages/balanceTix.html',
+											id: 'balanceTix',
+											createNew:true,
+											extras: {
+												"txType": "余额提现",
+												"moneyNum": $("#balanceMoneyId").text(),
+											},
+											show: {
+												aniShow: "slide-in-right"
+											}
+										});
+									}
+								} else {
+									tipShow(data.message)
+								}
+							});
+						} else {
+							tipShow(data.message);
+							mui.openWindow({
+								url: '../pages/realName.html',
+								id: 'realName',
+								show: {
+									aniShow: "slide-in-right"
+								}
+							});
+						}
+					});
+					
+					setTimeout(function() { 
+						txParms = true;
+					},1000)
+				}
+			});
+			
+			/* 分润 激活 回收金额 */
+			getfindAll(mui,plus.storage.getItem('memberId'),function(data){
+			//console.log(JSON.stringify(data));
+				if (data.code == 200) {
+					$("#jj").text(data.data.hs);
+					$("#jh").text(data.data.jh);
+					$("#fy").text(data.data.fr);
+				} else {
+					tipShow(data.message);
+				}
+			});
+			
+			/* 去提现记录页 */
+			$("#txId").on("tap",function(){
+				mui.openWindow({
+					url: 'txRecord.html',
+					id: 'txRecord',
+					show: {
+						aniShow: "slide-in-right"
+					},
+				});
+			});
+			
+			/* 余额*/
+			myMassage(mui,plus.storage.getItem('memberId'),function(data){
+				if (data.code == 200) {
+					$("#balanceMoneyId").text(data.data.balance);
+				} else {
+					tipShow(data.message);
+				}
+			});
+	
+			if (boolenParams) {
+				//如果后端返回数据就继续可以下拉加载请求数据，如果返回空就不请求后端，显示没有更多数据了
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > pageParams)); //参数为true代表没有更多数据了。
+				boolenParams = false;
+				
+				console.log("count="+count);
+				console.log("pageParams="+pageParams);
+				var table = document.body.querySelector('.mui-table-view');
+				var cells = document.body.querySelectorAll('.mui-table-view-cell');
+				var newCount = cells.length > 0 ? 5 : 10; //首次加载10条，满屏
+	
+				/* ----------------------默认加载list ----------------*/
+				/*全部 信息*/
+				baasdate = {
+					data:{
+						condition:condition,//时间轴
+						endTime:'',
+						memberId: plus.storage.getItem('memberId'),
+						startTime:'',
+						status:'',
+					},
+					pageNum:count,
+					pageSize:10 
+				};
+				get_Account(baasdate);
+			} else {
+				tipShow("数据加载中...");
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+			}
+	 
+		}
+	
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+		function pulldownRefresh() {
+			setTimeout(function() {
+				upR = "1";
+				pageParams = 2;
+				count = 0;
+				baasdate.pageNum = 1;
+				pullupRefresh();
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			}, 1000);
+		}
+		
+		
+		//获取数据
+		function get_Account(baasdate){
+			getAccount(mui,baasdate,function(data){
+				//console.log("11=="+JSON.stringify(data));
+				if(data.code == 200){
+					var fragmentplanList = document.createDocumentFragment();
+					var dataList = data.data;
+					if(dataList.length == 0){
+						//无数据
+						if (count == 1) {
+							$(".mui-pull").css("display", "none");
+							$('.nothing').css('display' ,'block')
+						}
+					}else{
+						++pageParams;
+						$(".mui-pull").css("display", "block");
+						$('.nothing').css('display' ,'none')
+					} 
+					
+					$.each(dataList, function(items) {
+						var icon;
+						if(dataList[items].transType == "1"){
+							icon = "+ ";
+						}else{ 
+							icon = "- ";
+						}
+						
+						var orderLiTwo = 
+						'<div class="listcla">'+
+							'<div class="margin_left4 margin_top3" style="float: left; width: 3.44rem;">'+
+								'<div class="font_size26 font_colorD3">'+dataList[items].createTime+'</div>'+
+								'<div class="font_size30 font_color33">'+dataList[items].recordDesc+'</div>'+
+							'</div>'+
+							'<div class="font_size32 font_color33 margin_top7" style="float: left; width: 3.2rem;text-align: right;">'+icon + dataList[items].amount +'</div>'+
+						'</div>';
+						$(fragmentplanList).append(orderLiTwo);
+					});
+					/* 如果是上拉刷新，删除旧数据 */
+					if(upR == "1"){
+						$(".listcla").remove();
+						upR = "0";
+					}
+					
+					$("#lsListId").append($(fragmentplanList));
+					 
+					$('#lsListId .listcla:nth-child('+dataList.length+') .margin_top4').css({"margin-bottom":"0.8rem"});
+				
+				}else{
+					tipShow(data.message); 
+				}
+				boolenParams = true;
+			});
+		};
+		
+		
+		/* 去分润返现 */
+		$("#profitId").on("tap",function(){
+			mui.openWindow({
+				url: '../pages/profit.html',
+				id: 'profit',
+				extras:{
+					"moneyId":$("#fy").text()
+				},
+				show: {
+					aniShow: "slide-in-right"
+				}
+			});
+		});
+		
+		/* 去激活返现 */
+		$("#activationId").on("tap",function(){
+			mui.openWindow({
+				url: '../pages/activation.html',
+				id: 'activation',
+				extras:{
+					"moneyId":$("#jh").text()
+				},
+				show: {
+					aniShow: "slide-in-right"
+				}
+			});
+		});
+		
+		
+		/* 点击事件 */
+		mui("#tab_contral").on('tap', '.mui-control-item', function(event){
+			var buttonCount = $(this).children("div").text();
+			$(this).parents("#tab_contral").find("img").css('display', 'none');
+			$(this).children("img").css('display', 'block')
+			var num;
+			switch (buttonCount){
+				case "今天":
+					num = "1"
+					break;
+				case "昨天":
+					num = "2"
+					break;
+				case "一周":
+					num = "3"
+					break;
+				case "一月":
+					num = "4"
+					break;
+				case "全部":
+					num = ""
+					break;
+				default:
+					num = "10"
+					break;
+			}
+			if(num == 10){
+				console.log("编码错误");
+			}else{
+				mui('#pullrefresh').pullRefresh().refresh(true);
+				console.log(num); 
+				$(".listcla").remove();
+				baasdate.data.condition = num;
+				pageParams = 2; 
+				count = 0;
+				baasdate.pageNum = 1;
+				condition = num;
+				//get_Account(baasdate);
+				pullupRefresh();
+			}
+		});
+	</script>
+</html>
+

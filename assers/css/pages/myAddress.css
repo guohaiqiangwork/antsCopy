@@ -1,0 +1,167 @@
+/* 用到的页面有
+ 1.更换手机号
+ 2.
+ */
+
+
+.contentA {
+	margin-bottom: 1.5rem;
+}
+
+.address_moduel {
+	width: 6.9rem;
+	height: 1.8rem;
+	margin-left: .2rem;
+	background-color: #FFFFFF;
+	margin-top: .2rem;
+	border: 1px solid #DCDCDC;
+	border-radius: .1rem;
+}
+
+.address_moduel ._left {
+	width: 6rem;
+	height: 1.8rem;
+	float: left;
+	color: #333333;
+}
+
+.address_moduel ._one {
+	font-size: .3rem;
+	margin-left: .4rem;
+	margin-top: .36rem;
+}
+
+.address_moduel ._two {
+	font-size: .28rem;
+	color: #5A5A5A;
+	margin-left: .4rem;
+	margin-right: .47rem;
+}
+
+.address_moduel ._three {
+	height: .51rem;
+	width: 1px;
+	float: left;
+	background-color: #DBDBDB;
+	margin-top: .6rem;
+}
+
+.address_moduel ._right {
+	width: .7rem;
+	height: 1.8rem;
+	float: left;
+	color: red;
+	font-size: .24rem;
+	text-align: center;
+	padding-top: .7rem;
+}
+
+.address_moduel ._falge {
+	background-color: #FF6740;
+	color: #FFFFFF;
+	width: .4rem;
+	height: .28rem;
+	border-radius: .12rem;
+	padding: .05rem;
+	font-size: .2rem;
+	margin-right: .2rem;
+	position: relative;
+	top: -0.1rem;
+}
+
+.bottom_btn {
+	height: 1rem;
+	width: 7rem;
+	border-radius: .5rem;
+	margin-left: .3rem;
+	text-align: center;
+	line-height: 1rem;
+	color: #FFFFFF;
+	font-size: .3rem;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+	position: fixed;
+	bottom: .3rem;
+	background: linear-gradient(to right, #FF765A, #FF0100);
+	z-index: 999;
+}
+
+/* 地址保存 */
+#addressEditor ._one {
+	float: left;
+	height: 1rem;
+	margin-top: .2rem;
+	border-bottom: 1px solid #F5F8FC;
+	width: 7.5rem;
+}
+
+#addressEditor ._one ._left {
+	width: 2.4rem;
+	text-align: center;
+	float: left;
+	font-size: .3rem;
+	color: #303030;
+	line-height: 2.8;
+}
+
+#addressEditor ._one ._right {
+	width: 5rem;
+	float: left;
+}
+
+#addressEditor ._one ._right input {
+	border: none;
+	-margin-top: -3%;
+}
+
+._address_text textarea {
+	padding-left: 2.2rem;
+	padding-top: .2rem;
+	border: none;
+}
+
+._address_text ._text_title {
+	font-size: .3rem;
+	color: #303030;
+	position: absolute;
+	float: left;
+	top: 4.5rem;
+	z-index: 9999;
+	margin-left: .53rem;
+	padding-top: .2rem;
+}
+
+/* 弹出框 */
+.pSetting_change_model {
+	width: 5.8rem;
+	height: 4.2rem;
+	background: #FFFFFF;
+	position: fixed;
+	top: 4rem;
+	left: .9rem;
+	z-index: 999999;
+	border-radius: 0.2rem;
+	box-sizing: border-box;
+	padding: .2rem 0 .2rem 0;
+	margin: 0 auto;
+
+}
+
+.pSetting_btn {
+	width: 2rem;
+	height: .65rem;
+	border-radius: .4rem;
+	line-height: 2.4;
+	margin-left: .7rem;
+}
+
+.bj_model{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+	/* display: none; */
+}

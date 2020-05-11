@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/my.css" />
+		<link rel="stylesheet" href="../assers/css/pages/bankCard.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<!-- 键盘 -->
+		<link rel="stylesheet" type="text/css" href="../assers/fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/lib/keyboard.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/index.css"/>
+		
+		<style type="text/css">
+			.content {
+			    margin-top: 0.8rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i id="returnId" class="mui-action-back" style="touch-action: none;"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			设置
+		</header>
+		<div class="content">
+			<div class="setUp_moudel">
+				
+				<div class="div_display setUp_moudel_one padding_bot2 goSetUpTwo" data-id='editingMaterials'>
+					<div class="div_display width85 margin_top4">
+						<div class="setUp_moudel_img">
+							<img id="hederImg" class="setUp_moudel_img"  src="../assers/image/headPortrait.png">
+						</div>
+						<div class="font_color33 font_size30 margin_left2">
+							<div id="nameId">
+
+							</div>
+							<div id="teltphoneId">
+
+							</div>
+						</div>
+					</div>
+					<div class="width15 text_right margin_top6">
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+				
+				<div class="div_display setUp_moudel_one padding_bot4 margin_top4 goSetUp" href="../pages/myAddress.html" data-id='myAddress'>
+					<div class="div_display width85">
+						地址管理
+					</div>
+					<div class="width15 text_right">
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+
+				<div class="div_display setUp_moudel_one padding_bot4 margin_top4 goSetUp" href="" data-id='passwordId'>
+					<div class="div_display width85">
+						提现密码
+					</div>
+					<div class="width15 text_right">
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+				<div class="div_display setUp_moudel_one padding_bot4 margin_top4 goSetUp" href="../pages/bankCard.html" data-id='bankCard'>
+					<div class="div_display width85">
+						银行卡管理
+					</div>
+					<div class="width15 text_right">
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+				<div class="div_display setUp_moudel_one padding_bot4 margin_top4 settingDelete">
+					<div class="div_display width85">
+						清理缓存
+					</div>
+					<div class="width15 text_right">
+
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+				<div class="div_display setUp_moudel_one padding_bot4 margin_top4" id="service">
+					<div class="div_display width60">
+						联系客服
+					</div>
+					<div class="width40 text_right font_color33 font_size28">
+						<span style="margin-right: .2rem;">400-555-111</span>
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+				<div style="border: none;" class="div_display setUp_moudel_one padding_bot4 margin_top4 goSetUp" href="../pages/aboutUs.html" data-id='aboutUs'>
+					<div class="div_display width85">
+						关于我们
+					</div>
+					<div class="width15 text_right">
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+
+			</div>
+			<div class="setUp_btn div_btn_jb">
+				退出当前账号
+			</div>
+			
+			<!-- 密码提示框 -->
+			<div id="pay" class="mui-popover">
+				<div id="password_div" style="height: 1rem;width: 1rem;float: left;">
+					<img src="../assers/image/payimg/close.png" alt="" class="mui-popover-close" style="width: .26rem;height: .26rem;">
+				</div>
+				<p class="title" style="margin-left: 1.1rem;"></p>
+				<div class="font_size30 font_color66" style="margin-left: 1.8rem;">
+					支付密码为6位数字
+				</div>
+				<div class="font_size30 font_color66" style="margin-left: 1.4rem;">
+					支付密码与提现密码一致
+				</div>
+				<div class="table">
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+				</div>
+				<input readOnly='readOnly' typeName="setPage" id="money" style="text-indent: -999em;margin-left: -100%;width: 200%;opacity: 0;" type="tel" name='password' class="zfinput">
+				 <!-- <div class="softkeyboard-area"></div> -->
+				 
+				<!-- <div class="password_btn">
+					确认
+				</div> -->
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<!-- 键盘 -->
+	<script src="../assers/js/lib/keyboard.js"></script>
+	<script src="../assers/js/lib/index.js"></script>
+	<script src="../assers/js/payFunction.js"></script>
+	
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var Keyboard;
+			var nativeWebview, imm, InputMethodManager;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				Keyboard = new Plugin.Keyboard();
+				
+				document.getElementById('pay').addEventListener('hidden',function(e){
+					Keyboard.hideKeyBoard();
+					
+				});
+				
+				$('#money').on("tap",function(){
+					Keyboard.showKeyBoard();
+				});
+				
+				// 监听密码输入
+				$('#money').bind('input propertychange', function() {
+					alert("监听input")
+					$('.table>div>.blackpwd').css('opacity', '0');
+					var length = $(this).val().length;
+					$('.table>div>.blackpwd').slice(0, length).css('opacity', '1');
+				});
+				
+				/* 返回事件 */
+				$("#returnId").on("tap",function(){
+					plus.nativeUI.closeWaiting();
+					var list = plus.webview.currentWebview().opener();
+					mui.fire(list, 'refreshMajorGuestCount_my');
+				});
+				
+				/* 监听更新页面 */
+				window.addEventListener('refreshMajorGuestCount_setUp', function(event) {
+					/* 查询用户信息*/
+					get_myMassage();
+				});
+
+
+				/* 查询用户信息*/
+				get_myMassage();
+ 
+				function get_myMassage() {
+					myMassage(mui, plus.storage.getItem('memberId'), function(data) {
+						//console.log("用户信息=="+ JSON.stringify(data))
+						var myMassageData = data;
+						if (data.code == 200) {
+							if(myMassageData.data.avatar){
+								$('#hederImg').attr('src', "");
+								$('#hederImg').attr('src', myMassageData.data.avatar);
+							}
+							
+							$('#nameId').text(myMassageData.data.name);
+							var teltphoneVla = myMassageData.data.mobile;
+							teltphoneVla = teltphoneVla.substring(3, 0) + "****" + teltphoneVla.substring(7, 11);
+							$('#teltphoneId').text(teltphoneVla);
+						} else if (data.code == 401 || data.code == 1500) {
+							//alert("需要登录");
+							gotoLoginIn()
+						} else {
+							tipShow(data.message);
+						}
+
+					});
+				}
+
+				/* 去编辑资料页面 */
+				$(".goSetUpTwo").on("tap", function() {
+					$$.openWindow({
+						url: 'editingMaterials.html',
+						id: 'editingMaterials',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+			};
+			
+			// 清除缓存
+			$(".settingDelete").on("tap", function() {
+				plus.cache.calculate(function(size) {
+					sizeCache = size;
+					var size_m = parseFloat(sizeCache / (1024 * 1024)).toFixed(2);
+					if (size_m > 1) {
+						mui.confirm("您目前的系统缓存为" + size_m + "M", "清除缓存", ["确认", "取消"], function(e) {
+							if (e.index == 1) {} else {
+								plus.cache.clear(function() {
+									alert("缓存清除完毕")
+								});
+							}
+						});
+					} else {
+						alert('暂无内存可清除')
+					}
+				});
+			});
+			/* 联系客户 */
+			$("#service").on("tap", function() {
+				var phone = "18048334993";
+				if (plus.os.name == "Android") {
+					var btnArray = ['拨打', '取消'];
+					var phone = "18048334993";
+					mui.confirm(phone, '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							plus.device.dial(phone, false);
+						}
+
+					});
+				} else {
+					var UIAPP = plus.ios.importClass("UIApplication");
+					var NSURL = plus.ios.importClass("NSURL");
+					var app = UIAPP.sharedApplication();
+					app.openURL(NSURL.URLWithString("tel://" + phone));
+				}
+
+			});
+			
+			// 退出登录
+			$('.setUp_btn').on('tap', function() {
+
+
+				getLogOut(mui, function(data) {
+					if (data.code == 200) {
+						clearStorage(); //清空缓存数据
+						toCurrentPage();
+					} else {
+						tipShow(data.message);
+					}
+				});
+			});
+			
+			$('#password_div').on('tap', function() {
+				mui('#pay').popover('hide');
+				$('.table>div>.blackpwd').css('opacity', '0');
+				$('.zfinput').val("");
+			});
+			 
+			//密码框确定
+			$('.password_btn').on('tap', function() {
+				alert($('.zfinput').val());
+				var getLogin = plus.nativeUI.showWaiting("设置中...");
+				var dataBase = {
+					password: $('.zfinput').val(),
+					memberId: plus.storage.getItem('memberId')
+				};
+				setPassword(mui, dataBase, function(data) {
+					console.log(JSON.stringify(data))
+					getLogin.close();
+					if (data.code == 200) {
+						tipShow("密码设置成功");
+						mui('#pay').popover('hide');
+						$('.table>div>.blackpwd').css('opacity', '0');
+						$('.zfinput').val("");
+					} else {
+						$('.table>div>.blackpwd').css('opacity', '0');
+						$('.zfinput').val("");
+						tipShow(data.message);
+					}
+				});
+			})
+			
+			$('.goSetUp').on('tap', function(e) {
+				plus.storage.setItem("returnPage",'setUp');
+				// 获取页面ID
+				var urlId = $(this).attr("data-id");
+				// 获取路径
+				var urlRout = this.getAttribute('href');
+				//判断是否实名认证
+				//console.log("urlId="+urlId);
+				if (urlId == 'bankCard') {
+					getHasVerific(mui, plus.storage.getItem('memberId'), function(data) {
+						if (data.code == 200) {
+							if (urlRout && urlId) {
+								$$.openWindow({
+									url: urlRout,
+									id: urlId,
+									createNew:true,
+									show: {
+										aniShow: "slide-in-right"
+									}
+								});
+							} else {
+								console.log('缺少页面路径')
+							}
+						} else {
+							tipShow(data.message);
+							$$.openWindow({
+								url: '../pages/realName.html',
+								id: 'realName',
+								show: {
+									aniShow: "slide-in-right"
+								}
+							});
+						}
+					});
+				}else if(urlId == "passwordId"){
+					//点击的提现密码
+					judgePassword(mui, plus.storage.getItem('memberId'), function(data) {
+						if (data.code == 500) { 
+							Keyboard.showKeyBoard();
+							//没有设置
+							mui('#pay').popover('show'); //打开密码框
+							$(".title").text("设置支付密码");
+						}else if(data.code == 200){
+							$$.openWindow({
+								url: '../pages/new/passwordSettings.html',
+								show: {
+									aniShow: "slide-in-right"
+								}
+							});
+							//修改支付密码
+							// mui('#pay').popover('show'); //打开密码框
+							// $(".title").text("修改支付密码");
+						}
+					});
+				} else {
+					if (urlRout && urlId) {
+						$$.openWindow({
+							url: urlRout,
+							id: urlId,
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					} else {
+						console.log('缺少页面路径')
+					}
+				}
+
+			});
+			// 立即购买
+			$('.homeDetails_btn').on('tap', function() {
+				$$.openWindow({
+					url: '../pages/homeOrder.html',
+					id: 'homeOrder',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

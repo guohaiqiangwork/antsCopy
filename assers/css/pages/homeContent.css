@@ -1,0 +1,57 @@
+.chart {
+	height: 3rem;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.left_time {
+	border-right: 1px solid #CCCCCC;
+}
+
+.time_title {
+	background-color: #FFFFFF;
+	padding-top: .1rem;
+	padding-bottom: .1rem;
+}
+
+.dowm_img {
+	width: .2rem;
+	height: .1rem;
+	position: absolute;
+	/* margin-left: 20%; */
+	margin-top: 2%;
+}
+
+.moudel_block {
+	width: 94%;
+	margin-left: 3%;
+	background-color: #FFFFFF;
+	padding: .3rem;
+	border-radius: .2rem;
+}
+.font_coloref {
+	color: #EF4545;
+}
+.font_color4c{
+	color: #4C78DC;
+}
+
+.right_width{
+	width: .1rem;
+	height: .17rem;
+}
+.ren_width {
+	width: .29rem;
+	height: .3rem;
+}
+
+.title_moudel {
+	padding-bottom: .3rem;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.left_right{
+	
+	-webkit-justify-content: space-between;justify-content: space-between;
+}

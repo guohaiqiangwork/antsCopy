@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<!-- <link rel="stylesheet" href="../assers/css/mobileReset.css"> -->
+		<link rel="stylesheet" href="../assers/css/pages/bankCard.css" />
+		<style>
+			html{
+				background-color: #F4F4F4;
+			}
+			.mui-numbox {
+			position: relative;
+			display: inline-block;
+			overflow: hidden;
+			width: 1.8rem;
+			height: .45rem;
+			padding: 0 !important;
+			vertical-align: top;
+			vertical-align: middle;
+			border: none !important;
+			border-radius: 3px;
+			background-color: #F4F4F4;
+		}
+		.mui-checkbox input[type=checkbox]:checked:before,
+		.mui-radio input[type=radio]:checked:before {
+			background: #FFFFFF;
+			-webkit-background-clip: text;
+			color: #FFFFFF;
+		}
+		
+		/* .mui-checkbox input[type=checkbox]:checked:before,
+		.mui-radio input[type=radio]:checked:before {
+			background:  linear-gradient(to right, #FFFFFF,#FFFFFF,#FFFFFF);
+			-webkit-background-clip: text;
+			color: transparent;
+		} */
+		.default_img_btn{
+			width: 6.9rem;
+			height: .9rem;
+			border-radius: .4rem; 
+			font-size: .30rem;
+			color: #FFFFFF;
+			line-height: 3;
+			position: fixed;
+			bottom: .3rem;
+		}
+		._one ._left_y {
+		    padding-left: 0rem; 
+		    margin-top: 0.25rem;
+		}
+		._one ._right_i {
+		   margin-top: 0.1rem;
+		}
+		.mui-radio input[type='radio']:before, .mui-checkbox input[type='checkbox']:before {
+		    font-size: 26px;
+		}
+		.content {
+		    margin-top: 0.86rem;
+		}
+		._one ._left {
+		    width: 1.5rem;
+		}
+		._one ._left_y {
+		    width: 1.5rem;
+		}
+		._right_yb {
+			height: 0.5rem;
+			margin-top: 0.3rem;
+			padding-top: .04rem;
+		    width: 2.6rem;
+			font-size: 0.3rem;
+		}
+		._right input{
+			font-size: 0.3rem;
+		}
+		._Bone_name {
+		    margin-left: .1rem;
+		}
+		#bankCard .bank_moudel {
+		    margin-top: .2rem;
+		}
+		.orderChange_moudel {
+		    height: 1.3rem;
+		}
+		.orderChange_moudel_btn div {
+		    line-height: 1rem;
+		}
+	</style>
+
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;">
+		<header class="header_white div_display title_height" style="background-color: #FFFFFF;">
+			<div class="returnRefreshIdFunc" style="width: 1rem;">
+				<i><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;position: relative;top: 0.07rem;right: 0.05rem;"></i>
+			</div>
+			<!-- <div style="width: 4rem;display: none;margin-left: .8rem;" id="myBank">我的银行卡</div> -->
+			<div style="width: 4rem;margin-left: .8rem;" id="binBank">我的银行卡</div>
+			<div style="width: 2rem;display: none;font-size: 0.30rem;color: #000000;margin-top: 0.03rem;" id="untying">解除绑定</div>
+			<div style="width: 2rem;display: none;font-size: 0.30rem;color: #000000;margin-top: 0.03rem;" id="untyingW">完成</div>
+		</header>
+		<div class="content">
+			<!-- 银行卡添加-->
+			<div id="realNameTwo" style="display: none;">
+				<div style="background-color: #FFFFFF;width: 7.5rem;height: 4.4rem;">
+					<div class="_one">
+						<div class="_left">持卡人</div>
+						<div class="_right">
+							<input type="text" placeholder="请输入持卡人姓名" id="name">
+						</div>
+					</div>
+					<div class="_one">
+						<div class="_left">卡号</div>
+						<div class="_right">
+							<input type="number" placeholder="请输入银行卡号" id="bankCardNumber">
+						</div>
+					</div>
+					<div class="_one">
+						<div class="_left">银行</div>
+						<div class="_right" style="font-size: .3rem;color: #303030;line-height: 4;">
+							<input style="margin-left: 0.35rem;width: 4.5rem;" type="" name="" id="bankName" value="" />
+						</div>
+					</div>
+					<div class="_one" style="border: none;">
+						<div class="_left">卡类型</div>
+						<div class="_right" style="font-size: .3rem;color: #303030;line-height: 4;">
+							<input style="margin-left: 0.35rem;width: 4.5rem;" type="" name="" id="cardType" value="" />
+						</div>
+					</div>
+					<div class="_right" style="display: none;">
+						<input type="" name="" id="bankCode" value="" />
+					</div>
+				</div>
+				
+				<div style="height: 0.2rem;background-color: #F4F4F4;"></div>
+				
+				<div style="background-color: #FFFFFF; width: 7.5rem;height: 2.22rem;">
+					<div class="_one">
+						<div class="_left">手机号</div>
+						<div class="_right">
+							<input type="text" placeholder="请输入银行预留手机号" id="bankPhone" maxlength="11">
+						</div>
+					</div>
+					<div class="_one" style="border: none;">
+						<div class="_left_y">验证码</div>
+						<div class="_right_i">
+							<input type="text" id="cardCode" placeholder="请输入验证码" maxlength="6">
+						</div>
+						<div class="_right_yb" id="bankYzm" style="color: #333333;">
+							获取验证码
+						</div>
+					</div>
+				</div>
+				
+				<div class="bottom_btn" id="btnTwo">
+					完成
+				</div>
+			</div>
+
+			<!-- 银行卡列表 -->
+			<style type="text/css">
+				.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before {
+				    color: #FFFFFF;
+				}
+			</style>
+			<div id="bankCard" style="display: block;">
+				<!-- <div class="bank_moudel bank_bgColor_zgp">
+					<div class="_left">
+						<div>
+							<img src="../assers/image/bank/nyy.png" width="100%">
+						</div>
+					</div>
+					<div class="_right">
+						<div class="_Bone">
+							<div class="_Bone_name">
+								中国工商银行
+							</div>
+							<div class="_Bone_number">
+								**** 6241
+							</div>
+						</div>
+						<div class="_Bone">
+							<div class="_Bone_name" style="font-size: .28rem;">
+								储蓄卡
+							</div>
+							<div class="untyingI" style=" margin-top: -.5rem;display: block;">
+								<div class="mui-checkbox">
+									<input name="commodity" value="Item 1" type="checkbox" style="margin-top: 1rem;padding-left: .2rem;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+ -->
+				<div class="bottom_btn " id="addBankCard">
+					<span>添加银行卡</span>
+				</div>
+
+				<!-- 删除提示 -->
+				<div id="orderChange" style="display: none;" class="order_change_model">
+					<div class="orderChange_moudel">
+						<div class="font_size32 font_color33" style="margin-top: .3rem;">
+							确定解绑银行卡吗？
+						</div>
+					</div>
+					<div class="orderChange_moudel_btn div_display" style="height: 0.9rem;">
+						<div class="moudel-close">
+							取消
+						</div>
+						<div class="getDeleteBank">
+							确定
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+			<!-- 空白 -->
+			<div class="default" id="realNameONe" style="display: none;background-color: #F4F4F4;">
+				<div id="cartDefaultId_one">
+					<img src="../assers/image/default/pank.png">
+				</div>
+				<div class="text_center font_size30 margin_top5 font_color99">
+					您还没有银行卡
+				</div>
+				<div id="realNameONeBtn" class="default_img_btn div_backgroun_jb" style="margin-left: 0.3rem;">
+					添加银行卡
+				</div>
+			</div>
+		
+			<!-- 密码提示框 -->
+			<div id="pay" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+				<div id="password_div" style="height: 1rem;width: 1rem;float: left;">
+					<img src="../assers/image/payimg/close.png" alt="" class="mui-popover-close" style="width: .26rem;height: .26rem;">
+				</div>
+				<p class="title">设置支付密码</p>
+				<div class="font_size30 font_color66" style="margin-left: 2rem;">
+					支付密码为6位数字
+				</div>
+				<div class="font_size30 font_color66" style="margin-left: 1.5rem;">
+					支付密码与提现密码一致
+				</div>
+				<div class="table">
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+				</div>
+				<input style="text-indent: -999em;margin-left: -100%;width: 200%;opacity: 0;" type="tel" name='password' class="zfinput"
+				 maxlength="6">
+				<div class="password_btn">
+					确认
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/variousMethods.js"></script>
+	<script src="../assers/js/bankType.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				$('.returnRefreshIdFunc').on("tap",function(){
+					var pagP = plus.storage.getItem("returnPage");
+					console.log(pagP);
+					if(pagP == 'my'){
+						mui.back()
+						// $$.openWindow({
+						// 	url: './views/index.html',
+						// 	id: 'index',
+						// 	show: {
+						// 		aniShow: "slide-in-right"
+						// 	}
+						// });
+					}else{
+						$$.openWindow({
+							url: pagP+'.html',
+							id: pagP,
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					}
+					
+				})
+				
+				$(".moudel-close").on("tap",function(){
+					location.reload();
+				});
+				
+				var bankId;
+				var zfinput;
+				//点击获取验证码
+				var yzm = document.getElementById('bankYzm')
+				//是否可以点击【获取验证码按钮开关】
+				var onOff = true;
+				var reg = new RegExp(/^\d{6}$/); //6位数字验证
+				//code_4用于注册信息时的验证，验证码，获取与输入的一致
+				var code_4 = '';
+				yzm.onclick = function() {
+					if ($('#bankPhone').val().length != 11) {
+						tipShow('请输入正确手机号');
+						return
+					}
+					if(! /^1[3456789]\d{9}$/.test($('#bankPhone').val())){
+						tipShow('请输入正确手机号');
+						return
+					}
+					//如果onOff标志false则，不执行任何操作
+					if (!onOff)
+						return;
+					//循环周期60s
+					var times = 60;
+					//获取验证码
+					var data1 = {
+						phone: $('#bankPhone').val()
+					};
+					getCode(mui, data1, function(data) {
+						if (data.code == 200) {
+							console.log('验证码获取成功' + data.data)
+						} else {
+							clearInterval(timer)
+							console.log('验证码获取失败' + data.message)
+						}
+					});
+					//使用定时器，一秒触发一次事件，如果结束，则关闭定时器
+					var timer = setInterval(function() {
+						//事件处理，一秒一次
+						times--;
+						if (times < 1) {
+							//执行结束，则可以再次点击
+							yzm.innerHTML = "重新获取";
+							onOff = true;
+							clearInterval(timer);
+						} else {
+							var text = times + 's';
+							yzm.innerHTML = text;
+							onOff = false;
+						}
+					}, 1000);
+				}
+				mui('#pay').on('tap', '#password_div', function() {
+					mui('#pay').popover('hide');
+					$('.goPayment').css("display", "block");
+				});
+				// 监听支付密码输入
+				$('.zfinput').bind('input propertychange', function() {
+					$('.table>div>.blackpwd').css('opacity', '0');
+					var length = $(this).val().length;
+					$('.table>div>.blackpwd').slice(0, length).css('opacity', '1');
+					if (length >= 6) {
+						_self.zfinputval = $('.zfinput').val(); //密码
+						// $('.table>div>.blackpwd').css('opacity', '0');
+						// $('.zfinput').val("");
+					}
+				});
+				$('.password_btn').on('tap', function() {
+					var getLogin = plus.nativeUI.showWaiting("设置中...");
+					var dataBase = {
+						password: _self.zfinputval,
+						memberId: plus.storage.getItem('memberId')
+					};
+					setPassword(mui, dataBase, function(data) {
+						getLogin.close();
+						if (data.code == 200) {
+							tipShow("密码设置成功");
+							saveBankCard();//保存银行卡
+						} else {
+							tipShow(data.message);
+						}
+					});
+				})
+				getBankList(); //获取银行卡
+				// 获取银行卡列表
+				function getBankList() {
+					// 查询银行卡列表
+					getBankFindAll(mui, plus.storage.getItem('memberId'), function(data) {
+						if (data.code == 200) {
+							console.log(JSON.stringify(data))
+							if (data.data.length > 0) {
+								var fragmentplanList = document.createDocumentFragment();
+								$.each(data.data, function(index) {
+									// 银行卡
+									console.log(JSON.stringify(bankCardAttribution("6226800036677779")))
+									var bankCard = "**** " + "**** " + "**** " + data.data[index].bankCard.substr(-4);
+									//console.log(JSON.stringify(data.data[index]))
+									switch (data.data[index].bankCode) {
+										case 'ICBC':
+											data.data[index].bankBColor = 'bank_bgColor_zgp'
+											data.data[index].imgUrl = '../assers/image/bank/gsy.png';
+											break;
+										case 'ABC':
+											data.data[index].bankBColor = 'bank_bgColor_ny'
+											data.data[index].imgUrl = '../assers/image/bank/nyy.png';
+											break;
+										case 'CCB':
+											data.data[index].bankBColor = 'bank_bgColor_jj'
+											data.data[index].imgUrl = '../assers/image/bank/jsy.png';
+											break;
+										case 'BOC':
+											data.data[index].bankBColor = 'bank_bgColor_zgp'
+											data.data[index].imgUrl = '../assers/image/bank/zgy.png';
+											break;
+										case 'COMM':
+											data.data[index].bankBColor = 'bank_bgColor_jj'
+											data.data[index].imgUrl = '../assers/image/bank/jty.png';
+											break;
+										case 'PSBC':
+											data.data[index].bankBColor = 'bank_bgColor_ny'
+											data.data[index].imgUrl = '../assers/image/bank/yzy.png';
+											break;
+										case 'SPDB':
+											data.data[index].bankBColor = 'bank_bgColor_zgp'
+											data.data[index].imgUrl = '../assers/image/bank/qty.png';
+											break;
+										case 'CMB':
+											data.data[index].bankBColor = 'bank_bgColor_zgp'
+											data.data[index].imgUrl = '../assers/image/bank/zsy.png';
+											break;
+										default:
+											data.data[index].bankBColor = 'bank_bgColor_zgp'
+											data.data[index].imgUrl = '../assers/image/bank/qty.png';
+											break;
+									}
+
+									var orderLi =
+										'<div data-bankCard=' + data.data[index].bankCard + ' data-img=' + data.data[index].imgUrl +
+										' data-name=' + data.data[index].bankName + ' data-id=' + data.data[index].id + '  bankCard_id=' + data.data[
+											index].id + ' class="bank_moudel  ' + data.data[index].bankBColor + '">' +
+										'<div class="_left">' +
+										'<div>' +
+										'<img src="' + data.data[index].imgUrl + '" width="100%">' +
+										'</div>' +
+										'</div>' +
+										'<div class="_right">' +
+										'<div class="_Bone">' +
+										'<div class="_Bone_name">' +
+										data.data[index].bankName +
+										'</div>' +
+										'<div class="_Bone_number" style="font-family: sans-serif;">' +
+										bankCard +
+										'</div>' +
+										'</div>' +
+										'<div class="_Bone">' +
+										'<div class="_Bone_name" style="font-size: .28rem;">' +
+										data.data[index].bankType +
+										'</div>' +
+										'<div class="untyingI" style=" margin-top: -.5rem;display: none;">' +
+										'<div class="mui-checkbox">' +
+										'<input name="commodity" value="Item 1" type="checkbox" style="margin-top: 0.6rem;padding-left: .2rem;">' +
+										'</div>' +
+										'</div>' +
+										'</div>' +
+										'</div>' +
+										'</div>'; 
+									$(fragmentplanList).append(orderLi);
+								});
+								$("#bankCard").append($(fragmentplanList));
+								$("#bankCard").append("<div style='color:#999999;float: left;margin: 0.3rem 0 0 2.4rem;font-size: .28rem;'>最多可添加10个银行卡</div>");
+								$("#bankCard").append("<div style='height: 70px;width: 1rem;float: left;'></div>");
+								$('#bankCard').css('display', 'block');
+								/* $('#myBank').css('display', 'block'); */
+								$('#untying').css('display', 'block');
+								$('#realNameTwo').css('display', 'none');
+							} else {
+								$('#realNameONe').css('display', 'block');
+								// $('#realNameTwo').css('display', 'block')
+								$('#bankCard').css('display', 'none');
+								$('#binBank').css('display', 'block');
+							}
+						} else {
+							tipShow(data.message)
+						}
+					});
+				}
+				// 点击银行卡
+				$('#bankCard').on('tap', '.bank_moudel', function() {
+					if (plus.webview.getWebviewById('balanceTix')) {
+						var banKNameC = $(this).attr('data-name'); //卡名
+						var imgUrlC = $(this).attr('data-img'); //图片
+						var bankCardC = $(this).attr('data-bankCard'); //卡名
+						var bankCardIdC = $(this).attr('data-id'); //卡ID
+						mui.fire(plus.webview.getWebviewById('balanceTix'), "switchBankCard", {
+							imgUrl: imgUrlC,
+							bankName: banKNameC,
+							bankCard: bankCardC.substr(-4),
+							bankCardIdC: bankCardIdC
+						});
+						var ws = plus.webview.currentWebview();
+						plus.webview.close(ws);
+					}
+
+				})
+				// 切换银行卡保存
+				$('#addBankCard').on('tap', function() {
+					$('#untying').css('display', 'none');
+					/* $('#myBank').css('display', 'none'); */
+					$('#binBank').css('display', 'block');
+					$('#realNameTwo').css('display', 'block');
+					$('#bankCard').css('display', 'none')
+				})
+				$('#realNameONeBtn').on('tap', function() {
+					$("#binBank").text("添加银行卡");
+					$('#realNameONe').css('display', 'none');
+					$('#realNameTwo').css('display', 'block');
+				})
+				// 添加银行卡保存
+				$('#btnTwo').on('tap', function() {
+					// alert($('#bankCardNumber').val())
+					// alert(luhnCheck($('#bankCardNumber').val()))
+					if (!$('#name').val()) {
+						tipShow('请检查姓名')
+						return;
+					} else if (!$('#bankCardNumber').val()) {
+						tipShow('请填写银行卡')
+						return;
+					}else if (!luhnCheck($('#bankCardNumber').val())) {
+						tipShow('请检查银行卡')
+						return;
+					} else if (!$('#bankPhone').val()) {
+						tipShow('请检查预留手机号')
+						return;
+					}else if (!$('#cardCode').val()) {
+						tipShow('请检查验证码')
+						return;
+					}
+					
+					saveBankCard();//调用保存银行卡
+					
+					/* judgePassword(mui, plus.storage.getItem('memberId'), function(data) {
+						if (data.code == 200) {
+								saveBankCard();//调用保存银行卡
+						} else if (data.code == 500) {
+							$('#pay').css('display','block')
+							mui('#pay').popover('show'); //打开密码框
+						}
+					}); */
+
+				})
+				// 保存银行卡
+				function saveBankCard(){
+					var keyword = {
+						name: $('#name').val(),
+						bankCard: $('#bankCardNumber').val(), //银行卡
+						bankName: $('#bankName').val(), //银行开户行名称
+						bankType: $('#cardType').val(), //	银行卡类型
+						memberId: plus.storage.getItem('memberId'), //
+						reservedMobile: $('#bankPhone').val(), //银行预留手机号
+						bankCode: $('#bankCode').val()
+					}
+					getBankSave(mui, keyword, $('#cardCode').val(), function(data) {
+						if (data.code == 200) {
+							location.reload();
+						} else {
+							tipShow(data.message)
+						}
+					})
+				}
+				// 点击解绑银行卡
+				$('#untying').on('tap', function() {
+					$('.untyingI').css('display', 'block');
+					$('#untying').css('display', 'none')
+					$('#untyingW').css('display', 'block')
+				});
+				$('#untyingW').on('tap', function() {
+					$('.untyingI').css('display', 'none');
+					$('#untying').css('display', 'block')
+					$('#untyingW').css('display', 'none')
+				})
+
+				//遮罩
+				var orderChange = mui.createMask(function() {
+					$(".order_change_model").css("display", "none");
+					return;
+				});
+				//解绑银行卡弹窗
+				$('#bankCard').on('tap', '.untyingI', function() {
+					// 显示提示
+					orderChange.show();
+					$(".order_change_model").css("display", "block");
+				})
+				// 关闭
+				$("#orderChange .moudel-close").on("tap", function() {
+					$(".order_change_model").css("display", "none");
+					orderChange.close();
+				});
+				// 确认删除
+				$("#orderChange .getDeleteBank").on("tap", function() {
+					var deleteAddressSaveWati = plus.nativeUI.showWaiting("删除中...");
+					getDeleteBank(mui, bankId, function(data) {
+						deleteAddressSaveWati.close();
+						if (data.code == 200) {
+							tipShow('删除成功')
+							orderChange.close();
+							$(".order_change_model").css("display", "none");
+							plus.webview.getWebviewById('bankCard').reload()
+						}
+					});
+				});
+				// 监听银行卡号
+				$('#bankCardNumber').bind('input propertychange', function() {
+					if ($(this).val().length == 16 || $(this).val().length == 19) {
+						console.log(bankCardAttribution($(this).val()))
+						if (luhnCheck($(this).val())) {
+							$('#bankName').val(bankCardAttribution($(this).val()).bankName)
+							$('#cardType').val(bankCardAttribution($(this).val()).cardTypeName)
+							$('#bankCode').val(bankCardAttribution($(this).val()).bankCode)
+						} else {
+							tipShow('请检查银行卡号')
+							$('#bankName').val()
+							$('#cardType').val()
+						}
+					}
+				});
+
+				/* 点击银行卡列表 */
+				$("#bankCard").on("tap", ".bank_moudel", function() {
+					bankId = $(this).attr("bankCard_id");
+					// alert("获取银行卡卡号="+ $(this).attr("bankCard_id"));
+				});
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

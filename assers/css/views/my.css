@@ -1,0 +1,309 @@
+.top_img{
+	width: 1.4rem;
+	height: 1.4rem;
+	border-radius: 50%;
+	margin-top: .2rem;
+}
+.right_hui{
+	width: 2.1rem;
+	height: .6rem;
+	background-color: #222222;
+	font-size: .24rem;
+	color: #F3DFBE;
+	border-top-left-radius: .3rem;
+	border-bottom-left-radius: .3rem;
+	text-align: center;
+	line-height: .65rem;
+	margin-top: .3rem;
+}
+.my_btn_top{
+	width: 1.4rem;
+	height: .6rem;
+	text-align: center;
+	line-height: .65rem;
+	font-size: .28rem;
+	background: linear-gradient(to right, #F3DFBE,#DCBD88);
+	border-radius: .4rem;
+	color: #333333;
+	margin-top: -.05rem;
+}
+.vipf_moudel {
+	width: .9rem;
+	height: .3rem;
+	border-radius: .3rem;
+	background: linear-gradient(to right, #FF6C52, #FF241C);
+	line-height: .8;
+}
+.vip_moudel_font {
+	color: #FFFFFF;
+	font-size: .22rem;
+	margin-top: .07rem;
+	margin-left: .02rem;
+}
+
+.my_btn_falg{
+	width: .92rem;
+	height: .34rem;
+	border-radius: .4rem;
+	background: linear-gradient(to right, #FF6A51, #FF241C) ;
+	color: #FFFFFF;
+	font-size: .24rem;
+	text-align: center;
+	margin-top: .1rem;
+	line-height: 1.4;
+}
+.top_img_er{
+	width: 6.9rem;
+	margin-left: .3rem;
+	height: 1.5rem;
+	border-radius: .2rem;
+	margin-top: .3rem;
+}
+.top_img_er1{
+	width: 6.9rem;
+	margin-left: .3rem;
+	height: 1.5rem;
+	border-radius: .2rem;
+	margin-top: .3rem;
+}
+.my_bj{
+	background: url("../../image/myTop1.png") top center no-repeat;
+	background-size: 100% 100%;
+	color: #333333;
+	height: 3.4rem;
+	width: 7.5rem;
+	padding-top: .05rem;	
+}
+.advertisement_img{
+	height: 1.6rem;
+	width: 100%;
+}
+/* 我的订单 */
+.my_order_img{
+	width: .81rem;
+	height: .81rem;
+}
+.implements_img{
+	width: .81rem;
+	height: .81rem;
+}
+.implements_width{
+	width: 1.9rem;
+}
+.agent_modular{
+	height: 2.8rem;
+	background-image: url("../../image/views/agent_bj.png");
+	background-repeat:no-repeat;
+	background-size: 100%;
+	margin-top: 3.4rem;
+	color: #FFFFFF;
+	margin-bottom: .43rem;
+}
+.agent_width{
+	-width: 2.5rem;
+	text-align: center;
+	margin-left: .3rem;
+	margin-top: .4rem;
+}
+.agent_going{
+	width: .16rem;
+	height: .28rem;
+	
+}
+
+/* 我的订单 */
+.order_top {
+	width: 7.5rem;
+	background-color: #FFFFFF !important;
+	height: 1rem;
+	z-index: 99;
+	position: fixed;
+	top: 0.7rem;
+}
+.tab_swich {
+	color: #666666;
+	width: 25%;
+	font-size: .32rem;
+	text-align: center;
+	margin-top: .3rem;
+}
+
+.selection {
+	color:#FF0100 !important;
+	font-weight: 700;
+}
+.order_img{
+	width: 1.6rem;
+	height: 1.6rem;
+}
+.order_moudel{
+	width: 7rem;
+	margin-left: .3rem;
+	height: 4.2rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	padding-left: .3rem;
+	padding-top: .3rem;
+}
+.order_btn1{
+	width: 1.8rem;
+	height: .6rem;
+	border-radius: .4rem;
+	text-align: center;
+	font-size: .28rem;
+	border: 1px solid #FF0100;
+	color: #FF0100;
+	padding-top: .1rem;
+}
+.order_btn2{
+	width: 1.8rem;
+	height: .6rem;
+	border-radius: .4rem;
+	text-align: center;
+	font-size: .28rem;
+	color: #FFFFFF;
+	padding-top: .1rem;
+	background: linear-gradient(to right,#f79885, #FF765A, #FF0100);
+}
+.order_detail_top{
+	height: 1.7rem;
+	width: 7.5rem;
+	padding-top: .4rem;
+	padding-left: .4rem;
+	padding-right: .3rem;
+}
+.order_detail_moudel{
+	width: 7rem;
+	margin-left: .3rem;
+	margin-top: .3rem;
+}
+.detail_moudel_adder{
+	height: 1.7rem;
+	border-radius: .2rem;
+	background-color: #FFFFFF;
+	padding-left: .3rem;
+	padding-top: .3rem;
+}
+.detail_img{
+	width: .25rem;
+	height: .32rem;
+}
+.detail_product{
+	height: 3rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	margin-top: .3rem;
+	padding-top: .3rem;
+	padding-left: .3rem;
+}
+.detail_order_top{
+	border-bottom: 1px solid #CCCCCC;
+}
+.detail_order{
+	height: 4.5rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	margin-top: .3rem;
+	padding-top: .3rem;
+	padding-left: .3rem;
+	padding-right: .3rem;
+}
+.detail_btn{
+	width: 2rem;
+	height: 32px;
+	border-radius: .4rem;
+	text-align: center;
+	font-size: .3rem;
+	color: #FFFFFF;
+	padding-top: .13rem;
+	margin-top: .5rem;
+}
+
+/* 设置 */
+.setUp_moudel{
+	width: 7.5rem;
+	background-color: #FFFFFF;
+	padding-left: .3rrem;
+	/* margin-left: .3rem; */
+	padding-right: .3rem;
+}
+.setUp_moudel_one{
+	border-bottom:1px solid #EEEEEE;
+	margin-left: .3rem;
+}
+.setUp_moudel_img{
+	width: .82rem;
+	height: .82rem;
+	border-radius: 50%;
+}
+.setUp_right_img{
+	width: .14rem;
+	height: .24rem;
+}
+.setUp_btn{
+	width: 7rem;
+	height: .9rem;
+	border-radius: .5rem;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: .3rem;
+	margin-left: .3rem;
+	padding-top: .25rem;
+	position: fixed;
+	bottom: .3rem;
+}
+/* 个人信息 */
+.editing_img{
+	width: 1.9rem;
+	height: 1.9rem;
+	border-radius: 50%;
+}
+/* 我的二维码 */
+.my_qr_img{
+	width: 6.2rem;
+	height: 6.2rem;
+}
+
+
+/*我的总收益 */
+
+.my_total_moudel{
+	background: url("../../image/myTop2.png") top center no-repeat;
+	background-size: 100% 100%;
+	color: #333333;
+	height: 2.9rem;
+	width: 6.9rem;
+	margin-left: .3rem;
+	margin-top: .2rem;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: .3rem;
+}
+
+.my_shop_img{
+	background: url("../../image/myTop5.png") top center no-repeat;
+	background-size: 100% 100%;
+	height: 2.3rem;
+	width: 3.3rem;
+	margin-left: .3rem;
+	margin-top: .2rem;
+	color: #FFFFFF;
+	padding-top: .3rem;
+	font-size: .3rem;
+}
+.my__img{
+	background: url("../../image/myTop4.png") top center no-repeat;
+	background-size: 100% 100%;
+	height: 2.3rem;
+	width: 3.3rem;
+	margin-left: .3rem;
+	margin-top: .2rem;
+	color: #FFFFFF;
+	padding-top: .3rem;
+	font-size: .3rem;
+}
+
+.my_jt_img{
+	width: .1rem;
+	height: .16rem;
+}

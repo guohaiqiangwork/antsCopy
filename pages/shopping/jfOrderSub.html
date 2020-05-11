@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../assers/css/views/home.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+		<!-- 键盘 -->
+		<link rel="stylesheet" type="text/css" href="../../assers/fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../assers/css/lib/keyboard.css" />
+		<link rel="stylesheet" type="text/css" href="../../assers/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../../assers/css/index.css"/>
+		
+		<style type="text/css">
+			.imgClass {
+			    margin-top: 0.19rem;
+			}
+			.mui-table-view-radio .mui-table-view-cell .mui-navigate-right:after {
+			    font-size: 18px;
+				margin-right: 0.05rem;
+			}
+			.div_input { 
+			    position: absolute;
+			    top: 0.19rem;
+			}
+		
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white title_height">
+			<i class="titleReturnButton" style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			<span style="margin-right: 0.4rem;">收银台</span>
+		</header>
+		
+		<div style="margin-top: 0.9rem;">
+			<div class="text_center div_backgroun_jb font_size22 font_colorff" style="height: .5rem;line-height: 2.5;">
+				剩余时间: <span id="payTime"></span>
+			</div>
+			<!-- 支付方式 -->
+			<div class="orderpay_money_list font_size30 font_color33">
+				<div class="text_center font_size60 font_width700" style="padding-top: 0.9rem;padding-bottom: 0.5rem;">
+					￥ <span class="paymentTwo"></span>
+				</div>
+				<ul class="mui-table-view mui-table-view-radio">   
+					<li onfocus='this.blur();' class="mui-table-view-cell mui-selected" data-id="YE">
+						<img class="imgClass" src="../../assers/image/payimg/5616.png">
+						<span class="spanClass">&nbsp;&nbsp;&nbsp;&nbsp;余额支付(￥<span class="payment"></span><span>)</span></span>
+						<a class="mui-navigate-right">
+						</a>   
+						<div class="div_input">
+							<!-- <input name="" type="radio"> -->
+						</div> 
+					</li>   
+					<li onfocus='this.blur();' class="mui-table-view-cell" data-id="wxpay">
+						<img class="imgClass" src="../../assers/image/payimg/4685.png"> 
+						<span class="spanClass">&nbsp;&nbsp;微信支付</span>         
+						<a class="mui-navigate-right">
+						</a> 
+						<div class="div_input">
+							<!-- <input name="" type="radio"> -->
+						</div> 
+					</li>   
+					<li class="mui-table-view-cell" data-id="alipay"> 
+						<img class="imgClass" src="../../assers/image/payimg/4684.png">
+						<span class="spanClass">&nbsp;&nbsp;支付宝支付</span>             
+						<a class="mui-navigate-right">
+			
+						</a> 
+						<div class="div_input">
+							<!-- <input name="" type="radio"> -->
+						</div>  
+					</li>
+				</ul>
+			</div>
+					
+			<!-- 底部按钮 -->
+			<!-- <div class="ordersub_btn">
+				<span id="payType">确认支付</span>
+			</div> -->
+			
+			<div id="payType" class="ordersub_btn">
+				确认付款
+			</div>
+			<div class="next_btn" id="gotoPayTwo" style="background-color: #CBCBCB;display: none;">
+				确认付款
+			</div
+		</div>
+		
+		<!-- 密码提示框 -->
+		<div id="pay" style="display: none;" data-num="0" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+			<div id="password_div" style="height: 1rem;width: 1rem;float: left;">
+				<img src="../../assers/image/payimg/close.png" alt="" class="mui-popover-close" style="width: .26rem;height: .26rem;">
+			</div>
+			<p class="title">设置支付密码</p>
+			<div id="mm1" class="font_size30 font_color66" style="margin-left: 1.7rem;">
+				支付密码为6位数字 
+			</div>
+			<div id="mm2" class="font_size30 font_color66" style="margin: 0 auto;text-align: center;width: 60%;">
+				
+			</div>
+			<div class="table">
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+			</div>
+			<input id="money" readOnly='readOnly' orderNo="orderNo" payment="payment" typeName="shopPage" style="margin-left: -100%;width: 200%;opacity: 0;" type="tel" name='password' class="zfinput">
+		</div>
+		
+		
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script src="../../assers/js/beecloud.js"></script> 
+	<!-- 键盘 -->
+	<script src="../../assers/js/lib/keyboard.js"></script>
+	<script src="../../assers/js/lib/index.js"></script>
+	<script src="../../assers/js/payFunction.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var Keyboard;
+			var numVal;
+			var payment;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				Keyboard = new Plugin.Keyboard();
+				/* 头部返回按钮 */
+				$(".titleReturnButton").on("tap", function(){
+					$$.openWindow({
+						url: 'jfmyOrder.html',
+						id: 'jfmyOrder',
+						/* createNew:true, */
+						extras: {
+							orderType: "",
+							pageType: ""
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+					/* setTimeout(function(){
+					    mui.currentWebview.close(); 
+					},500); */
+				});
+				
+				// 查询参数
+				var keywords ={
+					orderNo:_self.orderNo,
+					memberId:plus.storage.getItem('memberId')
+				}
+				//console.log("查询支付参数===" + JSON.stringify(keywords));
+				getqueryPayParam(mui,keywords,function(data){
+					if(data.code == 200){
+						var a = data.data.closeTime
+						var time = new Date(a.replace(/-/g, '/')).getTime();
+						function countTime(value) {
+							//获取当前时间
+							var date = new Date();
+							var now = date.getTime();
+							//移动端必须这样写，因为ios不支持日期中间是-链接，会报错
+							var endDate = new Date(value);
+							var end = endDate.getTime();
+							//时间差
+							var differTime = end - now;
+							var h, m, s;
+							if (differTime >= 0) {
+								h = Math.floor(differTime / 1000 / 60 / 60);
+								m = Math.floor(differTime / 1000 / 60 % 60);
+								s = Math.floor(differTime / 1000 % 60);
+								h = h < 10 ? ("0" + h) : h;
+								m = m < 10 ? ("0" + m) : m;
+								s = s < 10 ? ("0" + s) : s;
+								if (h < 1) {
+									if (m > 15) {
+										var timeDom = "00:00";
+										$("#payTime").text(timeDom);
+									} else {
+										var timeDom = m + ":" + s;
+										$("#payTime").text(timeDom);
+										//递归调用函数所以是延时器不是定时器
+										setTimeout(function() {
+											countTime(value)
+										}, 1000);
+									}
+								}
+							} else { 
+								var timeDom = "00:00";
+								$("#payTime").text(timeDom);
+								//时间到了就支付不了了
+								$("#payType").css("display", "none");
+								$("#gotoPayTwo").css("display", "block");
+							}
+						};
+						countTime(time);
+						_self.orderNopay = data.data.orderNo;
+						$("#money").attr("orderNo",data.data.orderNo);
+						$("#money").attr("payment",data.data.payment);
+						$('#mm2').text("￥"+data.data.payment);
+						$('.balance').text(data.data.balance);
+						$('.paymentTwo').text(data.data.payment);
+						$('.payment').text(data.data.balance);
+						payment = data.data.payment;
+						
+					}
+				})
+			}
+			
+			document.getElementById('pay').addEventListener('hidden',function(e){
+				$("#pay").attr("data-num","0");
+				Keyboard.hideKeyBoard();
+			});
+			$('#money').on("tap",function(){
+				if($("#pay").attr("data-num") == 1){
+					Keyboard.showKeyBoard();
+				}
+			});
+			document.getElementById('pay').addEventListener('shown',function(e){  console.log('shown',e.detail);  
+				$("#pay").attr("data-num","1");
+				Keyboard.showKeyBoard();
+			});  
+			
+
+			mui('#pay').on('tap', '#password_div', function() {
+				mui('#pay').popover('hide');
+				//$('.goPayment').css("display", "block");
+				$('.table>div>.blackpwd').css('opacity', '0');
+				$('.zfinput').val("");
+			});
+			// 监听支付密码输入
+			$('.zfinput').bind('input propertychange', function() {
+				$('.table>div>.blackpwd').css('opacity', '0');
+				var length = $(this).val().length;
+				$('.table>div>.blackpwd').slice(0, length).css('opacity', '1');
+				if (length >= numVal) {
+					var val = $('.zfinput').val();
+					$('.table>div>.blackpwd').css('opacity', '0');
+					$('.zfinput').val("");
+					//请求密码校验接口
+					var dataBaseTwo = {
+						memberId: plus.storage.getItem('memberId'),
+						password: val,
+					};
+					passwordCheck(mui, dataBaseTwo, function(data) {
+						console.log("支付密码效验=="+ JSON.stringify(data));
+						if (data.code == 200) {
+							mui('#pay').popover('hide');
+							//成功后调支付接口
+							var dataBase = {
+								memberId: plus.storage.getItem('memberId'),
+								orderNo: _self.orderNopay,
+							};
+							un_orderPay(mui, dataBase, function(data) {
+								if (data.code == 200) {
+									console.log("11支付成功==" + JSON.stringify(data));
+									
+									$$.openWindow({
+										url: '../payResult.html',
+										id: 'payResult',
+										extras: {
+											payParams: "success",
+											orderNo: _self.orderNopay,
+											type: "余额支付",
+											money: payment,
+										},
+										createNew: true,
+										show: {
+											aniShow: "slide-in-right"
+										}
+									});
+									/* setTimeout(function() {
+										mui.currentWebview.close();
+									}, 500); */
+								} else {
+									$('.zfinput').val("");
+								}
+							});
+						} else {
+							tipShow(data.message);
+							$('.zfinput').val("");
+						}
+					});
+				}
+			});
+			// 支付方式
+			$('.mui-table-view-cell').on('tap', function() {
+				// alert($(this).attr('data-id'))
+				var channel_id = '';
+				switch ($(this).attr('data-id')) {
+					case 'alipay':
+						channel_id = 'ALI_APP'; //支付宝
+						$('#payType').text('支付宝支付')
+						break;
+					case 'wxpay':
+						channel_id = 'WX_APP';
+						$('#payType').text('微信支付')
+						break;
+					case 'YE':
+						channel_id = 'UN_WEB'; //余额
+						$('#payType').text('余额支付')
+						break;
+					default:
+						break;
+				}
+				_self.channel_idFay = channel_id;
+			});
+			
+			
+			//设置支付密码
+			$(".ymmyc").on("tap",function(){
+				var dataBase={
+					memberId:plus.storage.getItem('memberId'),
+					password:$('.zfinput').val(),
+				};
+				
+				setPassword(mui, dataBase, function(data) {
+					mui('#pay').popover('hide');
+					if (data.code == 200) {
+						$('.zfinput').val("");
+						tipShow("密码设置成功");
+					}else{
+						tipShow(data.message);
+					}
+				});
+			})
+			
+			
+			
+			// 去支付
+			$('.ordersub_btn').on('tap', function() {
+				if (!_self.channel_idFay) {
+					_self.channel_idFay = 'UN_WEB';
+				}
+				if (_self.channel_idFay == "ALI_APP") {//支付宝
+					beecloudPay(_self.channel_idFay, 'ZFB');
+				} else if (_self.channel_idFay == "UN_WEB") { //余额
+					//请求后端接口,查看是否设置提现密码
+					isSetPassword(mui, plus.storage.getItem('memberId'), function(data) {
+						mui('#pay').popover('show');
+						if (data.code == 500) {
+							//设置支付密码
+							$("#money").attr("typeName","shopPageN");
+							numVal = 60;
+							$(".title").css("margin-left", "1.1rem");
+							$("#mm2").text("支付密码与提现密码一致");
+						} else {
+							//有密码直接支付
+							$("#money").attr("typeName","shopPageY");
+							numVal = 6;
+							//$(".ymmyc").css("display", "none");
+							$(".title").text("请输入支付密码");
+							$(".title").css("margin-left", "1.1rem");
+							$("#mm1").text("需支付");
+							$("#mm1").css("margin-left", "2.7rem");
+							$("#mm1").css("color", "#666666");
+							
+							$("#mm2").css("font-weight", "800");
+							$("#mm2").css("color", "#333333");
+							$("#mm2").css("font-size", "0.6rem");
+							$("#mm2").css("margin-top", "0.3rem");
+							/* $("#mm2").css("margin-left", "2rem"); */
+							$("#mm2").text("");
+							$("#mm2").text("￥"+payment);
+							$('.table>div>.blackpwd').css('opacity', '0');
+							$('.zfinput').val("");
+							un_webFunction();
+						}
+					});
+				} else if (_self.channel_idFay == "WX_APP") {//微信支付
+					beecloudPay(_self.channel_idFay, 'WX');
+				}
+			});
+			// 第三方支付
+			function beecloudPay(bcChannel, payurl) {
+				//因DCloud尚未申请银联账号，故支付宝、微信使用的是DCloud的appid，银联暂时使用BeeCloud的appid，开发者这里无需判断，直接写一个appid即可；
+				var _appid = bcChannel == "UN_WEB" ? "c37d661d-7e61-49ea-96a5-68c34e83db3b" : "wx5ebf720c2cd85389"
+				/*
+				 * 构建支付参数
+				 * 
+				 * app_id: BeeCloud控制台上创建的APP的appid，必填 
+				 * title: 订单标题，32个字节，最长支持16个汉字；必填
+				 * total_fee: 支付金额，以分为单位，大于0的整数，必填
+				 * bill_no: 订单号，8~32位数字和/或字母组合,确保在商户系统中唯一，必填
+				 * optional: 扩展参数,可以传入任意数量的key/value对来补充对业务逻辑的需求;此参数会在webhook回调中返回; 选填
+				 * bill_timeout: 订单失效时间,必须为非零正整数，单位为秒，必须大于360。选填 
+				 */
+				// var orderNo = plus.storage.getItem("orderNo");
+				var payData = {
+					app_id: _appid,
+					channel: bcChannel,
+					title: "蚂蚁招财",
+					orderNo: _self.orderNopay || "",
+					source: payurl,
+					bill_timeout: 360
+					// return_url: "http://www.dcloud.io/demo/pay" //wap支付成功后的回跳地址
+				};
+				/*
+				 *  发起支付
+				 *  payData: 支付参数
+				 *  cbsuccess: 支付成功回调
+				 *  cberror: 支付失败回调
+				 */
+				console.log(JSON.stringify(payData))
+				beecloud.payReq(payData, function(result) {
+					console.log("22支付成功返回信息=="+ JSON.stringify(result))
+					/* 成功 */
+					$$.openWindow({
+						url: '../payResult.html',
+						id: 'payResult',
+						extras: {
+							payParams: "success",
+							orderNo: _self.orderNopay,
+							money: payment,
+							type:$('#payType').text()
+						},
+						createNew: true,
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				}, function(e) {
+					console.log("33失败返回信息=="+ JSON.stringify(e))
+					/* 失败 */
+					$$.openWindow({
+						url: '../payResult.html',
+						id: 'payResult',
+						extras: {
+							payParams: "fail",
+							orderNo: _self.orderNopay,
+							money: payment,
+							type:$('#payType').text()
+						},
+						createNew: true,
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+			}
+			
+			/* 余额支付 */
+			function un_webFunction() {
+				$('.zfinput').attr("autofocus","autofocus");
+			}
+			
+		})(jQuery, document, mui);
+	</script>
+
+</html>

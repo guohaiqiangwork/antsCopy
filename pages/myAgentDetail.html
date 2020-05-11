@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;" class="div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			代理详情
+		</header>
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<!-- 信息模块 -->
+			<div class="myAgent_detail_moudel">
+				<!-- 头像 -->
+				<div class="div_display">
+					<div class="">
+						<img class="myAgent_detail_moudelImg" id="avatar">
+					</div>
+					<div class="div_display" style="width: 48%;">
+						<div class="myAgent_detail_font" id="name">
+							
+						</div>
+						<div class="div_display vipf_moudel" style="margin-top: 0.45rem;margin-left: 0.2rem;">
+							<div class="margin_left1">
+								<img src="../assers/image/views/vipf.png" style="width: .50rem;height: .22rem;margin-top: 0.05rem;">
+							</div>
+							<!-- vip标示 -->
+							<div class="vip_moudel_font" id="LEVEL"></div>
+						</div>		
+					</div>
+					<div class="call_phone font_size30 font_colorff text_center div_backgroun_jb" id="callphone">
+						拨打电话
+					</div>
+					
+				</div>
+				<!-- 金额 -->
+				<div class="">
+					<div class="div_display font_colorff font_size30 margin_top8">
+						<div class="width50 text_center">
+							总交易额(万元)
+						</div>
+						<div class="width50 text_center">
+							机具库存
+						</div>
+					</div>
+					<div class="div_display font_colorff font_size40 margin_top2">
+						<div class="width50 text_center" id="total">
+							0
+						</div>
+						<div class="width50 text_center" id="sum">
+							0
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 列表块 -->
+			<div class="detail_list_moudel">
+				<div class="margin_left3 margin_right3">
+					<div class="div_display border_bottom_myAD">
+						<div class="width50">
+							机具库存(台)
+						</div>
+						<div class="width50 text_right">
+							已激活 <span id="yesSum">0</span> 台
+							<!-- /未激活 <span id="noSum">31</span> -->
+						</div>
+					</div>
+					<div class="div_display border_bottom_myAD">
+						<div class="width50">
+							团队人数(人)
+						</div>
+						<div class="width50 text_right" id="peopleNum">
+							0
+						</div>
+					</div>
+					<div class="div_display margin_top3">
+						<div class="width50">
+							加盟时间
+						</div>
+						<div class="width50 text_right font_color99" id="createTime">
+							0000-00-00
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var phoneMobile;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				// 获取详情
+				getTeamDetails(mui, _self.agentID, function(data) {
+					if (data.code == 200) {
+						var data = data.data
+						$('#name').text(data[0].NAME);
+						$('#total').text(data[0].total);
+						$('#sum').text(data[0].sum);
+						$('#noSum').text(data[0].noSum);
+						$('#yesSum').text(data[0].yesSum);
+						$('#peopleNum').text(data[0].peopleNum);
+						$('#createTime').text(data[0].createTime);
+						phoneMobile= data[0].mobile
+						if(data[0].avatar){
+							$("#avatar").attr("src", data[0].avatar);
+						}else{
+							$("#avatar").attr("src", "../assers/image/headPortrait.png");
+						}
+						$('#LEVEL').text(data[0].LEVEL);
+					}
+				});
+			}
+			// 立即购买
+			$('.homeDetails_btn').on('tap', function() {
+				$$.openWindow({
+					url: '../pages/homeOrder.html',
+					id: 'homeOrder',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 拨打电话
+			$('#callphone').on('tap',function(){
+			
+				if (plus.os.name == "Android") {
+					var btnArray = ['拨打', '取消'];
+					var phone = phoneMobile;
+					mui.confirm(phone, '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							plus.device.dial(phone, false);
+						}
+				
+					});
+				} else {
+					var UIAPP = plus.ios.importClass("UIApplication");
+					var NSURL = plus.ios.importClass("NSURL");
+					var app = UIAPP.sharedApplication();
+					app.openURL(NSURL.URLWithString("tel://" + phone));
+				}
+				
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

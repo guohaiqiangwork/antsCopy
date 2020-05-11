@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>总收益详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" href="../../assers/css/newHome/newHome.css" />
+		<link rel="stylesheet" href="../../assers/css/newHome/mui.picker.min.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;" style="background-color: #F4F4F4;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<div class="div_display">
+				<div class="width40">
+					<i class="mui-action-back"><img src="../../assers/image/returnButton.png" style="width: .16rem;height:.28rem;"></i>
+				</div>
+				<div style="width: 2rem;">
+					总收益详情
+				</div>
+				<div class="width40 text_right" id="condition" style="font-size: 0.3rem;margin-right: 0.3rem;">
+					筛选
+				</div>
+			</div>
+		</header>
+
+		<div class="content">
+			<!-- 筛选条件 -->
+			<div class="totald_top_moudel" style="display: none;">
+				<div class="div_display totald_list_one">
+					<div class="div_display">
+						<div class="font_size26 margin_top1 width25">
+							品牌
+						</div>
+						<div class="select_right">
+							<span id="brandList">请选择</span>
+							<img src="../../assers/image/down.png" class="select_right_img">
+						</div>
+					</div>
+					<div class="div_display ">
+						<div class="font_size26 margin_left2 margin_top1 width25">
+							代理
+						</div>
+						<div class="select_right">
+							<span id="agentList">请选择</span>
+							<img src="../../assers/image/down.png" class="select_right_img">
+						</div>
+					</div>
+					<div class="div_display ">
+						<div class="font_size26 margin_left2 margin_top1 width25">
+							类别
+						</div>
+						<div class="select_right" style="width: 1.7rem;">
+							<span id="categoryList">请选择</span>
+							<img src="../../assers/image/down.png" class="select_right_img">
+						</div>
+					</div>
+				</div>
+				<div class="div_display totald_list_one margin_top3">
+					<div class="div_display ">
+						<div class="font_size26 margin_top1">
+							日期
+						</div>
+						<div class="select_right" id='pickDateBtn' style="width: 2.9rem;text-align: left;padding-left: .2rem;">
+							<span id="startTime">请选择</span>
+							<img src="../../assers/image/down.png" class="select_time_img">
+						</div>
+					</div>
+					<div class="font_size26 margin_top1 margin_left1">
+						至
+					</div>
+					<div class="select_right margin_left1" id='endPickDateBtn' style="width: 2.9rem;text-align: left;padding-left: .2rem;">
+						<span id="endTime">请选择</span>
+						<img src="../../assers/image/down.png" class="select_time_img">
+					</div>
+				</div>
+
+				<div class="div_display margin_top3">
+					<div class="totalD_btn font_colorff0 margin_left12 closeMoudel">
+						取消
+					</div>
+					<div class="totalD_btn div_backgroun_jb font_colorff margin_left6 confirmMoudel">
+						确认
+					</div>
+				</div>
+			</div>
+
+
+			<!-- 列表 -->
+			<div class="mui-scroll-wrapper" id="moudelList" style="margin-top:1rem;">
+				<div class="mui-scroll ">
+					<div class="detail_list_moudel ">
+
+						<!-- <div class="div_display border_bottom_ee padding_top3 padding_bot2">
+							<div class="width80">
+								<div class="font_size30">
+									分润收益
+									<span>中POS</span>
+								</div>
+								<div class="font_size26 font_color99">
+									05月01日 10:25
+								</div>
+							</div>
+							<div class="font_size32">
+								+200.00
+							</div>
+						</div> -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script src="../../assers/js/newHome/mui.picker.min.js"></script>
+
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var dDate = new Date();
+			var year = new Date().getFullYear();
+			var month = new Date().getMonth() + 1;
+			var day = new Date().getDate();
+			// console.log(year + '年1s' + month + '月' + day);
+			$('#startTime').text(year + '年' + month + '月' + day + "日"); //开始时间
+			$('#endTime').text(year + '年' + month + '月' + day + "日"); //结束时间
+			var keyword = {
+				data: {
+					agentId: '', //代理id
+					brandId: '', //品牌id
+					endTime: year + '-' + month + '-' + day, //结束时间
+					memberId: '', //会员id
+					startTime: year + '-' + month + '-' + day, //开始时间
+					type: '' //类型
+				},
+				pageNum: 1,
+				pageSize: '10'
+			}
+
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				keyword.data.memberId = plus.storage.getItem('memberId');
+				funQueryBrand() // 获取品牌数据
+				funQueryAgentTeam() //获取代理数据;
+				funTotalAmountDetailView() //页面数据查询
+			}
+			// 点击时间选择器开始时间
+			document.getElementById("pickDateBtn").addEventListener('tap', function() {
+				dDate.setFullYear(year, month - 1, day); //默认时间
+				var minDate = new Date();
+				minDate.setFullYear(2010, 0, 1); //最小时间
+				var maxDate = new Date();
+				maxDate.setFullYear(year, month - 1, day); //最大时间
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					startTime.innerText = d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+					keyword.data.startTime = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+				}, function(e) {
+					startTime.innerText = "您没有选择日期";
+				}, {
+					title: "请选择日期",
+					date: dDate,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			});
+			// 结束时间
+			document.getElementById("endPickDateBtn").addEventListener('tap', function() {
+				dDate.setFullYear(year, month - 1, day); //默认时间
+				var minDate = new Date();
+				minDate.setFullYear(2010, 0, 1); //最小时间
+				var maxDate = new Date();
+				maxDate.setFullYear(year, month - 1, day); //最大时间
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					endTime.innerText = d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日";
+					keyword.data.endTime = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+				}, function(e) {
+					endTime.innerText = "您没有选择日期";
+				}, {
+					title: "请选择日期",
+					date: dDate,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			});
+
+			// 上拉加载
+			mui(".mui-scroll-wrapper").pullRefresh({
+				container: '.mui-scroll',
+				up: {
+					contentrefresh: '加载中...',
+					contentnomore: '我也是有底线滴',
+					auto: false,
+					callback: function() {
+						var _this = this;
+						keyword.pageNum++;
+						funTotalAmountDetailView();
+						setTimeout(function() {
+							_this.endPullupToRefresh(false);
+						}, 500)
+					}
+				}
+			});
+			// 点击筛选
+			$('#condition').on('tap', function() {
+				$('.totald_top_moudel').css('display', 'block');
+				document.getElementById("moudelList").style.marginTop = "4.3rem";
+			})
+			// 关闭条件
+			$('.closeMoudel').on('tap', function() {
+				$('.totald_top_moudel').css('display', 'none');
+				document.getElementById("moudelList").style.marginTop = "1rem";
+			});
+			// 确认筛选
+			$('.confirmMoudel').on('tap', function() {
+				$('.totald_top_moudel').css('display', 'none');
+				$('.detail_list_moudel').html('');
+				document.getElementById("moudelList").style.marginTop = "1rem";
+				keyword.pageNum = 1;
+				funTotalAmountDetailView(); //查询
+			});
+
+			// 获取品牌数据
+			function funQueryBrand() {
+				getQueryBrand(mui, function(data) {
+					if (data.code == 200) {
+						userPicker1.setData(data.data);
+					} else {
+						tipShow(data.message);
+					}
+				})
+			}
+			// 获取代理数据
+			function funQueryAgentTeam() {
+				getQueryAgentTeam(mui, function(data) {
+					if (data.code == 200) {
+						userPicker2.setData(data.data);
+					} else {
+						tipShow(data.message);
+					}
+				})
+			}
+			// 品牌
+			userPicker1 = new mui.PopPicker();
+			var brandListButton = doc.getElementById('brandList');
+			brandListButton.addEventListener('tap', function(event) {
+				userPicker1.show(function(items) {
+					console.log(JSON.stringify(items[0]))
+					brandListButton.innerHTML = items[0].text;
+					keyword.data.brandId = items[0].value
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+
+			// 代理
+			var userPicker2 = new mui.PopPicker();
+			var agentListButton = doc.getElementById('agentList');
+			agentListButton.addEventListener('tap', function(event) {
+				userPicker2.show(function(items) {
+					console.log(JSON.stringify(items[0]))
+					agentListButton.innerHTML = items[0].text;
+					keyword.data.agentId = items[0].value
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+
+			// 类别
+			var userPicker = new mui.PopPicker();
+			userPicker.setData([{
+					value: '',
+					text: '全部'
+				},
+				{
+					value: '1',
+					text: '分润'
+				}, {
+					value: '2',
+					text: '激活'
+				}, {
+					value: '3',
+					text: '推广'
+				}, {
+					value: '4',
+					text: '达标'
+				}
+			]);
+			var categoryListButton = doc.getElementById('categoryList');
+			categoryListButton.addEventListener('tap', function(event) {
+				userPicker.show(function(items) {
+					console.log(JSON.stringify(items[0]))
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+					categoryListButton.innerText = items[0].text;
+					keyword.data.type = items[0].value
+				});
+			}, false);
+
+			// 条件筛选
+			function funTotalAmountDetailView() {
+				console.log(JSON.stringify(keyword))
+				
+				var d1 = new Date(keyword.data.startTime.replace(/\-/g, "\/"));
+				var d2 = new Date(keyword.data.endTime.replace(/\-/g, "\/"));
+				if (d2 < d1) {
+					tipShow("结束时间不能小于开始时间！");
+				$('#startTime').text(year + '年' + month + '月' + day + "日"); //开始时间
+				$('#endTime').text(year + '年' + month + '月' + day + "日"); //结束时间
+				keyword.data.startTime = year + "-" + month + "-" + day;
+				keyword.data.endTime = year + "-" + month + "-" + day;
+				}
+				
+				
+				getTotalAmountDetailView(mui, keyword, function(data) {
+					console.log(JSON.stringify(data))
+					if (data.code == 200) {
+						var data = data.data.records
+						if (keyword.pageNum == 1) {
+							if (data.length == 0) {
+								var nothingIMg =
+									'<div class="nothing" style="display: block;">' +
+									'<img src="../../assers/image/default/noOrder.png" class="width_height100">' +
+									'<p>暂无数据~</p>' +
+									'</div>';
+								$(".detail_list_moudel").append(nothingIMg);
+								return
+							}
+						}
+						var fragmentplanList = document.createDocumentFragment();
+
+						$.each(data, function(items) {
+							var profitList =
+								'<div class="div_display border_bottom_ee padding_top3 padding_bot2">' +
+								'<div class="width80">' +
+								'<div class="font_size30">' +
+								data[items].record +
+								'<span class="margin_left2">' +
+								data[items].brandName +
+								'</span>' +
+								'</div>' +
+								'<div class="font_size26 font_color99">' +
+								data[items].createTime +
+								'</div>' +
+								'</div>' +
+								'<div class="font_size32 text_right width20">+' +
+								data[items].amount +
+								'</div>' +
+								'</div>';
+							$(fragmentplanList).append(profitList);
+						})
+						$(".detail_list_moudel").append($(fragmentplanList));
+
+					} else {
+					tipShow(data.message);
+					}
+
+				})
+			}
+
+
+
+		})(jQuery, document, mui);
+	</script>
+
+
+</html>

@@ -1,0 +1,430 @@
+<!-- 余额提现 -->
+
+<!-- 设置提现密码 -->
+
+<!-- 搜索 -->
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>提现</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/passwordPopUp.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="../assers/css/pages/updateName.css" />
+		<!-- 键盘 -->
+		<link rel="stylesheet" type="text/css" href="../assers/fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/lib/keyboard.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/index.css"/>
+		
+		<style type="text/css">
+			.mui-table-view-radio .mui-table-view-cell .mui-navigate-right:after {
+			    font-size: 0.8rem;
+			    font-weight: 550;
+			    right: 9px;
+			    color: #333333;
+				background-color:transparent;
+				border: 0px;
+			}
+			.table {
+			    margin-top: 20px;
+			}
+			.mui-popover .mui-table-view {
+			    background-color: #FFFFFF;
+			}
+
+			.mui-popover {
+				height: 300px;
+			}
+			body, html {
+			    background: #F4F4F4;
+			}
+			
+		</style> 
+	</head>
+
+	<body>
+		<header class="header_white title_height">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			<span id="txTitle">余额提现</span>
+		</header>
+
+		<div style="height: 0.8rem;"></div>
+
+		<div id="balanceBody_id">
+			<ul style="border-radius: 0.2rem;height: 6.2rem;">
+				<li class="li_one">
+					<div style="font-size: 0.3rem;width: 1.5rem;">到账银行卡</div>
+					<div class="li_one_div">
+					</div>
+					<div class="li_two_div">
+						<img src="../assers/image/@2x.png" >
+					</div>
+				</li>
+
+				<li class="li_two">
+					<span class="font_size30">提现金额</span>
+				</li>
+				<li class="li_three">
+					<span>￥</span>
+					<span>
+						<input type="number" id="balbnce_money"  style="font-size: .5rem;padding:0px;"/>
+					</span>
+				</li>
+				<li class="li_four font_size26">
+					<span> 余额￥
+						<span id="li_four_money">
+
+						</span>
+					</span>
+					<span id="allBalance"> 全部提现</span>
+				</li>
+				<li class="li_five">
+					<span>提现</span>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- 密码提示框 -->
+		<div id="pay" style="display: none;" class="mui-popover">  
+			<div id="password_div" style="height: 1rem;width:5.7rem float: left;border-bottom: 1px solid #EEEEEE;">
+				<img src="../assers/image/close.png" alt="" class="mui-popover-close closeModel" style="width: 0.37rem;height: 0.37rem;">
+				<p class="title1">请输入密码</p>
+			</div>
+			<!-- <p class="title" style="margin-left: 1.1rem;"></p> -->
+			
+			<div id="setPasswordId" style="display: none;margin-top: 0.3rem;">
+				<div class="font_size30 font_color66">
+					支付密码为6位数字
+				</div>
+				<div class="font_size30 font_color66">
+					支付密码与提现密码一致
+				</div>
+			</div>
+			
+			<div class="number1" style="margin-top: 0.7rem;"></div>
+			<div class="table">
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>
+				<div><span class="blackpwd"></span></div>   
+				<div><span class="blackpwd"></span></div>
+			</div>
+			<input id="money" readOnly='readOnly' orderNo="orderNo" payment="payment" typeName="tixPage" style="text-indent: -999em;margin-left: -100%;width: 200%;opacity: 0;" type="tel" name='password' class="zfinput">
+			<!-- <div class="softkeyboard-area"></div> -->
+		</div>
+		
+		<!-- 选择银行卡 display: none;-->
+		<div id="selecPank" style="" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle closeModel">
+			<div style="height: 1rem;width:5.7rem float: left;">
+				<img src="../assers/image/close.png" alt="" class="mui-popover-close closeModel" style="width: 0.37rem;height: 0.37rem;">
+				<p class="title1">选择到账银行卡</p>
+			</div>
+			<div class="mui-scroll-wrapper" style="margin-top: 1rem;">
+				<div class="mui-scroll"> 
+					<ul id="selectBalanceId" class="mui-table-view mui-table-view-radio" style="height: 100%;min-height: 100%;">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script src="../assers/js/commonFun.js" type="text/javascript"></script>
+	<!-- 键盘 -->
+	<script src="../assers/js/lib/keyboard.js"></script>
+	<script src="../assers/js/lib/index.js"></script>
+	<script src="../assers/js/payFunction.js"></script>
+
+	<script>
+		(function($, doc, $$) {
+			$$.init();
+			var _self;
+			var Keyboard;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				Keyboard = new Plugin.Keyboard();
+				
+				document.getElementById('pay').addEventListener('hidden',function(e){  
+					Keyboard.hideKeyBoard();
+				});
+				$('#money').on("tap",function(){
+					Keyboard.showKeyBoard();
+				});
+				
+				
+				mui('#pay').on('tap', '#password_div', function() {
+					mui('#pay').popover('hide');
+					$('.goPayment').css("display", "block");
+				});
+				
+				
+				
+				mui('.mui-scroll-wrapper').scroll();
+				
+				/* 接收分润提现和激活提现跳过来的参数 */
+				$("#txTitle").html(_self.txType);
+				
+				/* 获取用户余额 */
+				$("#li_four_money").text(_self.moneyNum);
+				/* getUserMoney(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						$("#li_four_money").text(data.data.balance);
+					} else if (data.code == 401 || data.code == 1500) {
+						gotoLoginIn()
+					} else {
+						tipShow(data.message)
+					}
+				}); */
+				
+				/* 获取银行卡图片 */
+				function getBankImg(bankCode){
+					var imgUrl;
+					switch (bankCode) {
+						case 'ICBC':
+								imgUrl = '../assers/image/bank/gsy.png';
+								break;
+						case 'ABC':
+								imgUrl = '../assers/image/bank/nyy.png';
+								break;
+						case 'CCB':
+								imgUrl = '../assers/image/bank/jsy.png';
+								break;
+						case 'BOC':
+								imgUrl = '../assers/image/bank/zgy.png';
+								break;
+						case 'COMM':
+								imgUrl = '../assers/image/bank/jty.png';
+								break;
+						case 'PSBC':
+								imgUrl = '../assers/image/bank/yzy.png';
+								break;
+						case 'SPDB':
+								imgUrl = '../assers/image/bank/qty.png';
+								break;
+						case 'CMB':
+								imgUrl = '../assers/image/bank/zsy.png';
+								break;
+						default:
+								imgUrl = '../assers/image/bank/qty.png';
+								break;
+					}
+					return imgUrl;
+				}
+				
+				
+				
+				
+				var bankCard_Id;
+				var balbnce_money;
+				// mui('#pay').popover('show');
+				getBankFindAll(mui, plus.storage.getItem('memberId'), function(data) {
+					console.log("银行卡信息==" + JSON.stringify(data))
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							var fragmentplanList = document.createDocumentFragment();
+							var fragmentplanListTwo = document.createDocumentFragment();
+							// 银行卡
+							var bankCard = data.data[0].bankCard.substr(-4);
+							var imgUrl = getBankImg(data.data[0].bankCode);
+							var orderLi = '<div class="bankCardClass" bankCard_Id = ' + data.data[0].id +
+								' style="width: 4rem;height: 0.9rem;"><img id="imgUrlId" src="' + imgUrl +
+								'" style="width: 0.27rem;position: relative;top: 0.01rem;"><span style="color: #303030;font-size: 0.30rem;" id="bankNameId">' + data.data[0].bankName + ' (' +
+								bankCard + ')</span></div><div style="color: #A0A0A0;font-size: 0.26rem;">2小时内到账</div>';
+							$(fragmentplanList).append(orderLi);
+							$(".li_one_div").append($(fragmentplanList));
+						}
+						/* 在银行卡选择列表添加银行卡 */
+						var num = data.data.length;
+						var keywordData = data.data;
+						for(i=0;i<num;i++){
+							var bankCard = data.data[i].bankCard.substr(-4);
+							var imgUrl = getBankImg(data.data[i].bankCode);
+							if(i==0){//默认选中第一条
+								var orderLiTwo = '<li class="mui-table-view-cell mui-selected liClass" bankName='+keywordData[i].bankName+' bankCard='+bankCard+' bankCode='+keywordData[i].bankCode+'>' +
+													'<img class="imgClass" src="' + imgUrl +'">' +
+													'<span class="spanClass">' + data.data[i].bankName + '('+ bankCard +')</span>' +
+													'<a class="mui-navigate-right">' +
+													'</a>' +   
+												'</li>  ';
+								$(fragmentplanListTwo).append(orderLiTwo);
+							}else{
+								var orderLiTwo = '<li class="mui-table-view-cell liClass" bankName='+keywordData[i].bankName+' bankCard='+bankCard+' bankCode='+keywordData[i].bankCode+'>' +
+													'<img class="imgClass" src="' + imgUrl +'">' +
+													'<span class="spanClass">' + data.data[i].bankName + '('+ bankCard +')</span>' +
+													'<a class="mui-navigate-right">' +
+													'</a>' +   
+												'</li>  ';
+								$(fragmentplanListTwo).append(orderLiTwo);
+							}
+						}
+						$("#selectBalanceId").append($(fragmentplanListTwo));
+						
+					} else {
+						tipShow(data.message)
+					}
+				});
+				
+				/* 银行卡列表点击事件 */
+				$("#selectBalanceId").on("tap",".liClass",function(){
+					var bankName = $(this).attr('bankName');
+					var bankCard = $(this).attr('bankCard');
+					var imgUrl = getBankImg($(this).attr('bankCode'));
+					$('#imgUrlId').attr('src', "");
+					$('#imgUrlId').attr('src', imgUrl);
+					$("#bankNameId").text("");
+					$("#bankNameId").text(bankName+'('+bankCard+')');
+					mui('#selecPank').popover('hide');
+				});
+
+				
+				//遮罩
+				var mask = mui.createMask(function() {
+					$(".order_change_model").css("display", "none");
+					return;
+				});
+				
+				//选择银行卡
+				$(".li_two_div").on('tap', function() {
+					/* 显示弹出框 */
+					mui('#selecPank').popover('show');
+				});
+				
+				mui('#selecPank').on('tap', '.closeModel', function() {
+					mui('#selecPank').popover('hide');
+				});
+				
+				/* 密码框事件 */
+				mui('#pay').on('tap', '.closeModel', function() {
+					mui('#pay').popover('hide');
+				});
+				$('.zfinput').bind('input propertychange', function() {
+					/* $('.table>div>.blackpwd').css('opacity', '0');
+					var length = $(this).val().length;
+					$('.table>div>.blackpwd').slice(0, length).css('opacity', '1');
+					if (length >= 6) {
+						var val = $('.zfinput').val(); //密码
+						$('.table>div>.blackpwd').css('opacity', '0');
+						$('.zfinput').val("");
+						
+						$("#balbnce_money").val('');
+						//效验密码是否正确
+						var dataBaseTwo = {
+							memberId: plus.storage.getItem('memberId'),
+							password: val,
+						};
+						passwordCheck(mui, dataBaseTwo, function(data) {
+							console.log("支付密码效验=="+ JSON.stringify(data));
+							if (data.code == 200) {
+								//密码正确 提现接口
+								alert(balbnce_money);
+								var bassdata={
+									amount:balbnce_money,
+									memberId: plus.storage.getItem('memberId'),
+									bankId: bankCard_Id,
+								}
+								getreflectBank(mui,bassdata,function(data){
+									console.log("提现fan回值=="+JSON.stringify(data));
+									if(data.code == 200){
+										/* var bankCIDD = data.data;
+										$$.openWindow({
+											url: 'carryResult.html',
+											id: 'carryResult',
+											extras: {
+												"bankCId": bankCIDD
+											},
+											show: {
+												aniShow: "slide-in-right"
+											}
+										}); */
+									/* } else {
+										tipShow(data.message);
+									}
+									Keyboard.hideKeyBoard();
+									mui('#pay').popover('hide');
+								})
+							} else {
+								tipShow(data.message);
+								$('.zfinput').val("");
+							}
+						});
+					} */ 
+				});
+				/* 提现点击事件 */
+				$(".li_five").on("tap", function() {
+					balbnce_money = $("#balbnce_money").val().replace(/\s*/g, "");
+					$('.zfinput').attr("orderNo",balbnce_money);//金额
+					if (!balbnce_money) {
+						tipShow("请输入提现金额");
+						return;
+					} else if (Number(balbnce_money) < 100) {
+						tipShow("提现金额最少100.00元");
+						return;
+					}else if (Number(balbnce_money) > 80000) {
+						tipShow("单笔体现上限为80,000元");
+						return;
+					}  else if (Number(balbnce_money) > $("#li_four_money").text()) {
+						tipShow("提现金额超出余额了");
+						$("#balbnce_money").val("");
+						return;
+					}
+					bankCard_Id = $(this).siblings(".li_one").children(".li_one_div").children(".bankCardClass").attr(
+						"bankCard_Id");
+					$('.zfinput').attr("payment",bankCard_Id);//id
+					
+					/* 判断是否设置密码 */
+					judgePassword(mui, plus.storage.getItem('memberId'), function(data) {
+						Keyboard.showKeyBoard();
+						if (data.code == 500) { 
+							//没有设置
+							mui('#pay').popover('show'); //打开密码框
+							$(".title1").text("设置支付密码");
+							$("#setPasswordId").css('display','block');
+							/* $(".title").css('display','none'); */
+							$('.zfinput').attr("typeName",'setPage');
+						}else if(data.code == 200){
+							$(".title1").text("请输入密码");
+							$("#setPasswordId").css('display','none');
+							mui('#pay').popover('show');
+							$(".number1").text("￥" + balbnce_money);
+							$('.zfinput').attr("typeName",'tixPage');
+						}
+					});
+				});
+
+				/* 全部提现点击事件 */
+				$("#allBalance").on("tap", function() {
+					$("#balbnce_money").val($("#li_four_money").text());
+				});
+
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

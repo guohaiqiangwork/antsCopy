@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>我的收益</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<script src="../../assers/js/rem_reset.js"></script>
+		<style type="text/css">
+			#myMoneyList {
+				width: 100%;
+				background-color: #FFFFFF;
+				padding-left: 3%;
+				padding-right: 3%;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class="div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+		<!-- 	<i id="returnPageId" style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../../assers/image/returnButton.png"
+				 class="headder_img"></i> -->
+				 <i class="mui-action-back"><img src="../../assers/image/returnButton.png" class="headder_img"></i>
+			<div style="width: 6.8rem;margin-left: 5%;">我的收益</div>
+		</header>
+
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<div class="mui-scroll-wrapper" style="margin-top: 1.1rem;" id="gototopId">
+				<div class="mui-scroll ">
+					<div id="myMoneyList">
+						<!-- <div class="div_display" style="border-bottom: 1px solid #CCCCCC;padding-bottom: 3%;padding-top: 3%;">
+							<div class="width50">
+								<div class="font_color33 font_size30">
+									分润
+								</div>
+								<div class="font_size26 font_color99 margin_top2">
+									05月01日 10:25
+								</div>
+							</div>
+							<div class="width50 font_color33 font_size32 text_right margin_top3">
+								+299.00
+							</div>
+						</div>
+ -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var keywords = {
+				pageNum: '1',
+				pageSize: '10',
+				data: {
+					memberId: '',
+				}
+			};
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				//监听 刷新
+				window.addEventListener('orderRefresh', function(event) {
+					location.reload();
+				});
+				keywords.data.memberId = plus.storage.getItem('memberId');
+				mui(".mui-scroll-wrapper").pullRefresh({
+					container: '.mui-scroll',
+					up: {
+						contentrefresh: '加载中...',
+						contentnomore: '我也是有底线滴',
+						auto: false,
+						callback: function() {
+							var _this = this;
+							keywords.pageNum++;
+							getAccountOneYear1();
+							setTimeout(function() {
+								_this.endPullupToRefresh(false);
+							}, 500)
+						}
+					},
+				});
+				getAccountOneYear1();
+			};
+			//获取我的订单
+			function getAccountOneYear1() {
+				getAccountOneYear(mui, keywords, function(data) {
+					console.log(JSON.stringify(data))
+					if (data.code == 200) {
+						var data = data.data.records
+						if (keywords.pageNum == 1) {
+							if (data.length  == 0) {
+								var nothingIMg =
+									'<div class="nothing" style="display: block;">' +
+									'<img src="../../assers/image/default/money.png" class="width_height100">' +
+									'<p>暂无收益</p>' +
+									'</div>';
+								$("#myMoneyList").append(nothingIMg);
+							}
+						}
+						var fragmentplanList = document.createDocumentFragment();
+						var numParams;
+						if (keywords.pageNum == 1) {
+							numParams = 0;
+						} else {
+							numParams = (keywords.pageNum * 10) - 10;
+						}
+
+						$.each(data, function(items) {
+							var orderList =
+								'<div class="div_display" style="border-bottom: 1px solid #CCCCCC;padding-bottom: 3%;padding-top: 3%;">' +
+								'<div class="width50"><div class="font_color33 font_size30">' +
+								data[items].recordDesc +
+								'</div>' +
+								'<div class="font_size26 font_color99 margin_top2">' +
+								data[items].createTime +
+								'</div>' +
+								'</div>' +
+								'<div class="width50 font_color33 font_size32 text_right margin_top3">' +
+								'+' + data[items].amount +
+								'</div>' +
+								'</div>';
+							$(fragmentplanList).append(orderList);
+						})
+						$("#myMoneyList").append($(fragmentplanList));
+					}
+				})
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

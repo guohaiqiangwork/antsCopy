@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>产品中心</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/home.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33">
+			<!-- <i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i> -->
+			产品中心
+		</header>
+		<div class="operation_moudel">
+			<div class="div_display">
+				<div class="margin_left3 goOperation" href="../pages/myImplements.html" data-id='myImplements'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home1.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						我的机具
+					</div>
+				</div>
+				<div class="margin_left7 goOperation" href="../pages/implementsAllocation.html" data-id='implementsAllocation'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home2.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						机具调拨
+					</div>
+				</div>
+				<div class="margin_left7 goOperation" href="../pages/alloctionRecord.html" data-id='alloctionRecord'>
+					<div class="operation_div_top">
+						<img src="../assers/image/dbjl.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						调拨记录
+					</div>
+				</div>
+				<!-- href="../pages/machineAccess.html" data-id='machineAccess' -->
+				<div class="margin_left7 goOperation" href="../pages/new/accessNetworkList.html" data-id='accessNetworkList'>
+					<div class="operation_div_top">
+						<img src="../assers/image/views/home3.png" class="operation_img">
+					</div>
+					<div class="font_color33 font_size26" style="text-align: center;">
+						机具入网
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<!-- 内容区域 -->
+			<div class="mui-scroll-wrapper" style="margin-top: 3rem;">
+				<div class="mui-scroll">
+					<div class="" id="productList" style="padding-bottom: 1.5rem;">
+						<!-- productList -->
+						<div class="">
+							<div class="product_module">
+								<div class="product_moudel_img back_gd_DC">
+								</div>
+								<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.2rem;">
+
+								</div>
+								<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.2rem;"></div>
+							</div>
+							<div class="product_module">
+								<div class="product_moudel_img back_gd_DC">
+								</div>
+								<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.2rem;">
+
+								</div>
+								<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.2rem;"></div>
+							</div>
+						</div>
+
+						<!-- 
+						<div class="product_module1 div_display">
+							<div class="">
+								<img src="../assers/image/12229@2x.png" class="product_moudel_img1">
+							</div>
+							<div class="margin_left2 margin_top4 width35">
+								<div class="font_size30">
+									中付POS
+								</div>
+								<div class="font_size26 font_colorff0 ">
+									￥100
+								</div>
+								<div class="font_size26 margin_top4">
+									查看详情
+									<img src="../assers/image/packRight.png" class="margin_left1" style="width: .08rem;height: .14rem;">
+								</div>
+							</div>
+							<div class="">
+								<div class="product_btn_buy">
+									立即购买
+								</div>
+							</div>
+						</div>
+ -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				mui(".mui-scroll-wrapper").pullRefresh({
+					container: '.mui-scroll',
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						contentrefresh: '加载中...',
+						contentnomore: '我也是有底线滴',
+						auto: false,
+						callback: function() {
+							var _this = this;
+							keywords.pageNum++;
+							obtainGoodsList();
+							setTimeout(function() {
+								_this.endPullupToRefresh(false);
+							}, 500)
+						}
+					},
+					down: {
+						height: 50,
+						auto: false,
+						contentdown: "下拉刷新",
+						contentover: "释放刷新",
+						contentrefresh: "刷新中...",
+						callback: function() {
+							keywords.pageNum = 1;
+							keywords.pageSize = 10;
+							plus.webview.currentWebview().reload(true);
+						}
+					}
+				});
+				var keywords = {
+					pageNum: 1,
+					pageSize: 10,
+					data: {
+						goodsName: '', //产品名称
+						memberId: plus.storage.getItem('serviceId'), //服务商id
+						goodsId: '' //产品id
+					}
+				}
+				obtainGoodsList();
+				// 获取产品列表
+				function obtainGoodsList() {
+					getGoodsList(mui, keywords, function(data) {
+						if (data.code == 200) {
+							if (keywords.pageNum == 1) {
+								$(".product_module").remove();
+							}
+							if (data.data.records.length > 0) {
+								var fragmentplanList = document.createDocumentFragment();
+								var goodsName;
+								$.each(data.data.records, function(items) {
+									goodsName = data.data.records[items].goodsName
+									if (goodsName.length > 10) {
+										goodsName = goodsName.substring(10, 0) + "…"
+									}
+									// var goodsList =
+									// 	'<div class="product_module" data-id="' + data.data.records[items].termId + '" dataNum="' + data.data.records[
+									// 		items].num + '">' +
+									// 	'<div class="product_moudel_img">' +
+									// 	'<img src="' + data.data.records[items].goodsPicture + '" class="product_moudel_img">' +
+									// 	'</div>' +
+									// 	'<div class="font_size30 font_color33 margin_left2 margin_top2 font_width700">' +
+									// 	goodsName +
+									// 	'</div>' +
+									// 	'<div class="margin_left2 font_colorff0 font_size32"><span style="font-size: 0.26rem;">￥</span> ' + data
+									// 	.data.records[items].goodsPrice +
+									// 	' </div>' +
+									// 	'</div>';
+									var goodsList =
+
+										'<div class="product_module1 div_display " >' +
+										'<div class="goDetail" data-id="' + data.data.records[items].termId + '" dataNum="' + data.data.records[
+											items].num + '">' +
+										'<img src="' + data.data.records[items].goodsPicture + '" class="product_moudel_img1">' +
+										'</div>' +
+										'<div class="margin_left2 margin_top4 width35 goDetail" data-id="' + data.data.records[items].termId +
+										'" dataNum="' + data.data.records[items].num + '">' +
+										'<div class="font_size30">' +
+										goodsName +
+										'</div>' +
+										'<div class="font_size26 font_colorff0 ">￥' +
+										data.data.records[items].goodsPrice +
+										'</div>' +
+										'<div class="font_size26 margin_top4">查看详情' +
+										'<img src="../assers/image/packRight.png" class="margin_left1" style="width: .08rem;height: .14rem;">' +
+										'</div>' +
+										'</div>' +
+										'<div class="">' +
+										'<div class="product_btn_buy" data-id="' + data.data.records[items].termId + '">立即购买' +
+
+										'</div>' +
+										'</div>' +
+										'</div>';
+
+									$(fragmentplanList).append(goodsList);
+								})
+								$("#productList").append($(fragmentplanList));
+							} else {
+								if (keywords.pageNum < 2) {
+									var nothingIMg =
+										'<div class="nothing" style="display: block;">' +
+										'<img src="../assers/image/default/noProduct.png" class="" style="margin-top: 1.5rem;width:4.1rem;height:3.5rem">' +
+										'<p>请耐心等待商品上架</p>' +
+										'</div>';
+									$("#productList").append(nothingIMg);
+								}
+							}
+						} else if (data.code == 401 || data.code == 1500) {
+							gotoLoginIn()
+						}
+
+					})
+				};
+				// 去产品详情
+				$('#productList').on('tap', '.goDetail', function() {
+					if ($(this).attr('dataNum') == 0) {
+						tipShow("此商品库存不足！");
+					} else {
+						$$.openWindow({
+							url: '../pages/homeDetails.html',
+							id: 'homeDetails',
+							extras: {
+								"productId": $(this).attr('data-id')
+							},
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					}
+				});
+				// 立即购买
+				$('#productList').on('tap', '.product_btn_buy', function() {
+					$$.openWindow({
+						url: '../pages/homeOrder.html',
+						id: 'homeOrder',
+						createNew: true,
+						extras: {
+							"productIdD": $(this).attr('data-id'),
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				})
+
+
+				//快捷操作
+				$('.goOperation').on('tap', function(e) {
+					// 获取页面ID
+					var urlId = $(this).attr("data-id");
+					// 获取路径
+					var urlRout = this.getAttribute('href');
+					if (urlRout && urlId) {
+						$$.openWindow({
+							url: urlRout,
+							id: urlId,
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					} else {
+						console.log('缺少页面路径')
+
+					}
+				});
+
+				// 双击退出应用
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if (backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+				}
+
+			};
+		})(jQuery, document, mui);
+	</script>
+
+</html>

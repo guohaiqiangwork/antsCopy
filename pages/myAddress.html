@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<!-- <link rel="stylesheet" href="../assers/css/mobileReset.css"> -->
+		<link rel="stylesheet" href="../assers/css/pages/myAddress.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		
+		<style type="text/css">
+			.default_img_btn{
+				width: 6.9rem;
+				height: .9rem;
+				border-radius: .4rem;
+				font-size: .30rem;
+				color: #FFFFFF;
+				line-height: 3;
+				position: fixed;
+				bottom: .3rem;
+			}
+			body {
+			    background: #F4F4F4;
+			}
+			.address_moduel {
+				border: none;
+			}
+			.address_moduel {
+			    margin-left: .3rem;
+			}
+			.address_moduel {
+			    margin-top: .3rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			我的收货地址
+		</header>
+		<div class="contentA">
+			<div id="myAddress" style="margin-top:1.2rem">
+			</div>
+			<div class="bottom_btn">
+				添加新地址
+			</div>
+		</div>
+		
+		<div class="default" style="display: none;">
+			<div id="cartDefaultId_one">
+				<img src="../assers/image/default/address.png">
+			</div>
+			<div class="text_center font_size30 margin_top10 font_color99">
+				无收货地址
+			</div>
+			<div id="realNameONeBtn" class="default_img_btn div_backgroun_jb" style="margin-left: 0.3rem;">
+				添加新地址
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				//判断是从订单中过来
+				if (_self.pageName == "confirmOrder") {
+					plus.storage.setItem("confirmOrder", "confirmOrder");
+				} else {
+					plus.storage.removeItem("confirmOrder");
+				}
+
+
+				// 获取地址列表
+				// var getUserAddressWati = plus.nativeUI.showWaiting("获取中...");
+				getUserAddress(mui, plus.storage.getItem('memberId'), function(data) {
+					// getUserAddressWati().close()
+					if (data.code == 200) {
+						if (data.data.length == 10) {
+							$('.bottom_btn').css('display', 'none')
+						} else if (data.data.length < 1) {
+							$('.bottom_btn').css('display', 'none');
+							$('.default').css('display', 'block');
+						}
+						list = $('#myAddress');
+						data.data.forEach(function(e) {
+							if (e.isDefault == 1) {
+								var mobile = e.mobile;
+								mobile = mobile.substring(3, 0) + "****" + mobile.substring(7, 11);
+								$(
+									'<div class="address_moduel">' +
+									'<div class="_left"  isDefault=' + e.isDefault + ' data_id=' + e.id + ' province=' + e.province +
+									' mobile=' + e.mobile + ' address='  + e.address + ' city='+e.city+' area='+e.area+'  receiver=' + e.receiver +'>' +
+									'<div class="_one">' +
+									'<img src="../assers/image/mr.png" style="width: 0.7rem;height: 0.3rem;position: relative;top: 0.03rem;">' +
+									'<span style="color: #333333;margin:0 0.2rem;font-size: .3rem;">' + e.receiver + '</span>' +
+									'<span style="font-size: .3rem;">' + mobile + '</span>' +
+									'</div>' +
+									'<div class="_two">' +
+									e.province +" "+ e.city +" "+ e.area +" "+ e.address +
+									'</div>' +
+									'</div>' +
+									'<div class="_three"></div>' +
+									'<div class="_right" sid="goToEdit"  data-id="' + e.id + '"><img src="../assers/image/updateAddress.png" style="width: .27rem;"></div>' +
+									'</div>'
+								).appendTo(list)
+							} else {
+								var mobile = e.mobile;
+								mobile = mobile.substring(3, 0) + "****" + mobile.substring(7, 11);
+								$(
+									'<div class="address_moduel">' +
+									'<div class="_left"  isDefault=' + e.isDefault + '  data_id=' + e.id + ' receiver=' + e.receiver +
+									' mobile=' + e.mobile + ' address=' + e.address + ' city='+e.city+' area='+e.area+' province=' + e.province +'>' +
+									'<div class="_one">' +
+									'<span style="color: #333333;margin:0 0.2rem 0 0;font-size: .3rem;">' + e.receiver + '</span>' +
+									'<span style="font-size: .3rem;">' + mobile + '</span>' +
+									'</div>' +
+									'<div class="_two">' +
+									e.province +" "+ e.city +" "+ e.area +" "+ e.address +
+									'</div>' +
+									'</div>' +
+									'<div class="_three"></div>' +
+									'<div class="_right" id="goToEdit"  data-id="' + e.id + '"><img src="../assers/image/updateAddress.png" style="width: .27rem;"></div>' +
+									'</div>'
+								).appendTo(list)
+							}
+
+						});
+					
+					} else if (data.code == 401 || data.code == 1500) {
+						gotoLoginIn()
+					} else {
+						tipShow(data.message)
+					}
+				});
+			}
+
+			//地址选择点击事件
+			$("#myAddress").on("tap", "._left", function() {
+				if (plus.storage.getItem("confirmOrder") == "confirmOrder" || _self.pageName == "confirmOrder") {
+					var data_id = $(this).attr('data_id');
+					var mobile = $(this).attr('mobile');
+					var province =$(this).attr('province');//省
+					var city =$(this).attr('city');//市
+					var area =$(this).attr('area');//区
+					var receiver =$(this).attr('receiver');//姓名
+					var address = $(this).attr('address');//详细地址
+					var isDefault = $(this).attr('isDefault');
+					plus.nativeUI.closeWaiting();
+					mui.back();
+					var list = plus.webview.currentWebview().opener();
+					mui.fire(list, 'addressFunc', {
+						data_id: data_id,
+						receiver: receiver,
+						mobile: mobile,
+						province:province,
+						city:city,
+						area:area,
+						address: address,
+						isDefault: isDefault,
+					});
+
+				}
+			});
+
+
+			// 去新增地址
+			$('.bottom_btn').on('tap', function() {
+				$$.openWindow({
+					url: '../pages/address.html',
+					id: 'address',
+					extras: {
+						"orderId": '3243242',
+						"typeVal": "新增"
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			$('.default_img_btn').on('tap', function() {
+				$$.openWindow({
+					url: 'address.html',
+					id: 'address',
+					extras: {
+						"orderId": '3243242'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 编辑地址
+			$('#myAddress').on('tap', '._right', function() {
+				$$.openWindow({
+					url: 'address.html',
+					id: 'address',
+					extras: {
+						"addressId": $(this).attr('data-id'),
+						"typeVal": "编辑"
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

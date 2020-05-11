@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>机具订单详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/my.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<style type="text/css">
+			.content {
+			    margin-top: 0.8rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class="div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="returnPageId" style="touch-action: none;float: left;margin-left: 0.3rem;margin-top: 0.05rem;"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			<span style="margin-right: 0.4rem;">订单详情</span>
+		</header>
+
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<!-- 已取消 -->
+			<div class="order_detail_top  font_colorff status5" style="display: none;background: linear-gradient(to right, #445F91, #272D48)">
+				<div class="font_size32">
+					已取消
+				</div>
+				<div class="font_size30 margin_top2">
+					订单取消成功
+				</div>
+			</div>
+			<!-- 待支付 -->
+			<div style="display: none;" class="order_detail_top div_backgroun_jb font_colorff status1">
+				<div class=" div_display">
+					<div class="font_size32">
+						待支付
+					</div>
+					<div class="font_size28 width85 text_right">
+						剩余时间：<span id="payTime"></span>
+					</div>
+				</div>
+				<div class="font_size30 margin_top2">
+					请再提交订单后，尽快支付超时将取消订单
+				</div>
+			</div>
+			<!-- 待发货 -->
+			<div style="display: none;" class="order_detail_top div_backgroun_jb font_colorff status2">
+				<div class="font_size32">
+					待发货
+				</div>
+				<div class="font_size30 margin_top1">
+					已通知商家，等待商家发货
+				</div>
+				
+			</div>
+			<!-- 待收货 -->
+			<div style="display: none;" class="order_detail_top div_backgroun_jb font_colorff status3">
+				<div class="font_size32">
+					待收货
+				</div>
+				<div class="font_size30 margin_top1">
+					商家已发货，耐心等待收货
+				</div>
+				<div style="float: right;position: relative;bottom: 0.6rem;" class="euliu">
+					<img src="../assers/image/shopping/return%20(1).png" class="headder_img">
+				</div> 
+			</div>
+			<!-- 已完成 -->
+			<div style="display: none;" class="order_detail_top div_backgroun_jb font_colorff status4">
+				<div class="font_size32">
+					已完成
+				</div>
+				<div class="font_size30 margin_top1">
+					订单已完成
+				</div>
+			</div>
+			<!-- 内容 -->
+			<div class="order_detail_moudel">
+				<!-- 地址 -->
+				<div class="detail_moudel_adder" style="box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16);">
+					<div class="div_display">
+						<div class="">
+							<img src="../assers/image/shopping/2345317@2x.png" class="detail_img">
+						</div>
+						<div class="width85 margin_left4">
+							<div class="div_display">
+								<div class="name">
+									<!-- 吕小布 -->
+								</div>
+								<div class="phone" style="margin-left: 0.56rem;">
+									<!-- 189****3837 -->
+								</div>
+							</div>
+							<div class="font_size26 font_color66 address">
+								<!-- 内蒙古包头市九原区华诚中心A座十三层
+								南侧 -->
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- 商品 --> 
+				<div class="detail_product">
+					<div class="div_display">
+						<div class="order_img width30">
+							<img class="order_img goodsPicture" style="border-radius: 0.1rem;">
+						</div>
+						<div class="font_color33 font_size30 margin_left3 width55 margin_top5 goodsTitle font_width700">
+							<!-- 考拉超收移动POS机 -->
+						</div>
+						<div class="width15 text_center font_size26 font_color99 margin_top10 num">
+							<!-- X10 -->
+						</div>
+					</div>
+					<div class="font_size26 font_color33 margin_top4"> 合计:￥ <span class="payment" style="font-size: .35rem;"></span></div>
+				</div>
+				<!-- 订单 -->
+				<div class="detail_order">
+					<div class="detail_order_top">
+						<div class="div_display">
+							<div class="font_color66 font_size30 width25">
+								订单编号
+							</div>
+							<div class="font_color33 font_size30 orderNo">
+								<!-- 1234567890 -->
+							</div>
+						</div>
+						<div class="div_display margin_top3">
+							<div class="font_color66 font_size30 width25">
+								下单时间
+							</div>
+							<div class="font_color33 font_size30 createTime">
+								<!-- 2020-02-10 12:00:00 -->
+							</div>
+						</div>
+						<div class="div_display margin_top3 margin_bot3">
+							<div class="font_color66 font_size30 width25">
+								支付方式
+							</div>
+							<div class="font_color33 font_size30 paymentType">
+								<!-- 微信支付 -->
+							</div>
+						</div>
+					</div>
+					<div class="detail_order_top">
+						<div class="div_display margin_top3 margin_bot3">
+							<div class="font_color66 font_size30 width25">
+								商品总额
+							</div>
+							<div style="margin-left: 0.3rem;" class="font_color33 font_size30 text_right width70 font_width700">
+								¥ <span class="totalPrice"></span>
+							</div>
+						</div>
+					</div>
+					<div class="font_color33 font_size30 margin_top2 text_right"> 实付款<span class="font_colorff0 font_width700">¥</span></span><span class="font_colorff0 font_size40 paymentP  font_width700"></span></div>
+				</div>
+
+				<!-- 操作按钮 -->
+				<div class="div_display">
+					<div class="detail_btn  closeOrder" style="border: 1px solid #FF0100;color: #FF0100;margin-left: 2.8rem;display: none;">
+						取消支付
+					</div>
+		
+					<!-- <div class="detail_btn div_btn_jb margin_left2 twoBuy" style="display: none;margin-left: 4.8rem;">
+						再次购买
+					</div> -->
+					<div class="detail_btn div_btn_jb margin_left2 gobuy" style="display: none;">
+						去支付
+					</div>
+					<div class="detail_btn div_btn_jb margin_left2 okBuy" style="display: none;margin-left: 4.8rem;">
+						确认收货
+					</div>
+					<div class="detail_btn div_btn_jb margin_left2 euliu" style="margin-left: 4.8rem;display: none;">
+						查看物流
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				//监听 刷新
+				window.addEventListener('orderDetailRefresh', function(event) {
+					location.reload();
+				});
+				
+				/* 返回 监听父页面 */
+				$(".returnPageId").on("tap",function(){
+					var list = plus.webview.currentWebview().opener();　
+					mui.fire(list, 'orderRefresh');
+					mui.currentWebview.close();
+					mui.back();
+				});
+				
+				// 获取订单详情
+				get_goOrderDetail();
+				function get_goOrderDetail(){
+					goOrderDetail(mui, _self.orderId, function(data) {
+						//console.log("111=="+JSON.stringify(data));
+						if (data.code == 200) {
+							var data = data.data;
+							// 头部
+							if (data.status == 1) {
+								// 待支付
+								var a = data.closeTime
+								var time = new Date(a.replace(/-/g, '/')).getTime();
+					
+								function countTime(value) {
+									//获取当前时间
+									var date = new Date();
+									var now = date.getTime();
+									//移动端必须这样写，因为ios不支持日期中间是-链接，会报错
+									var endDate = new Date(value);
+									var end = endDate.getTime();
+									//时间差
+									var differTime = end - now;
+									var h, m, s;
+									if (differTime >= 0) {
+										h = Math.floor(differTime / 1000 / 60 / 60);
+										m = Math.floor(differTime / 1000 / 60 % 60);
+										s = Math.floor(differTime / 1000 % 60);
+										h = h < 10 ? ("0" + h) : h;
+										m = m < 10 ? ("0" + m) : m;
+										s = s < 10 ? ("0" + s) : s;
+										if (h < 1) {
+											if (m > 15) {
+												var timeDom = "00:00";
+												$("#payTime").text(timeDom);
+											} else {
+												var timeDom = m + ":" + s;
+												$("#payTime").text(timeDom);
+												//递归调用函数所以是延时器不是定时器
+												setTimeout(function() {
+													countTime(value)
+												}, 1000);
+											}
+										}
+										$('.status1').css('display', 'block');
+										$('.closeOrder').css('display', 'block');
+										$('.gobuy').css('display', 'block');
+									} else { 
+										//掉接口取消支付
+										jf_cancelPay(mui,_self.orderId,function(data){
+											if (data.code == 200) {
+												//已取消				
+											} else {
+												tipShow(data.message);
+											}
+										});
+										var timeDom = "00:00";
+										$("#payTime").text(timeDom);
+										/* 如果时间到了 状态改为已取消 */
+										$('.status1').css('display', 'none');
+										$('.closeOrder').css('display', 'none');
+										$('.gobuy').css('display', 'none');
+										// 已取消
+										$('.status5').css('display', 'block');
+									}
+								};
+								countTime(time);
+							} else if (data.status == 2) {
+								$('.status2').css('display', 'block');
+								//$('.euliu').css('display', 'none')
+								
+							} else if (data.status == 3) {
+								// 待收货
+								$('.status3').css('display', 'block');
+								$('.okBuy').css('display', 'block');
+							} else if (data.status == 4) {
+								$('.status4').css('display', 'block');
+							} else if (data.status == 5) {
+								// 已取消
+								$('.status5').css('display', 'block');
+								// $('.twoBuy').css('display', 'block');
+							}
+							// 地址
+							$('.name').text(data.addressResult.receiverName);
+							$('.phone').text(data.addressResult.receiverPhone);
+							$('.address').text(data.addressResult.receiverState + data.addressResult.receiverCity + data.addressResult.receiverDistrict +
+								data.addressResult.receiverAddress);
+							// 商品
+							$('.payment').text(data.payment);
+							$('.goodsTitle').text(data.goodsName);
+							$('.num').text('X' + data.num);
+							$(".goodsPicture").attr("src", data.goodsPicture);
+							// 订单详情
+							$('.orderNo').text(data.orderNo);
+							$('.createTime').text(data.createTime);
+							var payType;
+							if (data.paymentType == 1) {
+								payType = '微信支付'
+							} else if (data.paymentType == 2) {
+								payType = '支付宝支付'
+							} else if (data.paymentType == 3) {
+								payType = '余额支付'
+							}
+							$('.paymentType').text(payType);
+							$('.totalPrice').text(data.totalPrice);
+							$('.paymentP').text(data.payment);
+							_self.orderIdClose = data.orderId;
+							_self.orderIdBuy = data.orderNo;
+						}
+					})
+				}
+				
+
+				// 取消订单
+				$('.closeOrder').on('tap', function() {
+					getCancelPayN(mui, _self.orderIdClose, function(data) {
+						if (data.code == 200) {
+							tipShow('取消成功')
+							plus.webview.currentWebview().reload(true);
+						}
+					})
+				})
+				// 立即支付
+				$('.gobuy').on('tap', function() {
+					$$.openWindow({
+						url: '../pages/homeOrderSub.html',
+						id: 'homeOrderSub',
+						extras: {
+							"orderId": _self.orderIdBuy
+						},
+						createNew: 'true',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				// 确认收货
+				$('.okBuy').on('tap', function() {
+					goConfirmReceipt(mui, _self.orderIdClose, function(data) {
+						if (data.code == 200) {
+							tipShow('确认成功');
+							plus.webview.currentWebview().reload(true);
+						}else {
+							tipShow(data.message);
+						}
+					})
+				});
+				// 查看物流 
+				$('.euliu').on('tap', function() {
+					$$.openWindow({
+						url: '../pages/orderLogistics.html',
+						id: 'orderLogistics',
+						extras: {
+							"orderId": _self.orderIdClose
+						},
+						// createNew: 'true',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+
+			};
+		})(jQuery, document, mui);
+	</script>
+
+</html>

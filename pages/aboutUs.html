@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>关于我们</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">  
+		<link rel="stylesheet" type="text/css" href="../assers/css/pages/mySetting.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<style type="text/css">
+			body {
+			    background: #F4F4F4;
+			}
+			.content {
+			    margin-top: 0.86rem;
+			}
+		</style>
+	</head> 
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			关于我们
+		</header>
+		
+		<div class="content" style="background-color: #FFFFFF;">
+			<div class="text_center" style="padding-top: .7rem;">
+				<img src="../assers/image/log2.png" style="width: 2.3rem;height: 2.3rem;">
+			</div>
+			<div class="text_center" >
+				<div class="font_color33 margin_top1" style="font-size: .34rem;">
+					蚂蚁招财
+				</div>
+				<div class="font_size30 font_color99 margin_top2" style="font-size: .3rem;">
+					版本：V 1.0.0
+				</div>
+			</div>
+			<div class="list_ul_li">
+				<ul style="padding-left: 0.3rem;">
+					<li class="settingPassword" href="serviceAgreement.html" data-id='serviceAgreement'>
+						<span style="float: left;">用户协议</span>
+						<div class="text_right">
+							<img src="../assers/image/going.png" class="setUp_right_img" style="width: .14rem;height: .24rem;">
+						</div>
+					</li>
+					
+					<li style="border: none;" class="settingPassword" href="Privacy.html" data-id='Privacy'>
+						<span style="float: left;">隐私政策</span>
+						<div class="text_right">
+							<img src="../assers/image/going.png" class="setUp_right_img" style="width: .14rem;height: .24rem;">
+						</div>
+					</li>
+				</ul>
+			</div>
+			
+			
+			<div style="color: #999999;font-size: 0.3rem;text-align: center;position:absolute;bottom:0;width:100%;height:40px;">
+				<span>@蚂蚁招财版权所有</span>
+			</div>
+		</div> 
+		
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+			};
+			$('.settingPassword').on('tap', function(e) {
+				// 获取页面ID
+				var urlId = $(this).attr("data-id");
+				// 获取路径
+				var urlRout = this.getAttribute('href');
+					//alert(urlRout)
+				if (urlRout && urlId) {
+					$$.openWindow({
+						url: urlRout,
+						id: urlId,
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				} else {
+					console.log('缺少页面路径')
+			
+				}
+			});
+		})(jQuery, document, mui);
+	</script>
+
+</html>

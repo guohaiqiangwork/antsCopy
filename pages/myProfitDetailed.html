@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/implements.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			收益明细
+		</header>
+		<div class="content">
+			<div style="height: .2rem;"></div>
+			<div class="list" style="background-color: #FFFFFF;">
+				<!-- <div class="myProfitDeta_moudel div_display padding_top3">
+					<div class="width50">
+						<div class="font_size30 font_color33">
+							激活返现
+						</div>
+						<div class="font_size26 font_color99 margin_top2">
+							05月01日 10:25
+						</div>
+					</div>
+					<div class="width50 text_right font_color33 font_size32 margin_top2">
+						+299.00
+					</div>
+				</div>
+			 -->
+			</div>
+			<!-- 空页面 -->
+			<div class="nothing" style="display: none;">
+				<img src="../assers/image/default/money.png" class="width_height100">
+				<p>暂无订单~</p>
+			</div>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				var keywords = {
+					agentId: plus.storage.getItem('memberId'),
+					serialNumber: _self.serialNumber,
+					monthDay:_self.monthDay
+				}
+				console.log(JSON.stringify(keywords))
+				getMyEarningsDayDetails(mui, keywords, function(data) {
+					console.log(JSON.stringify(data));
+					if (data.code == 200) {
+						var data = data.data;
+						
+						if(data.length > 0){
+							var fragmentplanList = document.createDocumentFragment();
+							var createTime;
+							$.each(data, function(items) {
+								let timeVal = data[items].createTime;
+								createTime =timeVal.substring(2,0)+"月"+timeVal.substring(3,5)+"日"+timeVal.substring(6,11);
+								if (data[items].amountStatus == 1) {
+									data[items].amountStatus = '分润'
+								} else {
+									data[items].amountStatus = '激活'
+								}
+								var profitDList =
+									'<div class="myProfitDeta_moudel div_display padding_top3">' +
+									'<div class="width50">' +
+									'<div class="font_size30 font_color33">' +
+									data[items].amountStatus +
+									'</div>' +
+									'<div class="font_size26 font_color99 margin_top1">' +
+									createTime +
+									'</div>' +
+									'</div>' +
+									'<div class="text_right font_color33 font_size32 margin_top2" style="width: 47%;"> +' +
+									data[items].sum +
+									'</div>' +
+									'</div>';
+								$(fragmentplanList).append(profitDList);
+							})
+							$(".list").append($(fragmentplanList));
+							
+							$(".myProfitDeta_moudel:nth-child("+data.length+")").css({"border":"none"});
+						}else{
+							$('.nothing').css('display','block');
+							$('.list').css('display','none');
+						}
+						
+						
+					} else {
+						tipShow(data.message);
+					}
+
+				});
+
+			}
+			// 调拨详情
+			$('.goProfitDetailed').on('tap', function() {
+				$$.openWindow({
+					url: '../pages/myProfitDetailed.html',
+					id: 'myProfitDetailed',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

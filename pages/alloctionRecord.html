@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" href="../assers/css/pages/implements.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+
+		<style type="text/css">
+			.nothing img {
+				width: 4.12rem;
+				height: 3.53rem;
+			}
+
+			.nothing p {
+				margin-top: 0;
+			}
+
+			.header_tab {
+				border-bottom: none;
+			}
+			.width75{
+				width: 75%;
+			}
+		</style>
+
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header id="returnPageId" class="header_white font_size34 font_color33 title_height" style="z-index: 999;">
+			<i style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../assers/image/returnButton.png"
+				 style="width: .22rem;height: .38rem;"></i>
+			<div style="width: 6.7rem;">调拨记录</div>
+		</header>
+		<div class="content">
+			<!-- 头部导航 -->
+			<div class="div_display header_tab">
+				<div class="tab_swich1 selection" data-id="1">
+					调拨中
+				</div>
+				<div class="tab_swich1" data-id="2">
+					调拨成功
+				</div>
+				<div class="tab_swich1" data-id="3">
+					调拨失败
+				</div>
+			</div>
+
+
+		<!-- 	<div class="implements_moudel implements_moudel_img1 " style="margin-top:3rem">
+				<div class="div_display padding_top3">
+					<div class="width80 margin_left3 font_colorff font_size32 font_width700 div_display">
+						<div class="">
+							王二狗
+						</div>
+						<div class="margin_left3">
+							<img src="../assers/image/pages/allocationD.png" class="allocationD_img">
+							<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">
+							<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">
+						</div>
+						<div class="margin_left3">
+							张麻子
+						</div>
+					</div>
+					<div class=" text_right margin_right3 font_size26 font_colorff">
+						调拨中
+					</div>
+				</div>
+				
+				<div class="div_display  margin_top6">
+					<div class="margin_left3 width85 font_size30 font_color33">
+						黄金坑
+					</div>
+					<div class="margin_left4 width10 font_size26 font_color99">*989
+
+					</div>
+				</div>
+				<div class="font_color33 font_size26 goAllocation" style="margin-left: 5.5rem;margin-top: .05rem;">查看详情></div>
+			</div> -->
+			<!-- 模块 -->
+			<div class="mui-scroll-wrapper" style="margin-top: 1rem;">
+				<div class="mui-scroll">
+					<div class="" id="alloctionList" style="padding-bottom: 1.5rem;margin-top: 1rem;">
+						<!-- 默认页 -->
+						<div class="mrPage" style="margin: 0.3rem;border-radius: 0.2rem;">
+							<div style="width: 6.9rem;height: 2.54rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+								<div id="" style="width:6.9rem;height: 0.89rem;background-color: #DCDCDC;border-radius: 0.2rem 0.2rem 0 0;">
+									<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.25rem;">
+									</div>
+									<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.25rem;float: right;">
+									</div>
+								</div>
+
+								<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.25rem;">
+								</div>
+								<div id="" style="width: 1.19rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.7rem;right: 0.25rem;float: right;">
+								</div>
+							</div>
+						</div>
+						<div class="mrPage" style="margin: 0.3rem;">
+							<div style="width: 6.9rem;height: 2.54rem;background-color: #FFFFFF;border-radius: 0.2rem 0.2rem 0 0;">
+								<div id="" style="width:6.9rem;height: 0.89rem;background-color: #DCDCDC;border-radius: 0.2rem 0.2rem 0 0;">
+									<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.31rem;left: 0.25rem;">
+									</div>
+									<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; right: 0.25rem;float: right;">
+									</div>
+								</div>
+
+								<div id="" style="width: 1.01rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.36rem;left: 0.25rem;">
+								</div>
+								<div id="" style="width: 1.19rem;height: 0.32rem;background-color: #EEEEEE;position: relative; top: 0.7rem;right: 0.25rem;float: right;">
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var keywords = {
+				result: '1'
+			};
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				/* // 获取父及页面
+				var openView = plus.webview.currentWebview().opener();
+				//判断是否存在父窗口,存在则关闭
+				alert(openView);
+				if (openView) {
+					if (openView.id == "allocation") {
+						openView.hide();
+						openView.close();
+						alert(openView);
+					}
+				} */
+
+				$("#returnPageId").on("tap", function() {
+					mui.currentWebview.close();
+					mui.back();
+					$$.openWindow({
+						url: '../../views/index.html',
+						id: 'index',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+
+				mui(".mui-scroll-wrapper").pullRefresh({
+					container: '.mui-scroll',
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						contentrefresh: '加载中...',
+						contentnomore: '我也是有底线滴',
+						auto: false,
+						callback: function() {
+							var _this = this;
+							// keywords.pageNum++;
+							// getMyOrderList();
+							// database.current++;
+							setTimeout(function() {
+								_this.endPullupToRefresh(false);
+							}, 500)
+
+
+						}
+					},
+					// down: {
+					// 	height: 50,
+					// 	auto: false,
+					// 	contentdown: "下拉刷新",
+					// 	contentover: "释放刷新",
+					// 	contentrefresh: "刷新中...",
+					// 	callback: function() {
+					// 		keywords.pageNum = 1;
+					// 		keywords.pageSize = 10;
+					// 		plus.webview.currentWebview().reload(true);
+					// 	}
+					// }
+				});
+				keywords.userId = plus.storage.getItem('memberId');
+				getList();
+
+			};
+			// 获取调拨记录result	调拨状态		1 调拨中 2 调拨成功 3调拨失败
+			function getList() {
+				getAllotHistory(mui, keywords, function(data) {
+					if (data.code == 200) {
+						var data = data.data;
+						console.log(JSON.stringify(data))
+						$(".mrPage").remove();
+						// if (keywords.pageNum == 1) {
+						if (data.length == 0) {
+							var nothingIMg =
+								'<div class="nothing" style="display: block;">' +
+								'<img src="../assers/image/default/noOrder.png" class="width_height100" style="margin-top: 0.58rem;">' +
+								'<p>暂无记录</p>' +
+								'</div>';
+							$("#alloctionList").append(nothingIMg);
+						}
+						// }
+						var fragmentplanList = document.createDocumentFragment();
+						var typeVal;
+						$.each(data, function(items) {
+							if (data[items].STATUS == '1') {
+								typeVal = "调拨中";
+								data[items].status = 'alloction_record_img'
+							} else if (data[items].STATUS == '2') {
+								typeVal = "调拨成功";
+								data[items].status = 'implements_moudel_img1'
+							} else if (data[items].STATUS == '3') {
+								typeVal = "调拨失败";
+								data[items].status = 'implements_moudel_img2'
+							}
+							var recordList =
+								'<div class="implements_moudel ' + data[items].status + '" >' +
+								// '<div class="div_display padding_top3">' +
+								// '<div class="width50 margin_left3 font_colorff font_size32 font_width700">' +
+								// data[items].name +
+								// '</div>' +
+								// '<div class="width50 text_right margin_right3 font_size26 font_colorff">' +
+								// typeVal +
+								// '</div>' +
+								// '</div>' +
+								
+								'<div class="div_display padding_top3">' +
+									'<div class="width75 margin_left3 font_colorff font_size32 font_width700 div_display">' +
+										'<div class="">' +
+											data[items].allotUserName +
+										'</div>' +
+										'<div class="margin_left3">' +
+											'<img src="../assers/image/pages/allocationD.png" class="allocationD_img">' +
+											'<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">' +
+											'<img src="../assers/image/pages/allocationD.png" class="allocationD_img margin_left2">' +
+										'</div>' +
+										'<div class="margin_left3">' +
+											data[items].acceptUsername +
+										'</div>' +
+									'</div>' +
+									'<div class=" text_right margin_right3 font_size26 font_colorff">' +
+										typeVal +
+									'</div>'+
+								'</div>' +
+								'<div class="div_display  margin_top6">' +
+								'<div class="margin_left3 width85 font_size30 font_color33">' +
+								data[items].posName +
+								'</div>' +
+								'<div class="margin_left4 width10 font_size26 font_color99">*' +
+								data[items].num +
+								'</div>' +
+								'</div>' +
+								'<div class="font_color33 font_size26 goAllocation" style="margin-left: 5.5rem;margin-top: .05rem;"  data-id=' +
+								data[items].id + ' data-name=' + data[items].name + '>查看详情></div>' +
+								'</div>';
+							$(fragmentplanList).append(recordList);
+						})
+						$("#alloctionList").append($(fragmentplanList));
+					}
+				});
+			}
+
+
+			// 头部导航
+			$('.tab_swich1').on('tap', function() {
+				$(".header_tab").find("div").removeClass("selection");
+				// $("#alloctionList").html("");
+				if ($(this).attr("data-id") == 1) {
+					$('#alloctionList').html('');
+					keywords.result = '1'
+				} else if ($(this).attr("data-id") == 2) {
+					$('#alloctionList').html('');
+					keywords.result = '2'
+				} else {
+					$('#alloctionList').html('');
+					keywords.result = '3'
+				}
+				getList();
+				$(this).addClass("selection");
+
+			})
+			// 调拨详情
+			$('#alloctionList').on('tap', '.goAllocation', function() {
+				$$.openWindow({
+					url: '../pages/allocationDetails.html',
+					id: 'allocationDetails',
+					extras: {
+						"productId": $(this).attr('data-id'),
+						"type": 'alloctionList'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/my.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/home.css" />
+
+		<style type="text/css">
+			.buttonClass {
+				width: 50%;
+				border-top: #CCCCCC solid 1px;
+				line-height: 0.93rem;
+			}
+
+			#pay {
+				display: none;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
+			}
+			#delete{
+				display: none;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class="div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i id="returnPageId" style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../assers/image/returnButton.png"
+				 class="headder_img"></i>
+			<div style="width: 6.8rem;">机具订单</div>
+		</header>
+
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<!-- 头部导航 -->
+			<div class="div_display order_top">
+				<div class="tab_swich selection" data-id="" id="qb">
+					全部
+				</div>
+				<div class="tab_swich" data-id="1" id="dzf">
+					待支付
+				</div>
+				<div class="tab_swich" data-id="3" id="dsh">
+					待收货
+				</div>
+				<div class="tab_swich" data-id="4" id="ywc">
+					已完成
+				</div>
+			</div>
+			<div class="mui-scroll-wrapper" style="margin-top: 1.7rem;" id="gototopId">
+				<div class="mui-scroll ">
+					<div class="myOrderList" style="padding-bottom: 1.5rem;">
+						<!-- 默认页面 -->
+						<div class="mrPage" style="width: 6.9rem;height: 4.2rem;background-color: #FFFFFF;margin: 0.3rem;border-radius: 0.2rem;">
+							<div class="back_gd_DC" style="width: 3.18rem;height: 0.32rem;position: relative;top: 0.4rem;left: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="width:0.83rem;height: 0.32rem;float: right;margin-right: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="float: left; width: 1.61rem;height: 1.61rem;margin-top: 1.28rem;margin-left: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="float: left; width: 2.7rem;height: 0.32rem;margin-top: 1.29rem;margin-left: 0.3rem;"></div>
+							<div style="margin-top: 3rem;margin-left: 0.3rem;">
+								<div class="back_gd_DC" style="width: 2.09rem;height: 0.34rem;float: left;margin-top: 0.1rem;"></div>
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
+							</div>
+						</div>
+						<div class="mrPage" style="width: 6.9rem;height: 4.2rem;background-color: #FFFFFF;margin: 0.3rem;border-radius: 0.2rem;">
+							<div class="back_gd_DC" style="width: 3.18rem;height: 0.32rem;position: relative;top: 0.4rem;left: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="width:0.83rem;height: 0.32rem;float: right;margin-right: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="float: left; width: 1.61rem;height: 1.61rem;margin-top: 1.28rem;margin-left: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="float: left; width: 2.7rem;height: 0.32rem;margin-top: 1.29rem;margin-left: 0.3rem;"></div>
+							<div style="margin-top: 3rem;margin-left: 0.3rem;">
+								<div class="back_gd_DC" style="width: 2.09rem;height: 0.34rem;float: left;margin-top: 0.1rem;"></div>
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
+							</div>
+						</div>
+						<div class="mrPage" style="width: 6.9rem;height: 4.2rem;background-color: #FFFFFF;margin: 0.3rem;border-radius: 0.2rem;">
+							<div class="back_gd_DC" style="width: 3.18rem;height: 0.32rem;position: relative;top: 0.4rem;left: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="width:0.83rem;height: 0.32rem;float: right;margin-right: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="float: left; width: 1.61rem;height: 1.61rem;margin-top: 1.28rem;margin-left: 0.3rem;">
+							</div>
+							<div class="back_gd_DC" style="float: left; width: 2.7rem;height: 0.32rem;margin-top: 1.29rem;margin-left: 0.3rem;"></div>
+							<div style="margin-top: 3rem;margin-left: 0.3rem;">
+								<div class="back_gd_DC" style="width: 2.09rem;height: 0.34rem;float: left;margin-top: 0.1rem;"></div>
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<!-- 空页面 -->
+			<!-- <div class="nothing" style="display: none;">
+				<img src="../assers/image/default/noOrder.png" class="width_height100" style="margin-top: 1.5rem;">
+				<p>暂无订单~</p>
+			</div> -->
+		</div>
+		<!-- 取消订单 -->
+		<div id="pay" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+			<div class="margin_top10 font_color33 font_size34 text_center">
+				确认取消订单？
+			</div>
+
+			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
+				<div class="text_center buttonClass" id="qxId" style="float: left;">
+					取消
+				</div>
+				<div class="text_center buttonClass" id="qrId" style="float: right;border-left: #CCCCCC solid 1px;">
+					确认
+				</div>
+			</div>
+		</div>
+		<!-- 删除订单 -->
+		<div id="delete" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+			<div class="margin_top10 font_color33 font_size34 text_center">
+				确认删除订单？
+			</div>
+		
+			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
+				<div class="text_center buttonClass" id="qxdId" style="float: left;">
+					取消
+				</div>
+				<div class="text_center buttonClass" id="deleteId" style="float: right;border-left: #CCCCCC solid 1px;">
+					确认
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var keywords = {
+				pageNum: '1',
+				pageSize: '10',
+				data: {
+					memberId: '',
+					status: ''
+				}
+			};
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				//监听 刷新
+				window.addEventListener('orderRefresh', function(event) {
+					// getOrderList();
+					window.location.reload()
+					// location.reload();
+				});
+
+				$("#returnPageId").on("tap", function() {
+					mui.currentWebview.close();
+					mui.back();
+					$$.openWindow({
+						url: '../../views/index.html',
+						id: 'index',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+
+				console.log("_self.orderType=" + _self.orderType);
+				keywords.data.memberId = plus.storage.getItem('memberId');
+				// 判断展示那个
+				$(".order_top").find("div").removeClass("selection");
+				if (_self.orderType == '') {
+					$("#qb").addClass("selection");
+				} else if (_self.orderType == '1') {
+					$('#dzf').addClass('selection');
+					keywords.data.status = '1'
+				} else if (_self.orderType == '3') {
+					$('#dsh').addClass('selection');
+					keywords.data.status = '3'
+				} else if (_self.orderType == '4') {
+					$('#ywc').addClass('selection');
+					keywords.data.status = '4'
+				}
+				mui(".mui-scroll-wrapper").pullRefresh({
+					container: '.mui-scroll',
+					up: {
+						contentrefresh: '加载中...',
+						contentnomore: '我也是有底线滴',
+						auto: false,
+						callback: function() {
+							var _this = this;
+							keywords.pageNum++;
+							getOrderList();
+							setTimeout(function() {
+								_this.endPullupToRefresh(false);
+							}, 500)
+						}
+					},
+					/* down: {
+						auto: false,
+						contentdown: "下拉刷新",
+						contentover: "释放刷新",
+						contentrefresh: "刷新中...",
+						callback: function() {
+							keywords.pageNum = 1;
+							keywords.pageSize = 10;
+							getOrderList();
+						}
+					} */
+				});
+				getOrderList();
+			};
+			//获取我的订单
+			function getOrderList() {
+				getMyOrderList(mui, keywords, function(data) {
+					$(".mrPage").remove()
+					//console.log("44444444"+JSON.stringify(data));
+					if (data.code == 200) {
+						var data = data.data.records
+						if (keywords.pageNum == 1) {
+							if (data.length == 0) {
+								var nothingIMg =
+									'<div class="nothing" style="display: block;">' +
+									'<img src="../assers/image/default/noOrder.png" class="width_height100">' +
+									'<p>暂无订单~</p>' +
+									'</div>';
+								$(".myOrderList").append(nothingIMg);
+							}
+						}
+
+						var fragmentplanList = document.createDocumentFragment();
+						var numParams;
+						if (keywords.pageNum == 1) {
+							numParams = 0;
+						} else {
+							numParams = (keywords.pageNum * 10) - 10;
+						}
+						var itemsTwo;
+						$.each(data, function(items) {
+							itemsTwo = numParams + items;
+							if (data[items].status == 1) {
+								data[items].status = '待支付'
+							} else if (data[items].status == 2) {
+								data[items].status = '待发货'
+							} else if (data[items].status == 3) {
+								data[items].status = '待收货'
+							} else if (data[items].status == 4) {
+								data[items].status = '已完成'
+							} else if (data[items].status == 5) {
+								data[items].status = '已取消'
+							}
+							var orderList =
+								'<div class="order_moudel margin_top2" >' +
+								'<div class="div_display goD" data-id=' + data[items].orderId + '>' +
+								'<div class="font_color33 font_size32 width82">' +
+								data[items].orderNo +
+								'</div>' +
+								'<div class="font_colorff0 font_size28">' +
+								data[items].status +
+								'</div>' +
+								'</div>' +
+								'<div class="div_display margin_top5">' +
+								'<div class="order_img width30 goD" data-id=' + data[items].orderId + '>' +
+								'<img src="' + data[items].goodsPicture +
+								'" style="border-radius: 0.1rem;" class="order_img goD" data-id=' + data[items].orderId + '>' +
+								'</div>' +
+								'<div class="goD font_color33 font_size30 margin_left3 width55 font_width700" data-id=' + data[items].orderId +
+								'>' +
+								data[items].goodsName +
+								'</div>' +
+								'<div class="goD width15 text_center font_size26 font_color99 margin_top5" data-id=' + data[items].orderId +
+								'>X' +
+								data[items].num +
+								'</div>' +
+								'</div>' +
+								'<div class="div_display margin_top5">' +
+								'<div class="font_color33 font_size26 width40">合计:￥' + data[items].payment + '</div>' +
+								'<div class="width30">' +
+								'<div id="buttonOne' + itemsTwo + '" class="order_btn1" data-id=' + data[items].orderId + '>取消订单' +
+								'</div>' +
+								'</div>' +
+								'<div id="buttonTwo' + itemsTwo + '" class="width30">' +
+								'<div id="btn_Two' + itemsTwo + '" class="order_btn2" data-id=' + data[items].orderId + ' data-no=' + data[
+									items].orderNo + '>' +
+								'</div>' +
+								'</div>' +
+								'</div>' +
+								'</div>';
+							$(fragmentplanList).append(orderList);
+						})
+						$(".myOrderList").append($(fragmentplanList));
+
+						var itemsThree;
+						$.each(data, function(items) {
+							itemsThree = numParams + items;
+							if (data[items].status == '待支付') {
+								$("#btn_Two" + itemsThree).text("立即支付");
+							} else if (data[items].status == '待发货') {
+								$("#buttonOne" + itemsThree).css('display', 'none');
+								$("#buttonTwo" + itemsThree).css('display', 'none');
+							} else if (data[items].status == '待收货') {
+								$("#buttonOne" + itemsThree).css('display', 'none');
+								$("#btn_Two" + itemsThree).text("确认收货");
+							} else if (data[items].status == '已完成') {
+								$("#buttonOne" + itemsThree).css('display', 'none');
+								// $("#buttonTwo" + itemsThree).css('display', 'none');
+									$("#btn_Two" + itemsThree).text("删除订单");
+							} else if (data[items].status == '已取消') {
+								$("#buttonOne" + itemsThree).css('display', 'none');
+								// $("#buttonTwo" + itemsThree).css('display', 'none');
+								$("#btn_Two" + itemsThree).text("删除订单");
+							}
+						});
+					}
+				})
+			}
+			// 头部导航
+			$('.tab_swich').on('tap', function() {
+				// window.scrollTo(0, 0, 100);
+				mui('.mui-scroll-wrapper').scroll().scrollTo(0, 0)
+				// var scroll = mui('.mui-scroll-wrapper').scroll();
+				// document.querySelector('.mui-scroll-wrapper').addEventListener('scroll',function (e) {
+				// 　　console.log('距离'+scroll.y);
+				// })
+				$(".order_top").find("div").removeClass("selection");
+				$(this).addClass("selection");
+				$(".myOrderList").html("");
+				keywords.data.status = $(this).attr("data-id");
+				console.log("点击的status=" + $(this).attr("data-id"));
+				keywords.pageNum = 1;
+				keywords.pageSize = 10;
+				// 获取列表
+				getOrderList();
+			})
+			// 立即支付
+			$('.myOrderList').on('tap', '.order_btn2', function(e) {
+				//alert("订单号==="+$(this).attr('data-id'));
+				if (e.currentTarget.innerHTML == "确认收货") {
+					goConfirmReceipt(mui, $(this).attr('data-id'), function(data) {
+						if (data.code == 200) {
+							tipShow('收货成功')
+							plus.webview.currentWebview().reload(true);
+						}
+					})
+				} else if (e.currentTarget.innerHTML == "立即支付") {
+					$$.openWindow({
+						url: '../pages/homeOrderSub.html',
+						id: 'homeOrderSub',
+						extras: {
+							"orderId": $(this).attr('data-no')
+						},
+						createNew: 'true',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				}else if(e.currentTarget.innerHTML == "删除订单"){
+					console.log('99' + $(this).attr('data-id'));
+					$("#delete").css("display", "bloak");
+					mui('#delete').popover('show');
+					data_id = $(this).attr('data-id');
+					
+				}
+			});
+			// 取消删除
+			$('#qxdId').on('tap', function() {
+				$("#delete").css("display", "none");
+				mui('#delete').popover('hide');
+			})
+			// 确认删除
+			$('#deleteId').on('tap', function() {
+				getDeleteOrder(mui,data_id, function(data) {
+					if (data.code == 200) {
+						tipShow('删除成功')
+						plus.webview.currentWebview().reload(true);
+					}
+				})
+			})
+			
+			// 取消订单
+			$('.myOrderList').on('tap', '.order_btn1', function() {
+				$("#pay").css("display", "bloak");
+				mui('#pay').popover('show');
+				data_id = $(this).attr('data-id');
+			})
+
+			$('#qxId').on('tap', function() {
+				$("#pay").css("display", "none");
+				mui('#pay').popover('hide');
+			})
+
+			/* 取消支付 */
+			$('#qrId').on('tap', function() {
+				getCancelPayN(mui, data_id, function(data) {
+					if (data.code == 200) {
+						tipShow('取消成功')
+						plus.webview.currentWebview().reload(true);
+					}
+				})
+			})
+
+			// 去订单详情
+			$('.myOrderList').on('tap', '.goD', function() {
+				$$.openWindow({
+					url: '../pages/oredrDetail.html',
+					id: 'oredrDetail',
+					extras: {
+						"orderId": $(this).attr('data-id')
+					},
+					createNew: 'true',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+		})(jQuery, document, mui);
+	</script>
+
+</html>

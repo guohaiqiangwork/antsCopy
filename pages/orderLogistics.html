@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<link rel="stylesheet" href="../assers/css/font-awesome.min.css">
+		<style type="text/css">
+			.detail_btn{
+				width: 2rem;
+				height: .7rem;
+				border-radius: .4rem;
+				text-align: center;
+				font-size: .3rem;
+				color: #FFFFFF;
+				padding-top: .13rem;
+				position: fixed;
+				bottom: 0.5rem;
+			}
+
+			.content_wight {
+				width: 7rem;
+				margin-left: .3rem;
+			}
+
+			/* 物流 */
+			.logist_left_border {
+				width: .25rem;
+				height: .25rem;
+				border-radius: 50%;
+				margin-top: .08rem;
+			}
+
+			.logist_bottom_border {
+				width: .04rem;
+				height: .9rem;
+				background-color: #D8D8D8;
+				margin-left: .1rem;
+				margin-top: -.2rem;
+			}
+
+			.border_left_top {
+				border-left: 2px solid red;
+				margin: -.2rem;
+				padding-left: .2rem;
+				padding-top: .4rem;
+				height: 1rem;
+				margin-top: -.4rem;
+			}
+			.order_moudel{
+				width: 6.9rem;
+				background-color: #FFFFFF;
+				border-radius: .2rem;
+				height: 1.7rem;
+				margin-top: .3rem;
+			}
+			.img_width{
+				width: .52rem;
+				height: .43rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class="div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height" style="z-index: 999;">
+			<i class="returnPageId" style="height: 100%;width: 0.7rem;float: left;touch-action: none;margin-top: 0.05rem;"><img src="../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			<div style="width: 6.7rem;">
+				订单跟踪
+			</div>
+		</header>
+		
+		<div class="content">
+			<div class="content_wight">
+				<div class="div_display padding_top2">
+					<div class="font_size28 font_color33 font_width800">
+						订单信息
+					</div>
+				</div>
+				<!-- 订单编号 -->
+				<div class="order_moudel">
+					<div class="div_display"> 
+						<div class="width20" style="padding-top: .6rem;padding-left: .4rem;">
+							<img src="../assers/image/shopping/1237250@2x.png" class="img_width">
+						</div>
+						<div class="width70 font_color33 font_size30">
+							<div class="margin_top3">
+								订单编号：<span id="orderNo">580683055038291001</span>
+							</div> 
+							<div class="margin_top2">
+								下单时间：<span id="createItme">2019-12-01 17:45:43</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 物流信息 -->
+				<div class="div_display margin_top5">
+					<div class="font_size28 font_color33 font_width800">
+						物流信息
+					</div>
+				</div>
+				
+				<div class="div_backgroun_ff" id="logistOrder">
+					<!-- <div class="div_display margin_top2">
+						<div class="logist_left_border div_backgroun_jb"></div>
+						<div class=" font_size28 font_color6A margin_left2">
+							<div class="font_width700">
+								[呼和浩特上国佳苑速运营业点]已签收,感谢使用顺丰,期待再次为您服务（主单总件数：1件）
+							</div>
+							<div class="border_left_top">
+								(11-11 11:11:00)
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		
+		<div class="detail_btn div_btn_jb margin_left2" style="margin-left: 5rem;">
+			确认收货
+		</div>
+		
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				/* 返回 监听父页面 */
+				$(".returnPageId").on("tap",function(){
+					var list = plus.webview.currentWebview().opener();　
+					mui.fire(list, 'orderDetailRefresh');
+					mui.currentWebview.close();
+					mui.back();
+				});
+				
+				// 确认收货
+				$('.detail_btn').on('tap', function() {
+					goConfirmReceipt(mui, _self.orderId, function(data) {
+						if (data.code == 200) {
+							tipShow('确认成功');
+							plus.webview.currentWebview().reload(true);
+						}else {
+							tipShow(data.message);
+						}
+					})
+				});
+				
+				
+				var fragmentplanList = document.createDocumentFragment();
+				var keyword = {
+					orderId: _self.orderId
+				}
+				getViewLogistics(mui, keyword, function(data) {
+					$('#orderNo').text(data.data.orderNo);
+					$('#createItme').text(data.data.createItme)
+					if (data.code = "200") {
+						if (data.data.logistics.length > 0) {
+							var logistListOrder = data.data.logistics;
+							$.each(logistListOrder, function(items) {
+								if (items == logistListOrder.length - 1) {
+									var logistList =
+										'<div class="div_display margin_top2">' +
+										'<div class="logist_left_border div_backgroun_jb "></div>' +
+										'<div class=" font_size28 font_color6A margin_left2">' +
+										'<div class="font_width700" style="width:6rem">' +
+										logistListOrder[items].context +
+										'</div>' +
+										'<div class="">(' +
+										logistListOrder[items].ftime +
+										')</div>' +
+										'</div>' +
+										'</div>';
+								} else {
+									var logistList =
+										'<div class="div_display margin_top2">' +
+										'<div class="logist_left_border div_backgroun_D8"></div>' +
+										'<div class=" font_size28 font_color6A margin_left2">' +
+										'<div class="font_width700" style="width:6rem">' +
+										logistListOrder[items].context +
+										'</div>' +
+										'<div class="">(' +
+										logistListOrder[items].ftime +
+										')</div>' +
+										'</div>' +
+										'</div>' +
+										//底边
+										'<div class="logist_bottom_border"></div>';
+								}
+
+								$(fragmentplanList).append(logistList);
+							});
+
+						}
+						$('#logistOrder').append($(fragmentplanList));
+					}
+				})
+			}
+
+
+
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

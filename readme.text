@@ -1,0 +1,105 @@
+项目结构及文件目录
+	1.页面资源目录  assers
+		1-1 页面样式文件 css
+			1-1.1 common.css			公共样式文件
+			1-1.2 font-awesome.min 		字体库
+			1-1.3 login.css				登录页面样式
+			1-1.4 mobileReset.css		忘了
+			1-1.5 mui.min.css			框架样式
+			
+			
+			1-1-2 pages 页面样式
+				updateName.css          余额提现，选择银行卡，设置提现密码样式
+				passwordPopUp.css       6位数密码弹框样式
+				
+			1-1-3 shoppging             积分商城样式
+				home.css                商城首页
+		1-2 项目图片文件 image
+			1-2.1  底导文件 tab
+			1-2.2  商城图片文件          shopping
+				
+		1-3 项目逻辑文件 js 
+			1-3.1 commonFun.js			公共js
+			1-3.2 jquery-1.11.2.min.js	jquer
+			1-3.3 mui.js				框架文件js
+			1-4.4 mui.min.js 			框架文件js
+			1-4.5 rem_reset.js			px转换文件
+			1-4.6 requestFun.js			接口请求文件
+	2.子页面目录pages 
+		scanning.html					二维码扫描页面
+		newsPage.html					消息页面
+		balanceTix.html                 提现页面
+		carryResult.html                提现结果页
+		homeDetails.html				首页详情
+		homeOrder.html					确认订单
+		homeOrderSub.html				提交订单
+		adress.html						地址编辑
+		myAdress.html					地址列表
+		payResult.html					支付结果
+		profit.html                     分润返现页面
+		balance.html                    余额页面
+		activation.html                 激活返现页面
+		equity.html                     会员权益
+		myImplements.html				我的机具
+		implementsAllocation.html		机具调拨
+		allocation.html					调拨操纵
+		allocationDetails.html			调拨详情
+		alloctionRecord.html			调拨记录
+		myProfit.html					我的收益
+		myProfitD.html					收益详情
+		myProfitDetailed.html			收益明细
+		myOrder.html					我的订单
+		oredrDetail.html				订单详情
+		activity.html					活动页面
+		machineAccess.html				机具入网
+		myAgent.html					我的代理
+		myAgentDetail.html				我的代理详情
+		setUp.html						设置
+		aboutUs.html					关于我们
+		bankCard.html					银行卡
+		editingMaterials.html			编辑资料
+		myQRCode.html					我的二维码
+		realName.html					实名认证
+		updatePhone.html				修改手机号
+		serviceAgreement.html			用户协议
+		Privacy.html			        隐私政策
+		txRecord.html                   提现记录
+		agentExplain.html               代理说明页
+		nweDetails.html                 新闻详情
+		orderLogistics.html				物流页面
+		noticeDetails.html              公告详情页
+		
+		2-1 shopping                    积分商城
+			classify.html               分类
+			myOrder.html               	我的订单
+			classifyShopp.html          分类商品
+			jfActivity.html             活动详情页（积分商城首页轮播图详情页）
+			jfDetails.html              商品详情
+			jfmyOrder.html              我的订单
+			jfOrder.html                填写订单（提交订单页）
+			jforderLogistics.html       物流信息
+			jfOrderSub.html             订单支付
+			jforedrDetail.html          订单详情页
+			jfActivity.html             商城首页搜索结果页
+			
+	3.公共页面目录 views 
+		commodity.html					积分商城
+		home.html						首页
+		index.html						导航栏首页
+		my.html							我的
+		product.html					产品中心
+		recovery.html					机具回收
+		
+				
+	4.入口页login.html (登录页) 
+	5. 用户手机号	userMobile
+	6.角色ID memberId
+	7.token Token 
+	8.用户手机号 userName
+	9.服务商ID serviceId
+	10.guide 引导页 
+	
+
+ 
+ 
+ 订单提交 及 支付结果页面	1541d21	guohaiqiang <837557495@qq.com>	2020年2月11日 下午5:42

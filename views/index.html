@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<link href="../assers/css/mui.min.css" rel="stylesheet" />
+		<link href="../assers/css/common.css" rel="stylesheet" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<style>
+			body {
+				background: white;
+				line-height: 18px;
+			}
+			
+			.mui-bar-tab .mui-tab-item.mui-active {
+				color: #E20000;
+			}
+			.mui-bar-tab .mui-tab-item{
+				color: #0E1D32;
+			}
+			
+			.bj_model_logisticsx {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.4);
+				z-index: 999;
+				display: none;
+			}
+			.mui-bar {
+			   background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="mui-bar mui-bar-tab" style="touch-action: none; z-index: 1;height: 1.05rem;">
+			<a id="homePage" class="mui-tab-item one_homePage" data-id="home.html">
+				<!-- <span class="mui-icon mui-icon-home"></span> -->
+				<div id="home" class="margin_top3 div_none">
+					<img src="../assers/image/tab/homea.png" class="img_width4">
+				</div>
+				<div id="homez" class="margin_top3">
+					<img src="../assers/image/tab/homeaz.png" class="img_width4">
+				</div>
+				<div class="font_size20" id="homeRed">
+					首页
+				</div>
+			</a>
+			<a id="category" class="mui-tab-item" data-id="product.html">
+				<div id="typez" class="margin_top3 div_none">
+					<img src="../assers/image/tab/typez.png" class="img_width4">
+				</div>
+				<div id="type" class="margin_top3 ">
+					<img src="../assers/image/tab/type.png" class="img_width4">
+				</div>
+				<div class="font_size20">
+					产品中心
+				</div>
+			</a>
+		<!-- 	<a id="implements" class="mui-tab-item" data-id="recovery.html">
+				<div id="recoveryz" class="margin_top3 div_none">
+					<img src="../assers/image/tab/type1z.png" class="img_width4">
+				</div>
+				<div id="recovery" class="margin_top3 ">
+					<img src="../assers/image/tab/type1.png" class="img_width4">
+				</div>
+				<div class="font_size20">
+					机具回收
+				</div>
+			</a> -->
+			<a id="shopCart" class="mui-tab-item" data-id="commodity.html">
+				<div id="shopz" class="margin_top3 div_none">
+					<img src="../assers/image/tab/shopz.png" class="img_width4">
+				</div>
+				<div id="shop" class="margin_top3 ">
+					<img src="../assers/image/tab/shop.png" class="img_width4">
+				</div>
+				<div class="font_size20">
+					商城
+				</div> 
+
+			</a>
+			<a id="personalCenter" class="mui-tab-item" data-id="my.html">
+				<div id="myz" class="margin_top3 div_none">
+					<img src="../assers/image/tab/myz.png" class="img_width4">
+				</div>
+				<div id="my" class="margin_top3">
+					<img src="../assers/image/tab/my.png" class="img_width4">
+				</div>
+				<div class="font_size20">
+					我的
+				</div>
+			</a>
+		</nav>
+
+
+		<script src="../assers/js/mui.js"></script>
+		<script src="../assers/js/jquery-1.11.2.min.js"></script>
+		<script src="../assers/js/commonFun.js"></script>
+		<script src="../assers/js/requestFun.js"></script>
+
+		<script type="text/javascript">
+			mui.init();
+			var subpage_style = {
+				top: '0px',
+				bottom: '51px',
+				render: 'always'
+			};
+			var self = null;
+			var activeTab = null;
+
+
+			mui.plusReady(function() {
+
+				//关闭右滑返回
+				plus.webview.currentWebview().setStyle({
+					'popGesture': 'none'
+				});
+				
+				self = plus.webview.currentWebview();
+				var sub = plus.webview.create("home.html", "home.html", subpage_style);
+				self.append(sub);
+				$('#homeRed').css('color', 'red')
+				activeTab = "home.html";
+				//选择底部菜单
+				mui('.mui-bar-tab').on('tap', 'a', function(e) {
+					var targetTab = this.getAttribute('data-id');
+					if (targetTab == activeTab) {
+						return;
+					}
+					var _subWv = plus.webview.getWebviewById(targetTab);
+					if (targetTab) {
+						var list = plus.webview.currentWebview().opener();
+							mui.fire(list, 'refreshMajorGuestCount');
+							//如果不存在则创建
+							if (!_subWv) {
+								_subWv = plus.webview.create(targetTab, targetTab, subpage_style);
+								self.append(_subWv);
+							}
+							_subWv.show();
+							if (targetTab == 'product.html') {
+								$('#homeRed').css('color', '#333333')
+								$('#type').css('display', 'none');
+								$('#typez').css('display', 'block');
+								$('#homez').css('display', 'none');
+								$('#home').css('display', 'block');
+								$('#shop').css('display', 'block');
+								$('#shopz').css('display', 'none');
+								$('#my').css('display', 'block');
+								$('#myz').css('display', 'none');
+								$('#recovery').css('display', 'block');
+								$('#recoveryz').css('display', 'none');
+							} else if (targetTab == 'home.html') {
+								//alert("211");
+								$('#homeRed').css('color', '#E20000')
+								$('#home').css('display', 'none');
+								$('#homez').css('display', 'block');
+								$('#type').css('display', 'block');
+								$('#typez').css('display', 'none');
+								$('#shop').css('display', 'block');
+								$('#shopz').css('display', 'none');
+								$('#my').css('display', 'block');
+								$('#myz').css('display', 'none');
+								$('#recovery').css('display', 'block');
+								$('#recoveryz').css('display', 'none');
+							} else if (targetTab == 'commodity.html') {
+								$('#homeRed').css('color', '#333333')
+								$('#shop').css('display', 'none');
+								$('#shopz').css('display', 'block');
+								$('#homez').css('display', 'none');
+								$('#home').css('display', 'block');
+								$('#type').css('display', 'block');
+								$('#typez').css('display', 'none');
+								$('#my').css('display', 'block');
+								$('#myz').css('display', 'none');
+								$('#recovery').css('display', 'block');
+								$('#recoveryz').css('display', 'none');
+							} else if (targetTab == 'my.html') {
+								$('#homeRed').css('color', '#333333')
+								$('#my').css('display', 'none');
+								$('#myz').css('display', 'block');
+								$('#homez').css('display', 'none');
+								$('#home').css('display', 'block');
+								$('#type').css('display', 'block');
+								$('#typez').css('display', 'none');
+								$('#shop').css('display', 'block');
+								$('#shopz').css('display', 'none');
+								$('#recovery').css('display', 'block');
+								$('#recoveryz').css('display', 'none');
+							}else if (targetTab == 'recovery.html') {
+								$('#homeRed').css('color', '#333333')
+								$('#recovery').css('display', 'none');
+								$('#recoveryz').css('display', 'block');
+								$('#shop').css('display', 'block');
+								$('#shopz').css('display', 'none');
+								$('#homez').css('display', 'none');
+								$('#home').css('display', 'block');
+								$('#type').css('display', 'block');
+								$('#typez').css('display', 'none');
+								$('#my').css('display', 'block');
+								$('#myz').css('display', 'none');
+							}
+							// 隐藏之前的webview
+							if (plus.webview.getWebviewById(activeTab)) {
+								plus.webview.getWebviewById(activeTab).hide('none');
+							}
+							activeTab = targetTab;
+							
+							if(targetTab == 'home.html'){
+								plus.storage.setItem('mar','1');
+							}else{
+								plus.storage.setItem('mar','2');
+							}
+							var listhome = plus.webview.getWebviewById("home.html");
+							mui.fire(listhome, 'refreshIndexCountHome');
+							
+							
+							if (!mui.os.ios) {
+								if (targetTab == 'my.html') {
+									//alert("51111")
+									plus.webview.getWebviewById(targetTab).reload();
+								};
+								if (targetTab == 'commodity.html') {
+									// alert("52222")
+									//console.log("aaa="+targetTab);
+									//console.log("bbb="+ JSON.stringify(plus.webview.getWebviewById(targetTab)));
+									//plus.webview.getWebviewById(targetTab).reload();
+								}
+							} else {
+								// alert("66="+targetTab)
+								setTimeout(function() {
+									var list22 = plus.webview.getWebviewById("commodity.html");
+									mui.fire(list22, 'refreshMajorGuestCount');
+									var list23 = plus.webview.getWebviewById("my.html");
+									mui.fire(list23, 'refreshIndexCount');
+								}, 100);
+							}
+						
+						// getUserDetail(mui, plus.storage.getItem('memberId'), function(data) {
+						// 	//data.code == 401 || data.code == 1500
+						// 	if (data.code == 100) {
+						// 		//alert("11");
+						// 		var loginSign = true;
+						// 		mui.openWindow({
+						// 			url: "../login.html",
+						// 			id: "login",
+						// 			show: {
+						// 				aniShow: "slide-in-right"
+						// 			}
+						// 		});
+						// 	} else {}
+								
+						// });
+					} else {
+						//alert(JSON.stringify(_subWv));
+						// alert("targetTab="+targetTab);
+						//如果不存在则创建
+						if (!_subWv) {
+							// alert(!_subWv)
+							_subWv = plus.webview.create(targetTab, targetTab, subpage_style);
+							self.append(_subWv);
+						}
+						_subWv.show();
+						if (targetTab == 'home.html') {
+							$('#homeRed').css('color', '#E20000')
+							$('#home').css('display', 'none');
+							$('#homez').css('display', 'block');
+							$('#myz').css('display', 'none');
+							$('#my').css('display', 'block');
+							$('#type').css('display', 'block');
+							$('#typez').css('display', 'none');
+							$('#shop').css('display', 'block');
+							$('#shopz').css('display', 'none');
+						}
+						// 隐藏之前的webview
+						plus.webview.getWebviewById(activeTab).hide('none');
+						activeTab = targetTab;
+						//plus.webview.getWebviewById(targetTab).reload();
+					}
+
+				});
+				//获取设备的唯一标识号
+				function getUUID() {
+					console.log("UUID: " + plus.device.uuid);
+				}
+				// getUUID();
+				// 2.监听网络变化
+				document.addEventListener("netchange", function() {
+					// 加延迟 防止页面不能及时加载
+					var addNetTimer = setTimeout(function() {
+						clearTimeout(addNetTimer);
+						onNetChange();
+					}, 100);
+				}, false);
+				// 检查
+				var btn = ["确定升级", "取消"];
+				//获取app系统更新[是否手动点击获取更新]
+				function appUpdate(ismanual) {
+					mui.plusReady(function() {
+						plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+							var versionNumber = inf.version;
+							var client;
+							var ua = navigator.userAgent.toLowerCase();
+							if (/iphone|ipad|ipod/.test(ua)) {
+								//苹果手机   
+								mui.ajax({
+									type: "get",
+									dataType: 'json',
+									url: "https://itunes.apple.com/lookup?id=1318127518", //获取当前上架APPStore版本信息
+									data: {
+										id: "131812xxxx" //APP唯一标识ID
+									},
+									contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+									success: function(data) {
+										console.log('data:' + JSON.stringify(data));
+										var resultCount = data.resultCount;
+										for (var i = 0; i < resultCount; i++) {
+											var normItem = data.results[i].version;
+											console.log('normItem:' + normItem)
+											if (normItem > ver) {
+												var _msg = "发现新版本:V" + normItem;
+												//plus.nativeUI.alert("发现新版本:V" + normItem);
+												mui.confirm(_msg, '升级确认', btn, function(e) {
+													if (e.index == 0) { //执行升级操作
+														document.location.href = 'https://itunes.apple.com/cn/app/san-gu-hui/id131812xxxx?mt=8'; //上新APPStore下载地址
+														plus.runtime.openURL(data.url); //调用本地浏览器打开网址  
+													}
+												});
+												return;
+											}
+										}
+										if (ismanual) {
+											mui.toast('当前版本号已是最新');
+										}
+										return;
+									}
+								});
+							} else if (/android/.test(ua)) {
+								getVersion(mui, versionNumber, function(data) {
+									console.log(JSON.stringify(data))
+									if (data.code == 200) {
+										//mui.toast("发现新版本:V" + data.Data);//获取远程数据库中上新andriod版本号 
+										var _msg = "发现新版本:V" + data.data.version;
+										mui.confirm(_msg, '升级确认', btn, function(e) {
+											if (e.index == 0) { //执行升级操作
+												plus.nativeUI.toast("正在准备环境，请稍后！");
+												var dtask = plus.downloader.createDownload(data.data.url, {}, function(d, status) {
+													if (status == 200) {
+														var path = d.filename; //下载apk
+														plus.runtime.install(path); // 自动安装apk文件
+													} else {
+														plus.nativeUI.alert('版本更新失败:' + status);
+													}
+												});
+												dtask.start();
+											}
+										});
+									}
+
+								});
+
+							}
+						});
+					});
+				}
+
+				// 判断是不是第一次进来
+				var agreementFlag = plus.storage.getItem('agreementFlag');
+				if (!agreementFlag) {
+					$('.bj_model_logisticsx').css('display', 'block')
+				}
+				window.addEventListener('uiuiou', function(e) {
+					var agreementFlag = plus.storage.getItem('agreementFlag');
+					if (!agreementFlag) {
+						$('.bj_model_logisticsx').css('display', 'block')
+					} else {
+						$('.bj_model_logisticsx').css('display', 'none')
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

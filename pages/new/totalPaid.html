@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>支付累计总收益</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/newHome/mui.picker.min.css" />
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" href="../../assers/css/newHome/newHome.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;" style="background-color: #F4F4F4;">
+		<header class="header_white title_height">
+			<i class="mui-action-back"><img src="../../assers/image/returnButton.png" style="width: .16rem;height: .28rem;"></i>
+			支付累计总收益
+		</header>
+		<div class="content">
+			<!-- 时间选择 -->
+			<div class="div_display display_space time_title" style="margin-top: -2%;">
+				<div class="font_size26 margin_left3">
+					选择期月
+				</div>
+				<div class="margin_right5" id='pickDateBtn' data-options='{"type":"month","beginYear":2020,"endYear":2120}'>
+					<div class="div_display display_center">
+						<div id="startTime" class="font_size26 font_color33"></div>
+						<img src="../../assers/image/downJt.png" class="dowm_img">
+					</div>
+				</div>
+			</div>
+			<!-- 列表 -->
+			<div class="" id="productList">
+
+			</div>
+			<!-- <div class="product_bj_img">
+				<div class="font_size28 font_colorff text_center" >
+					中付pos
+				</div>
+				<div class="font_size24 font_color99 right_moudel">2020-3</div>
+				<div class="div_display margin_left3 ">
+					<div class="font_size28" style="margin-top: .25rem;">
+						月收益
+					</div>
+					<div class="font_size40 margin_left2 margin_top2">
+						100,000.00
+					</div>
+				</div>
+			</div> -->
+
+		</div>
+	</body>
+
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/newHome/mui.picker.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var dDate = new Date();
+			var year = new Date().getFullYear();
+			var month = new Date().getMonth() + 1;
+			var day = new Date().getDate();
+			var keyword = {
+				startTime: year + '-' + month,
+			}
+			$('#startTime').text(year + '年' + month + '月'); //开始时间
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+			// 初始化
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				keyword.memberId = plus.storage.getItem('memberId');
+
+				funPayTotalAmountView(); // 数据查询
+			}
+
+			// 查询数据
+			function funPayTotalAmountView() {
+				$("#productList").html("");
+				console.log(JSON.stringify(keyword))
+				getPayTotalAmountView(mui, keyword, function(data) {
+					if (data.code == 200) {
+						var data = data.data;
+						var fragmentplanList = document.createDocumentFragment();
+						$.each(data, function(items) {
+							if (items % 2 == 1) {
+								data[items].bg = 'product_bj_img1'
+							} else {
+								data[items].bg = 'product_bj_img'
+							}
+							var profitList =
+								'<div class="' + data[items].bg + '">' +
+								'<div class="font_size28 font_colorff text_center" >' +
+								data[items].brandName +
+								'pos</div>' +
+								'<div class="font_size24 font_color99 right_moudel">' +
+								data[items].mouth +
+								'</div>' +
+								'<div class="div_display margin_left3 ">' +
+								'<div class="font_size28" style="margin-top: .25rem;">月收益</div>' +
+								'<div class="font_size40 margin_left2 margin_top2">' +
+								data[items].thisMouthAmount +
+								'</div>' +
+								'</div>' +
+								'</div>';
+							$(fragmentplanList).append(profitList);
+						})
+						$("#productList").append($(fragmentplanList));
+
+					} else {
+						tipShow(data.message);
+					}
+
+				})
+			
+			}
+			//开始时间
+			document.getElementById("pickDateBtn").addEventListener('tap', function() {
+				var _this = this;
+				var optionsJson = this.getAttribute('data-options') || '{}';
+				var options = JSON.parse(optionsJson);
+				/*
+				 * 首次显示时实例化组件
+				 * 示例为了简洁，将 options 放在了按钮的 dom 上
+				 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+				 */
+				_this.picker = new mui.DtPicker(options);
+				_this.picker.show(function(rs) {
+					/*
+					 * rs.value 拼合后的 value
+					 * rs.text 拼合后的 text
+					 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+					 * rs.m 月，用法同年
+					 * rs.d 日，用法同年
+					 * rs.h 时，用法同年
+					 * rs.i 分（minutes 的第二个字母），用法同年
+					 */
+					console.log(rs.text)
+					console.log(rs.y.text)
+					console.log(rs.m.text)
+					$('#startTime').text(rs.y.text + '年' + rs.m.text + '月'); //开始时间
+					keyword.startTime = rs.y.text + '-' + rs.m.text
+					funPayTotalAmountView(); //查询数据
+					/* 
+					 * 返回 false 可以阻止选择框的关闭
+					 * return false;
+					 */
+					/*
+					 * 释放组件资源，释放后将将不能再操作组件
+					 * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+					 * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+					 * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+					 */
+					_this.picker.dispose();
+					_this.picker = null;
+				});
+
+			}, false);
+
+		})($, document, mui);
+	</script>
+</html>

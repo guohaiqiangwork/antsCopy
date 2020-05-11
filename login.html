@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>登录</title>
+
+		<link rel="stylesheet" type="text/css" href="assers/css/mobileReset.css" />
+		<link rel="stylesheet" type="text/css" href="assers/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="assers/css/login.css" />
+		<link rel="stylesheet" type="text/css" href="assers/css/font-awesome.min.css" />
+		<script src="assers/js/rem_reset.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			input::-webkit-input-placeholder { /* WebKit browsers */ 
+				color: rgba(0,0,0,0.4);
+				opacity: 0.6;
+			} 
+			input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+				color: rgba(0,0,0,0.4); ; 
+				opacity: 0.6;
+			} 
+			input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+				color: rgba(0,0,0,0.4); ; 
+				opacity: 0.6;
+			} 
+			
+			input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+				color: rgba(0,0,0,0.4); ; 
+				opacity: 0.6;
+			} 
+		</style>
+	
+	</head>
+
+
+	<body onselectstart="return false;">
+		<div id="login">
+			<div class="div_dl">
+				<span></span>
+				<img src="assers/image/log.png" style="width: 1.7rem">
+			</div> 
+  
+			<div class="phone_input">
+				<input style="line-height: 1.5;font-size: 0.4rem;" class="entry" id="phone" required="required" type="number"
+				 pattern="[0-9]*" placeholder="请输入手机号码" oninput="if(value.length>11)value=value.slice(0,11)">
+			</div>
+			<div class="code_input">
+				<input style="line-height: 1.5;" required="required" id="code" type="number" pattern="[0-9]*" placeholder="请输入验证码"
+				 class="entry" style="width: 2.3rem;" oninput="if(value.length>6)value=value.slice(0,6)">
+				<span id="yzm">获取验证码</span>
+				<div id="div_one"></div>
+			</div>
+			<div class="yzm_message" style="display: none;">
+				<span>*验证码错误重新输入</span>
+			</div>
+			<div class="login_btn_X">
+				登录
+			</div>
+			<div class="use_car_des">
+				<div class="div_checkboxOne">
+					<div class="div_checkbox" ></div>
+					<img src="assers/image/4660@2x.png" class="div_checkboxTwo"> 
+				</div>
+				
+				<p style="color: #333333;" id="userTextId">
+					我已阅读并同意
+					<span style="font-weight: 800;" href="pages/serviceAgreement.html" data-id='serviceAgreement'>
+					 《用户协议》
+					</span>
+					和
+					<span style="font-weight: 800;"  href="pages/Privacy.html" data-id='Privacy'>
+					 《隐私政策》
+					</span>
+				</p>
+			</div>
+
+		</div>
+	</body>
+	<script src="assers/js/jquery-1.11.2.min.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="assers/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assers/js/commonFun.js" type="text/javascript" charset="utf-8"></script>
+	<script src="assers/js/requestFun.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		(function($, doc, $$, undefined) {
+			$$.init()
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			};
+
+			// 5+环境引用
+			function plusReady() {
+				// 监听网络变化
+				document.addEventListener("netchange", function() {
+					// 加延迟 防止页面不能及时加载
+					var addNetTimer = setTimeout(function() {
+						clearTimeout(addNetTimer);
+						onNetChange();
+					}, 100);
+				}, false);
+				var _self = plus.webview.currentWebview();
+				
+				$("#userTextId").on("tap","span",function(){
+					var urlId = $(this).attr("data-id");
+					var urlRout = this.getAttribute('href');
+					if (urlRout && urlId) {
+						$$.openWindow({
+							url: urlRout,
+							id: urlId,
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					} else {
+						console.log('缺少页面路径')
+				
+					}
+				});
+				
+				// var bindPhone = plus.webview.getWebviewById("bindPhone") || '';
+				_self.goSign = true;
+				// bindPhone ? bindPhone.close() : '';
+				// 弹出软键盘时自动改变webview的高度 
+				if (mui.os.ios) {
+					plus.webview.currentWebview().setStyle({
+						softinputMode: "adjustResize"
+					});
+				}
+
+				//调用软键盘导致高度变化bug:获取原始窗口的高度
+				var originalHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				window.onresize = function() {
+					// 	//软键盘弹起与隐藏  都会引起窗口的高度发生变化
+					var resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+					//resizeHeight<originalHeight证明窗口被挤压了
+					if (resizeHeight * 1 < originalHeight * 1) {
+						$("#login").css("background-size", "110% 100%");
+						plus.webview.currentWebview().setStyle({
+							height: originalHeight
+						});
+					}
+				}
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				// 服务条例
+				$('.use_car_des').on('tap', 'a', function() {
+					console.log($(this).attr('data-index'));
+					var caseProtocol = $(this).attr('data-index');
+					$$.openWindow({
+						url: "views/agreement.html",
+						id: "agreement",
+						styles: {
+							statusbar: {
+								background: "#fff"
+							}
+						}
+					})
+				})
+
+
+				//点击获取验证码
+				var yzm = document.getElementById('yzm')
+				//是否可以点击【获取验证码按钮开关】
+				var onOff = true;
+				var reg = new RegExp(/^\d{6}$/); //6位数字验证
+				//code_4用于注册信息时的验证，验证码，获取与输入的一致
+				var code_4 = '';
+				yzm.onclick = function() {
+					if ($('#phone').val() < 11 || !(/^1[3456789]\d{9}$/.test($('#phone').val()))) {
+						tipShow('请输入正确手机号');
+						return
+					}
+
+					//如果onOff标志false则，不执行任何操作
+					if (!onOff)
+						return;
+					//循环周期60s
+					var times = 60;
+					//获取验证码
+					var data1 = {
+						phone: $('#phone').val()
+					};
+					var getCodeWati = plus.nativeUI.showWaiting("获取中...");
+					getCode(mui, data1, function(data) {
+						getCodeWati.close();
+						if (data.code == 200) {
+							console.log('验证码获取成功' + data.data)
+						} else {
+							console.log('验证码获取失败' + data.message)
+						}
+					});
+					//使用定时器，一秒触发一次事件，如果结束，则关闭定时器
+					var timer = setInterval(function() {
+						//事件处理，一秒一次
+						times--;
+						if (times < 1) {
+							//执行结束，则可以再次点击
+							yzm.innerHTML = "重新获取";
+							onOff = true;
+							clearInterval(timer);
+						} else {
+							var text = times + 's';
+							yzm.innerHTML = text;
+							onOff = false;
+						}
+					}, 1000);
+				}
+
+
+				/* 协议单选按钮 */
+				$(".div_checkbox").on("tap", function() {
+					_self.goSign = false;
+					$('.div_checkbox').css('display', 'none')
+					$('.div_checkboxTwo').css('display', 'block')
+				});
+
+				$(".div_checkboxTwo").on("tap", function() {
+					_self.goSign = true;
+					$('.div_checkboxTwo').css('display', 'none')
+					$('.div_checkbox').css('display', 'block')
+				});
+				// 点击跳转
+				$(".login_btn_X").on("tap", function() {
+					if (_self.goSign) {
+						tipShow('勾选用户协议');
+						return
+					} else if (!$("#phone").val()) {
+						tipShow('请填写手机号码');
+						return
+					} else if (!$("#code").val()) {
+						tipShow('请填写验证码');
+						return
+					}
+					var getLogin = plus.nativeUI.showWaiting("登录中...");
+					var keyword = {
+						phone: $("#phone").val(),
+						phoneCode: $("#code").val(),
+					};
+					gotoLogin(mui, keyword, function(data) {
+						getLogin.close();
+						if (data.code == 200) {
+							plus.storage.setItem('memberId', data.data.id);
+							plus.storage.setItem('Token', data.data.token + "");
+							plus.storage.setItem('userName', data.data.name);
+							plus.storage.setItem('userMobile', data.data.mobile);
+							plus.storage.setItem('serviceId', data.data.comId); //服务商id
+							plus.storage.setItem('loginOne', "true"); //是否登录过
+							$$.openWindow({
+								url: './views/index.html',
+								id: 'index',
+								show: {
+									aniShow: "slide-in-right"
+								}
+							});
+						} else {
+							if (data.code == 500) {
+								$('.yzm_message').css('display', 'block')
+							}
+							tipShow(data.message);
+							$("#code").val('')
+						}
+					});
+				});
+
+
+				var btn = ["确定升级", "取消"];
+				//获取app系统更新[是否手动点击获取更新]
+				function appUpdate(ismanual) {
+					mui.plusReady(function() {
+						plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+							var versionNumber = inf.version;
+							var client;
+							var ua = navigator.userAgent.toLowerCase();
+							if (/iphone|ipad|ipod/.test(ua)) {
+								return;
+								//苹果手机   
+								mui.ajax({
+									type: "get",
+									dataType: 'json',
+									url: "https://itunes.apple.com/lookup?id=1499788690", //获取当前上架APPStore版本信息
+									data: {
+										id: '1499788690' //APP唯一标识ID
+									},
+									contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+									success: function(data) {
+										console.log('data:' + JSON.stringify(data));
+										var resultCount = data.resultCount;
+										for (var i = 0; i < resultCount; i++) {
+											var normItem = data.results[i].version;
+											console.log('normItem:' + normItem)
+											if (normItem > versionNumber) {
+												var _msg = "发现新版本:V" + normItem;
+												//plus.nativeUI.alert("发现新版本:V" + normItem);
+												mui.confirm(_msg, '升级确认', btn, function(e) {
+													if (e.index == 0) { //执行升级操作
+														document.location.href = 'https://itunes.apple.com/cn/app/san-gu-hui/id1499788690?mt=8'; //上新APPStore下载地址
+														plus.runtime.openURL(data.url); //调用本地浏览器打开网址  
+													}
+												});
+												return;
+											}
+										}
+										if (ismanual) {
+											mui.toast('当前版本号已是最新');
+										}
+										return;
+									}
+								});
+							} else if (/android/.test(ua)) {
+						
+								getVersion(mui, versionNumber, function(data) {
+									console.log(JSON.stringify(data))
+									if (data.code == 200) {
+										//mui.toast("发现新版本:V" + data.Data);//获取远程数据库中上新andriod版本号 
+										var _msg = "发现新版本:V" + data.data.version;
+										if (data.success) {
+											mui.confirm(_msg, '升级确认', btn, function(e) {
+												if (e.index == 0) { //执行升级操作
+													plus.nativeUI.toast("正在准备环境，请稍后！");
+													var dtask = plus.downloader.createDownload(data.data.url, {}, function(d, status) {
+														if (status == 200) {
+															var path = d.filename; //下载apk
+															plus.runtime.install(path); // 自动安装apk文件
+														} else {
+															plus.nativeUI.alert('版本更新失败:' + status);
+														}
+													});
+													dtask.start();
+												}
+											});
+										}
+									}
+								});
+
+							}
+						});
+					});
+				};
+				// appUpdate(); 更新版本号
+			}
+			
+			// 双击退出应用
+			var backButtonPress = 0;
+			mui.back = function(event) {
+				backButtonPress++;
+				if (backButtonPress > 1) {
+					plus.runtime.quit();
+				} else {
+					plus.nativeUI.toast('再按退出应用');
+				}
+				setTimeout(function() {
+					backButtonPress = 0;
+				}, 1000);
+				return false;
+			}
+ 
+		})(jQuery, document, mui);
+	</script>
+
+</html>

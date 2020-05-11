@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/my.css" />
+		<script src="../assers/js/rem_reset.js"></script>
+		<link rel="stylesheet" type="text/css" href="../assers/js/plugins/cropper/css/cropper.min.css"/>
+		
+		<link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+		<style type="text/css">
+			.mui-bar {
+				background-color: #1FBBA6;
+			}
+
+			.mui-title {
+				color: #FAFAFA;
+			}
+
+			#imgBox {
+				height: 300px !important;
+				width: 300px !important;
+				margin: 30px auto;
+				background: url('../assers/js/plugins/cropper/images/bg.png');
+			}
+
+			#popoverId {
+				position: fixed;
+				top: 1rem;
+				width: 100%;
+				height: 10.5rem;
+				background-color: #FFFFFF;
+			}
+			.content {
+			    margin-top: 0.8rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_color33 title_height">
+			<div class="div_display">
+				<div class="width40" id="returnId">
+					<i class="mui-action-back" style="touch-action: none;"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+				</div>
+				<div class="" style="font-size: 0.34rem;width: 2rem;margin-left: 0.3rem;">
+					编辑资料
+				</div>
+				<div class="width40 text_right" style="font-size: 0.3rem;margin-right: 0.3rem;">
+					<!-- 完成 -->
+				</div>
+			</div>
+		</header>
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<div class="setUp_moudel">
+				<div class="text_center margin_left3 padding_top3 border_bottom_ee" id="jt"><!-- moreMenus -->
+					<div class="editing_img" style="margin-left: 2.5rem;">
+						<img id="hederImg" class="editing_img" src="../assers/image/headPortrait.png">
+					</div>
+					<div class="font_color33 font_size34 margin_top3 margin_bot3">
+						更换头像
+					</div>
+				</div>
+				<div class="div_display font_color33 font_size30 setUp_moudel_one padding_bot4 margin_top4">
+					<div class="div_display width25">
+						真实姓名
+					</div>
+					<div id="nameId">
+
+					</div>
+					<div class="width15 text_right">
+					</div>
+				</div>
+				<div class="div_display font_color33 font_size30 setUp_moudel_one padding_bot4 margin_top4 goSetUp" style="border: none;">
+					<div class="div_display width25">
+						我的电话
+					</div>
+					<div class="width50" id="teltphoneId">
+
+					</div>
+					<div class="text_right" style="width: 25%;">
+						<img src="../assers/image/going.png" class="setUp_right_img">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 图片裁剪 -->
+		<div class="mui-content mui-popover" style="" id="popoverId">
+			<div id="imgBox">
+				<img id="userImage_id" width="300" height="300" />
+			</div>
+			<table align="center">
+				<tr>
+					<td colspan="3" style="padding:5px 5px;"><button type="button" disabled id="confirm_id" class="mui-btn mui-btn-green mui-btn-block toolbutton">确定并保存</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<!-- <script type="text/javascript" src="../assers/js/plugins/jquery-3.1.1.slim.min.js"></script>
+	<script type="text/javascript" src="../assers/js/plugins/cropper/js/cropper.min.js"></script> -->
+	
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				$("#jt").on("tap",function(){
+					$$.openWindow({
+						url: 'editingMaterials1.html',
+						id: 'editingMaterials1',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+				
+				/* 返回事件 */
+				$("#returnId").on("tap",function(){
+					plus.nativeUI.closeWaiting();
+					var list = plus.webview.currentWebview().opener();
+					mui.fire(list, 'refreshMajorGuestCount_setUp');
+				});
+				
+				/* 监听更新页面 */
+				window.addEventListener('refreshMajorGuestCount', function(event) {
+					/* 查询用户信息*/
+					get_myMassage();
+				});
+				
+				/* 查询用户信息*/
+				var teltphoneVla;
+				get_myMassage();
+				function get_myMassage(){
+					myMassage(mui,plus.storage.getItem('memberId'),function(data){
+						var myMassageData = data;
+						localStorage.setItem("imageUrl",myMassageData.data.avatar);
+						imageUil=myMassageData.data.avatar;
+						if (data.code == 200) {
+							if(myMassageData.data.avatar){
+								$('#hederImg').attr('src', "");
+								$('#hederImg').attr('src', myMassageData.data.avatar);
+							}
+							
+							$('#nicknameId').text(myMassageData.data.nickname);
+							$('#nameId').text(myMassageData.data.name);
+							teltphoneVla = myMassageData.data.mobile;
+							var teltphoneVlaTwo = teltphoneVla.substring(3, 0) + "****" + teltphoneVla.substring(7, 11);
+							$('#teltphoneId').text(teltphoneVlaTwo);
+						} else {
+							tipShow(data.message);
+						}
+					});
+				}
+				
+				
+				/* 修改电话号码 */
+				$(".goSetUp").on("tap",function(){
+					$$.openWindow({
+						url: '../pages/updatePhone.html',
+						id: 'updatePhone',
+						extras: {
+							teltphoneVla: teltphoneVla
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				});
+
+				/* 加载上传图片按钮 */
+			/* 	document.getElementById("moreMenus").addEventListener("tap", function() {
+					var editButtons = new Array();
+					editButtons.push({
+						title: "拍照上传",
+						style: "default"
+					});
+					editButtons.push({
+						title: "从相册选择",
+						style: "default"
+					});
+					plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: editButtons
+					}, function(e) {
+						var index = e.index;
+						switch (index) {
+							case 1:
+								captureImage(); //拍照
+								break;
+							case 2:
+								selectImage(); //相册选择
+								break;
+						}
+					});
+				}); */
+
+				//确定裁切
+				/* document.getElementById("confirm_id").addEventListener("tap", function(e) {
+					var dataURL = $("#userImage_id").cropper("getCroppedCanvas", {
+						width: 300,
+						height: 300
+					});
+					alert("2");
+					var imgUrl = dataURL.toDataURL("image/png", 1);
+					$("#hederImg").attr("src" , imgUrl);
+					$("#userImage_id").cropper("replace", imgUrl);
+					$("#userImage_id").cropper("clear"); //裁切完成取消显示裁切框
+					$("#userImage_id").cropper("disable");
+					//确定裁切后销毁裁切组件，标记一下，下次继续裁切时需要初始化一下裁切组件
+					window.imageDisable = true;
+					//禁用几个功能按钮
+					$("button.toolbutton").prop("disabled" , true);
+					//向后台提供数据
+					uploadFile(imgUrl);
+				});
+				//初始化裁切组件
+				initImageCropper(); */
+
+			};
+
+			//拍照
+			/* function captureImage() {
+				var cmr = plus.camera.getCamera(2);
+				cmr.captureImage(
+					function(path) {
+						//将图片地址转换
+						plus.io.resolveLocalFileSystemURL(path, function(entry) {
+							var newPath = entry.toLocalURL() + "?version=" + Math.random();
+							loadImage(newPath);
+						});
+					},
+					function(error) {
+						mui.toast(error.message);
+					}, {
+						filename: "_documents/"
+					}
+				);
+			} */
+			
+			//文件上传
+		/* 	function uploadFile(image) {
+				var dataBase = {
+						file: image,
+					}
+				uploadAvatar(mui,dataBase,function(data){
+					mui('#popoverId').popover('hide');
+					if (data.code == 200) {
+						tipShow("修改成功！");
+					} else {
+						tipShow(data.message);
+					}
+				})
+			} */
+
+			/* function initImageCropper() {
+				//初始化组件
+				$("#userImage_id").cropper({
+					aspectRatio: 3 / 3,
+					autoCropArea: 1,
+					dragMode: "move", //设置移动图片、重新绘制选图区域
+					cropBoxResizable: false,
+					//movable: true,//是否允许移动裁切框
+					zoomable: true, //是否允许放大图片
+					guides: true, //取消显示裁切线中间的虚线网格
+					minContainerWidth: 300,
+					minContainerHeight: 300,
+					minCanvasWidth: 300,
+					minCanvasHeight: 300,
+					crop: function(data) {
+						//初始化
+						window._scaleX = data.scaleX;
+						window._scaleY = data.scaleY;
+					}
+				});
+			} */
+			//相册选择
+			/* function selectImage() {
+				plus.gallery.pick(function(path) {
+					loadImage(path);
+				}, function(e) {
+					mui.toast("没有选择图片.");
+				});
+			} */
+
+			//确定选择图片
+			/* function loadImage(path) {
+				//path 就是图片在手机中的路径地址
+				mui('#popoverId').popover('show');
+				var img = document.getElementById("userImage_id");
+				console.log("原来的="+path);
+				img.src = path;
+				if (window.imageDisable == true) {
+					$("#userImage_id").cropper("enable");
+				}
+				$("#userImage_id").cropper("replace", path);
+				//启用几个功能按钮
+				$("button.toolbutton").prop("disabled" , false);
+				document.getElementById("userImage_id").onclick = function() {
+					plus.runtime.openFile(path);
+				}
+			} */
+
+
+			// 立即购买
+			$('.homeDetails_btn').on('tap', function() {
+				$$.openWindow({
+					url: '../pages/homeOrder.html',
+					id: 'homeOrder',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			});
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>无网络</title>
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assers/css/mobileReset.css">
+    <script src="../assers/js/rem_reset.js"></script>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #notNetBox {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            z-index: 999;
+            text-align: center;
+        }
+
+        #notNetBox .netImg {
+            width: 4.12rem;
+            height: 3.53rem;
+            margin: 2rem auto 0rem;
+        }
+
+        #notNetBox .netImg img {
+            width: 100%;
+            height: 100%;
+        }
+		
+		#notNetBox div:nth-child(2){
+			margin-top: 0.4rem;
+		}
+		
+		#notNetBox div:nth-child(2),
+		#notNetBox div:nth-child(3){
+			font-size: 0.26rem;
+		}
+
+       /* #notNetBox span {
+            display: block;
+            font-size: .3rem;
+            color: #999999;
+            margin-top: 1rem;
+        } */
+
+		/* 按钮 */
+        #notNetBox .againNet {
+           /* width: 2.0rem;
+            height: .7rem;
+            line-height: .7rem;
+            background-color: #008BD5;
+            color: #fff;
+            margin-top: 0.35rem;
+            font-size: .28rem; */
+			width: 5.7rem;
+			height: .82rem;
+			border-radius: .4rem;
+			text-align: center;
+			font-size: .28rem;
+			color: #FFFFFF;
+			margin-left: .3rem;
+			line-height: 3;
+			background: linear-gradient(to right, #FF765A, #FF0100);
+			margin-top: 1.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="notNetBox">
+        <div class="netImg"><img src="../assers/image/wuwl.png"></div>
+		<div style="font-size: 0.3rem;color: #999999;">您的网络异常</div>
+		<button class="againNet">重新加载</button>
+    </div>
+</body>
+<script src="../assers/js/jquery-1.11.2.min.js"></script>
+<script src="../assers/js/mui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    (function ($, document, $$, undefined) {
+        $$.init();
+        $$.plusReady(function () {
+            // 不支持全屏，强制竖屏
+            plus.navigator.setFullscreen(false);
+            plus.screen.lockOrientation("portrait-primary");
+            $(".againNet").on("tap", function (e) {
+                var netTimer = plus.nativeUI.showWaiting("联网中...");
+                if (mui.os.ios) {
+                    setTimeout(function () {
+                        if (navigator.onLine) {
+                            netTimer.close();
+                            plus.webview.getLaunchWebview().reload(true);
+                            $$.currentWebview.close();
+                            // return false;
+                        } else {
+                            // alert("无网");
+                            setTimeout(function () {
+                                netTimer.close();
+                                $$.toast("联网失败，请检测网络");
+                            }, 1000)
+                        }
+                    }, 3000)
+
+                } else {
+                    if (navigator.onLine) {
+                        // alert("有网");
+                        netTimer.close();
+                        plus.webview.getLaunchWebview().reload(true);
+                        $$.currentWebview.close();
+                        // return false;
+                    } else {
+                        // alert("无网");
+                        setTimeout(function () {
+                            netTimer.close();
+                            $$.toast("联网失败，请检测网络");
+                        }, 1000)
+                    }
+                }
+
+                e.preventDefault();
+            });
+            if (mui.os.ios) {
+
+            } else {
+                document.addEventListener("netchange", function () {
+                    // alert("监听");
+                    var nt = plus.networkinfo.getCurrentType();
+                    switch (nt) {
+                        case plus.networkinfo.CONNECTION_ETHERNET:
+                        case plus.networkinfo.CONNECTION_WIFI:
+                            plus.webview.getLaunchWebview().reload(true);
+                            $$.currentWebview.close();
+                            return false;
+                            break;
+                        case plus.networkinfo.CONNECTION_CELL2G:
+                        case plus.networkinfo.CONNECTION_CELL3G:
+                        case plus.networkinfo.CONNECTION_CELL4G:
+                            plus.webview.getLaunchWebview().reload(true);
+                            $$.currentWebview.close();
+                            return false;
+                            break;
+                        default:
+                            break;
+                    }
+                }, false);
+            }
+            /*
+			3.双击后退 -> 退出应用
+			*/
+            var backButtonPress = 0;
+            $$.back = function (event) {
+                backButtonPress++;
+                if (backButtonPress > 1) {
+                    plus.runtime.quit();
+                } else {
+                    plus.nativeUI.toast('再按退出应用');
+                }
+                setTimeout(function () {
+                    backButtonPress = 0;
+                }, 1000);
+                return false;
+            }
+        });
+    })(jQuery, document, mui);
+
+</script>
+
+</html>

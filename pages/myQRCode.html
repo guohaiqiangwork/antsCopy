@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../assers/css/common.css">
+		<script src="../assers/js/rem_reset.js"></script>
+
+		<style type="text/css">
+			.lobotuTitle {
+				margin-top: 1rem;
+				height: 9.3rem;
+				width: 6.9rem;
+				margin: 0 auto;
+			}
+
+			.lunbo-img {
+				height: 9.3rem;
+				width: 100%;
+				-border: 1px solid #FFFFFF;
+				overflow: hidden;
+				border-radius: .2rem;
+				z-index: 0;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+			    padding-right: 0.1rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33">
+			<i class="mui-action-back"><img src="../assers/image/returnButton.png" class="headder_img"></i>
+			我的二维码
+		</header>
+
+		<div style="margin-top: 1.2rem;"></div>
+
+		<!-- 图片轮播 -->
+		<div class="mui-content lobotuTitle" id="goActive" style="background-color:transparent;">
+			<div class="lunbo">
+				<div class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop div_backgroun_ff">
+
+					</div>
+					<div class="mui-slider-indicator mui-slider-indicatorTwo">
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<div class="setUp_btn div_btn_jb" id="updateAlbumId">
+				保存至相册
+			</div>
+		</div>
+	</body>
+	<script src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../assers/js/mui.min.js"></script>
+	<script src="../assers/js/commonFun.js"></script>
+	<script src="../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			//轮播图当前角标
+			var current_num = 0;
+			/* 图片集合 */
+			var dataList;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				//数据收集：最大 1080 x 1920  1.7 最小：828 x 1792  2.16
+				//opp手机 622 360 1.72  我的手机：574 360 1.59
+				
+				console.log("比例="+window.innerHeight/window.innerWidth);
+				//根据手机屏幕的尺寸，调整轮播图和按钮位置
+				if(window.innerHeight/window.innerWidth > 1.599){
+					$(".lobotuTitle").css("margin-top","1.7rem");
+				}else if(window.innerHeight/window.innerWidth > 2){
+					$(".lobotuTitle").css("margin-top","1.9rem");
+				}
+				
+				
+				/* 轮播图 */
+				getImage();
+				
+				/* 获取轮播图当前角标 */
+				document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+			　　　　current_num = event.detail.slideNumber;
+			　　});
+
+				/* 保存到相册 */
+				$("#updateAlbumId").on("tap",function(){
+					this.imgUrl = dataList[current_num];
+					var imgDtask = plus.downloader.createDownload(this.imgUrl, {
+						method: 'GET'
+					}, function(d, status) {
+						if (status == 200) {
+							plus.gallery.save(d.filename, function() { //保存到相册
+								plus.io.resolveLocalFileSystemURL(d.filename, function(enpty) {
+									// 关闭弹框
+									mui.toast('保存成功')
+								});
+					
+							})
+						} else {
+							mui.toast('保存失败')
+						}
+					});
+					imgDtask.start()
+				});
+
+			};
+
+
+
+			function getImage() {
+				get_qrCode(mui, plus.storage.getItem('memberId'), function(data) {
+					if (data.code == 200) {
+						dataList = data.data;
+						var length = dataList.length
+						if (length != 0) {
+							if (length == 1) {
+								$('.mui-slider-group').append('<div class="mui-slider-item "><img class="lunbo-img" src="' + dataList[0] +
+									'" /></div>');
+							} else {
+								$('.mui-slider-group').append(
+									'<div class="mui-slider-item mui-slider-item-duplicate "><img class="lunbo-img" src="' + dataList[length-1]+
+									'" /></div>');
+								$('.mui-slider-indicatorTwo').append('<div num_id="0" class="mui-indicator mui-active"></div>');
+								for (var i = 0; i < length; i++) {
+									$('.mui-slider-group').append('<div  class="mui-slider-item"><img class="lunbo-img" src="' + dataList[i] +
+										'" /></div>');
+								}
+								$('.mui-slider-group').append(
+									'<div class="mui-slider-item mui-slider-item-duplicate"><img class="lunbo-img" src="' + dataList[0] +'" /></div>');
+								var jj;
+								for (var i = 0; i < length - 1; i++) {
+									jj = i + 1;
+									$('.mui-slider-indicatorTwo').append('<div num_id='+jj+' class="mui-indicator"></div>');
+								}
+							}
+							var gallery = mui('.mui-slider');
+							gallery.slider({
+								interval: 0 //自动轮播周期，若为0则不自动播放，默认为0；
+							});
+						}
+					} else {
+						tipShow(data.message);
+					}
+				})
+			}
+		})(jQuery, document, mui);
+	</script>
+
+</html>

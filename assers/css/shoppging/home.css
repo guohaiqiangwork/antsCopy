@@ -1,0 +1,96 @@
+#searchId {
+	-border: #999999 solid 1px;
+	border-radius: 1rem;
+	height: 0.7rem;
+	width: 6.7rem;
+	margin: 5px auto;
+	background-color: #FFFFFF;
+}
+
+#searchId div {
+	float: left;
+	margin: 0.1rem 0.1rem 0.1rem 0.2rem;
+}
+
+#countId {
+	width: 6.7rem;
+	margin: 0.1rem auto;
+}
+
+#myServiceId {
+	height: 2rem;
+	width: 6.8rem;
+	background-color: #FFFFFF;
+	border-radius: .3rem;
+	/* background: url(../../image/shopping/5453@2x.png);
+	background-size: 100% 100%; */
+}
+
+#buttId {
+	display: flex;
+	justify-content: space-around;
+}
+
+#productList {
+	flex-wrap: wrap;
+}
+
+.mui-scroll-wrapper {
+	-position: static;
+}
+
+html,
+body,
+.mui-content {
+	background: #F4F4F4;
+}
+
+.product_module {
+	width: 3.1rem;
+	height: 4.08rem;
+	background-color: #FFFFFF;
+	border-radius: .2rem;
+	margin-left: .45rem;
+	margin-top: .3rem;
+	float: left;
+}
+
+.product_moudel_img {
+	width: 3.1rem;
+	height: 2.8rem;
+}
+
+
+.lobotuTitle {
+	margin-top: 1rem;
+	height: 3.2rem;
+}
+
+.lunbo-img {
+	border: 1px solid #FFFFFF;
+	overflow: hidden;
+	height: 3.5rem;
+	z-index: 0;
+}
+
+.activity_moudel {
+	width: 7rem;
+	margin-left: .3rem;
+	height: 4.4rem;
+}
+
+.activity_moudel_left {
+	width: 3.3rem;
+	height: 4rem;
+	border-radius: .2rem;
+}
+
+.activity_moudel_imgr {
+	width: 3.3rem;
+	height: 1.8rem;
+}
+
+.activity_moudel_imgl {
+	width: 3.3rem;
+	height: 4rem;
+}
