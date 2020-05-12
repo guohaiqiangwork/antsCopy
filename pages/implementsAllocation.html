@@ -42,14 +42,10 @@
 			}
 
 			.nothing1 {
-				/* position: absolute;
-							left: 0;
-							right: 0;
-							top: .88rem;
-							bottom: 0;
-							width: 100%; */
 				text-align: center;
-
+				position: absolute;
+				margin-top: 2rem;
+				width: 100%;
 			}
 
 			.nothing1 img {
@@ -80,6 +76,10 @@
 				<div class="tab_swich" data-id="1">
 					接收调拨
 				</div>
+			</div>
+			<div class="nothing1" style="display: none;">
+				<img style="margin: 1rem auto 0rem;" src="../assers/image/diaobo.png" class="width_height100">
+				<p>没有可调拨的人选</p>
 			</div>
 			<!-- 调拨人选 -->
 			<div class="allocation">
@@ -188,6 +188,7 @@
 				getMyAllot(mui, keyword, function(data) {
 					if (data.code == 200) {
 						if (data.data.length > 0) {
+							$(".nothing1").css('display', 'none')
 							$(".margin_bot3").css("display", "block");
 							var fragmentplanList = document.createDocumentFragment();
 							$.each(data.data, function(items) {
@@ -208,13 +209,13 @@
 							})
 							$("#myfrind").append($(fragmentplanList));
 						} else {
-							$(".nothing1").css('display','none')
-							var noData =
-								'<div class="nothing1">' +
-								'<img style="margin: 1rem auto 0rem;" src="../assers/image/diaobo.png" class="width_height100">' +
-								'<p>没有可调拨的人选</p>' +
-								'</div>';
-							$(".allocation").append($(noData));
+							$(".nothing1").css('display', 'block')
+							// var noData =
+							// 	'<div class="nothing1">' +
+							// 	'<img style="margin: 1rem auto 0rem;" src="../assers/image/diaobo.png" class="width_height100">' +
+							// 	'<p>没有可调拨的人选</p>' +
+							// 	'</div>';
+							// $(".allocation").append($(noData));
 							// $("#myfrind").append($(noData));
 							$(".margin_bot3").css("display", "none");
 						}
