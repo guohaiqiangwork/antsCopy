@@ -119,10 +119,7 @@ function doPay(payData, cbsuccess, cberror) {
 					if (payChannel.id === 'alipay') {
 						paySrc = data.data.orderInfo;
 					} else if (payChannel.id === 'wxpay') {
-						// alert("333");
-						// paySrc = data.data;
 						var data = data.data;
-						console.log("1111==" + JSON.stringify(data));
 						var statement = {};
 						statement.appid = data.appId;
 						statement.noncestr = data.nonceStr;

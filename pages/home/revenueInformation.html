@@ -154,7 +154,7 @@
 					var d1 = new Date(keyword.startTime.replace(/\-/g, "\/"));
 					var d2 = new Date(keyword.endTime.replace(/\-/g, "\/"));
 					if (d2 < d1) {
-						alert("结束时间不能小于开始时间！");
+						tipShow("结束时间不能小于开始时间！");
 						$('#endTime').text(year + '年' + month + '月' + day + "日"); //结束时间
 						keyword.endTime = year + '-' + month + '-' + day;
 						return false;

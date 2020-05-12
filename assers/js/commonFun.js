@@ -616,11 +616,10 @@ function appendHtml(str, dom, attr, val) {
  * 	@param {object} ex 	 平台标识
  * */
 function shareMessage(share, ex, shareJson, shareKeyword, lineEndId) {
+	console.log(JSON.stringify(ex))
 	var shareTitle = shareJson.title; //分享标题
 	var shareContent = shareJson.desc; //分享简介
 	var shareImg = shareJson.img //分享图片
-	console.log(shareImg)
-	// console.log("分享简介："+shareContent);
 	if (shareContent.length > 30) {
 		var shareContentReg = shareContent.substr(0, 30) + "...";
 	} else {
@@ -632,18 +631,16 @@ function shareMessage(share, ex, shareJson, shareKeyword, lineEndId) {
 		}
 	};
 	if (lineEndId && lineEndId[0] != 'lineEnd') {
+		console.log('00')
 		msg.href = requserUrlShard + "share/index.html?shareId=" + shareKeyword.userId + "&prductId=" + shareKeyword.productId +
 			""; //分享地址/
 	} else {
-		msg.href = requserUrlShard + "share/index.html?shareId=" + shareKeyword.userId + "&prductId=" + shareKeyword.productId +
-			""; //分享地址/
+		msg.href = shareKeyword; //分享地址/
 	}
 	msg.title = shareTitle;
 	msg.content = shareContentReg;
 	msg.thumbs = [shareImg]; //链接图片1张
 	share.send(msg, function() {
-		// mui.toast("分享成功");
-		// console.log(JSON.stringify(share));
 		console.log("分享到\"" + share.description + "\"成功!");
 		// $$.toast("分享到\"" + share.description + "\"成功！ ");
 	}, function(e) {

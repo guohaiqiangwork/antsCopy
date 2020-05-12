@@ -26,8 +26,34 @@
 				border-radius: .2rem;
 				z-index: 0;
 			}
+
 			.mui-slider .mui-slider-group .mui-slider-item img {
-			    padding-right: 0.1rem;
+				padding-right: 0.1rem;
+			}
+
+			.setUp_btn1 {
+				width: 7rem;
+				height: .9rem;
+				border-radius: .5rem;
+				text-align: center;
+				color: #FFFFFF;
+				font-size: .3rem;
+				margin-left: .3rem;
+				padding-top: .25rem;
+				/* position: fixed; */
+				bottom: .3rem;
+			}
+			.fenX{
+				width: 100%;
+				height: .9rem;
+				border-radius: .5rem;
+				text-align: center;
+				color: #333333;
+				font-size: .3rem;
+				margin-left: .3rem;
+				padding-top: .25rem;
+				position: fixed;
+				bottom: 1rem;
 			}
 		</style>
 	</head>
@@ -52,12 +78,40 @@
 			</div>
 		</div>
 
-
-		<div class="content" style="margin-bottom: 1.5rem;">
-			<div class="setUp_btn div_btn_jb" id="updateAlbumId">
-				保存至相册
+		<div class="fenX" style="display: none;">
+			<div class="div_display text_center">
+				<div class="width30 wxFX" data-id='1'>
+					<div class="">
+						<img src="../assers/image/wxf.png" style="width: .6rem;height: .6rem;">
+					</div>
+					<div class="font_size30">
+						微信
+					</div>
+				</div>
+				<div class=" width30 wxFX">
+					<div class="">
+						<img src="../assers/image/wxp.png" style="width:.6rem;height: .6rem;">
+					</div>
+					<div class="font_size30">
+						支付宝
+					</div>
+				</div>
+				<div class=" width30 " id="updateAlbumId">
+					<div class="">
+						<img src="../assers/image/savei.png" style="width: .6rem;height: .6rem;">
+					</div>
+					<div class="font_size30">
+						保存相册
+					</div>
+				</div>
 			</div>
+			<!-- <div class="content" style="margin-bottom: 1.5rem;">
+				<div class="setUp_btn1 div_btn_jb" id="updateAlbumId">
+					保存至相册
+				</div>
+			</div> -->
 		</div>
+
 	</body>
 	<script src="../assers/js/jquery-1.11.2.min.js"></script>
 	<script src="../assers/js/mui.min.js"></script>
@@ -67,6 +121,8 @@
 		(function($, doc, $$, undefined) {
 			$$.init();
 			var _self;
+			var shareImg;
+			var shares = {};
 			//轮播图当前角标
 			var current_num = 0;
 			/* 图片集合 */
@@ -86,30 +142,41 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
-				
+
 				//数据收集：最大 1080 x 1920  1.7 最小：828 x 1792  2.16
 				//opp手机 622 360 1.72  我的手机：574 360 1.59
-				
-				console.log("比例="+window.innerHeight/window.innerWidth);
+
+				console.log("比例=" + window.innerHeight / window.innerWidth);
 				//根据手机屏幕的尺寸，调整轮播图和按钮位置
-				if(window.innerHeight/window.innerWidth > 1.599){
-					$(".lobotuTitle").css("margin-top","1.7rem");
-				}else if(window.innerHeight/window.innerWidth > 2){
-					$(".lobotuTitle").css("margin-top","1.9rem");
+				if (window.innerHeight / window.innerWidth > 1.599) {
+					$(".lobotuTitle").css("margin-top", "1.7rem");
+				} else if (window.innerHeight / window.innerWidth > 2) {
+					$(".lobotuTitle").css("margin-top", "1.9rem");
 				}
-				
-				
+
+
 				/* 轮播图 */
 				getImage();
-				
+
 				/* 获取轮播图当前角标 */
 				document.querySelector('.mui-slider').addEventListener('slide', function(event) {
-			　　　　current_num = event.detail.slideNumber;
-			　　});
+					current_num = event.detail.slideNumber;
+				});
 
+				plus.share.getServices(function(s) {
+					if (s && s.length > 0) {
+						for (var i = 0; i < s.length; i++) {
+							var t = s[i];
+							shares[t.id] = t;
+						}
+					}
+				}, function() {
+					// console.log("获取分享服务列表失败");
+				});
 				/* 保存到相册 */
-				$("#updateAlbumId").on("tap",function(){
+				$("#updateAlbumId").on("tap", function() {
 					this.imgUrl = dataList[current_num];
+					console.log(this.imgUrl)
 					var imgDtask = plus.downloader.createDownload(this.imgUrl, {
 						method: 'GET'
 					}, function(d, status) {
@@ -119,7 +186,7 @@
 									// 关闭弹框
 									mui.toast('保存成功')
 								});
-					
+
 							})
 						} else {
 							mui.toast('保存失败')
@@ -130,6 +197,68 @@
 
 			};
 
+			/* 点击分享按钮事件 微信*/
+			$(".wxFX").on("tap", function() {
+				this.imgUrl = dataList[current_num];
+				console.log('88')
+				if ($(this).attr('data-id') == 1) {
+					var ids = [{
+						id: "weixin",
+						ex: "WXSceneSession"
+					}];
+				} else {
+					var ids = [{
+						id: "weixin",
+						ex: "WXSceneTimeline"
+					}];
+				}
+				if (plus.runtime.isApplicationExist({
+						pname: 'com.tencent.mm',
+						action: 'weixin://'
+					})) {
+					console.log("微信应用已安装");
+				} else {
+					$$.toast("微信应用未安装");
+					setTimeout(function() {
+						toCurrentPage();
+					}, 1500);
+					return false;
+				}
+
+				var shareJson = {
+					"title": '蚂蚁招财',
+					"desc": "我在蚂蚁招财等着你。",
+					"img": '../assers/image/dbjl.png'
+				};
+				var lineEndId = ['lineEnd'];
+
+				var i = 1
+				if (i > 0) {
+					var s_id = ids[i - 1].id;
+					var share = shares[s_id];
+					if (share) {
+						if (share.authenticated) {
+							shareMessage(share, ids[i - 1].ex, shareJson, this.imgUrl, lineEndId);
+							mui.fire(plus.webview.getWebviewById("index.html"));
+							setTimeout(function() {
+								toCurrentPage();
+							}, 5000);
+						} else {
+							share.authorize(function() {
+								shareMessage(share, ids[i - 1].ex, shareJson, shareKeyword, lineEndId);
+								mui.fire(plus.webview.getWebviewById("index.html"));
+								setTimeout(function() {
+									toCurrentPage();
+								}, 5000);
+							}, function(e) {
+								console.log("认证授权失败：" + e.code + " - " + e.message);
+							});
+						}
+					} else {
+						$$.toast("分享失败，请重试");
+					}
+				}
+			});
 
 
 			function getImage() {
@@ -143,7 +272,8 @@
 									'" /></div>');
 							} else {
 								$('.mui-slider-group').append(
-									'<div class="mui-slider-item mui-slider-item-duplicate "><img class="lunbo-img" src="' + dataList[length-1]+
+									'<div class="mui-slider-item mui-slider-item-duplicate "><img class="lunbo-img" src="' + dataList[length -
+										1] +
 									'" /></div>');
 								$('.mui-slider-indicatorTwo').append('<div num_id="0" class="mui-indicator mui-active"></div>');
 								for (var i = 0; i < length; i++) {
@@ -151,17 +281,19 @@
 										'" /></div>');
 								}
 								$('.mui-slider-group').append(
-									'<div class="mui-slider-item mui-slider-item-duplicate"><img class="lunbo-img" src="' + dataList[0] +'" /></div>');
+									'<div class="mui-slider-item mui-slider-item-duplicate"><img class="lunbo-img" src="' + dataList[0] +
+									'" /></div>');
 								var jj;
 								for (var i = 0; i < length - 1; i++) {
 									jj = i + 1;
-									$('.mui-slider-indicatorTwo').append('<div num_id='+jj+' class="mui-indicator"></div>');
+									$('.mui-slider-indicatorTwo').append('<div num_id=' + jj + ' class="mui-indicator"></div>');
 								}
 							}
 							var gallery = mui('.mui-slider');
 							gallery.slider({
 								interval: 0 //自动轮播周期，若为0则不自动播放，默认为0；
 							});
+							$('.fenX').css('display', 'block')
 						}
 					} else {
 						tipShow(data.message);

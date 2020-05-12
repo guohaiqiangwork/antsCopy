@@ -68,6 +68,9 @@
 			var year = new Date().getFullYear();
 			var month = new Date().getMonth() + 1;
 			var day = new Date().getDate();
+			if(month< 10){
+				month = '0' + month
+			}
 			var keyword = {
 				startTime: year + '-' + month,
 			}
@@ -97,8 +100,10 @@
 				$("#productList").html("");
 				console.log(JSON.stringify(keyword))
 				getPayTotalAmountView(mui, keyword, function(data) {
+					console.log(JSON.stringify(data))
 					if (data.code == 200) {
 						var data = data.data;
+						console.log(JSON.stringify(data) )
 						var fragmentplanList = document.createDocumentFragment();
 						$.each(data, function(items) {
 							if (items % 2 == 1) {
@@ -106,6 +111,7 @@
 							} else {
 								data[items].bg = 'product_bj_img'
 							}
+							console.log(items)
 							var profitList =
 								'<div class="' + data[items].bg + '">' +
 								'<div class="font_size28 font_colorff text_center" >' +

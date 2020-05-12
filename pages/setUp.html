@@ -179,7 +179,7 @@
 				
 				// 监听密码输入
 				$('#money').bind('input propertychange', function() {
-					alert("监听input")
+					// alert("监听input")
 					$('.table>div>.blackpwd').css('opacity', '0');
 					var length = $(this).val().length;
 					$('.table>div>.blackpwd').slice(0, length).css('opacity', '1');
@@ -247,12 +247,12 @@
 						mui.confirm("您目前的系统缓存为" + size_m + "M", "清除缓存", ["确认", "取消"], function(e) {
 							if (e.index == 1) {} else {
 								plus.cache.clear(function() {
-									alert("缓存清除完毕")
+									tipShow("缓存清除完毕")
 								});
 							}
 						});
 					} else {
-						alert('暂无内存可清除')
+						tipShow('暂无内存可清除')
 					}
 				});
 			});
@@ -299,7 +299,7 @@
 			 
 			//密码框确定
 			$('.password_btn').on('tap', function() {
-				alert($('.zfinput').val());
+				// tipShow($('.zfinput').val());
 				var getLogin = plus.nativeUI.showWaiting("设置中...");
 				var dataBase = {
 					password: $('.zfinput').val(),

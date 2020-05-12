@@ -70,6 +70,9 @@
 			var month = new Date().getMonth() + 1;
 			var day = new Date().getDate();
 			console.log(dDate);
+			if(month< 10){
+				month = '0' + month
+			}
 			$('#startTime').text(year + '年' + month + '月'); //开始时间
 			var keyword ={
 				startTime:year + '-' + month,

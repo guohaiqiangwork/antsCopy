@@ -40,6 +40,30 @@
 				float: left;
 				margin: 0.1rem 0.1rem 0.1rem 0.2rem;
 			}
+
+			.nothing1 {
+				/* position: absolute;
+							left: 0;
+							right: 0;
+							top: .88rem;
+							bottom: 0;
+							width: 100%; */
+				text-align: center;
+
+			}
+
+			.nothing1 img {
+				width: 4.12rem;
+				height: 3.53rem;
+				margin-top: .3rem;
+				/* margin: 0.5rem auto 0rem; */
+			}
+
+			.nothing1 p {
+				font-size: .3rem;
+				color: #999999;
+				margin-top: 0.3rem;
+			}
 		</style>
 	</head>
 	<body onselectstart="return false;" style="background-color: #F4F4F4!important;position: absolute;height: 100%;">
@@ -184,13 +208,14 @@
 							})
 							$("#myfrind").append($(fragmentplanList));
 						} else {
+							$(".nothing1").css('display','none')
 							var noData =
-								'<div class="nothing">' +
-								'<img style="margin: 3rem auto 0rem;" src="../assers/image/diaobo.png" class="width_height100">' +
+								'<div class="nothing1">' +
+								'<img style="margin: 1rem auto 0rem;" src="../assers/image/diaobo.png" class="width_height100">' +
 								'<p>没有可调拨的人选</p>' +
 								'</div>';
-							// $(".allocation").append($(noData));
-							$("#myfrind").append($(noData));
+							$(".allocation").append($(noData));
+							// $("#myfrind").append($(noData));
 							$(".margin_bot3").css("display", "none");
 						}
 
@@ -305,7 +330,7 @@
 					var nameVal = doc.getElementById("search").value.replace(/\s*/g, "");
 					doc.activeElement.blur(); //收起虚拟键盘
 					getSearch(nameVal); //完成搜索事件
-					doc.getElementById("search").value = "";
+					// doc.getElementById("search").value = "";
 					event.preventDefault(); // 阻止默认事件---阻止页面刷新
 				}
 			});
