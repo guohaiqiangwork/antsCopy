@@ -83,6 +83,20 @@
 				width: .14rem;
 				height: .24rem;
 			}
+
+			#pay {
+				display: none;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
+			}
+
+			.buttonClass {
+				width: 50%;
+				border-top: #CCCCCC solid 1px;
+				line-height: 0.93rem;
+			}
 		</style>
 	</head>
 
@@ -435,6 +449,27 @@
 				</li> -->
 			</ul>
 		</div>
+
+
+
+		<!-- 删除全部 -->
+		<div id="pay" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+			<div class="margin_top10 font_color33 font_size34 text_center">
+				您有新的机具请接收？
+			</div>
+			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
+				<div class="text_center buttonClass" id="qxdAllId" style="float: left;">
+					取消
+				</div>
+				<div class="text_center buttonClass" id="deleteAllId" style="float: right;border-left: #CCCCCC solid 1px;">
+					确认
+				</div>
+			</div>
+		</div>
+
+
+
+
 	</body>
 
 	<script src="../assers/js/mui.min.js"></script>
@@ -466,7 +501,40 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
+				// 查询是否调拨过来数据
+				var getData = {
+					memberId: plus.storage.getItem('memberId')
+				}
+				getQueryToolReminder(mui, getData, function(data) {
+					if (data.code == 200) {
+						if (data.data) {
+							$("#pay").css("display", "bloak");
+							mui('#pay').popover('show');
 
+						}
+					}
+				})
+
+				// 取消删除
+				$('#qxdAllId').on('tap', function() {
+					$("#pay").css("display", "none");
+					mui('#pay').popover('hide');
+				})
+				// 确认删除
+				$('#deleteAllId').on('tap', function() {
+					$("#pay").css("display", "none");
+					mui('#pay').popover('hide');
+					$$.openWindow({
+						url: '../pages/implementsAllocation.html',
+						extras: {
+							"tabId": '1'
+						},
+						id: 'implementsAllocation',
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				})
 				/* 获取精彩活动 */
 				get_findALl(mui, function(data) {
 					var dataList = data.data;

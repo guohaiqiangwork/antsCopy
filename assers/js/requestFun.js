@@ -1557,6 +1557,30 @@ function getDeleteMessage(mui,data,callback) {
 		}
 	});
 };
+// 删除消息列表
+function getDeleteAll(mui,data,callback) {
+	mui.ajax(requserUrl + "/message/deleteAll", {
+		timeout: 20000,
+		type: 'get',
+		data:data,
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
 // 获取协议内容
 function getQueryProtocol(mui,data,callback) {
 	mui.ajax(requserUrl + "/goods/queryProtocol", {
@@ -1584,6 +1608,30 @@ function getQueryProtocol(mui,data,callback) {
 // 获取入网图片
 function getQueryNetworkAccess(mui,data,callback) {
 	mui.ajax(requserUrl + "/queryNetworkAccess", {
+		timeout: 20000,
+		type: 'get',
+		data:data,
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 查询是否有调拨机具
+function getQueryToolReminder(mui,data,callback) {
+	mui.ajax(requserUrl + "/goodsItmeAllot/queryToolReminder", {
 		timeout: 20000,
 		type: 'get',
 		data:data,

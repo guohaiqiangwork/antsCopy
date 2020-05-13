@@ -73,7 +73,7 @@
 				<div class="tab_swich selection" data-id="">
 					调拨人选
 				</div>
-				<div class="tab_swich" data-id="1">
+				<div class="tab_swich tab_id" data-id="1">
 					接收调拨
 				</div>
 			</div>
@@ -169,6 +169,14 @@
 				});
 
 				_self = plus.webview.currentWebview();
+				console.log(_self.tabId)
+				if(_self.tabId){
+					$('.allocation').css('display', 'none');
+					$('.receive').css('display', 'block');
+					obtainAllotRece(); //获取接收列表
+					$(".header_tab").find("div").removeClass("selection");
+					$('.tab_id').addClass("selection")
+				}
 				//监听 刷新
 				window.addEventListener('jfdbRefresh', function(event) {
 					obtainAllotRece(); //获取接收列表
