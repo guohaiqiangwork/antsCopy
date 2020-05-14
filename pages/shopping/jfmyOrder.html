@@ -254,6 +254,7 @@
 			//获取我的订单
 			function getOrderList() {
 				getqueryPageList(mui, keywords, function(data) {
+					console.log(JSON.stringify(keywords))
 					$(".mrPage").remove()
 					if (data.code == 200) {
 						//console.log("111="+JSON.stringify(data));

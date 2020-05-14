@@ -10,38 +10,43 @@
 		<link rel="stylesheet" href="../assers/css/mui.min.css">
 		<link rel="stylesheet" href="../assers/css/common.css">
 		<link rel="stylesheet" href="../assers/css/mobileReset.css">
-		<!-- <link rel="stylesheet" type="text/css" href="../assers/css/views/home.css" /> -->
 		<link rel="stylesheet" type="text/css" href="../assers/css/shoppging/home.css" />
+		<link rel="stylesheet" type="text/css" href="../assers/css/views/jcai.css" />
 		<script src="../assers/js/rem_reset.js"></script>
-		
 		<style type="text/css">
 			.activity_moudel_imgl {
-			    width: 3.3rem;
-			    height: 4.2rem;
+				width: 3.3rem;
+				height: 4.2rem;
 			}
+
 			.activity_moudel_imgr {
-			    width: 3.3rem;
-			    height: 1.92rem;
+				width: 3.3rem;
+				height: 1.92rem;
 			}
+
 			.lunbo-img {
-			    border: none;
+				border: none;
 			}
+
 			.product_moudel_img {
 				border-radius: 0.2rem 0.2rem 0 0;
 			}
+
 			.product_module {
-			    margin-left: .3rem;
+				margin-left: .3rem;
 			}
+
 			.product_module {
-			    width: 3.3rem;
+				width: 3.3rem;
 			}
+
 			.product_moudel_img {
-			    width: 3.3rem;
+				width: 3.3rem;
 			}
 		</style>
 	</head>
 
-	<body onselectstart="return false;">
+	<body onselectstart="return false;" style="background-color: #F4F4F4;">
 		<!-- 搜索框 -->
 		<div style="position: fixed;z-index: 1000;background-color: #F4F4F4;width: 100%;height: 0.93rem;">
 			<div id="searchId">
@@ -49,120 +54,85 @@
 					<img style="width: 0.29rem;" src="../assers/image/shopping/7258@2x.png">
 				</div>
 				<div style="line-height: 0.3rem;width: 83%;">
-					<input id="search" class="font_size28"  placeholder="请输入要搜索的内容" style="-webkit-user-select:text !important;width: 100%;color: #000000;line-height: 0.6rem;"/> 
+					<input id="search" class="font_size28" placeholder="请输入要搜索的内容" style="-webkit-user-select:text !important;width: 100%;color: #000000;line-height: 0.6rem;" />
 				</div>
 			</div>
 		</div>
-		
 		<div style="height: 0.93rem;"></div>
-	<!-- 	<div class="mui-content lobotuTitle" id="goActive">
-			<div class="lunbo">
-				<div class="mui-slider">
-					<div class="mui-slider-group mui-slider-loop">
-		
-					</div>
-				</div>
-			</div>
-		</div> -->
-		
 		<!-- 轮播图 -->
-		<style type="text/css">
-			.mui-content {
-			   background-color: #DCDCDC;
-			   height: 3.49rem;
-			}
-		</style>
 		<div class="mui-content" id="goActive">
 			<div class="lunbo" style="width: 7.5rem;">
-				<div class="mui-slider">
+				<div class="mui-slider" style="height: 3.5rem;">
 					<div class="mui-slider-group mui-slider-loop div_backgroun_ff" style="touch-action: none;">
 
 					</div>
-					<!-- <div class="mui-slider-indicator mui-slider-indicatorTwo" style="display: none;">
+				</div>
+			</div>
+		</div>
+		<!-- tab -->
+		<div class="mui-content" id="heardD">
+			<div id="slider" class="mui-slider mui-fullscreen div_backgroun_EE" style="height: 0.9rem;width: 90%;">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll" style="touch-action: none;" id="homePageTitleNavId">
+
+					</div>
+				</div>
+			</div>
+			<div class="allCategories" style="width: 0.75rem;height: 0.75rem;float: right;">
+
+			</div>
+		</div>
+
+		<div class="div_display header_tab">
+			<div class="tab_swich avue_font" data-id="0">
+				积分兑换
+				<div class="avue" id="qb"></div>
+			</div>
+			<div class="tab_swich" data-id="1">
+				商品
+				<div class="" id="fk"></div>
+			</div>
+		</div>
+
+		<!-- 商品列表 -->
+		<div class="">
+			<div class="mui-scroll-wrapper" style="margin-top: 7rem;overflow-y: auto;">
+				<div class="mui-scroll" style="overflow-y: auto;">
+					<div class="" id="productList" style="padding-bottom: 1.5rem;">
+						<div class="product_module">
+							<div class="product_moudel_img back_gd_DC">
+							</div>
+							<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
+
+							</div>
+							<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
+						</div>
+						<div class="product_module">
+							<div class="product_moudel_img back_gd_DC">
+							</div>
+							<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
+
+							</div>
+							<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
+						</div>
+						<!-- <div class="product_module">
+						<div class="product_moudel_img">
+							<img src="../../assers/image/shopping/5453@2x.png" class="product_moudel_img">
+						</div>
+						<div class="font_size30 font_color33 margin_left2 margin_top2">beats原厂运动耳机</div>
+						<div class="margin_left2 font_colorff0 font_size30">￥2000</div>
 					</div> -->
-				</div>
-			</div>
-		</div>
-		
-		<div class="activity_moudel">
-			<div class="margin_top3 div_display" id="activity_img"><!-- activity_img -->
-				<!-- 加载默认页面 -->
-				<div class="activity_moudel_left back_gd_DC"></div>
-				<div class="activity_moudel_left margin_left3">
-					<div class="back_gd_DC" style="width: 3.3rem;height: 1.92rem;margin-top: 2.1rem;"></div>
-				</div>
-			</div>
-		</div>
-
-		<!-- 内容部分 -->
-		<div id="countId">
-
-			<!-- 我的服务 -->
-			<!-- 	<div id="myServiceId">
-				<div id="buttId">
-					<div href="../pages/shopping/jfmyOrder.html" urlId="myOrder">
-						<img src="../assers/image/shop_1.png" style="width: 1.2rem;">
-						<div class="font_color0 font_size26 text_center">我的订单</div>
-					</div>
-					<div href="../pages/shopping/classify.html" urlId="classify">
-						<img src="../assers/image/shop_2.png" style="width: 1.2rem;">
-						<div class="font_color0 font_size26 text_center">分类</div>
-					</div>
-					<div urlId="wxfx">
-						<img src="../assers/image/shop_3.png" style="width: 1.2rem;">
-						<div class="font_color0 font_size26 text_center">去分享</div>
-					</div>
-				</div>
-			</div>-->
-			<!-- 推荐商品 全部商品-->
-			<div class="margin_top3">
-				<div style="display: flex;justify-content: space-between;">
-					<img style="width: 1.86;height: 0.41rem;" src="../assers/image/shopping/title.png">
-					<div id="gotoId" style="width: 2rem;height: 0.5rem;">
-						<img style="width: 0.16rem;height: 0.27rem;float: right;" src="../assers/image/going.png">
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- 商品推荐list部分 -->
-		<div class="" id="productList">
-			<!-- 默认页面 -->
-			<div class="product_module">
-				<div class="product_moudel_img back_gd_DC">
-				</div>
-				<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
-					
-				</div>
-				<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
-			</div>
-			<div class="product_module">
-				<div class="product_moudel_img back_gd_DC">
-				</div>
-				<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
-					
-				</div>
-				<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
-			</div>
-			<div class="product_module">
-				<div class="product_moudel_img back_gd_DC">
-				</div>
-				<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
-					
-				</div>
-				<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
-			</div>
-			<div class="product_module">
-				<div class="product_moudel_img back_gd_DC">
-				</div>
-				<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
-					
-				</div>
-				<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
-			</div>
 
 		</div>
 
+		<div class="nothing" style="display: none;margin-top: 5.37rem;">
+			<img src="../assers/image/default/search.png" class="width_height100">
+			<p>没有找到相关宝贝</p>
+		</div>
 	</body>
 	<script src="../assers/js/jquery-1.11.2.min.js"></script>
 	<script src="../assers/js/mui.min.js"></script>
@@ -172,6 +142,15 @@
 		(function($, doc, $$, undefined) {
 			$$.init();
 			var _self;
+			var keyword = {
+				data: {
+					goodsName: '', //商品名称
+					sortId: "", //分类Id
+					type: '0',
+				},
+				pageNum: 1, //当前页
+				pageSize: 20, //每页条目数
+			};; //获取列表数据
 			if (window.plus) {
 				plusReady();
 			} else {
@@ -187,177 +166,70 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
-				
-				//获取分类信息
-				get_limitSeven(mui, function(data) { 
-					console.log("获取分类信息=="+JSON.stringify(data));
-					
-					var num;
-					var img1 = '';
-					var img2 = '';
-					var img3 = '';
-					
-					var classifyName1  = '';
-					var classifyName2  = '';
-					var classifyName3  = '';
-					
-					var classifyId1 = '';
-					var classifyId2 = '';
-					var classifyId3 = '';
-					var dataList = data.data;
-					
-					for(i=0;i<3;i++){
-						num = dataList[i].position;
-						if(num == 1){
-							img1 = dataList[i].picture;
-							classifyName1 = data.data[i].name;
-							classifyId1 = data.data[i].id;
-						}
-						if(num == 2){
-							img2 = dataList[i].picture;
-							classifyName2 = data.data[i].name;
-							classifyId2 = data.data[i].id;
-						}
-						if(num == 3){
-							img3 = dataList[i].picture;
-							classifyName3 = data.data[i].name;
-							classifyId3 = data.data[i].id;
-						}
-					}
-					
-					
-					if (data.code == 200) {
-						$(".activity_moudel_left").remove();
-						var orderList ='<div class="activity_moudel_left">'+
-								'<img src="' + img1 + '" classifyName="'+ classifyName1 +'" classifyId="'+ classifyId1 +'"  class="activity_moudel_imgl div_border_radius3">'+
-							'</div>'+
-							'<div class="activity_moudel_left margin_left3">'+ 
-								'<img src="' + img2 + '" classifyName="'+ classifyName2 +'" classifyId="'+ classifyId2 +'" class="activity_moudel_imgr div_border_radius3">'+
-								'<img src="' + img3 + '" classifyName="'+ classifyName3 +'" classifyId="'+ classifyId3 +'"  class="margin_top3 activity_moudel_imgr div_border_radius3">'+
-							'</div>';
-						$("#activity_img").append($(orderList));
-					} else {
-						tipShow(data.message);
-					}
-				});
-
-				getImage(); // 轮播获取
-				obtainGoodsList(); // 获取产品列表
-
-				/* 监听键盘搜索按钮 */
-				doc.getElementById("search").addEventListener("keypress", function(event) {
-					if (event.keyCode == "13") {
-						var nameVal = doc.getElementById("search").value.replace(/\s*/g, "");
-						doc.activeElement.blur(); //收起虚拟键盘
-						getSearch(nameVal); //完成搜索事件
-						doc.getElementById("search").value = "";
-						event.preventDefault(); // 阻止默认事件---阻止页面刷新
-					}
-				});
-				//去搜索页
-				function getSearch(nameVal) {
-					$$.openWindow({
-						url: '../pages/shopping/search.html',
-						id: 'search',
-						extras: {
-							"nameVal": nameVal
-						},
-						show: {
-							aniShow: "slide-in-right"
-						}
-					});
-				}
-
-				var shares = {};
-				plus.share.getServices(function(s) {
-					if (s && s.length > 0) {
-						for (var i = 0; i < s.length; i++) {
-							var t = s[i];
-							shares[t.id] = t;
-						}
-					}
-				}, function() {
-					// console.log("获取分享服务列表失败");
-				});
 				userId = plus.storage.getItem('memberId');
-				shareKeyword = {
-					userId: plus.storage.getItem('memberId'),
-					productId: "1111",
+				getImage(); // 轮播获取
+				// obtainGoodsList(); 
+				getList() // 获取产品列表
+				funSelectSort(); //获取头部分类
+			}
+			mui(".mui-scroll-wrapper").pullRefresh({
+				container: '.mui-scroll',
+				up: {
+					contentrefresh: '加载中...',
+					contentnomore: '我也是有底线滴',
+					auto: false,
+					callback: function() {
+						var _this = this;
+						keywords.pageNum++;
+						getOrderList();
+						setTimeout(function() {
+							_this.endPullupToRefresh(false);
+						}, 500)
+					}
+				},
+				down: {
+					height: 50,
+					auto: false,
+					contentdown: "下拉刷新",
+					contentover: "释放刷新",
+					contentrefresh: "刷新中...",
+					callback: function() {
+						keyword.pageNum = 1;
+						keyword.pageSize = 10;
+						plus.webview.currentWebview().reload(true);
+					}
 				}
+			});
 
-				//我发服务点击事件
-				$('#buttId').on('tap', 'div', function() {
-					var urlId = $(this).attr("urlId");
-					var urlhref = this.getAttribute('href');
-
-					if (urlId != "wxfx") {
-						if (urlId && urlhref) {
-							$$.openWindow({
-								url: urlhref,
-								id: urlId,
-								extras: {
-									orderType: "",
-									pageType: ""
-								},
-								show: {
-									aniShow: "slide-in-right"
-								}
-							});
-						} else {
-							console.log('缺少页面路径')
-						}
-					} else {
-						/* 微信好友分享分享 */
-						if (plus.runtime.isApplicationExist({
-								pname: 'com.tencent.mm',
-								action: 'weixin://'
-							})) {
-							console.log("微信应用已安装");
-						} else {
-							$$.toast("微信应用未安装");
-							setTimeout(function() {
-								toCurrentPage();
-							}, 1500);
-							return false;
-						}
-						var shareJson = {
-							"title": "蚂蚁招财",
-							"desc": "我发现了一个不错的商品，赶快来看看吧。",
-							"img": "../assers/image/shopping/5453@2x.png"
-						};
-						var lineEndId = ['lineEnd'];
-						var ids = [{
-							id: "weixin",
-							ex: "WXSceneSession"
-						}, {
-							id: "weixin",
-							ex: "WXSceneTimeline"
-						}];
-						var i = 1
-						if (i > 0) {
-							var s_id = ids[i - 1].id;
-							var share = shares[s_id];
-							if (share) {
-								if (share.authenticated) {
-									shareMessage(share, ids[i - 1].ex, shareJson, shareKeyword, lineEndId);
-									mui.fire(plus.webview.getWebviewById("../login.html"));
-								} else {
-									share.authorize(function() {
-										shareMessage(share, ids[i - 1].ex, shareJson, shareKeyword, lineEndId);
-										mui.fire(plus.webview.getWebviewById("../login.html"));
-									}, function(e) {
-										console.log("认证授权失败：" + e.code + " - " + e.message);
-									});
-								}
-							} else {
-								$$.toast("分享失败，请重试");
-							}
-						}
+			/* 监听键盘搜索按钮 */
+			doc.getElementById("search").addEventListener("keypress", function(event) {
+				if (event.keyCode == "13") {
+					var nameVal = doc.getElementById("search").value.replace(/\s*/g, "");
+					doc.activeElement.blur(); //收起虚拟键盘
+					getSearch(nameVal); //完成搜索事件
+					doc.getElementById("search").value = "";
+					event.preventDefault(); // 阻止默认事件---阻止页面刷新
+				}
+			});
+			//去搜索页
+			function getSearch(nameVal) {
+				// keyword.data.goodsName = nameVal;
+				// getList();
+				$$.openWindow({
+					url: '../pages/shopping/search.html',
+					id: 'search',
+					extras: {
+						"nameVal": nameVal,
+						"productType": keyword.data.type
+					},
+					show: {
+						aniShow: "slide-in-right"
 					}
 				});
 			}
-			
-			$("#activity_img").on("tap",".div_border_radius3",function(){
+
+
+			$("#activity_img").on("tap", ".div_border_radius3", function() {
 				$$.openWindow({
 					url: '../pages/shopping/classifyShopp.html',
 					id: 'classifyShopp',
@@ -395,7 +267,8 @@
 						url: '../pages/shopping/jfDetails.html',
 						id: 'jfDetails',
 						extras: {
-							"productId": $(this).attr('data-id')
+							"productId": $(this).attr('data-id'),
+							"productType": keyword.data.type
 						},
 						show: {
 							aniShow: "slide-in-right"
@@ -404,44 +277,125 @@
 				}
 			});
 
-			// 获取产品列表
-			function obtainGoodsList() {
-				getLimitSix(mui, function(data) {
-					$(".product_module").remove(); 
+
+			// 获取头部分类
+			function funSelectSort() {
+				var dataB = {
+					name: ''
+				}
+				getSelectSort(mui, dataB, function(data) {
 					if (data.code == 200) {
-						var fragmentplanList = document.createDocumentFragment();
-						var tjData = data.data;
-						var num;
-						if (tjData.length > 10) {
-							num = 10;
-						} else {
-							num = tjData.length;
+						var dataNav = data.data;
+						$("#slider").removeClass("div_backgroun_EE");
+						var homePageTitleNavId = doc.getElementById("homePageTitleNavId");
+						if (data.data.length != 0) {
+							$('#homePageTitleNavId').append(
+								'<div class="mui-control-item" data-id="">全部<div></div></div>'
+							);
+							var shopName = "";
+							$.each(dataNav, function(index) {
+								i = index + 2;
+								var num = dataNav[index].name.length;
+								if (num == 2) {
+									var numOne = dataNav[index].name.substring(1, 0);
+									var numTwo = dataNav[index].name.substring(2, 1);
+									shopName = "&nbsp;&nbsp;" + numOne + "&nbsp;&nbsp;&nbsp;&nbsp;" + numTwo + "";
+								} else {
+									shopName = dataNav[index].name;
+								}
+								$('#homePageTitleNavId').append(
+									'<div class="mui-control-item" data-id=' + dataNav[index].id + ' >' + shopName +
+									'<div></div></div>'
+								);
+							});
+							/* 标题栏 默认选中第一个 */
+							if (homePageTitleNavId.querySelector('.mui-control-item') != null) {
+								homePageTitleNavId.querySelector('.mui-control-item').classList.add('mui-active');
+							}
+							// 	$(".hostClass").html(dataNav[0].name);
+							// 	plus.storage.setItem("code_id", dataNav[0].code);
+							// 	plus.storage.setItem("goodsName", dataNav[0].name);
+							// 全部分类展示
+							// var a = ["面点速食", "酒水饮料", "酒水饮料", "美妆百货", "中外茶叶", "母婴保健", "家装家纺", "日用纸品", "电子数码", "健康体检"]
 						}
+						var dataNav = data.data;
+						$("#slider").removeClass("div_backgroun_EE");
+						var homePageTitleNavId = doc.getElementById("homePageTitleNavId");
+
+					}
+				})
+			}
+			// 获取分类
+			$("#homePageTitleNavId").on("tap", '.mui-control-item', function(e) {
+				keyword.data.sortId = $(this).attr("data-id");
+				$("#productList").html("");
+				getList();
+			})
+			// 产品分类
+			$('.tab_swich').on('tap', function() {
+				$('.tab_swich').css("font-weight", "500");
+				$(this).css("font-weight", "700");
+				keyword.data.type = $(this).attr("data-id");
+				console.log("点击的status=" + $(this).attr("data-id"));
+				$('.tab_swich').removeClass("avue_font");
+				$(".header_tab").find("div").removeClass("avue");
+				$(this).children("div").addClass('avue');
+				$(this).addClass('avue_font');
+				$("#productList").html("");
+				keyword.pageNum = 1;
+				keyword.pageSize = 10;
+				getList();
+
+			});
+
+			// 获取产品列表
+			function getList() {
+				getselectPageList(mui, keyword, function(data) {
+					console.log("商品列表接收参数=" + JSON.stringify(keyword));
+					// console.log("商品列表接收参数=" + JSON.stringify(data));
+					if (data.code == 200) {
+						$(".product_module").remove();
+						var tjData = data.data.records;
+						// console.log("返回data=="+ JSON.stringify(tjData));
+						if (tjData.length == 0) {
+							if (keyword.pageNum == 1) {
+								$('.nothing').css('display', 'block')
+							}
+						} else {
+							$('.nothing').css('display', 'none')
+						}
+						if (keyword.data.type == 0) {
+							var titleName = '积分:'
+						} else {
+							var titleName = '¥'
+						}
+
+						var fragmentplanList = document.createDocumentFragment();
 						var goodsName;
-						for (i = 0; i < num; i++) {
-							goodsName=tjData[i].goodsName;
-							if(goodsName.length > 8){
+						for (i = 0; i < tjData.length; i++) {
+							goodsName = tjData[i].goodsName;
+							if (goodsName.length > 8) {
 								goodsName = goodsName.substring(8, 0) + "…"
 							}
 							var goodsList =
-								'<div class="product_module" data-id=' + tjData[i].goodsId + '  dataNum=' + tjData[i].num + '>' +
+								'<div class="product_module"data-id=' + tjData[i].goodsId + '  dataNum=' + tjData[i].num + '>' +
 								'<div class="product_moudel_img">' +
-								'<img src=' + tjData[i].goodsPicture + ' class="product_moudel_img">' +
+								'<img src=' + tjData[i].goodsPicture +
+								' class="product_moudel_img" style="border-radius: 0.2rem 0.2rem 0 0;">' +
 								'</div>' +
 								'<div class="font_size30 font_color33 margin_left2 margin_top2 font_width700">' + goodsName + '</div>' +
-								'<div class="margin_left2 font_colorff0"><span style="font-size:0.24rem">￥<span><span style="font-size:0.32rem">' + tjData[i].goodsPrice + '<span></div>' +
+								'<div class="margin_left2 font_colorff0 font_size30">' + titleName + tjData[i].goodsPrice +
+								'</div>' +
 								'</div>';
 							$(fragmentplanList).append(goodsList);
 						}
-
 						$("#productList").append($(fragmentplanList));
-						$("#productList").append('<div style="height: 0.3rem;width:3rem;float: left;"></div>');
 					} else {
-						tipShow(data.message);   
-					} 
-
+						tipShow(data.message);
+					}
 				})
-			};
+			}
+
 
 			/* 轮播图 */
 			function getImage() {
@@ -458,7 +412,7 @@
 								$('.mui-slider-group').append(
 									'<div class="mui-slider-item mui-slider-item-duplicate " data-id=' + dataList[length - 1].goodsId +
 									'><img class="lunbo-img" src="' + dataList[length -
-										1].carousel + 
+										1].carousel +
 									'" /></div>');
 								/* $('.mui-slider-indicatorTwo').append('<div class="mui-indicator mui-active"></div>'); */
 								for (var i = 0; i < length; i++) {

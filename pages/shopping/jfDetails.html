@@ -74,6 +74,8 @@
 		(function($, doc, $$, undefined) {
 			$$.init();
 			var _self;
+			var productTypeTitle = '¥'
+			var productType;//商品类型
 			if (window.plus) {
 				plusReady();
 			} else {
@@ -89,15 +91,20 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
-
+				
+				if(_self.productType == 0){
+					productTypeTitle = '积分:';
+					$('.homeDetails_btn').text('立即兑换')
+				}
 				// 获取产品详情
 				getgoodsDetails(mui, _self.productId, function(data) {
 					$(".mrPage").remove();
 					if (data.code == 200) {
-						$('#price').text('¥' + data.data.goodsPrice);
+						$('#price').text(productTypeTitle + data.data.goodsPrice);
 						//轮播图方法
 						var goodsPicturesdata = data.data.goodsPictures;
 						if(goodsPicturesdata.length == 1 ){
+							productType = data.data.type;
 							$('#title').text(data.data.goodsName);
 							$("#oneimg").css('display', 'block');
 							$(".lobotuTitleDetails").css("display","none");
@@ -136,6 +143,7 @@
 						createNew:true,
 						extras: {
 							"productIdD": _self.productId,
+							"productType" :productType
 						},
 						show: {
 							aniShow: "slide-in-right"

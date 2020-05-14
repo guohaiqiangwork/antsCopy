@@ -5,8 +5,8 @@
  * @return {object}
  */
 // 全局变量定义  
-window.requserUrl = 'http://39.106.180.221:8080'; //测试环境
-// window.requserUrl = 'http://192.168.1.101'; //
+
+window.requserUrl = 'http://192.168.1.210:9090'; //
 window.requserUrlShard = 'http://www.bjxrkj.com/';
 // 郭海强 start
 /**
@@ -1652,6 +1652,81 @@ function getQueryToolReminder(mui,data,callback) {
 		}
 	});
 };
+// 获取商城tab 数据
+function getSelectSort(mui, data, callback) {
+	mui.ajax(requserUrl + "/integralGoodsSortApi/selectSort", {
+		timeout: 20000,
+		type:'post',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+//商品列表 商品列表搜索 
+function getselectPageList(mui, bassDate, callback) {
+	mui.ajax(requserUrl + "/goodsInfo/selectPageList", {
+		timeout: 20000,
+		type: 'post',
+		contentType: "application/json;charsetset=UTF-8",
+		data: JSON.stringify(bassDate),
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+// 积分商城兑换
+function getOrderIntegralPay(mui, dataBase, callback) {
+	console.log(JSON.stringify(dataBase))
+	// /orderIntegralPay/orderPay
+	console.log(requserUrl + "/orderIntegralPay/orderIntegralPay?memberId=" + dataBase.memberId +'&orderNo=' + dataBase.orderNo)
+	mui.ajax(requserUrl + "/integralOrder/orderIntegralPay?memberId=" + dataBase.memberId +'&orderNo=' + dataBase.orderNo, {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
 
 
 // 郭海强 end
@@ -2989,30 +3064,7 @@ function getjfClassify(mui, baasDate, callback) {
 		}
 	});
 };
-//商品列表 商品列表搜索 
-function getselectPageList(mui, bassDate, callback) {
-	mui.ajax(requserUrl + "/goodsInfo/selectPageList", {
-		timeout: 20000,
-		type: 'post',
-		contentType: "application/json;charsetset=UTF-8",
-		data: JSON.stringify(bassDate),
-		headers: {
-			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
-			'client': 'APP',
-		},
-		success: function(data) {
-			if (data.code == 200) {
-				callback && callback(data);
-			} else {
-				callback && callback(data);
-				tipShow(data.message);
-			}
-		},
-		error: function() {
-			console.log("服务异常，请稍后重试！");
-		}
-	});
-};
+
 //获取我的订单
 function getqueryPageList(mui, keywords, callback) {
 	mui.ajax(requserUrl + "/integralOrder/queryPageList", {

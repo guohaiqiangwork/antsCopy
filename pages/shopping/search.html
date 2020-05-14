@@ -85,6 +85,8 @@
 			$$.init();
 			var _self;
 			var bassDate;
+			var productType;
+			var productTitle;
 			//var goodsNameVal;//商品名称
 			if (window.plus) {
 				plusReady();
@@ -102,7 +104,7 @@
 				});
 				_self = plus.webview.currentWebview();
 				$("#search").val(_self.nameVal);
-				
+				productType = _self.productType;//类型
 				mui(".mui-scroll-wrapper").pullRefresh({
 					container: '.mui-scroll',
 					up: {
@@ -137,6 +139,7 @@
 					data:{
 						goodsName: _self.nameVal,//商品名称
 						sortId:"",//分类Id
+						type:productType,
 					},
 					pageNum:1,//当前页
 					pageSize:10,//每页条目数
@@ -170,7 +173,11 @@
 							}else{
 								$('.nothing').css('display' ,'none')
 							}
-							
+							if(productType == 0){
+								productTitle = '积分'
+							}else{
+								productTitle = '¥'
+							}
 							var fragmentplanList = document.createDocumentFragment();
 							var goodsName;
 							for(i=0;i<tjData.length;i++){
@@ -184,7 +191,7 @@
 											'<img src='+tjData[i].goodsPicture+' class="product_moudel_img" style="border-radius: 0.2rem 0.2rem 0 0;">'+
 										'</div>'+
 										'<div class="font_size30 font_color33 margin_left2 margin_top2 font_width700">'+goodsName+'</div>'+
-										'<div class="margin_left2 font_colorff0 font_size30">￥'+tjData[i].goodsPrice+'</div>'+
+										'<div class="margin_left2 font_colorff0 font_size30">' + productTitle+tjData[i].goodsPrice+'</div>'+
 									'</div>';
 								$(fragmentplanList).append(goodsList);
 							}

@@ -8,6 +8,7 @@ function shoPagePasswordFunc(mui, dataBase,orderNo,payment) {
 				memberId: plus.storage.getItem('memberId'),
 				orderNo: orderNo,
 			};
+			console.log('我进来可')
 			un_orderPay(mui, dataBase, function(data) {
 				if (data.code == 200) {
 					mui.openWindow({
@@ -31,6 +32,38 @@ function shoPagePasswordFunc(mui, dataBase,orderNo,payment) {
 					$('.zfinput').val("");
 				}
 			});
+			getOrderIntegralPay(mui,dataBase,function(data){
+				console.log(JSON.stringify(data))
+			})
+		} else {
+			tipShow(data.message);
+			$('.zfinput').val("");
+		}
+	});
+};
+
+
+// 积分兑换 
+function shoPagePasswordFuncJF(mui, dataBase,orderNo,payment) {
+	passwordCheck(mui, dataBase, function(data) {
+		if (data.code == 200) {
+			mui('#pay').popover('hide');
+			var dataBase = {
+				memberId: plus.storage.getItem('memberId'),
+				orderNo: orderNo,
+			};
+			getOrderIntegralPay(mui,dataBase,function(data){
+				console.log(JSON.stringify(data))
+				$('.bj_model_logisticsx').css('display','block')
+				if(data.code == 200){
+					$('.chnegong').css('display','block');
+					$('.font_size50').text(payment)
+				}else{
+					$('.shibai').css('display','block');
+					$('.shibaiT').text(data.message)
+				}
+				
+			})
 		} else {
 			tipShow(data.message);
 			$('.zfinput').val("");

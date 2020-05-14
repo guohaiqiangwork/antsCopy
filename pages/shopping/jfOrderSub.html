@@ -274,27 +274,9 @@
 								memberId: plus.storage.getItem('memberId'),
 								orderNo: _self.orderNopay,
 							};
-							un_orderPay(mui, dataBase, function(data) {
+							getOrderIntegralPay(mui, dataBase, function(data) {
 								if (data.code == 200) {
 									console.log("11支付成功==" + JSON.stringify(data));
-									
-									$$.openWindow({
-										url: '../payResult.html',
-										id: 'payResult',
-										extras: {
-											payParams: "success",
-											orderNo: _self.orderNopay,
-											type: "余额支付",
-											money: payment,
-										},
-										createNew: true,
-										show: {
-											aniShow: "slide-in-right"
-										}
-									});
-									/* setTimeout(function() {
-										mui.currentWebview.close();
-									}, 500); */
 								} else {
 									$('.zfinput').val("");
 								}
@@ -390,6 +372,7 @@
 							un_webFunction();
 						}
 					});
+			
 				} else if (_self.channel_idFay == "WX_APP") {//微信支付
 					beecloudPay(_self.channel_idFay, 'WX');
 				}

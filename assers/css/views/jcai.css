@@ -1,0 +1,100 @@
+
+/* #FAFAFA */
+
+#heardD {
+	background-color: #FFFFFF;
+	height: 1rem;
+	width: 100%;
+	position: fixed;
+	/* top: 4.6rem; */
+	/* z-index: 99; */
+}
+/* 详情页底部导航栏 */
+
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+	margin-top: 0.1rem;
+	font-size: 0.26rem;
+	color: #999999;
+}
+
+/* 头部导航栏新样式--------- */
+.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+	padding: 0 10px;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	color: #333333;
+	font-weight: bold;
+	font-size: .3rem;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted {
+	width: 100%;
+	height: 3.3rem;
+}
+
+.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
+	height: 3.3rem;
+}
+/* 选中效果 */
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active div {
+	height: 0.1rem;
+	background-color: #EA3E31;
+	border-radius: .2rem;
+	margin-top: .1rem;
+}
+
+/* 滑动特效 */
+@keyframes animate {
+	from {
+		width: 0px;
+		-left: 0.24rem;
+	}
+
+	to {
+		width: 0.8rem;
+		-left: 0.24rem;
+	}
+}
+
+/* 未选择 */
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item div {
+	height: 0.1rem;
+	position: relative;
+	bottom: 0.38rem;
+	border-radius: .4rem;
+	margin-top: .1rem;
+}
+
+
+/* tab */
+
+.header_tab{
+	width: 7.5rem;
+	background-color: #FFFFFF;
+	height: .86rem;
+	z-index: 999;
+	position: fixed;
+	top: 5.8rem;
+	padding-top: .2rem;
+}
+/* 选择按钮样式 */
+ .avue {
+	height: .06rem;
+	width: 1rem;
+	border-radius: .1rem;
+	background: linear-gradient(to right, #FF342D, #FF5882) !important;
+	margin-left: 38%;
+	/* margin-top: .1rem; */
+}
+.avue_font{
+	color: #333333 !important;
+}
+
+/* 未选择按钮样式 */
+.tab_swich{
+	color: #CCCCCC;
+	width: 50%;
+	font-size: .28rem;
+	text-align: center;
+}

@@ -135,6 +135,8 @@
 						}else if(typeName=="tixPage"){
 							/* orderNo-金额,payment-id */
 							tixPage_Func(mui,dataBase,orderNo,payment);
+						}else if(typeName=="shopPageYJF"){
+							shoPagePasswordFuncJF(mui,dataBase,orderNo,payment);
 						}
 					}
 				}
