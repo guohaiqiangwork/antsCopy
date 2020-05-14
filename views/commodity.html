@@ -72,7 +72,7 @@
 		<!-- tab -->
 		<div class="mui-content" id="heardD">
 			<div id="slider" class="mui-slider mui-fullscreen div_backgroun_EE" style="height: 0.9rem;width: 90%;">
-				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper1 mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll" style="touch-action: none;" id="homePageTitleNavId">
 
 					</div>
@@ -96,32 +96,25 @@
 
 		<!-- 商品列表 -->
 		<div class="">
-			<div class="mui-scroll-wrapper" style="margin-top: 7rem;overflow-y: auto;">
-				<div class="mui-scroll" style="overflow-y: auto;">
+			<div class="mui-scroll-wrapper" style="margin-top: 7rem;">
+				<div class="mui-scroll">
 					<div class="" id="productList" style="padding-bottom: 1.5rem;">
-						<div class="product_module">
-							<div class="product_moudel_img back_gd_DC">
+						<div class="product_module1">
+							<div class="product_moudel_img1 back_gd_DC">
 							</div>
 							<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
 
 							</div>
 							<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
 						</div>
-						<div class="product_module">
-							<div class="product_moudel_img back_gd_DC">
+						<div class="product_module1">
+							<div class="product_moudel_img1 back_gd_DC">
 							</div>
 							<div class="back_gd_DC" style="width: 2.97rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;">
 
 							</div>
 							<div class="back_gd_DC" style="width: 1.24rem;height: 0.3rem;margin-top: 0.2rem;margin-left: 0.15rem;"></div>
 						</div>
-						<!-- <div class="product_module">
-						<div class="product_moudel_img">
-							<img src="../../assers/image/shopping/5453@2x.png" class="product_moudel_img">
-						</div>
-						<div class="font_size30 font_color33 margin_left2 margin_top2">beats原厂运动耳机</div>
-						<div class="margin_left2 font_colorff0 font_size30">￥2000</div>
-					</div> -->
 					</div>
 				</div>
 			</div>
@@ -180,8 +173,8 @@
 					auto: false,
 					callback: function() {
 						var _this = this;
-						keywords.pageNum++;
-						getOrderList();
+						keyword.pageNum++;
+						getList();
 						setTimeout(function() {
 							_this.endPullupToRefresh(false);
 						}, 500)
@@ -351,10 +344,8 @@
 			// 获取产品列表
 			function getList() {
 				getselectPageList(mui, keyword, function(data) {
-					console.log("商品列表接收参数=" + JSON.stringify(keyword));
-					// console.log("商品列表接收参数=" + JSON.stringify(data));
 					if (data.code == 200) {
-						$(".product_module").remove();
+						$(".product_module1").remove();
 						var tjData = data.data.records;
 						// console.log("返回data=="+ JSON.stringify(tjData));
 						if (tjData.length == 0) {
@@ -369,7 +360,6 @@
 						} else {
 							var titleName = '¥'
 						}
-
 						var fragmentplanList = document.createDocumentFragment();
 						var goodsName;
 						for (i = 0; i < tjData.length; i++) {
@@ -390,6 +380,8 @@
 							$(fragmentplanList).append(goodsList);
 						}
 						$("#productList").append($(fragmentplanList));
+
+
 					} else {
 						tipShow(data.message);
 					}
