@@ -13,33 +13,40 @@
 		<link rel="stylesheet" type="text/css" href="../../assers/css/views/home.css" />
 
 		<style type="text/css">
-			.buttonClass{
+			.buttonClass {
 				width: 50%;
 				border-top: #CCCCCC solid 1px;
 				line-height: 0.93rem;
 			}
+
 			#pay {
 				display: none;
-			    position: fixed;
-			    top: 4rem;
-			    height: 3.2rem;
-			    width: 6rem;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
 			}
+
 			#delete {
 				display: none;
-			    position: fixed;
-			    top: 4rem;
-			    height: 3.2rem;
-			    width: 6rem;
+				position: fixed;
+				top: 4rem;
+				height: 3.2rem;
+				width: 6rem;
 			}
+
 			.order_moudel {
-			    margin-left: .25rem;
+				margin-left: .25rem;
+			}
+			.display{
+				display: none;
 			}
 		</style>
 	</head>
 	<body onselectstart="return false;" class="div_backgroun_F4">
 		<header id="returnPageId" class="header_white font_size34 font_color33 title_height" style="z-index: 999;">
-			<i style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../../assers/image/returnButton.png" style="width: .22rem;height: .38rem;"></i>
+			<i style="height: 100%;width: 0.7rem;float: left;touch-action: none;"><img src="../../assers/image/returnButton.png"
+				 style="width: .22rem;height: .38rem;"></i>
 			<div style="width: 6.7rem;">
 				商城订单
 			</div>
@@ -64,7 +71,7 @@
 			<div class="mui-scroll-wrapper" style="margin-top: 1.7rem;" id="gototopId">
 				<div class="mui-scroll ">
 					<div class="myOrderList" style="padding-bottom: 1.5rem;">
-						
+
 						<!-- 默认页面 -->
 						<div class="mrPage" style="width: 6.9rem;height: 4.2rem;background-color: #FFFFFF;margin: 0.3rem;border-radius: 0.2rem;">
 							<div class="back_gd_DC" style="width: 3.18rem;height: 0.32rem;position: relative;top: 0.4rem;left: 0.3rem;">
@@ -76,7 +83,7 @@
 							<div class="back_gd_DC" style="float: left; width: 2.7rem;height: 0.32rem;margin-top: 1.29rem;margin-left: 0.3rem;"></div>
 							<div style="margin-top: 3rem;margin-left: 0.3rem;">
 								<div class="back_gd_DC" style="width: 2.09rem;height: 0.34rem;float: left;margin-top: 0.1rem;"></div>
-								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div> 
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
 								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
 							</div>
 						</div>
@@ -90,7 +97,7 @@
 							<div class="back_gd_DC" style="float: left; width: 2.7rem;height: 0.32rem;margin-top: 1.29rem;margin-left: 0.3rem;"></div>
 							<div style="margin-top: 3rem;margin-left: 0.3rem;">
 								<div class="back_gd_DC" style="width: 2.09rem;height: 0.34rem;float: left;margin-top: 0.1rem;"></div>
-								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div> 
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
 								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
 							</div>
 						</div>
@@ -104,14 +111,10 @@
 							<div class="back_gd_DC" style="float: left; width: 2.7rem;height: 0.32rem;margin-top: 1.29rem;margin-left: 0.3rem;"></div>
 							<div style="margin-top: 3rem;margin-left: 0.3rem;">
 								<div class="back_gd_DC" style="width: 2.09rem;height: 0.34rem;float: left;margin-top: 0.1rem;"></div>
-								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div> 
+								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
 								<div class="back_gd_DC" style="width: 1.8rem;height: 0.62rem;float: left;margin-left: 0.3rem;"></div>
 							</div>
 						</div>
-						
-						
-						
-						
 					</div>
 				</div>
 			</div>
@@ -122,12 +125,12 @@
 			</div>
 		</div>
 
-		
+
 		<div id="pay" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
 			<div class="margin_top10 font_color33 font_size34 text_center">
 				确认取消订单？
 			</div>
-			
+
 			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
 				<div class="text_center buttonClass" id="qxId" style="float: left;">
 					取消
@@ -142,7 +145,7 @@
 			<div class="margin_top10 font_color33 font_size34 text_center">
 				确认删除订单？
 			</div>
-			
+
 			<div class="" style="position: absolute;bottom: 0px;width: 100%;height: 0.93rem;">
 				<div class="text_center buttonClass" id="qxdId" style="float: left;">
 					取消
@@ -185,14 +188,14 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
-				
+
 				window.addEventListener('jfOrderRefresh', function(event) {
 					// location.reload();
 					window.location.reload()
 				});
-				
-				
-				$("#returnPageId").on("tap",function(){
+
+
+				$("#returnPageId").on("tap", function() {
 					mui.currentWebview.close();
 					mui.back();
 					$$.openWindow({
@@ -218,7 +221,7 @@
 					$('#ywc').addClass('selection');
 					keywords.data.status = '4'
 				}
-				
+
 				mui(".mui-scroll-wrapper").pullRefresh({
 					container: '.mui-scroll',
 					up: {
@@ -254,27 +257,27 @@
 			//获取我的订单
 			function getOrderList() {
 				getqueryPageList(mui, keywords, function(data) {
-					console.log(JSON.stringify(keywords))
+					console.log(JSON.stringify(data))
 					$(".mrPage").remove()
 					if (data.code == 200) {
 						//console.log("111="+JSON.stringify(data));
 						var data = data.data.records
-						if(data.length == 0){
-							if(keywords.pageNum == "1"){
-								$('.nothing').css('display' ,'block');
-								$('.mui-pull').css('display' ,'none');
+						if (data.length == 0) {
+							if (keywords.pageNum == "1") {
+								$('.nothing').css('display', 'block');
+								$('.mui-pull').css('display', 'none');
 							}
-						}else{
-							$('.nothing').css('display' ,'none');
-							$('.mui-pull').css('display' ,'block');
+						} else {
+							$('.nothing').css('display', 'none');
+							$('.mui-pull').css('display', 'block');
 						}
 						var fragmentplanList = document.createDocumentFragment();
-						
-						var numParams; 
-						if(keywords.pageNum == 1){
-						 	numParams = 0;
-						}else{
-						 	numParams = (keywords.pageNum*10)-10;
+
+						var numParams;
+						if (keywords.pageNum == 1) {
+							numParams = 0;
+						} else {
+							numParams = (keywords.pageNum * 10) - 10;
 						}
 						var itemsTwo;
 						$.each(data, function(items) {
@@ -282,7 +285,7 @@
 							if (data[items].status == 1) {
 								data[items].status = '待支付'
 							} else if (data[items].status == 2) {
-								data[items].status = '待发货' 
+								data[items].status = '待发货'
 							} else if (data[items].status == 3) {
 								data[items].status = '待收货'
 							} else if (data[items].status == 4) {
@@ -290,9 +293,13 @@
 							} else if (data[items].status == 5) {
 								data[items].status = '已取消'
 							}
+							console.log(data[items].type)
+							if(data[items].type == 1){
+								data[items].type = 'display'
+							}
 							var orderList =
 								'<div class="order_moudel margin_top2" >' +
-								'<div class="div_display goD" data-id='+  data[items].orderId +'>' +
+								'<div class="div_display goD" data-id=' + data[items].orderId + '>' +
 								'<div class="font_color33 font_size32 width82">' +
 								data[items].orderNo +
 								'</div>' +
@@ -301,53 +308,63 @@
 								'</div>' +
 								'</div>' +
 								'<div class="div_display margin_top5">' +
-								'<div class="" data-id='+  data[items].orderId +'>' +
-								'<img src="' + data[items].goodsPicture + '" style="border-radius: 0.1rem;" class="order_img goD" data-id='+  data[items].orderId +'>' +
+								'<div class="" data-id=' + data[items].orderId + '>' +
+								'<img src="' + data[items].goodsPicture +
+								'" style="border-radius: 0.1rem;" class="order_img goD" data-id=' + data[items].orderId + '>' +
 								'</div>' +
-								'<div class="goD font_color33 font_size30 margin_left3 width55 font_width700" data-id='+  data[items].orderId +'>' +
-								data[items].goodsName +
+								'<div class="goD font_color33 font_size30 margin_left3 width55 font_width700" data-id=' + data[items].orderId +
+								'>' +
+								'<div class="'+ data[items].orderId +'">' +
+									data[items].goodsName +
 								'</div>' +
-								'<div class="goD width15 text_center font_size26 font_color99 margin_top5" data-id='+  data[items].orderId +'>X' +
+								'<div class="'+data[items].type+' " style="width: 1.2rem;height: .4rem;font-size: .24rem;color: #FF0100;border: 1px solid #FF0100;border-radius: .1rem;text-align: center;line-height: .4rem;">	积分商品' +
+								'</div>' +
+								
+								'</div>' +
+								'<div class="goD width15 text_center font_size26 font_color99 margin_top5" data-id=' + data[items].orderId +
+								'>X' +
 								data[items].num +
 								'</div>' +
 								'</div>' +
 								'<div class="div_display margin_top5">' +
-								'<div class="font_color33 font_size26 width40">合计:￥<span style="font-size: 0.4rem;">' + data[items].payment + '</span></div>' +
+								'<div class="font_color33 font_size26 width40">合计:￥<span style="font-size: 0.4rem;">' + data[items].payment +
+								'</span></div>' +
 								'<div class="width30">' +
-									'<div id="buttonOne'+itemsTwo+'" class="order_btn1" data-id='+  data[items].orderId +'>取消订单' +
-									'</div>' +
+								'<div id="buttonOne' + itemsTwo + '" class="order_btn1" data-id=' + data[items].orderId + '>取消订单' +
 								'</div>' +
-								'<div id="buttonTwo'+itemsTwo+'" class="width30">' +
-									'<div id="btn_Two'+itemsTwo+'" class="order_btn2" data-id='+  data[items].orderId +' data-no='+  data[items].orderNo +'>' +
-									'</div>' +
+								'</div>' +
+								'<div id="buttonTwo' + itemsTwo + '" class="width30">' +
+								'<div id="btn_Two' + itemsTwo + '" class="order_btn2" data-id=' + data[items].orderId + ' data-no=' + data[
+									items].orderNo + '>' +
+								'</div>' +
 								'</div>' +
 								'</div>' +
 								'</div>';
 							$(fragmentplanList).append(orderList);
 						});
 						$(".myOrderList").append($(fragmentplanList));
-						
+
 						var itemsThree;
 						$.each(data, function(items) {
 							itemsThree = numParams + items;
 							if (data[items].status == '待支付') {
-								$("#btn_Two"+itemsThree).text("立即支付");
+								$("#btn_Two" + itemsThree).text("立即支付");
 							} else if (data[items].status == '待发货') {
-								$("#buttonOne"+itemsThree).remove();
-								$("#buttonTwo"+itemsThree).remove();
+								$("#buttonOne" + itemsThree).remove();
+								$("#buttonTwo" + itemsThree).remove();
 							} else if (data[items].status == '待收货') {
-								$("#buttonOne"+itemsThree).remove();
-								$("#btn_Two"+itemsThree).text("确认收货");
+								$("#buttonOne" + itemsThree).remove();
+								$("#btn_Two" + itemsThree).text("确认收货");
 							} else if (data[items].status == '已完成') {
-								$("#buttonOne"+itemsThree).remove();
+								$("#buttonOne" + itemsThree).remove();
 								// $("#buttonTwo"+itemsThree).remove();
 								$("#btn_Two" + itemsThree).text("删除订单");
 							} else if (data[items].status == '已取消') {
-								$("#buttonOne"+itemsThree).remove();
+								$("#buttonOne" + itemsThree).remove();
 								// $("#buttonTwo"+itemsThree).remove();
 								$("#btn_Two" + itemsThree).text("删除订单");
 							}
-						});	
+						});
 					}
 				});
 				/* mui('.mui-scroll-wrapper').pullRefresh().disablePullupToRefresh(); // 关闭显示更多的提示
@@ -364,36 +381,36 @@
 				$(this).addClass("selection");
 				$(".myOrderList").html("");
 				keywords.data.status = $(this).attr("data-id");
-				console.log("点击的status="+ $(this).attr("data-id"));
+				console.log("点击的status=" + $(this).attr("data-id"));
 				keywords.pageNum = "1";
 				keywords.pageSize = "10";
-				
+
 				// 获取列表
 				getOrderList();
 			})
-			
+
 			// 立即支付
-			$('.myOrderList').on('tap','.order_btn2',function(){
+			$('.myOrderList').on('tap', '.order_btn2', function() {
 				var orderNo = $(this).attr('data-No');
-				if($(this).text() == "立即支付"){
+				if ($(this).text() == "立即支付") {
 					$$.openWindow({
 						url: 'jfOrderSub.html',
 						id: 'jfOrderSub',
-						extras:{
-							"orderNo":orderNo
+						extras: {
+							"orderNo": orderNo
 						},
-						createNew:'true',
+						createNew: 'true',
 						show: {
 							aniShow: "slide-in-right"
 						}
 					});
-				}else if($(this).text() == "确认收货"){
+				} else if ($(this).text() == "确认收货") {
 					var orderId = $(this).attr('data-id');
 					var dataBase = {
-						orderId:orderId
+						orderId: orderId
 					};
-					gojf_confirmReceipt(mui,dataBase,function(data){
-						console.log("111===="+JSON.stringify(data));
+					gojf_confirmReceipt(mui, dataBase, function(data) {
+						console.log("111====" + JSON.stringify(data));
 						if (data.code == 200) {
 							tipShow('操作成功')
 							plus.webview.currentWebview().reload(true);
@@ -401,16 +418,16 @@
 							tipShow(data.message);
 						}
 					});
-				}else if($(this).text() == "删除订单"){
+				} else if ($(this).text() == "删除订单") {
 					$("#delete").css("display", "bloak");
 					mui('#delete').popover('show');
 					// data_id = $(this).attr('data-id');
 					data_id = $(this).attr('data-id');
-					
-				}else{
+
+				} else {
 					console.log("点击内容错误！");
 				}
-				
+
 			});
 			// 取消删除
 			$('#qxdId').on('tap', function() {
@@ -420,48 +437,48 @@
 			// 确认删除
 			$('#deleteId').on('tap', function() {
 				console.log(data_id)
-				var data= {
-					orderId : data_id
+				var data = {
+					orderId: data_id
 				}
-				getDeleteOrderInte(mui,data, function(data) {
+				getDeleteOrderInte(mui, data, function(data) {
 					if (data.code == 200) {
 						tipShow('删除成功')
 						plus.webview.currentWebview().reload(true);
 					}
 				})
 			})
-			
+
 			// 取消订单
-			$('.myOrderList').on('tap','.order_btn1',function(){
-				$("#pay").css("display","bloak");
+			$('.myOrderList').on('tap', '.order_btn1', function() {
+				$("#pay").css("display", "bloak");
 				mui('#pay').popover('show');
 				data_id = $(this).attr('data-id');
 			})
-			
-			$('#qxId').on('tap',function(){
-				$("#pay").css("display","none");
+
+			$('#qxId').on('tap', function() {
+				$("#pay").css("display", "none");
 				mui('#pay').popover('hide');
 			})
-			
+
 			/* 取消支付 */
-			$('#qrId').on('tap',function(){
-				getcancelPay(mui,data_id,function(data){
-					if(data.code == 200){
+			$('#qrId').on('tap', function() {
+				getcancelPay(mui, data_id, function(data) {
+					if (data.code == 200) {
 						tipShow('取消成功')
 						plus.webview.currentWebview().reload(true);
 					}
 				})
 			})
-			
+
 			// 去订单详情
-			$('.myOrderList').on('tap','.goD',function(){
+			$('.myOrderList').on('tap', '.goD', function() {
 				$$.openWindow({
 					url: 'jforedrDetail.html',
 					id: 'jforedrDetail',
-					extras:{
-						"orderId":$(this).attr('data-id')
+					extras: {
+						"orderId": $(this).attr('data-id')
 					},
-					createNew:'true',
+					createNew: 'true',
 					show: {
 						aniShow: "slide-in-right"
 					}

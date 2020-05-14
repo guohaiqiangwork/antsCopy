@@ -31,9 +31,9 @@
 			</div>
 			<div class="text_center" >
 				<div class="font_color33 margin_top1" style="font-size: .34rem;">
-					蚂蚁招财
+					蚂蚁聚财
 				</div>
-				<div class="font_size30 font_color99 margin_top2" style="font-size: .3rem;">
+				<div class="font_size30 font_color99 margin_top2 visibleId" style="font-size: .3rem;">
 					版本：V 1.0.0
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 			
 			
 			<div style="color: #999999;font-size: 0.3rem;text-align: center;position:absolute;bottom:0;width:100%;height:40px;">
-				<span>@蚂蚁招财版权所有</span>
+				<span>@蚂蚁聚财版权所有</span>
 			</div>
 		</div> 
 		
@@ -85,7 +85,10 @@
 					scrollIndicator: 'none'
 				});
 				_self = plus.webview.currentWebview();
-
+				
+				getIosVersionNum(mui,function(data){
+					$('.visibleId').text('版本：V' + data.data)
+				})
 			};
 			$('.settingPassword').on('tap', function(e) {
 				// 获取页面ID

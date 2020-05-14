@@ -52,8 +52,11 @@
 				<div class="font_colorff0 text_left padding_right3 margin_top3 margin_bot3" id="price">
 					<!-- ¥2000 -->
 				</div>
+				<div class="guige" id="guigeList">
+					
+				</div>
 			</div>
-			<div class="" id="details" style="width: 100%;margin-top: 1rem;">
+			<div class="" id="details" style="width: 100%;margin-top: 2rem;">
 				<!-- <img src="../assers/image/pages/homeDetails2.png" class="width100"> -->
 			</div>
 		</div>
@@ -114,7 +117,18 @@
 							rotationChartFunc(goodsPicturesdata,goodsPicturesdata.length,2);
 						}
 						
-						
+						$.each(data.data.specParam, function(items) {
+							var guigeList = 
+							'<div class="div_display margin_top1">' +
+								'<div class="width20 font_size26">' +
+								data.data.specParam[items].name +
+								'</div>' +
+								'<div class="" style="width: 1.2rem;height: .44rem;border-radius: .3rem;background-color: #EEEEEE;text-align: center;font-size: .26rem;color: #666666;">' +
+									data.data.specParam[items].value +
+								'</div>' +
+							'</div>';
+							$("#guigeList").append($(guigeList)); 
+						});
 						var fragmentplanList = document.createDocumentFragment();
 						var mum;
 						$.each(data.data.goodsDetails, function(items) {

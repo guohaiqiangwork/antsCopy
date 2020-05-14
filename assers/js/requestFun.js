@@ -1726,6 +1726,52 @@ function getOrderIntegralPay(mui, dataBase, callback) {
 		}
 	});
 };
+// 获取版本号
+function getIosVersionNum(mui,callback) {
+	mui.ajax(requserUrl + "/appVersionNumber/getIosVersionNum", {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+//获取税费
+function getRate(mui,callback) {
+	mui.ajax(requserUrl + "/account/rate", {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+
 
 
 
