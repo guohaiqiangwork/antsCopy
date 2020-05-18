@@ -22,7 +22,7 @@
 		<header class="header_white" style="height:1rem ;background: linear-gradient(to right, #FFD2B0, #FF7467);">
 			<div class="div_display" style="margin-top: 0.09rem;">
 				<!-- 消息 -->
-				<div class="header_title_left " id="messageId" >
+				<div class="header_title_left " id="messageId">
 					<div class=" header_title_leftT " style="margin-top: 0.11rem;"></div>
 					<img src="../assers/image/homeMsg.png" class="header_title_leftI">
 				</div>
@@ -40,19 +40,29 @@
 					<div class="margin_left6">
 						<img id="hederImg" class="top_img">
 					</div>
-					<div class="margin_top5 margin_left3" style="width: 3rem;">
-						<div id="nameId" class="font_size36 font_colorff" style="height: 0.5rem;">
-							<!-- 蚂蚁聚财 -->
+					<div class="margin_top5 margin_left3 " style="width: 3rem;">
+						<div class="div_display">
+							<div id="nameId" class="font_size36 font_colorff" style="height: 0.5rem;">
+								<!-- 蚂蚁聚财 -->
+							</div>
+							<div class="div_display vipf_moudel margin_left1" style="">
+								<div class="margin_left1">
+									<img src="../assers/image/views/vipf.png" style="width: .50rem;height: .22rem;margin-bottom: 0.12rem;">
+								</div>
+								<div class="vip_moudel_font" id="LEVEL">
+									1
+								</div>
+							</div>
+
 						</div>
-						<div class="div_display vipf_moudel" style="">
-							<div class="margin_left1">
-								<img src="../assers/image/views/vipf.png" style="width: .50rem;height: .22rem;margin-bottom: 0.12rem;">
-							</div>
-							<div class="vip_moudel_font" id="LEVEL">
-								1
-							</div>
+
+						<div class="font_colorff font_size24">
+							积分余额:<span id="integral" class="font_size34">
+
+							</span>
 						</div>
 					</div>
+
 					<div class="margin_top3" style="margin-left: .3rem;">
 						<!-- <div class="font_size30 font_colorff" id="equityId">
 							会员权益
@@ -66,6 +76,8 @@
 						</div> -->
 					</div>
 				</div>
+
+
 				<!-- 账号余额 -->
 				<div class="div_display margin_top8 margin_left6 font_colorff">
 					<div class="font_size28">
@@ -95,30 +107,39 @@
 
 			<!-- 个人中心 -->
 			<div class="my_total_moudel">
-				<div class="gomyTotal">
-					<div class="font_size30">
+				<div class="gomyTotal div_display font_color33">
+					<div class="font_size26 margin_left2">
 						总收益(元)
-						<img src="../assers/image/rightf.png" class="my_jt_img margin_left1">
 					</div>
-					<div class="font_size44 margin_top1" id="totalAmount">
+					<div class="font_size44 margin_left2 width70" style="text-align: left;" id="totalAmount">
 						0
 					</div>
+					<img src="../assers/image/rightb.png" class="my_jt_img margin_left1">
 				</div>
-				<div class="div_display margin_top4 gomyTotalD">
-					<div class="width50 ">
-						<div class="font_size26">
-							本月支付收益(元)
-						</div>
+				<div class="div_display margin_top8 gomyTotalD">
+					<div class="width33 ">
 						<div class="font_size36" id="payAmount">
 							0
 						</div>
-					</div>
-					<div class="width50">
 						<div class="font_size26">
-							本月商城收益(元)
+							本月支付收益(元)
 						</div>
+
+					</div>
+					<div class="width33">
+						<div class="font_size36" id="handFee">
+							0
+						</div>
+						<div class="font_size26">
+							本月手续费分红(元)
+						</div>
+					</div>
+					<div class="width33">
 						<div class="font_size36" id="mallAmount">
 							0
+						</div>
+						<div class="font_size26">
+							本月商城收益(元)
 						</div>
 					</div>
 				</div>
@@ -130,7 +151,7 @@
 
 			<div class="div_display">
 				<div class="my__img goMyOrder" data-id="100">
-					<div class="font_colorf2 margin_left3 margin_top7 " >
+					<div class="font_colorf2 margin_left3 margin_top7 ">
 						商城订单
 					</div>
 				</div>
@@ -331,6 +352,8 @@
 						$('#payAmount').text(data.data.payAmount); //本月支付收益
 						$('#mallAmount').text(data.data.mallAmount); //本月商城收益
 						$('#balance').text(data.data.balance); //余额
+						$('#integral').text(data.data.integral);
+						$('#handFee').text(data.data.handFee);
 
 					} else {
 						tipShow(data.message);
@@ -342,7 +365,7 @@
 
 				function get_myMassage() {
 					myMassage(mui, plus.storage.getItem('memberId'), function(data) {
-						//console.log("查询用户信息="+JSON.stringify(data)); 
+						console.log("查询用户信息=" + JSON.stringify(data));
 						if (data.code == 200) {
 							//余额 
 							// $("#balanceMoneyId").text(data.data.balance);
@@ -355,6 +378,7 @@
 							if (data.data.name) {
 								$('#nameId').text(data.data.name);
 							}
+
 
 						} else {
 							tipShow(data.message);
@@ -390,6 +414,7 @@
 						$('#totalSum').text(data.data[0].totalSum)
 						$('#mySum').text(data.data[0].mySum)
 						$('#num').text(data.data[0].num)
+
 					} else {
 						tipShow(data.message);
 					}

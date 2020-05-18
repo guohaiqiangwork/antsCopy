@@ -189,7 +189,8 @@
 					callback: function() {
 						keyword.pageNum = 1;
 						keyword.pageSize = 10;
-						plus.webview.currentWebview().reload(true);
+						getList();
+						// plus.webview.currentWebview().reload(true);
 					}
 				}
 			});
