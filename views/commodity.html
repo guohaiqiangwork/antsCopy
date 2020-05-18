@@ -180,18 +180,23 @@
 						}, 500)
 					}
 				},
-				down: {
-					height: 50,
-					auto: false,
-					contentdown: "下拉刷新",
-					contentover: "释放刷新",
-					contentrefresh: "刷新中...",
-					callback: function() {
-						keyword.pageNum = 1;
-						keyword.pageSize = 10;
-						plus.webview.currentWebview().reload(true);
-					}
-				}
+				// down: {
+				// 	height: 50,
+				// 	auto: false,
+				// 	contentdown: "下拉刷新",
+				// 	contentover: "释放刷新",
+				// 	contentrefresh: "刷新中...",
+				// 	callback: function() {
+				// 		keyword.pageNum = 1;
+				// 		keyword.pageSize = 10;
+				// 		getList();
+				// 		setTimeout(function() {
+				// 		location.reload();
+				// 		// mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				// 		}, 3000);
+				// 		// plus.webview.currentWebview().reload(true);
+				// 	}
+				// }
 			});
 
 			/* 监听键盘搜索按钮 */

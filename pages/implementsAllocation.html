@@ -194,6 +194,7 @@
 			function funMyallot() {
 				// 我的同事查询
 				getMyAllot(mui, keyword, function(data) {
+					console.log(JSON.stringify(data))
 					if (data.code == 200) {
 						if (data.data.length > 0) {
 							$(".nothing1").css('display', 'none')
@@ -237,14 +238,17 @@
 
 			// 头部导航
 			$('.tab_swich').on('tap', function() {
+				console.log($(this).attr("data-id"))
 				if ($(this).attr("data-id") == 1) {
 					$('.allocation').css('display', 'none');
 					$('.receive').css('display', 'block');
-					// $('.receive').html('')
+					$('.receive').html('')
+					$('.nothing1').css('display','none')
 					obtainAllotRece(); //获取接收列表
 				} else {
 					$('.allocation').css('display', 'block');
 					$('.receive').css('display', 'none');
+					funMyallot()
 				}
 				console.log("点击的status=" + $(this).attr("data-id"));
 				$(".header_tab").find("div").removeClass("selection");

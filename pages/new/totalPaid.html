@@ -13,6 +13,26 @@
 		<link rel="stylesheet" href="../../assers/css/common.css">
 		<link rel="stylesheet" href="../../assers/css/newHome/newHome.css" />
 		<script src="../../assers/js/rem_reset.js"></script>
+		<style type="text/css">
+			.nothing1 {
+				text-align: center;
+				position: absolute;
+				margin-top: 1rem;
+				width: 100%;
+			}
+			
+			.nothing1 img {
+				width: 4.12rem;
+				height: 3.53rem;
+				margin-top: .3rem;
+				/* margin: 0.5rem auto 0rem; */
+			}
+			.nothing1 p {
+				font-size: .3rem;
+				color: #999999;
+				margin-top: 0.3rem;
+			}
+		</style>
 	</head>
 
 	<body onselectstart="return false;" style="background-color: #F4F4F4;">
@@ -51,7 +71,10 @@
 					</div>
 				</div>
 			</div> -->
-
+			<div class="nothing1" style="display: none;text-align: center;">
+				<img style="margin: 1rem auto 0rem;" src="../../assers/image/diaobo.png" class="width_height100">
+				<p>暂无数据</p>
+			</div>
 		</div>
 	</body>
 
@@ -68,7 +91,7 @@
 			var year = new Date().getFullYear();
 			var month = new Date().getMonth() + 1;
 			var day = new Date().getDate();
-			if(month< 10){
+			if (month < 10) {
 				month = '0' + month
 			}
 			var keyword = {
@@ -103,40 +126,46 @@
 					console.log(JSON.stringify(data))
 					if (data.code == 200) {
 						var data = data.data;
-						console.log(JSON.stringify(data) )
-						var fragmentplanList = document.createDocumentFragment();
-						$.each(data, function(items) {
-							if (items % 2 == 1) {
-								data[items].bg = 'product_bj_img1'
-							} else {
-								data[items].bg = 'product_bj_img'
-							}
-							console.log(items)
-							var profitList =
-								'<div class="' + data[items].bg + '">' +
-								'<div class="font_size28 font_colorff text_center" >' +
-								data[items].brandName +
-								'pos</div>' +
-								'<div class="font_size24 font_color99 right_moudel">' +
-								data[items].mouth +
-								'</div>' +
-								'<div class="div_display margin_left3 ">' +
-								'<div class="font_size28" style="margin-top: .25rem;">月收益</div>' +
-								'<div class="font_size40 margin_left2 margin_top2">' +
-								data[items].thisMouthAmount +
-								'</div>' +
-								'</div>' +
-								'</div>';
-							$(fragmentplanList).append(profitList);
-						})
-						$("#productList").append($(fragmentplanList));
+						console.log(JSON.stringify(data))
+						if (data.length > 0) {
+							$(".nothing1").css('display', 'none')
+							var fragmentplanList = document.createDocumentFragment();
+							$.each(data, function(items) {
+								if (items % 2 == 1) {
+									data[items].bg = 'product_bj_img1'
+								} else {
+									data[items].bg = 'product_bj_img'
+								}
+								console.log(items)
+								var profitList =
+									'<div class="' + data[items].bg + '">' +
+									'<div class="font_size28 font_colorff text_center" >' +
+									data[items].brandName +
+									'pos</div>' +
+									'<div class="font_size24 font_color99 right_moudel">' +
+									data[items].mouth +
+									'</div>' +
+									'<div class="div_display margin_left3 ">' +
+									'<div class="font_size28" style="margin-top: .25rem;">月收益</div>' +
+									'<div class="font_size40 margin_left2 margin_top2">' +
+									data[items].thisMouthAmount +
+									'</div>' +
+									'</div>' +
+									'</div>';
+								$(fragmentplanList).append(profitList);
+							})
+							$("#productList").append($(fragmentplanList));
+
+						} else {
+							$(".nothing1").css('display', 'block')
+						}
 
 					} else {
 						tipShow(data.message);
 					}
 
 				})
-			
+
 			}
 			//开始时间
 			document.getElementById("pickDateBtn").addEventListener('tap', function() {
