@@ -197,7 +197,8 @@
 					console.log(JSON.stringify(data))
 					if (data.code == 200) {
 						if (data.data.length > 0) {
-							$(".nothing1").css('display', 'none')
+							$(".nothing1").css('display', 'none');
+							$("#myfrind").html('');
 							$(".margin_bot3").css("display", "block");
 							var fragmentplanList = document.createDocumentFragment();
 							$.each(data.data, function(items) {
