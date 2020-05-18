@@ -6,7 +6,7 @@
  */
 // 全局变量定义  
 
-window.requserUrl = 'http://192.168.1.210:9090'; //
+window.requserUrl = 'http://jucai.expresslines.cn'; //
 window.requserUrlShard = 'http://www.bjxrkj.com/';
 // 郭海强 start
 /**
@@ -1771,6 +1771,54 @@ function getRate(mui,callback) {
 	});
 };
 
+// 获取满刷奖励
+function getCash(mui,callback) {
+	mui.ajax(requserUrl + "/reach/cash", {
+		timeout: 20000,
+		type: 'get',
+		data:{memberId:plus.storage.getItem('memberId')},
+		// data:{memberId:'1254710299945725953'},
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 领取
+function getReceive(mui,data,callback) {
+	mui.ajax(requserUrl + "/reach/receive", {
+		timeout: 20000,
+		type: 'get',
+		data:{id:data},
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
 
 
 

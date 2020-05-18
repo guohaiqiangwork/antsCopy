@@ -544,7 +544,7 @@
 							'<div class="margin_top3 div_display aa">' +
 							'<div class="activity_moudel_left">' +
 							'<img src="' + dataList[2].banner + '" data-id=' + dataList[2].id +
-							' class="activity_moudel_imgl div_border_radius3 goActivity">' +
+							' class="activity_moudel_imgl div_border_radius3 goActivity" data-type="22">' +
 							'</div>' +
 							'<div class="activity_moudel_left margin_left3">' +
 							'<img src="' + dataList[1].banner + '" data-id=' + dataList[1].id +
@@ -632,7 +632,6 @@
 								$(fragmentplanList).append(profitList);
 							})
 							$("#product").append($(fragmentplanList));
-
 						}
 					} else {
 						tipShow(data.message);
@@ -857,17 +856,36 @@
 			});
 
 			$('#activity_img').on('tap', '.goActivity', function() {
-				$$.openWindow({
-					url: '../pages/activity.html',
-					id: 'activity',
-					extras: {
-						"activityId": $(this).attr('data-id'),
-						"falgUrl": 'banner'
-					},
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
+				console.log($(this).attr('data-type'))
+				if($(this).attr('data-type') == '22'){
+					$$.openWindow({
+						url: '../pages/new/homeActivity.html',
+						id: 'homeActivity',
+						extras: {
+							"activityId": $(this).attr('data-id'),
+							"falgUrl": 'banner'
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+								
+				}else{
+					$$.openWindow({
+						url: '../pages/activity.html',
+						id: 'activity',
+						extras: {
+							"activityId": $(this).attr('data-id'),
+							"falgUrl": 'banner'
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+								
+				}
+			
+				
 			});
 			// 获取轮播广告
 			function getNewsApiList() {

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" href="../../assers/css/newHome/newHome.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+
+	</head>
+	<body onselectstart="return false;" style="background: #F4F4F4;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<div class="div_display">
+				<div class="width40">
+					<i class="mui-action-back"><img src="../../assers/image/returnButton.png" style="width: .16rem;height:.28rem;"></i>
+				</div>
+				<div style="width: 2rem;">
+					满刷奖励
+				</div>
+				<div class="width40 text_right" id="condition" style="font-size: 0.3rem;margin-right: 0.3rem;">
+					奖励规则
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<!-- 	<div class="homeActivity_moudel ">
+				<div class="homeActivity_moudel_img homeActivity_moudel_bg">
+					333
+				</div>
+				<div class="div_display font_color33 font_size30 margin_left2 font_width700 margin_top2">
+					<div class="width75">
+						中POS
+					</div>
+					<div class="">
+						<span class="font_size50">100</span>万
+					</div>
+				</div>
+				<div class="div_display font_color33 font_size24 margin_left2  margin_top2">
+					<div class="width75 font_color99">
+						激活时间
+						<span id="">
+							2020-05-15
+						</span>
+					</div>
+					<div class="font_size28 margin_left2">
+						交易量
+					</div>
+				</div>
+				<div class="div_display">
+					<div class="font_size24 text_center font_colorff bottm_bg1 bottm_bg1_active">
+						88万/奖200元
+					</div>
+					<div class="font_size24 text_center font_colorff bottm_bg1 bottm_bg1_active1">
+						88万/奖200元
+					</div>
+					<div class="font_size24 text_center font_colorff bottm_bg1 bottm_bg1_active1">
+						88万/奖200元
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="nothing" style="display: none;">
+			<img src="../../assers/image/default/noOrder.png" class="width_height100" style="margin-top: 1.5rem;">
+			<p>您的条件未满足~</p>
+		</div>
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				console.log(_self.falgUrl);
+				userId = plus.storage.getItem('memberId');
+				funCash(); //获取满刷列表
+			};
+
+			function funCash() {
+				getCash(mui, function(data) {
+					if (data.code == 200) {
+						var data = data.data;
+						if(data.length > 0){
+							var fragmentplanList = document.createDocumentFragment();
+							$.each(data, function(items) {
+								if (items % 2 == 1) {
+									data[items].bg = 'homeActivity_moudel_bg'
+								} else {
+									data[items].bg = 'homeActivity_moudel_bg1'
+								}
+								var profitList =
+									'<div class="homeActivity_moudel ">' +
+									'<div class="homeActivity_moudel_img  ' + data[items].bg + '">' +
+									data[items].serialNumber +
+									'</div>' +
+									'<div class="div_display font_color33 font_size30 margin_left2 font_width700 margin_top2">' +
+									'<div class="width75">' +
+									data[items].goodsName +
+									'</div>' +
+									'<div class="">' +
+									'<span class="font_size50">' + data[items].transAmount + '</span>万' +
+									'</div>' +
+									'</div>' +
+									'<div class="div_display font_color33 font_size24 margin_left2  margin_top2">' +
+									'<div class="width75 font_color99">激活时间<span id="" class="margin_left2">' +
+									data[items].activTime +
+									'</span>' +
+									'</div>' +
+									'<div class="font_size28 margin_left2">交易量</div>' +
+									'</div>' +
+									'<div class="div_display" id="nihao">'
+							
+								'</div>' +
+								'</div>';
+								$(fragmentplanList).append(profitList);
+								$.each(data[items].reachCashes, function(item) {
+									if (data[items].reachCashes[item].isReach == 2) {
+										if (data[items].reachCashes[item].isReceive == 1) {
+											data[items].reachCashes[item].isReceive = 'bottm_bg1_active'
+										}
+									} else {
+										data[items].reachCashes[item].isReceive = 'bottm_bg1_active1'
+									}
+									var abc =
+										'<div class="font_size24 text_center font_colorff bottm_bg1 ' + data[items].reachCashes[item].isReceive +
+										'" data-id="' + data[items].reachCashes[item].id +'">' +
+										data[items].reachCashes[item].amountReach + '万/奖' + data[items].reachCashes[item].rewardAmount + '元' +
+										'</div>';
+									$("#nihao", fragmentplanList).append(abc);
+								});
+								$(".content").append($(fragmentplanList));
+							});
+							
+						}else{
+							$(".nothing").css('display','block');
+						}
+						
+					}
+				})
+			};
+			
+			// 点击领取
+			$('.content').on('tap','.bottm_bg1',function(){
+				console.log($(this).attr('data-id'))
+				getReceive(mui,$(this).attr('data-id'),function(data){
+					if(data.code == 200){
+						plus.webview.currentWebview().reload(true);
+					}
+				})
+			});
+			
+			// 去说明
+			$('#condition').on('tap',function(){
+				$$.openWindow({
+					url: 'homeActiExp.html',
+					id: 'homeActiExp',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			
+				
+
+
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>
