@@ -104,6 +104,7 @@
 				getgoodsDetails(mui, _self.productId, function(data) {
 					$(".mrPage").remove();
 					if (data.code == 200) {
+						console.log(JSON.stringify(data))
 						$('#price').text(productTypeTitle + data.data.goodsPrice);
 						//轮播图方法
 						var goodsPicturesdata = data.data.goodsPictures;
@@ -114,6 +115,7 @@
 							$(".lobotuTitleDetails").css("display","none");
 							$("#pictures").attr("src", data.data.goodsPictures[0]);
 						}else{
+							productType = data.data.type;
 							$('#title').text(data.data.goodsName);
 							rotationChartFunc(goodsPicturesdata,goodsPicturesdata.length,2);
 						}

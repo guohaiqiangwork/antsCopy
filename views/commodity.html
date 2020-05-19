@@ -262,6 +262,7 @@
 
 			// 去产品详情
 			$('#productList').on('tap', '.product_module', function() {
+				console.log(keyword.data.type)
 				if ($(this).attr('dataNum') == 0) {
 					tipShow("此商品库存不足！");
 				} else {
@@ -331,11 +332,13 @@
 			$("#homePageTitleNavId").on("tap", '.mui-control-item', function(e) {
 				keyword.data.sortId = $(this).attr("data-id");
 				$("#productList").html("");
+				mui('#dowm').scroll().scrollTo(0, 0)
 				getList();
 			})
 			// 产品分类
 			$('.tab_swich').on('tap', function() {
 				$('.tab_swich').css("font-weight", "500");
+				
 				$(this).css("font-weight", "700");
 				keyword.data.type = $(this).attr("data-id");
 				console.log("点击的status=" + $(this).attr("data-id"));
@@ -346,6 +349,8 @@
 				$("#productList").html("");
 				keyword.pageNum = 1;
 				keyword.pageSize = 10;
+				mui('#dowm').scroll().scrollTo(0, 0)
+				
 				getList();
 
 			});
