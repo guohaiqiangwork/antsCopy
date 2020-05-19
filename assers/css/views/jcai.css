@@ -14,8 +14,8 @@
 	color: #999999;
 }
 
-.mui-segmented-control.mui-scroll-wrapper1 .mui-control-item {
-	padding: 0 10px;
+.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+	padding-left: .2rem;
 }
 
 .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
@@ -29,8 +29,9 @@
 	height: 3.3rem;
 }
 
-.mui-segmented-control.mui-scroll-wrapper1 .mui-scroll {
+.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
 	height: 3.3rem;
+	 width: 544px !important;
 }
 
 .mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active div {
@@ -38,8 +39,8 @@
 	background-color: #EA3E31;
 	border-radius: .2rem;
 	margin-top: .1rem;
-	width: 60%;
-	margin-left: 20%;
+	width: 90%;
+	margin-left: 5%;
 }
 
 @keyframes animate {

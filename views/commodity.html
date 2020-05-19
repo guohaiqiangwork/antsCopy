@@ -43,6 +43,9 @@
 			.product_moudel_img {
 				width: 3.3rem;
 			}
+			.mui-scroll-wrapper .mui-scroll{
+			  
+			}
 		</style>
 	</head>
 
@@ -72,8 +75,8 @@
 		<!-- tab -->
 		<div class="mui-content" id="heardD">
 			<div id="slider" class="mui-slider mui-fullscreen div_backgroun_EE" style="height: 0.9rem;width: 90%;">
-				<div id="sliderSegmentedControl" class="mui-scroll-wrapper1 mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll" style="touch-action: none;" id="homePageTitleNavId">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll" style="touch-action: none; width: 544px !important;" id="homePageTitleNavId">
 
 					</div>
 				</div>
@@ -96,7 +99,7 @@
 
 		<!-- 商品列表 -->
 		<div class="">
-			<div class="mui-scroll-wrapper" style="margin-top: 7rem;">
+			<div class="mui-scroll-wrapper" id="dowm" style="margin-top: 7rem;">
 				<div class="mui-scroll">
 					<div class="" id="productList" style="padding-bottom: 1.5rem;">
 						<div class="product_module1">
@@ -165,7 +168,8 @@
 				getList() // 获取产品列表
 				funSelectSort(); //获取头部分类
 			}
-			mui(".mui-scroll-wrapper").pullRefresh({
+			
+			mui("#dowm").pullRefresh({
 				container: '.mui-scroll',
 				up: {
 					contentrefresh: '加载中...',
