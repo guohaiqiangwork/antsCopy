@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>裁剪图片</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="css/mui.css" rel="stylesheet" />
+	<style type="text/css">
+	    .clipbg{
+		position: fixed;background-color: #C7C7CC;top: 0;z-index: 999;width: 100%;height: 100%;left: 0;
+	    }
+	    .loading{
+	        position: absolute;top: 45%;width: 38%;left: 31%;height: 1.6rem;
+		line-height: 1.6rem;z-index: 99999;text-align: center;color: #ffffff;border-radius:0.2rem ;background: #9f9f9f;
+	    }
+	    .clipbg #clipArea{
+		width: 100%;height: 100%;margin: auto;
+	    }
+	    .clipbg .footer{
+		width: 90%;position: fixed;left: 5%;bottom: 0px;text-align: center;
+	    }
+	    .displaynone{
+		display: none;
+	    }
+	    .footer > div{
+		width: 50%;float: left;height: 3rem;line-height:3rem;margin-bottom: 4.5rem;
+	    }
+	    .footer .actionButton{
+		background: #ffffff;width: 3rem;border-radius: 50%;margin: 0 auto;font-size: 28px;
+	    }
+	</style>
+    </head>
+    <body>
+	<div class="clipbg">
+	    <div id="clipArea"></div>
+	    <div class="loading displaynone">正在载入图片...</div>
+	    <div class="footer">
+                <div class="back">
+		    <div class="actionButton" style="color: #CA4033;">×</div>
+	        </div>
+	        <div id="clipBtn">
+		    <div class="actionButton" style="color: #009688;">√</div>
+	        </div>
+	    </div>
+	</div>
+	<script type="text/javascript" src="../assers/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../assers/js/mui.js"></script>
+
+	 <script type="text/javascript" src="js/1.js"></script>
+	  <script type="text/javascript" src="js/2.js"></script>
+	   <script type="text/javascript" src="js/3.js"></script>
+
+	<script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll-infinite.js"></script>
+	<!-- <script type="text/javascript" src="../js/PhotoClip.js"></script> -->
+	
+	<!-- <script type="text/javascript" src="../assers/js/crop-picture.js"></script> -->
+	<script>
+		mui.init();
+		mui.plusReady(function(){
+		    var self = plus.webview.currentWebview();
+		    var ImgUrl = self.ImgUrl;//获得图片路径
+		    var ImgScale = self.ImgScale;//获得裁剪图的高：宽的比例
+		    var pageId = self.pageId;//获得裁剪后返回页面的ID
+		    var w = document.documentElement.clientWidth - 6;
+		    var h = w * ImgScale;
+		    var clipArea = new  PhotoClip("#clipArea", {
+			size: [w, h],//裁剪框大小
+			maxZoom: 6,
+			img: ImgUrl,
+			outputSize:[0,0],//打开图片大小，[0,0]表示原图大小
+			ok: "#clipBtn",
+			loadStart: function() { //图片开始加载的回调函数。this 指向当前 PhotoClip 的实例对象，并将正在加载的 file 对象作为参数传入。（如果是使用非 file 的方式加载图片，则该参数为图片的 url）
+			    $(".loading").removeClass("displaynone");
+			},
+			loadComplete: function() {//图片加载完成的回调函数。this 指向当前 PhotoClip 的实例对象，并将图片的 <img> 对象作为参数传入。
+			    $(".loading").addClass("displaynone");
+			},
+			done: function(dataURL) { //裁剪完成的回调函数。this 指向当前 PhotoClip 的实例对象，会将裁剪出的图像数据DataURL作为参数传入。			
+			    console.log(dataURL);//dataURL裁剪后图片地址base64格式提交给后台处理
+			    var bitmap = new plus.nativeObj.Bitmap();
+			    // 从本地加载Bitmap图片
+			    bitmap.loadBase64Data(dataURL, function() {
+			        console.log('加载图片成功');
+				bitmap.save("_doc/" + Math.floor(Math.random()*100000000+10000000).toString() + ".jpg", {
+				    overwrite: true,
+				    quality: 100
+				}, function(i) {
+				    var list = plus.webview.getWebviewById(pageId);
+				    //触发列表界面的自定义事件（refresh）,从而进行数据刷新
+				    mui.fire(list,'addImg',{
+					imgDataURL: i.target
+				    }); 
+				    plus.webview.currentWebview().close();
+					console.log('保存图片成功：'+JSON.stringify(i));
+				    }, function(e) {
+					console.log('保存图片失败：' + JSON.stringify(e));
+				    });
+				}, function(e) {
+				    console.log('加载图片失败：' + JSON.stringify(e));
+				});
+			    }
+		        });
+		    });
+		    $(".back").click(function(){
+			//询问框
+			layer.open({
+			    content: '您当前图片未保存，是否确定退出？'
+			    ,btn: ['确定', '取消']
+			    ,yes: function(index){
+				//执行mui封装好的窗口关闭逻辑； 
+			        plus.webview.currentWebview().close();
+			    }
+			});
+		    })
+	</script>
+    </body>
+	
+</html>
