@@ -147,7 +147,9 @@
 						运费
 					</div>
 					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
-						￥ 0.00
+						￥ <span id="postFee">
+							
+						</span> 
 					</div>
 				</div>
 				<!-- 金额 -->
@@ -332,6 +334,7 @@
 						$('#title').text(data.data.goodsName);
 						$('.price').text(data.data.goodsPrice);
 						payment = data.data.goodsPrice;
+						$('#postFee').text(data.data.postFee);
 						$('.priceMoneyClas').text(data.data.goodsPrice);
 						$("#pictures").attr("src", data.data.goodsPictures[0]);
 					} else {
