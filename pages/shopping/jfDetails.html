@@ -104,7 +104,10 @@
 				getgoodsDetails(mui, _self.productId, function(data) {
 					$(".mrPage").remove();
 					if (data.code == 200) {
-						console.log(JSON.stringify(data))
+						if(data.data.type == 0){
+							productTypeTitle = '积分:';
+							$('.homeDetails_btn').text('立即兑换')
+						}
 						$('#price').text(productTypeTitle + data.data.goodsPrice);
 						//轮播图方法
 						var goodsPicturesdata = data.data.goodsPictures;

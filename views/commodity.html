@@ -333,12 +333,13 @@
 				keyword.data.sortId = $(this).attr("data-id");
 				$("#productList").html("");
 				mui('#dowm').scroll().scrollTo(0, 0)
+				keyword.pageNum = 1;
+				keyword.pageSize = 10;
 				getList();
 			})
 			// 产品分类
 			$('.tab_swich').on('tap', function() {
 				$('.tab_swich').css("font-weight", "500");
-				
 				$(this).css("font-weight", "700");
 				keyword.data.type = $(this).attr("data-id");
 				console.log("点击的status=" + $(this).attr("data-id"));
@@ -350,7 +351,7 @@
 				keyword.pageNum = 1;
 				keyword.pageSize = 10;
 				mui('#dowm').scroll().scrollTo(0, 0)
-				
+				console.log('00')
 				getList();
 
 			});
