@@ -224,7 +224,7 @@
 				get_goJFOrderDetail();
 				function get_goJFOrderDetail(){
 					goJFOrderDetail(mui, _self.orderId, function(data) {
-						//console.log(JSON.stringify(data));
+						console.log(JSON.stringify(data));
 						if (data.code == 200) {
 							var data = data.data;
 							// 头部
@@ -328,6 +328,8 @@
 								payType = '支付宝支付'
 							} else if (data.paymentType == 3) {
 								payType = '余额支付'
+							}else if (data.paymentType == 4) {
+								payType = '积分支付'
 							}
 							$('.paymentType').text(payType);
 							$('.totalPrice').text(data.totalPrice);

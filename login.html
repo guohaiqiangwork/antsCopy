@@ -76,6 +76,9 @@
 					 《隐私政策》
 					</span>
 				</p>
+				<p style="color: #333333;font-weight: 800;margin-top: .2rem;" id="goGxnr">
+					《共享经济合作伙伴协议》
+				</p>
 			</div>
 
 		</div>
@@ -122,6 +125,15 @@
 				
 					}
 				});
+				$('#goGxnr').on('tap',function(){
+					$$.openWindow({
+							url: 'pages/gxnr.html',
+							id: 'gxnr',
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+				})
 				
 				// var bindPhone = plus.webview.getWebviewById("bindPhone") || '';
 				_self.goSign = true;

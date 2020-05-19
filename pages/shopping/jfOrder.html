@@ -147,7 +147,9 @@
 						运费
 					</div>
 					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
-						￥ <span id="postFee">
+					<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
+					<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
+						 <span id="postFee">
 							
 						</span> 
 					</div>
@@ -158,12 +160,13 @@
 						商品金额
 					</div>
 					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
-						<span>￥</span>
+						<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
+						<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
 						<span class="price"></span>
 					</div>
 				</div>
 				<!-- 备注 -->
-				<div class="div_display margin_left3 margin_top4 font_size28 font_color33">
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33 moudelFalg">
 					<div class="width40 margin_top2">
 						订单备注
 					</div>
@@ -296,8 +299,8 @@
 					} else {
 						$("#test").val(num);
 						var shopPrice = $("#price .priceMoneyClas").text();
-						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0)));
-						payment = moneyFormat((num - 0) * (shopPrice - 0));
+						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0) + Number( $('#postFee').text())));
+						payment = moneyFormat((num - 0) * (shopPrice - 0) + Number( $('#postFee').text()));
 					}
 				});
 
@@ -309,8 +312,8 @@
 					} else {
 						$("#test").val(num);
 						var shopPrice = $("#price .priceMoneyClas").text();
-						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0)));
-						payment = moneyFormat((num - 0) * (shopPrice - 0));
+						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0)+ Number( $('#postFee').text())));
+						payment = moneyFormat((num - 0) * (shopPrice - 0) + Number( $('#postFee').text()));
 					}
 				});
 				console.log(_self.productType)
@@ -335,7 +338,8 @@
 						$('.price').text(data.data.goodsPrice);
 						payment = data.data.goodsPrice;
 						$('#postFee').text(data.data.postFee);
-						$('.priceMoneyClas').text(data.data.goodsPrice);
+						$('.priceMoneyClas').text(Number( data.data.goodsPrice)   );
+						$('#totalMoneyId').text(Number( data.data.goodsPrice) + Number(data.data.postFee)  );
 						$("#pictures").attr("src", data.data.goodsPictures[0]);
 					} else {
 						tipShow(data.message);
@@ -395,7 +399,15 @@
 
 			// 关闭
 			$('.btn_moudel').on('tap', function() {
-				$('.bj_model_logisticsx').css('display', 'none')
+				$('.bj_model_logisticsx').css('display', 'none');
+					$('.moudelFalg').css('display','block')
+				$$.openWindow({
+					url: './views/index.html',
+					id: 'index',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
 			})
 			// 提交订单
 			$('.homeOrder_btn').on('tap', function() {
@@ -435,7 +447,7 @@
 										$("#mm2").css("margin-top", "0.3rem");
 										/* $("#mm2").css("margin-left", "2rem"); */
 										$("#mm2").text("");
-										$("#mm2").text("￥" + payment);
+										$("#mm2").text( payment);
 										$("#money").attr("payment", payment);
 										$('.table>div>.blackpwd').css('opacity', '0');
 										$('.zfinput').val("");

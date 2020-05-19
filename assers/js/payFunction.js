@@ -8,7 +8,6 @@ function shoPagePasswordFunc(mui, dataBase,orderNo,payment) {
 				memberId: plus.storage.getItem('memberId'),
 				orderNo: orderNo,
 			};
-			console.log('我进来可')
 			un_orderPay(mui, dataBase, function(data) {
 				if (data.code == 200) {
 					mui.openWindow({
@@ -32,9 +31,9 @@ function shoPagePasswordFunc(mui, dataBase,orderNo,payment) {
 					$('.zfinput').val("");
 				}
 			});
-			getOrderIntegralPay(mui,dataBase,function(data){
-				console.log(JSON.stringify(data))
-			})
+			// getOrderIntegralPay(mui,dataBase,function(data){
+			// 	console.log(JSON.stringify(data))
+			// })
 		} else {
 			tipShow(data.message);
 			$('.zfinput').val("");
@@ -54,7 +53,8 @@ function shoPagePasswordFuncJF(mui, dataBase,orderNo,payment) {
 			};
 			getOrderIntegralPay(mui,dataBase,function(data){
 				console.log(JSON.stringify(data))
-				$('.bj_model_logisticsx').css('display','block')
+				$('.bj_model_logisticsx').css('display','block');
+				$('.moudelFalg').css('display','none')
 				if(data.code == 200){
 					$('.chnegong').css('display','block');
 					$('.font_size50').text(payment)

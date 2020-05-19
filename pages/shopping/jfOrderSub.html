@@ -152,6 +152,8 @@
 				Keyboard = new Plugin.Keyboard();
 				/* 头部返回按钮 */
 				$(".titleReturnButton").on("tap", function(){
+					var list = plus.webview.currentWebview().opener();　
+					mui.fire(list, 'jfOrderRefresh');
 					$$.openWindow({
 						url: 'jfmyOrder.html',
 						id: 'jfmyOrder',

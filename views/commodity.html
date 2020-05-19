@@ -43,9 +43,8 @@
 			.product_moudel_img {
 				width: 3.3rem;
 			}
-			.mui-scroll-wrapper .mui-scroll{
-			  
-			}
+
+			.mui-scroll-wrapper .mui-scroll {}
 		</style>
 	</head>
 
@@ -168,7 +167,7 @@
 				getList() // 获取产品列表
 				funSelectSort(); //获取头部分类
 			}
-			
+
 			mui("#dowm").pullRefresh({
 				container: '.mui-scroll',
 				up: {
@@ -307,7 +306,7 @@
 									shopName = dataNav[index].name;
 								}
 								$('#homePageTitleNavId').append(
-									'<div class="mui-control-item" data-id=' + dataNav[index].id + ' >' + shopName +
+									'<div class="mui-control-item" data-id=' + dataNav[index].id + ' data-index=' + index + '>' + shopName +
 									'<div></div></div>'
 								);
 							});
@@ -332,6 +331,15 @@
 			$("#homePageTitleNavId").on("tap", '.mui-control-item', function(e) {
 				keyword.data.sortId = $(this).attr("data-id");
 				$("#productList").html("");
+				if ($(this).attr("data-index") > 1) {
+					var a = -50
+				} else {
+					var a = 50
+				}
+				var distance = $(this).attr("data-index") * a + 'px'
+				if (distance != "50px") {
+					$("#homePageTitleNavId").css("transform", "translate3d(" + distance + ", 0px, 0px)");
+				}
 				mui('#dowm').scroll().scrollTo(0, 0)
 				keyword.pageNum = 1;
 				keyword.pageSize = 10;
@@ -342,7 +350,6 @@
 				$('.tab_swich').css("font-weight", "500");
 				$(this).css("font-weight", "700");
 				keyword.data.type = $(this).attr("data-id");
-				console.log("点击的status=" + $(this).attr("data-id"));
 				$('.tab_swich').removeClass("avue_font");
 				$(".header_tab").find("div").removeClass("avue");
 				$(this).children("div").addClass('avue');
@@ -413,23 +420,23 @@
 						if (length != 0) {
 							if (length == 1) {
 								$('.mui-slider-group').append('<div class="mui-slider-item " data-id=' + dataList[0].goodsId +
-									'><img class="lunbo-img" src="' + dataList[0].carousel +
+									' data-falg=' + dataList[0].shelves + '><img class="lunbo-img" src="' + dataList[0].carousel +
 									'" /></div>');
 							} else {
 								$('.mui-slider-group').append(
 									'<div class="mui-slider-item mui-slider-item-duplicate " data-id=' + dataList[length - 1].goodsId +
-									'><img class="lunbo-img" src="' + dataList[length -
+									' data-falg=' + dataList[length - 1].shelves + '><img class="lunbo-img" src="' + dataList[length -
 										1].carousel +
 									'" /></div>');
 								/* $('.mui-slider-indicatorTwo').append('<div class="mui-indicator mui-active"></div>'); */
 								for (var i = 0; i < length; i++) {
 									if (i == 0) {
 										$('.mui-slider-group').append('<div class="mui-slider-item" data-id=' + dataList[i].goodsId +
-											'><img class="lunbo-img" src="' + dataList[i].carousel +
+											' data-falg=' + dataList[i].shelves + '><img class="lunbo-img" src="' + dataList[i].carousel +
 											'" /></div>');
 									} else {
 										$('.mui-slider-group').append('<div class="mui-slider-item " data-id=' + dataList[i].goodsId +
-											'><img class="lunbo-img" src="' + dataList[i].carousel +
+											' data-falg=' + dataList[i].shelves + '><img class="lunbo-img" src="' + dataList[i].carousel +
 											'" /></div>');
 									}
 								}
@@ -453,16 +460,24 @@
 			}
 			// 去轮播活动页面 goodsId
 			$('#goActive').on('tap', '.mui-slider-item', function() {
-				$$.openWindow({
-					url: '../pages/shopping/jfDetails.html',
-					id: 'jfDetails',
-					extras: {
-						"productId": $(this).attr('data-id')
-					},
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
+				console.log($(this).attr('data-falg'));
+				if ($(this).attr('data-falg') == 2) {
+					tipShow('商品已下架');
+				} else {
+					$$.openWindow({
+						url: '../pages/shopping/jfDetails.html',
+						id: 'jfDetails',
+						extras: {
+							"productId": $(this).attr('data-id')
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+
+				}
+
+
 			})
 			$('#activity_img').on('tap', '.goActivity', function() {
 				$$.openWindow({

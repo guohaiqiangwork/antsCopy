@@ -87,6 +87,7 @@
 				<div class="allocation_name" style="line-height: 0.6rem;">
 					<!-- 蚂蚁聚财科技公司 -->
 				</div>
+
 				<!-- 搜索框 -->
 				<div id="searchId" style="width:7rem;">
 					<div>
@@ -169,8 +170,7 @@
 				});
 
 				_self = plus.webview.currentWebview();
-				console.log(_self.tabId)
-				if(_self.tabId){
+				if (_self.tabId) {
 					$('.allocation').css('display', 'none');
 					$('.receive').css('display', 'block');
 					obtainAllotRece(); //获取接收列表
@@ -185,7 +185,7 @@
 				// 查询我的公司
 				getCom(mui, plus.storage.getItem('memberId'), function(data) {
 					if (data.code == 200) {
-						$('.allocation_name').text(data.data.name)
+						// $('.allocation_name').text(data.data.name)
 					}
 				});
 				funMyallot(); //查询我的同事
@@ -194,7 +194,6 @@
 			function funMyallot() {
 				// 我的同事查询
 				getMyAllot(mui, keyword, function(data) {
-					console.log(JSON.stringify(data))
 					if (data.code == 200) {
 						if (data.data.length > 0) {
 							$(".nothing1").css('display', 'none');
@@ -244,7 +243,7 @@
 					$('.allocation').css('display', 'none');
 					$('.receive').css('display', 'block');
 					$('.receive').html('')
-					$('.nothing1').css('display','none')
+					$('.nothing1').css('display', 'none')
 					obtainAllotRece(); //获取接收列表
 				} else {
 					$('.allocation').css('display', 'block');
