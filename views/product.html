@@ -219,7 +219,7 @@
 										'</div>' +
 										'</div>' +
 										'<div class="">' +
-										'<div class="product_btn_buy" data-id="' + data.data.records[items].termId + '">立即购买' +
+										'<div class="product_btn_buy" data-id="' + data.data.records[items].termId + '" dataNum="' + data.data.records[items].num + '">立即购买' +
 
 										'</div>' +
 										'</div>' +
@@ -246,6 +246,7 @@
 				};
 				// 去产品详情
 				$('#productList').on('tap', '.goDetail', function() {
+					console.log($(this).attr('dataNum'))
 					if ($(this).attr('dataNum') == 0) {
 						tipShow("此商品库存不足！");
 					} else {
@@ -263,17 +264,24 @@
 				});
 				// 立即购买
 				$('#productList').on('tap', '.product_btn_buy', function() {
-					$$.openWindow({
-						url: '../pages/homeOrder.html',
-						id: 'homeOrder',
-						createNew: true,
-						extras: {
-							"productIdD": $(this).attr('data-id'),
-						},
-						show: {
-							aniShow: "slide-in-right"
-						}
-					});
+					if ($(this).attr('dataNum') == 0) {
+						tipShow("此商品库存不足！");
+					} else{
+						$$.openWindow({
+							url: '../pages/homeOrder.html',
+							id: 'homeOrder',
+							createNew: true,
+							extras: {
+								"productIdD": $(this).attr('data-id'),
+							},
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+										
+					}
+				
+				
 				})
 
 

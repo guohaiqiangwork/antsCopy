@@ -125,7 +125,7 @@
 						<div class="div_display margin_top2">
 							<div class="font_colorff0" id="price" style="width: 2.2rem;">
 								<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
-								<span class="priceCodeClas font_size28 ">积分:</span>
+								<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
 								<span class="priceMoneyClas font_size32 font_width700"></span>
 							</div>
 							<div style="">
@@ -177,7 +177,7 @@
 				<div class="margin_left3 margin_top3 width60 div_display">
 					<div class="font_colorff0">
 						<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
-						<span class="priceCodeClas font_size28 ">积分:</span>
+						<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
 						<span id="totalMoneyId" class="priceMoneyClas font_size36 font_width700 "></span>
 					</div>
 					<div class="font_size26 font_color99">(含运费)</div>
@@ -316,6 +316,10 @@
 					productTypeTitle = '积分';
 					$('.productTypeFalg').css('display', 'none');
 					$("#totalMoneyId").css("font-size", ".42rem");
+				}else{
+					productTypeTitle = '¥';
+					$('.productTypeFalgj').css('display', 'none');
+					// $("#totalMoneyId").css("font-size", ".42rem");
 				}
 				keywords.memberId = plus.storage.getItem('memberId');
 				keywords.termId = _self.productIdD; //商品id
