@@ -188,7 +188,9 @@
 						// $('.allocation_name').text(data.data.name)
 					}
 				});
-				funMyallot(); //查询我的同事
+				if (_self.tabId != 1) {
+					funMyallot(); //查询我的同事
+				}
 			}
 			// 查询我的同事
 			function funMyallot() {
