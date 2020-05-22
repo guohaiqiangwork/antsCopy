@@ -55,7 +55,7 @@
 				<div id="div_one"></div>
 			</div>
 			<div class="yzm_message" style="display: none;">
-				<span>*验证码错误重新输入</span>
+				<span class="mesage">*验证码错误重新输入</span>
 			</div>
 			<div class="login_btn_X">
 				登录
@@ -277,6 +277,7 @@
 						} else {
 							if (data.code == 500) {
 								$('.yzm_message').css('display', 'block')
+								$('.mesage').text('*' + data.message)
 							}
 							tipShow(data.message);
 							$("#code").val('')
