@@ -84,7 +84,7 @@
 						var fragmentplanList = document.createDocumentFragment();
 						$.each(data, function(items) {
 							var profitList =
-								'<div class="div_display list_one margin_top2" data-id=' + data[items].goodsId + '>' +
+								'<div class="div_display list_one margin_top2" data-id=' + data[items].goodsId + ' data-rwUrl='+ data[items].rwUrl +' data-rwId='+ data[items].rwId +'>' +
 								'<div class="width25">' +
 								'<img src="' + data[items].goodsPicture + '" class="img_left" >' +
 								'</div>' +
@@ -104,20 +104,38 @@
 
 				})
 			}
-			
-		
+
+
+
 			// 去入网页  href="../pages/machineAccess.html" data-id='c'
-			$('.detail_list_moudel').on('tap','.list_one',function(){
-				$$.openWindow({
-					url: '../../pages/machineAccess.html',
-					id: 'machineAccess',
-					extras:{
-						'goodsId':$(this).attr('data-id')
-					},
-					show: {
-						aniShow: "slide-in-right"
-					}
-				});
+			$('.detail_list_moudel').on('tap', '.list_one', function() {
+				// console.log($(this).attr('data-rwId')) 
+				// console.log($(this).attr('data-rwUrl'))
+				// console.log( $(this).attr('data-id'))
+				if ($(this).attr('data-rwId')) {
+					$$.openWindow({
+						url: $(this).attr('data-rwUrl'),
+						id: $(this).attr('data-rwId'),
+						extras: {
+							'goodsId': $(this).attr('data-id')
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				} else {
+					$$.openWindow({
+						url: '../../pages/machineAccess.html',
+						id: 'machineAccess',
+						extras: {
+							'goodsId': $(this).attr('data-id')
+						},
+						show: {
+							aniShow: "slide-in-right"
+						}
+					});
+				}
+
 			})
 
 

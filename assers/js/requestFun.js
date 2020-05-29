@@ -1821,6 +1821,241 @@ function getReceive(mui,data,callback) {
 };
 
 
+// 机具入网
+// 获取省数据
+function getRwRegion(mui,callback) {
+	mui.ajax(requserUrl + "/rw/getRwRegion", {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+// 获取市数据
+function getRwRegionNext(mui,code,callback) {
+	mui.ajax(requserUrl + "/rw/getRwRegionNext/" + code, {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+// 获取区数据
+function getRwRegionNextB(mui,code,callback) {
+	mui.ajax(requserUrl + "/rw/getRwRegionNextB/" + code, {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 获取行业类别
+function getRwMcc(mui,callback) {
+	mui.ajax(requserUrl + "/rw/rwMcc" , {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 获取mcc
+function getRwMccNext(mui,code,callback) {
+	mui.ajax(requserUrl + "/rw/rwMccNext/" + code , {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 获取营业范围
+function getRwMccNextDetails(mui,code,callback) {
+	mui.ajax(requserUrl + "/rw/rwMccNextDetails/" + code , {
+		timeout: 20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 获取机具编码
+function getMyPos(mui,data,callback) {
+	mui.ajax(requserUrl + "/rw/getMyPos", {
+		timeout: 20000,
+		type: 'post',
+		data: JSON.stringify(data),
+		contentType: "application/json;charsetset=UTF-8",
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+
+// 验证银行卡
+function getBankVerify(mui,data,callback) {
+	mui.ajax(requserUrl + "/network/bankVerify", {
+		timeout: 20000,
+		type: 'post',
+		data: JSON.stringify(data),
+		contentType: "application/json;charsetset=UTF-8",
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 个人入网操作
+function getAccess(mui,data,callback) {
+	mui.ajax(requserUrl + "/network/access", {
+		timeout: 60000,
+		type: 'post',
+		data: JSON.stringify(data),
+		contentType: "application/json;charsetset=UTF-8",
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
+
+// 获取代理商权益
+function getMemberBenefits(mui,callback) {
+	mui.ajax(requserUrl + "/memberBenefits/getMemberBenefits", {
+		timeout:20000,
+		type: 'get',
+		headers: {
+			'Authorization': "Bearer" + " " + plus.storage.getItem('Token'),
+			'client': 'APP',
+		},
+		success: function(data) {
+			if (data.code == 200) {
+				callback && callback(data);
+			} else {
+				callback && callback(data);
+				tipShow(data.message);
+			}
+		},
+		error: function() {
+			console.log("服务异常，请稍后重试！");
+		}
+	});
+};
 
 
 // 郭海强 end

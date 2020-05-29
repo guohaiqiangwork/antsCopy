@@ -70,7 +70,7 @@
 	background: url("../../image/myTop1.png") top center no-repeat;
 	background-size: 100% 100%;
 	color: #333333;
-	height: 3.4rem;
+	height: 3.3rem;
 	width: 7.5rem;
 	padding-top: .05rem;	
 }
@@ -274,7 +274,7 @@
 	height: 2.9rem;
 	width: 6.9rem;
 	margin-left: .3rem;
-	margin-top: .2rem;
+	margin-top: .3rem;
 	color: #FFFFFF;
 	text-align: center;
 	padding-top: .3rem;
@@ -306,5 +306,4 @@
 .my_jt_img{
 	width: .1rem;
 	height: .16rem;
-	margin-top: .1rem;
 }

@@ -60,7 +60,7 @@
 						提现金额:
 					</div>
 					<div class="">
-						<span id="amount" style="font-family: sans-serif;"></span> (手续费: <span id="handfree" style="font-family: sans-serif;"></span>)
+						<span id="amount" style="font-family: sans-serif;"></span> (手续费: <span id="handfree" style="font-family: sans-serif;"></span>税费: <span id="taxes" style="font-family: sans-serif;"></span>)
 					</div>
 				</div>
 				<div class="div_display margin_top3">
@@ -140,6 +140,7 @@
 						$('#orderNo').text(data.data.orderNo);
 						$('#createTime').text(data.data.createTime);
 						$('#handfree').text('¥' + data.data.handfree);
+						$('#taxes').text('¥' + data.data.taxes);
 						$('#actualAmount').text('¥' + data.data.actualAmount);
 						$('#taxes').text('¥' + data.data.taxes);
 						$('#bankName').text(data.data.bankName);

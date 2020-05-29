@@ -830,4 +830,12 @@ header {
 	justify-content: space-between;
 }
 
+.div_border_radius2 {
+	border-radius: .2rem;
+}
+.width75 {
+	width: 75%;
+}
+
+
 /* img { pointer-events: none; } */

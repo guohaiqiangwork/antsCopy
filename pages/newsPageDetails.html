@@ -65,7 +65,6 @@
 				var messageId = _self.messageId;
 				/* 获取消息详情内容 */
 				MessageDetail(mui,messageId,function(data){
-					console.log("22222data: " + JSON.stringify(data));
 					if (data.code == 200) {
 						var detailsData = data.data;
 						var list = 

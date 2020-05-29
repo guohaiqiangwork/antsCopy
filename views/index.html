@@ -60,7 +60,7 @@
 					产品中心
 				</div>
 			</a>
-			<!-- <a id="implements" class="mui-tab-item" data-id="recovery.html">
+		<!-- 	<a id="implements" class="mui-tab-item" data-id="recovery.html">
 				<div id="recoveryz" class="margin_top3 div_none">
 					<img src="../assers/image/tab/type1z.png" class="img_width4">
 				</div>
@@ -342,22 +342,27 @@
 								getVersion(mui, versionNumber, function(data) {
 									console.log(JSON.stringify(data))
 									if (data.code == 200) {
-										//mui.toast("发现新版本:V" + data.Data);//获取远程数据库中上新andriod版本号 
-										var _msg = "发现新版本:V" + data.data.version;
-										mui.confirm(_msg, '升级确认', btn, function(e) {
-											if (e.index == 0) { //执行升级操作
-												plus.nativeUI.toast("正在准备环境，请稍后！");
-												var dtask = plus.downloader.createDownload(data.data.url, {}, function(d, status) {
-													if (status == 200) {
-														var path = d.filename; //下载apk
-														plus.runtime.install(path); // 自动安装apk文件
-													} else {
-														plus.nativeUI.alert('版本更新失败:' + status);
-													}
-												});
-												dtask.start();
-											}
-										});
+										if(data.success){
+											var _msg = "发现新版本:V" + data.data.version;
+											mui.confirm(_msg, '升级确认', btn, function(e) {
+												if (e.index == 0) { //执行升级操作
+													plus.nativeUI.toast("正在准备环境，请稍后！");
+													var dtask = plus.downloader.createDownload(data.data.url, {}, function(d, status) {
+														if (status == 200) {
+															var path = d.filename; //下载apk
+															plus.runtime.install(path); // 自动安装apk文件
+														} else {
+															plus.nativeUI.alert('版本更新失败:' + status);
+														}
+													});
+													dtask.start();
+												}
+											});
+																				
+																				
+										}
+									
+									
 									}
 
 								});
@@ -366,7 +371,8 @@
 						});
 					});
 				}
-
+				
+				appUpdate();
 				// 判断是不是第一次进来
 				var agreementFlag = plus.storage.getItem('agreementFlag');
 				if (!agreementFlag) {

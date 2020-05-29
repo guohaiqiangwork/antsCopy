@@ -1,0 +1,164 @@
+.home_width {
+	width: 6.9rem;
+	margin-left: .3rem;
+}
+
+.home_moudel {
+	height: 2.5rem;
+	border-radius: .3rem;
+	margin-top: .3rem;
+	text-align: center;
+	align-items: center;
+	color: #FFFFFF;
+}
+
+.home_moudel img {
+	width: .8rem;
+	height: .8rem;
+	margin-top: .6rem;
+}
+
+.home_moudel div {
+	margin-top: .2rem;
+}
+
+/* 个人入网 */
+.img_left {
+	height: 2rem;
+	width: 3.2rem;
+	border-radius: .2rem;
+}
+
+.bottom_btn_one {
+	width: 6.9rem;
+	height: .9rem;
+	border-radius: .5rem;
+	background: linear-gradient(to right, #FF765A, #FF0100);
+	text-align: center;
+	line-height: 3;
+	color: #FFFFFF;
+	margin-top: .5rem;
+	font-size: .3rem;
+	/* position: absolute;
+	bottom: .3rem; */
+}
+
+.bottom_btn_er {
+	width: 6.9rem;
+	height: .9rem;
+	border-radius: .5rem;
+	background: linear-gradient(to right, #FF765A, #FF0100);
+	text-align: center;
+	line-height: 3;
+	color: #FFFFFF;
+	margin-top: .5rem;
+	font-size: .3rem;
+	/* position: absolute;
+	bottom: .3rem; */
+}
+
+._one {
+	/* float: left; */
+	display: flex;
+	height: 1.1rem;
+	-margin-top: .2rem;
+	border-bottom: 1px solid #EBEAEB;
+	width: 6.8rem;
+	margin-left: .2rem;
+	margin-right: .2rem;
+}
+
+/*  */
+.img_moudel_one {
+	/* display: none; */
+}
+
+.img_moudel_two {
+	height: 2.2rem;
+	background-color: #FFFFFF;
+	display: none;
+}
+
+._back_img_upload {
+	width: .5rem !important;
+	height: .5rem !important;
+	margin-top: .35rem !important;
+}
+
+._one ._left {
+	width: 2rem;
+	text-align: left;
+	/* float: left; */
+	font-size: .3rem;
+	-padding-left: .4rem;
+	color: #303030;
+	line-height: 1.1rem;
+}
+
+._one ._right {
+	width: 4.8rem;
+	/* float: left; */
+}
+
+._one ._right input {
+	border: none;
+	/* height: .3rem; */
+	margin-top: 0.12rem;
+	font-size: .3rem;
+}
+
+._one ._right div {
+	border: none;
+	margin-top: 0.3rem;
+	margin-left: .3rem;
+}
+
+._one ._right1 {
+	width: 4.8rem;
+	margin-top: .2rem;
+	/* float: left; */
+}
+
+
+
+
+
+
+.img_moudel_three {
+	height: 2.2rem;
+	background-color: #FFFFFF;
+	display: none;
+}
+
+
+
+
+#imagChoice {
+	width: 7.5rem;
+	height: 3.5rem;
+	background-color: #FFFFFF;
+	z-index: 999;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+}
+
+
+.order_top {
+	width: 7.5rem;
+	background-color: #FFFFFF !important;
+	height: 1rem;
+}
+
+.tab_swich {
+	color: #666666;
+	width: 50%;
+	font-size: .32rem;
+	text-align: center;
+	margin-top: .3rem;
+}
+
+.selection {
+	color: #FF0100 !important;
+	font-weight: 700;
+}

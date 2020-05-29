@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>入网方式</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../assers/css/newHome/Implement.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;" style="background-color: #FFFFFF;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../../assers/image/returnButton.png" class="headder_img"></i>
+			机具入网
+		</header>
+		<div class="content">
+			<div class="home_width">
+				<div class="font_color33 font_size44 font_width700 ">
+					入网
+				</div>
+				<div class="home_moudel" href="register.html" data-id='register' data-falg='1' style="background-color: #28bcfc;">
+					<img src="../../assers/image/implement/1.png">
+					<div class="">
+						小微商户入网
+					</div>
+				</div>
+				<div class="home_moudel" href="" data-id='' data-falg='2' style="background-color: #637ffa;">
+					<img src="../../assers/image/implement/2.png">
+					<div class="">
+						企业商户入网
+					</div>
+				</div>
+				<div class="home_moudel" style="background-color: #fd986e;">
+					<img src="../../assers/image/implement/3.png">
+					<div class="">
+						优质商户入网
+					</div>
+				</div>
+
+				<div class="font_size24 font_color66 margin_top3">
+					1．入网开通过程中需要全程使用GPS服务，请确保手机已启
+					动GPS服务并且蚂蚁招财APP的GPS服务已授权
+				</div>
+				<div class="font_size24 font_color66 margin_top3">
+					2．为了保证开通申请可以正常通过审核，请在开通过程中提
+					供真实有效的个人商户资料
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				console.log(_self.goodsId)
+			};
+
+			//页面跳转
+			$('.home_moudel').on('tap', function(e) {
+				console.log($(this).attr('data-falg'))
+				// 获取页面ID
+				var urlId = $(this).attr("data-id");
+				var type = $(this).attr('data-falg')
+				// 获取路径
+				var urlRout = this.getAttribute('href');
+				if (urlRout && urlId) {
+					var keyData = {
+						agentId: plus.storage.getItem('memberId'),
+						goodsId: _self.goodsId
+					}
+					getMyPos(mui, keyData, function(data) {
+						if (data.code == 200) {
+							if (data.data.length > 0) {
+								$$.openWindow({
+									url: urlRout,
+									id: urlId,
+									createNew: true,
+									extras: {
+										"type": type,
+										'goodsId': _self.goodsId
+									},
+									show: {
+										aniShow: "slide-in-right"
+									}
+								});
+							} else {
+								tipShow('您还没有可激活的机具');
+							}
+						} else {
+							tipShow(data.message)
+						}
+					})
+
+					// 		if (data.code == 200) {
+					// 			if (data.data.length > 0) {
+
+					// 			} else {
+					// 				tipShow('您还没有可激活的机具');
+					// 			}
+					// 		});
+				} else {
+					tipShow('敬请期待')
+				}
+			});
+		})(jQuery, document, mui);
+	</script>
+
+
+</html>

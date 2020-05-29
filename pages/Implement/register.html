@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>机具入网</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../assers/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../assers/css/common.css">
+		<link rel="stylesheet" href="../../assers/css/newHome/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../assers/css/newHome/Implement.css" />
+		<script src="../../assers/js/rem_reset.js"></script>
+	</head>
+
+	<body onselectstart="return false;" style="background: #FFFFFF;">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back"><img src="../../assers/image/returnButton.png" class="headder_img"></i>
+			机具入网
+		</header>
+		<div class="content" style="background: #FFFFFF;padding-bottom: 1rem;">
+			<!-- 头部导航 -->
+		<!-- 	<div class="div_display order_top">
+				<div class="tab_swich personal selection" data-id="1">
+					小微商户
+				</div>
+				<div class="tab_swich enterprise" data-id="2">
+					企业商户
+				</div>
+			</div> -->
+
+			<div class="home_width">
+				<!-- 个人信息采集 -->
+				<div class="personalFalg" style="display: block;">
+					<!-- 各种图片上传 -->
+					<div class="img_moudel_one">
+						<div class="div_display margin_top3">
+							<div class="width45 img_left" data-id='z'>
+								<!-- <img src="../../assers/image/card@2x.png" class="width_height100" id="uploadImg1"> -->
+								<img src="../../assers/image/implement/sfz.png" class="width_height100 div_border_radius2" id="uploadCardz">
+								<div class="font_size30 text_center">
+									请上传身份证正面
+								</div>
+							</div>
+							<div class="width45 margin_left5 img_left" data-id='f'>
+								<!-- <img src="../../assers/image/cardF@2x.png" class="width_height100" id="uploadImg2"> -->
+								<img src="../../assers/image/implement/sff.png" class="width_height100 div_border_radius2" id="uploadCardf">
+								<div class="font_size30 text_center">
+									请上传身份证反面
+								</div>
+							</div>
+						</div>
+						<!-- 请上传手持身份证 -->
+						<div class="margin_top6 text_center">
+							<div class="img_left " data-id='s' style="height: 3rem;margin-left: 28%;">
+								<!-- <img src="../../assers/image/cardF@2x.png" class="width_height100" id="uploadImg2"> -->
+								<img src="../../assers/image/implement/sc.png" style="border: 1px dashed #666666;" class="width_height100 margin_top3 div_border_radius2"
+								 id="uploadCardP">
+								<div class="font_size30 text_center">
+									请上传手持身份证
+								</div>
+							</div>
+						</div>
+						<div class="margin_top10">
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">姓名:</div>
+								<div class="_right">
+									<input type="text" placeholder="请填写姓名" id="cardName">
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">身份证号:</div>
+								<div class="_right">
+									<input type="text" placeholder="请填写身份证号" id="idCard">
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">手机号码:</div>
+								<div class="_right">
+									<input id="phone" required="required" maxlength="11" type="text" pattern="[0-9]*" placeholder="请输入手机号码">
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">所在省:</div>
+								<div class="_right" id="showCityPicker3">
+									<div id="addressProvince" class="font_size30">
+										请选择所在省
+									</div>
+								</div>
+							</div>
+							<div class="_one addressCity" style="display: none;">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">所在市:</div>
+								<div class="_right" id="showCityPicker2">
+									<div id="addressCity" class="font_size30">
+										请选择所在市
+									</div>
+								</div>
+							</div>
+
+							<div class="_one addressArea" style="display: none;">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">所在区:</div>
+								<div class="_right" id="showCityPicker1">
+									<div id="addressArea" class="font_size30">
+										请选择所在区
+									</div>
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">详细地址:</div>
+								<div class="_right">
+									<input type="text" placeholder="街道、楼牌号等" id="addressDetail">
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">行业类别:</div>
+								<div class="_right" id="rwMccPickerShow">
+									<div id="industryType" class="font_size30">
+										请选择
+									</div>
+								</div>
+							</div>
+							<div class="_one businessScope" style="display: none;">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">经营范围:</div>
+								<div class="_right" id="scopePickerShow">
+									<div id="businessScope" class="font_size30">
+										请选择
+									</div>
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">商户名:</div>
+								<div class="_right">
+									<input type="text" placeholder="请填写商户名" id="mercName">
+								</div>
+							</div>
+							<div class="_one">
+								<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">营业地址:</div>
+								<div class="_right">
+									<input type="text" placeholder="请填写营业地址" id="addrDetail">
+								</div>
+							</div>
+
+						</div>
+						<div class="bottom_btn_one" data-id="one">
+							下一步
+						</div>
+					</div>
+
+					<!-- 银行卡信息 -->
+					<div class="img_moudel_two">
+			
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">结算卡号:</div>
+							<div class="_right">
+								<input id="bankCard" type="number" pattern="[0-9]*" placeholder="请输入银行卡号">
+							</div>
+							<div class=" img_left" data-id='y' style="width: 1rem;height: 0;text-align: center;">
+								<img src="../../assers/image/implement/sm.png" class="width_height100 _back_img_upload">
+							</div>
+						</div>
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">银行名称:</div>
+							<div class="_right">
+								<input id="bankName" required="required" maxlength="11" type="text" pattern="[0-9]*" placeholder="请输入手机号码">
+							</div>
+						</div>
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">预留号码:</div>
+							<div class="_right">
+								<input id="bankPhone" required="required" maxlength="11" type="text" pattern="[0-9]*" placeholder="请输入银行预留手机号码">
+							</div>
+						</div>
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">所在省:</div>
+							<div class="_right" id="showProvinceBank">
+								<div id="bankProvince" class="font_size30">
+									请选择所在省
+								</div>
+							</div>
+						</div>
+						<div class="_one bankCity" style="display: none;">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">所在市:</div>
+							<div class="_right" id="showCityBank">
+								<div id="bankCity" class="font_size30">
+									请选择所在市
+								</div>
+							</div>
+						</div>
+
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">开户行:</div>
+							<div class="_right">
+								<input id="bankNameBranch" type="text" pattern="[0-9]*" placeholder="请输入开户行名称">
+							</div>
+						</div>
+
+						<div class="bottom_btn_er div_display" data-id="two">
+							<div class="width50" data-id="twoUp" style="border-right: 2px solid #FFFFFF;">
+								上一步
+							</div>
+							<div class="width50" data-id="twoDown">
+								下一步
+							</div>
+						</div>
+					</div>
+
+
+
+					<!-- 个人基本信息内容 -->
+					<div class="img_moudel_three">
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">信用卡号:</div>
+							<div class="_right">
+								<input id="bankCardY" type="number" pattern="[0-9]*" placeholder="请输入银行卡号">
+							</div>
+							<div class=" img_left" data-id='x' style="width: 1rem;height: 0;text-align: center;">
+								<img src="../../assers/image/implement/sm.png" class="width_height100 _back_img_upload">
+							</div>
+						</div>
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">预留号码:</div>
+							<div class="_right">
+								<input id="bankPhoneY" required="required" maxlength="11" type="text" pattern="[0-9]*" placeholder="请输入银行预留手机号码">
+							</div>
+						</div>
+
+						<div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">机具号:</div>
+							<div class="_right" id="showSnNumber">
+								<div id="SnNumber" class="font_size30">
+									请选择机具号
+								</div>
+							</div>
+						</div>
+						<div class="_one">
+							<div class="_left font_size30" style="padding-left: .05rem;">是否开通T+1:</div>
+							<div class="_right1">
+								<div class="mui-switch mui-switch-blue mui-switch-mini" id="mySwitch" style="float: right;margin-right: 0.2rem;margin-top: 0;margin-left: 0;">
+									<div class="mui-switch-handle" style="margin-top: 0;margin-left: 0;"></div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="_one">
+							<div class="_left" style="font-size: 0.3rem;width: 1.5rem;">机具号:</div>
+							<div class="_right">
+								<input id="bankCard" type="number" pattern="[0-9]*" placeholder="请输入机具序列号">
+							</div>
+							<div class="_back_img_upload " id="">
+								<img src="../../assers/image/logo3.png" class="width_height100">
+							</div>
+						</div> -->
+
+
+
+						<div class="bottom_btn_er div_display" data-id="three">
+							<div class="width50" data-id="threeUp" style="border-right: 2px solid #FFFFFF;">
+								上一步
+							</div>
+							<div class="width50" data-id="threeDown">
+								提交
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+
+
+				<!-- 企业信息采集 -->
+				<div class="enterpriseFalg" style="display: none;">
+					卧室奇迹
+				</div>
+
+			</div>
+			<!-- <div class="div_display ">
+				<div class="font_size26  margin_top1">
+					类别
+				</div>
+				<div class="select_right" id="categoryList" style="width: 6.2rem;text-align: left;padding-left: .2rem;">
+					<span>请选择</span>
+				</div>
+				<img src="../../assers/image/down.png" class="select_time_img" style="position: absolute;right: 5%;">
+			</div> -->
+		</div>
+		<!-- 图片选择框 -->
+		<div id="imagChoice" style="display: none;">
+			<div class="font_color33 font_size30" style="border-bottom: #CCCCCC 1px solid; height: 1.1rem;line-height: 1.1rem;">
+				拍照
+			</div>
+			<div class="font_color33 font_size30" style="margin-top: .3rem;">
+				从相册中选取
+			</div>
+			<p style="border-bottom: #EEEEEE 0.2rem solid;" class="margin_top35"></p>
+			<div class="font_color33 font_size30 margin_top35">
+				取消
+			</div>
+		</div>
+	</body>
+	<script src="../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../assers/js/mui.min.js"></script>
+	<script src="../../assers/js/commonFun.js"></script>
+	<script src="../../assers/js/requestFun.js"></script>
+	<script src="../../assers/js/newHome/mui.picker.min.js"></script>
+	<script src="../../assers/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../assers/js/implement/implement.js"></script>
+	<!-- <script src="../../assers/js/implement/upload.js"></script> -->
+	<script type="text/javascript">
+		var legalcardValidityPeroid; //身份证有效期
+		var posTerminalNo; //机具编码
+		var isOpenD1 = 'N'; //是否开通D1
+		// 个人入网数据
+		var keywordOne = {
+			cardPositivePhoto: '', //	身份证正面图片base64
+			cardNegativePhoto: '', //身份证反面图片base64
+			cardHandHoldPhoto: '', //手持身份证照片图片base64
+			customMccType: '', //	行业类别
+			mcc: '', //	Mcc编码	Varchar	M	附件（营业范围关联
+			mercName: '', //	商户名
+			addrDetail: '', //	营业地址
+			bizScope: '', //以肤质	营业范围
+			mccType: '',
+			provCode: '', //	省编码
+			cityCode: '', //	市编码	
+			areaCode: '', //	县编码
+			phone: '', //	手机号
+			idCardNum: '', //	身份证号
+			settleName: '', //结算卡姓名	Varchar	M	鉴权数据
+			accNum: '', //结算卡号 必须借记卡（鉴权数据）
+			bankName: '', //结算银行名称 鉴权数据
+			bankNameBranch: '', //结算银行支行名称
+			bankcardValidityPeroid: '', //生份证有效期
+			bankcardID: '', //结算证件号
+			legalcardValidityPeroid: '', //法人证件有效期
+			bankCardProvCode: '', //开户省编码
+			bankCardCityCode: '', //开户市编码
+			phoneShow: '', //预留手机号	鉴权数据
+			products: 'POS', //	pos机产品类型
+			verifyDebitPhoneYL: '', //信用卡预留手机号
+			verifyDebitCardNum: '', //TS认证信用卡
+			posTerminalNo: '', //Pos终端序列号	Varchar	C	验证终端
+			isOpenD1: '', //是否开通D1
+			qposTerminalNo: '', //Qpos终端序列号	Varchar	C	验证终端
+			qsTerminalNo: '', //Q刷终端序列号	Varchar	C	验证终端
+			// 	qsSettleWay: '', //Q刷增值业务
+			// 	qposSettleWay: '', //Qpos增值业务
+			// 	posSettleWay: '', //POS增值业务	
+			// qsRateCode: '', //Q刷费率代码
+			// qposRateCode: '', //Qpos费率代码
+			// posRateCode: '', //Pos费率代码
+
+		}
+	</script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+
+			var mask = mui.createMask(function() {
+				$("#imagChoice").css("display", "none");
+				return;
+			}); //遮罩蒙版
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				
+				// 判断展示那个
+				// $(".order_top").find("div").removeClass("selection");
+				// if (_self.type == 1) {
+				// 	$('.personalFalg').css('display', 'block')
+				// 	$('.personal').addClass('selection') //个人
+				// } else if (_self.type == 2) {
+				// 	$('.enterpriseFalg').css('display', 'block')
+				// 	$(".enterprise").addClass("selection") //企业
+				// };
+				// funRwRegion();
+				funMyPos(); //获取机具号
+				// $(".mui-switch").addClass("mui-active") //默认打开
+				$(".mui-switch").removeClass("mui-active"); //默认关闭
+			};
+
+			// 头部导航
+			// $('.tab_swich').on('tap', function() {
+			// 	$(".order_top").find("div").removeClass("selection");
+			// 	$(this).addClass("selection");
+			// 	if ($(this).attr("data-id") == 1) {
+			// 		$('.enterpriseFalg').css('display', 'none')
+			// 		$('.personalFalg').css('display', 'block')
+			// 	} else {
+			// 		$('.enterpriseFalg').css('display', 'block')
+			// 		$('.personalFalg').css('display', 'none')
+			// 	}
+			// 	console.log("点击的status=" + $(this).attr("data-id"))
+			// });
+			// 第二步操作
+			$('.bottom_btn_er').on('tap', '.width50', function() {
+				if ($(this).attr('data-id') == 'twoUp') {
+					$('.img_moudel_one').css('display', 'block');
+					$('.img_moudel_two').css('display', 'none');
+				} else if ($(this).attr('data-id') == 'twoDown') {
+					if (!$('#bankCard').val()) {
+						tipShow('请填写结算卡号');
+						return
+					} else if (!$('#bankName').val()) {
+						tipShow('请填写银行名称');
+						return
+					} else if (!$('#bankPhone').val()) {
+						tipShow('请填写预留手机号');
+						return
+					} else if (!ProvinceBankCode) {
+						tipShow('请选择开户省');
+						return
+					} else if (!showCityBankCode) {
+						tipShow('请选择开户市');
+						return
+					} else if (!showCityBankCode) {
+						tipShow('请选择开户市');
+						return
+					} else if (!$('#bankNameBranch').val()) {
+						tipShow('请填写开户支行');
+						return;
+					}
+					var bankWatin = plus.nativeUI.showWaiting("加载中...");
+					var keyBankData = {
+						bankcard: $('#bankCard').val(), //结算卡号
+						idcard: $('#idCard').val(), //身份证号
+						mobile: $('#bankPhone').val(), //预留手机号
+						name: $('#cardName').val(), //姓名
+					}
+					getBankVerify(mui, keyBankData, function(data) {
+						bankWatin.close();
+						if (data.code == 200) {
+							$('.img_moudel_two').css('display', 'none');
+							$('.img_moudel_three').css('display', 'block');
+						} else {
+							tipShow(data.message);
+						}
+					})
+				} else if ($(this).attr('data-id') == 'threeUp') {
+					$('.img_moudel_two').css('display', 'block');
+					$('.img_moudel_three').css('display', 'none');
+				} else if ($(this).attr('data-id') == 'threeDown') {
+					var keywordRD = {
+						customMccType: rwMccPickerCode, //	行业类别
+						mcc: scopePickerCode, //	Mcc编码	Varchar	M	附件（营业范围关联
+						mercName: $('#mercName').val(), //	商户名
+						addrDetail: $('#addrDetail').val(), //营业地址
+						bizScope: keywordOne.bizScope, //以肤质	营业范围
+						mccType: keywordOne.mccType,
+						provCode: cityPicker3Code, //	省编码
+						cityCode: cityPicker2Code, //	市编码	
+						areaCode: cityPicker1Code, //	县编码
+						phone: $('#phone').val(), //	手机号
+						idCardNum: $('#idCard').val(), //	身份证号
+						settleName: $('#cardName').val(), //结算卡姓名	Varchar	M	鉴权数据
+						accNum: $('#bankCard').val(), //结算卡号 必须借记卡（鉴权数据）
+						bankName: $('#bankName').val(), //结算银行名称 鉴权数据
+						bankNameBranch: $('#bankNameBranch').val(), //结银行支行名称
+						bankcardValidityPeroid: legalcardValidityPeroid || '', //生份证有效期
+						bankcardID: $('#idCard').val(), //结算证件号
+						legalcardValidityPeroid: legalcardValidityPeroid, //法人证件有效期
+						bankCardProvCode: ProvinceBankCode, //开户省编码
+						bankCardCityCode: showCityBankCode, //开户市编码
+						phoneShow: $('#bankPhone').val(), //预留手机号	鉴权数据
+						products: 'POS', //	pos机产品类型
+						verifyDebitPhoneYL: $('#bankPhoneY').val(), //信用卡预留手机号
+						verifyDebitCardNum: $('#bankCardY').val(), //TS认证信用卡
+						posTerminalNo: posTerminalNo, //Pos终端序列号	Varchar	C	验证终端
+						isOpenD1: isOpenD1, //是否开通D1
+						cardPositivePhoto: keywordOne.cardPositivePhoto, //	身份证正面图片base64
+						cardNegativePhoto: keywordOne.cardNegativePhoto, //身份证反面图片base64
+						cardHandHoldPhoto: keywordOne.cardHandHoldPhoto, //手持身份证照片图片base64
+						// qposTerminalNo: '', //Qpos终端序列号	Varchar	C	验证终端
+						// qsTerminalNo: '', //Q刷终端序列号	Varchar	C	验证终端
+						// 	qsSettleWay: '', //Q刷增值业务
+						// 	qposSettleWay: '', //Qpos增值业务
+						// 	posSettleWay: '', //POS增值业务	
+
+						// qsRateCode: '', //Q刷费率代码
+						// qposRateCode: '', //Qpos费率代码
+						// posRateCode: '', //Pos费率代码
+					}
+					if (!$('#bankCardY').val()) {
+						tipShow('请填写信用卡号');
+						return;
+					} else if (!$('#bankPhoneY').val()) {
+						tipShow('请填写预留手机号');
+						return;
+					} else if (!posTerminalNo) {
+						tipShow('请选择机具编码');
+						return;
+					}
+					var bankWatinB = plus.nativeUI.showWaiting("提交中...");
+					var keyBankData = {
+						bankcard: $('#bankCardY').val(), //结算卡号
+						idcard: $('#idCard').val(), //身份证号
+						mobile: $('#bankPhoneY').val(), //预留手机号
+						name: $('#cardName').val(), //姓名
+					}
+					getBankVerify(mui, keyBankData, function(data) {
+						bankWatinB.close();
+						if (data.code == 200) {
+							// 提交数据
+							var bankWatinBA = plus.nativeUI.showWaiting("提交中...");
+							getAccess(mui, keywordRD, function(data) {
+								bankWatinBA.close();
+								if (data.code == 200) {
+									tipShow('提交成功');
+									$$.openWindow({
+										url: '../../views/index.html',
+										id: 'index',
+										show: {
+											aniShow: "slide-in-right"
+										}
+									});
+								} else {
+									tipShow(data.message);
+								}
+							})
+
+						} else {
+							tipShow(data.message);
+						}
+					})
+
+
+				}
+
+
+			});
+			// 小微商户入网个人信息
+			$('.bottom_btn_one').on('tap', function() {
+			
+				if ($(this).attr('data-id') == 'one') {
+					var bankWatinA = plus.nativeUI.showWaiting("加载中...");
+					if (!keywordOne.cardPositivePhoto) {
+						bankWatinA.close();
+						tipShow('请上传身份证正面');
+						return
+					} else if (!keywordOne.cardNegativePhoto) {
+						bankWatinA.close();
+						tipShow('请上传身份证反面');
+						return
+					} else if (!keywordOne.cardHandHoldPhoto) {
+						bankWatinA.close();
+						tipShow('请上传身份证手持');
+						return
+					} else if (!$('#idCard').val()) {
+						bankWatinA.close();
+						tipShow('请填写姓名');
+						return
+					} else if (!$('#idCard').val()) {
+						bankWatinA.close();
+						tipShow('请填写证件号码');
+						return
+					} else if (!$('#phone').val()) {
+						bankWatinA.close();
+						tipShow('请填写手机号码');
+						return
+					} else if (!cityPicker3Code) {
+						bankWatinA.close();
+						tipShow('请选择所在省');
+						return
+					} else if (!cityPicker2Code) {
+						bankWatinA.close();
+						tipShow('请选择所在市');
+						return
+					} else if (!cityPicker1Code) {
+						bankWatinA.close();
+						tipShow('请选择所在区');
+						return
+					} else if (!$('#mercName').val()) {
+						bankWatinA.close();
+						tipShow('请填写商户名');
+						return
+					} else if (!$('#addressDetail').val()) {
+						bankWatinA.close();
+						tipShow('请填写详细地址');
+						return
+					} else if (!rwMccPickerCode) {
+						bankWatinA.close();
+						tipShow('请选择行业类别');
+
+						return
+					} else if (!$('#addrDetail').val()) {
+						tipShow('请填写营业地址');
+						bankWatinA.close();
+						return
+					};
+					bankWatinA.close();
+				
+					$('.img_moudel_one').css('display', 'none');
+					$('.img_moudel_two').css('display', 'block');
+				} else if ($(this).attr('data-id') == 'two') {
+
+					// if (!$('#bankCard').val()) {
+					// 	tipShow('请填写结算卡号');
+					// 	return
+					// } else if (!$('#bankName').val()) {
+					// 	tipShow('请填写银行名称');
+					// 	return
+					// } else if (!$('#bankPhone').val()) {
+					// 	tipShow('请填写预留手机号');
+					// 	return
+					// } else if (!ProvinceBankCode) {
+					// 	tipShow('请选择开户省');
+					// 	return
+					// } else if (!showCityBankCode) {
+					// 	tipShow('请选择开户市');
+					// 	return
+					// } else if (!showCityBankCode) {
+					// 	tipShow('请选择开户市');
+					// 	return
+					// } else if (!$('#bankNameBranch').val()) {
+					// 	tipShow('请填写开户支行');
+					// 	return;
+					// }
+					// var bankWatin = plus.nativeUI.showWaiting("加载中...");
+					// var keyBankData = {
+					// 	bankcard: $('#bankCard').val(), //结算卡号
+					// 	idcard: $('#idCard').val(), //身份证号
+					// 	mobile: $('#bankPhone').val(), //预留手机号
+					// 	name: $('#cardName').val(), //姓名
+					// }
+					// getBankVerify(mui, keyBankData, function(data) {
+					// 	bankWatin.close();
+					// 	if (data.code == 200) {
+					// 		$('.img_moudel_two').css('display', 'none');
+					// 		$('.img_moudel_three').css('display', 'block');
+					// 	} else {
+					// 		tipShow(data.message);
+					// 	}
+					// })
+
+				} else if ($(this).attr('data-id') == 'three') {
+
+					// var keywordRD = {
+
+					// 	customMccType: rwMccPickerCode, //	行业类别
+					// 	mcc: scopePickerCode, //	Mcc编码	Varchar	M	附件（营业范围关联
+					// 	mercName: $('#mercName').val(), //	商户名
+					// 	addrDetail: $('#addrDetail').val(), //营业地址
+					// 	bizScope: keywordOne.bizScope, //以肤质	营业范围
+					// 	mccType: keywordOne.mccType,
+					// 	provCode: cityPicker3Code, //	省编码
+					// 	cityCode: cityPicker2Code, //	市编码	
+					// 	areaCode: cityPicker1Code, //	县编码
+					// 	phone: $('#phone').val(), //	手机号
+					// 	idCardNum: $('#idCard').val(), //	身份证号
+					// 	settleName: $('#cardName').val(), //结算卡姓名	Varchar	M	鉴权数据
+					// 	accNum: $('#bankCard').val(), //结算卡号 必须借记卡（鉴权数据）
+					// 	bankName: $('#bankName').val(), //结算银行名称 鉴权数据
+					// 	bankNameBranch: $('#bankNameBranch').val(), //结银行支行名称
+					// 	bankcardValidityPeroid: legalcardValidityPeroid || '', //生份证有效期
+					// 	bankcardID: $('#idCard').val(), //结算证件号
+					// 	legalcardValidityPeroid: legalcardValidityPeroid, //法人证件有效期
+					// 	bankCardProvCode: ProvinceBankCode, //开户省编码
+					// 	bankCardCityCode: showCityBankCode, //开户市编码
+					// 	phoneShow: $('#bankPhone').val(), //预留手机号	鉴权数据
+					// 	products: 'POS', //	pos机产品类型
+					// 	verifyDebitPhoneYL: $('#bankPhoneY').val(), //信用卡预留手机号
+					// 	verifyDebitCardNum: $('#bankCardY').val(), //TS认证信用卡
+					// 	posTerminalNo: posTerminalNo, //Pos终端序列号	Varchar	C	验证终端
+					// 	isOpenD1: isOpenD1, //是否开通D1
+					// 	cardPositivePhoto: keywordOne.cardPositivePhoto, //	身份证正面图片base64
+					// 	cardNegativePhoto: keywordOne.cardNegativePhoto, //身份证反面图片base64
+					// 	cardHandHoldPhoto: keywordOne.cardHandHoldPhoto, //手持身份证照片图片base64
+					// 	// qposTerminalNo: '', //Qpos终端序列号	Varchar	C	验证终端
+					// 	// qsTerminalNo: '', //Q刷终端序列号	Varchar	C	验证终端
+					// 	// 	qsSettleWay: '', //Q刷增值业务
+					// 	// 	qposSettleWay: '', //Qpos增值业务
+					// 	// 	posSettleWay: '', //POS增值业务	
+
+					// 	// qsRateCode: '', //Q刷费率代码
+					// 	// qposRateCode: '', //Qpos费率代码
+					// 	// posRateCode: '', //Pos费率代码
+					// }
+					// if (!$('#bankCardY').val()) {
+					// 	tipShow('请填写信用卡号');
+					// 	return;
+					// } else if (!$('#bankPhoneY').val()) {
+					// 	tipShow('请填写预留手机号');
+					// 	return;
+					// } else if (!posTerminalNo) {
+					// 	tipShow('请选择机具编码');
+					// 	return;
+					// }
+					// var bankWatinB = plus.nativeUI.showWaiting("提交中...");
+					// var keyBankData = {
+					// 	bankcard: $('#bankCardY').val(), //结算卡号
+					// 	idcard: $('#idCard').val(), //身份证号
+					// 	mobile: $('#bankPhoneY').val(), //预留手机号
+					// 	name: $('#cardName').val(), //姓名
+					// }
+					// getBankVerify(mui, keyBankData, function(data) {
+					// 	bankWatinB.close();
+					// 	if (data.code == 200) {
+					// 		// 提交数据
+					// 		getAccess(mui, keywordRD, function(data) {
+					// 			console.log(JSON.stringify(data))
+					// 			bankWatinB.close();
+					// 			if (data.code == 200) {
+					// 				tipShow('提交成功');
+					// 			} else {
+					// 				tipShow(data.message);
+					// 			}
+
+					// 		})
+
+					// 	} else {
+					// 		tipShow(data.message);
+					// 	}
+					// })
+
+
+				}
+
+			});
+
+			// t+1数据处理
+			document.getElementById("mySwitch").addEventListener("toggle", function(event) {
+			
+				if (event.detail.isActive) {
+					isOpenD1 = 'Y'
+				} else {
+					isOpenD1 = 'N'
+				}
+			});
+			// 机具类型
+			// var userPicker = new mui.PopPicker();
+			// userPicker.setData([{
+			// 	value: 'POS',
+			// 	text: 'POS'
+			// }, {
+			// 	value: 'QPOS',
+			// 	text: 'QPOS'
+			// }, {
+			// 	value: 'QPAY',
+			// 	text: 'QPAY'
+			// }]);
+			// var categoryListButton = doc.getElementById('categoryList');
+			// categoryListButton.addEventListener('tap', function(event) {
+			// 	userPicker.show(function(items) {
+			// 		console.log(JSON.stringify(items[0]))
+			// 		$('#posType').text(items[0].text)
+			// 	});
+			// }, false);
+			// 获取机具号
+			function funMyPos() {
+				var keyData = {
+					agentId: plus.storage.getItem('memberId'),
+					goodsId: _self.goodsId || '1260762895856824321'
+				}
+				getMyPos(mui, keyData, function(data) {
+					if (data.code == 200) {
+						showSnNumber.setData(data.data); //获取机具号
+					} else {
+						tipShow(data.message);
+					}
+				})
+			};
+			var showSnNumber = new mui.PopPicker(); //机具下拉
+			var categoryListButton = doc.getElementById('showSnNumber');
+			categoryListButton.addEventListener('tap', function(event) {
+				showSnNumber.show(function(items) {
+					
+					// $('#SnNumber').text(items[0].text)
+					$('#SnNumber').text(items[0].value)
+					posTerminalNo = items[0].value;
+				});
+			}, false);
+
+
+
+
+			// 点击上传图片
+			$('.img_left').on('tap', function() {
+				var _this = $(this);
+				_self.imgId = $(this).attr('data-id')
+				setTimeout(function() {
+					_self.dom = _this;
+					mask.show();
+					$("#imagChoice").css("display", "block");
+				}, 50);
+			});
+
+			/* 图片途径选择事件 */
+			$("#imagChoice").on("tap", "div", function() {
+				var but_count = $(this).context.innerText;
+				if (but_count == "拍照") {
+					getImage(_self.dom);
+					$("#imagChoice").css("display", "none");
+					mask.close();
+				} else if (but_count == "从相册中选取") {
+					galleryImg(_self.dom);
+					$("#imagChoice").css("display", "none");
+					mask.close();
+				} else if (but_count == "取消") {
+					$("#imagChoice").css("display", "none");
+					mask.close();
+				}
+			});
+			/**
+			 * 拍照
+			 * @param {object} dom 上传节点
+			 */
+			function getImage(dom, cameraIndex, callback) {
+				if (cameraIndex) {
+					var c = plus.camera.getCamera(cameraIndex);
+				} else {
+					var c = plus.camera.getCamera();
+				}
+				c.captureImage(function(e) {
+					// 读取本地文件中选取图片
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						// 执行上传操作
+						insertPhoto(entry.toLocalURL())
+						compressImage(entry.toLocalURL(), dom, callback);
+
+					}, function(e) {
+						plus.nativeUI.toast("读取拍照文件错误：" + e.message);
+						callback && callback(500);
+					});
+				}, function(s) {
+					// console.log("error" + s);
+					callback && callback(500);
+				}, {
+					filename: "_doc/head.jpg"
+				})
+			}
+			/**
+			 * 手机相册选择
+			 * @param {object} dom 上传节点
+			 */
+			function galleryImg(dom, callback) {
+				plus.gallery.pick(function(a) {
+					plus.io.resolveLocalFileSystemURL(a, function(entry) {
+						//entry为图片原目录（相册）的句柄
+						upImg(entry.toLocalURL(), dom);
+						insertPhoto(entry.toLocalURL())
+
+					}, function(e) {
+						console.log("读取图片错误：" + e.message);
+					});
+				}, function(a) {}, {
+					filter: "image"
+				})
+			}
+
+			// 压缩图片
+			function compressImage(imgUrl, dom, callback) {
+				
+				plus.nativeUI.showWaiting();
+				plus.zip.compressImage({
+						src: imgUrl,
+						dst: imgUrl,
+						quality: 20,
+						overwrite: true,
+						width: '80%'
+					},
+					function(i) {
+						plus.nativeUI.closeWaiting();
+						// console.log("压缩图片成功：" + JSON.stringify(i));
+						imgUrlY = i.target
+						upImg(imgUrlY, dom, callback);
+						return
+					},
+					function(e) {
+						plus.nativeUI.closeWaiting();
+						// console.log("压缩图片失败: " + JSON.stringify(e));
+
+					});
+			}
+			//图片转base64
+			function insertPhoto(data) {
+				var imgClass; //img的class名
+				//创建image对象并转换base64码
+				var img = new Image();
+				img.src = data;
+				img.onload = function() {
+					//创建canvas画布
+					var canvas = document.createElement("canvas");
+					//在css中不要直接给img设置宽高,否则此处会获取到css设置的值
+					var width = img.width;
+					var height = img.height;
+					//比较图片宽高设置图片显示和canvas画布尺寸
+					if (width > height) {
+						imgClass = 'height';
+						if (width > 500) {
+							height = Math.round(height *= 500 / width);
+							width = 500;
+						}
+					} else {
+						imgClass = 'width';
+						if (height > 500) {
+							width = Math.round(width *= 500 / height);
+							height = 500;
+						}
+					}
+					canvas.width = width; //设置新的图片的宽度
+					canvas.height = height; //设置新的图片的长度
+					var ctx = canvas.getContext("2d");
+					ctx.drawImage(img, 0, 0, width, height); //绘图
+					var dataURL = canvas.toDataURL("image/png", 0.8); //供img标签使用的src路径
+					
+					// $("#uploadImg1").attr("src", dataURL);
+			
+					if (_self.imgId == 'z') {
+						keywordOne.cardPositivePhoto = dataURL //	身份证正面图片base64
+					} else if (_self.imgId == 'f') {
+					
+						keywordOne.cardNegativePhoto = dataURL //身份证反面图片base64
+
+					} else if (_self.imgId == 's') {
+						keywordOne.cardHandHoldPhoto = dataURL //手持身份证照片图片base64
+					}
+				}
+			}
+			/**
+			 * 图片上传
+			 * @param {object} dom 上传节点
+			 */
+			function upImg(event, dom, callback) {
+	
+				if (_self.imgId == 's') {
+					$("#uploadCardP").attr("src", event);
+					return;
+				} else if (_self.imgId == 'z') {
+					$("#uploadCardz").attr("src", event);
+					var server = requserUrl + '/mb/verificPositive';
+				} else if (_self.imgId == 'f') {
+					// $("#uploadCardf").attr("src", event);
+					var server = requserUrl + '/mb/verificNegative';
+				} else if (_self.imgId == 'y') {
+					var server = requserUrl + '/network/bankOcr';
+				} else if (_self.imgId == 'x') {
+					var server = requserUrl + '/network/bankOcr';
+				}
+				var wt = plus.nativeUI.showWaiting("上传中...");
+				var uploaderDown = plus.uploader.createUpload(server, {
+						method: "post"
+					},
+					function(t, status) {
+						wt.close();
+						if (status == 200) {
+							
+							var dataCode = eval("(" + t.responseText + ")");
+							console.log("111" + JSON.stringify(dataCode));
+							if (dataCode.code == 500) {
+								tipShow(dataCode.message)
+							}
+							if (_self.imgId == 'z') {
+								// $("#uploadCardz").attr("src", dataCode.data.url);
+							} else if (_self.imgId == 'f') {
+								$("#uploadCardf").attr("src", dataCode.data.url);
+							}
+							if (dataCode.code == '200') {
+								if (_self.imgId == 'z') {
+									$('#cardName').val(dataCode.data.name)
+									$('#idCard').val(dataCode.data.idcard)
+								} else if (_self.imgId == 'f') {
+									legalcardValidityPeroid = dataCode.data.failTime
+									// $('#cardTime').val("123456")
+								} else if (_self.imgId == 'y') {
+									$('#bankCard').val(dataCode.data.card_number); //卡号
+									$('#bankName').val(dataCode.data.bank_name);
+								} else if (_self.imgId == 'x') {
+									$('#bankCardY').val(dataCode.data.card_number); //信用卡号
+								}
+							} else {
+								tipShow(dataCode.message)
+								if (_self.imgId == 'z') {
+									$("#uploadImg1").attr("src", '../assers/image/card@2x.png');
+								} else {
+									$("#uploadImg2").attr("src", '../assers/image/cardF@2x.png');
+								}
+							}
+
+						} else {
+							tipShow('请检查照片，重新上传')
+						}
+
+
+					});
+				uploaderDown.addFile(event, {
+					key: "file"
+				}); //添加传输文件 event 文件  key 文件夹名
+				uploaderDown.setRequestHeader('Authorization', "Bearer" + " " + plus.storage.getItem('Token'));
+				uploaderDown.setRequestHeader('client', 'APP');
+				uploaderDown.addData("string_key", "string_value");
+				uploaderDown.start()
+			}
+
+
+		})(jQuery, document, mui);
+	</script>
+
+
+</html>
