@@ -258,34 +258,45 @@
 					//alert(_self.imgId);
 					if (_self.imgId == 'z') {
 						var server = requserUrl + '/mb/verificPositive';
-						$("#uploadImg1").attr("src", event);
+						
 					} else {
 						var server = requserUrl + '/mb/verificNegative';
-						$("#uploadImg2").attr("src", event);
+						// $("#uploadImg2").attr("src", event);
 					}
 					var wt = plus.nativeUI.showWaiting("上传中...");
 					var uploaderDown = plus.uploader.createUpload(server, {
 							method: "post"
 						},
 						function(t, status) {
+							console.log(status)
 							wt.close();
 							var dataCode = eval("(" + t.responseText + ")");
 							console.log("111"+JSON.stringify(dataCode));
-							if (dataCode.code == '200') {
-								if (_self.imgId == 'z') {
-									$('#name').val(dataCode.data.name)
-									$('#idCard').val(dataCode.data.idcard)
+							if(status == 200){
+								if (dataCode.code == '200') {
+									if (_self.imgId == 'z') {
+										$("#uploadImg1").attr("src", dataCode.data.url);
+										$('#name').val(dataCode.data.name)
+										$('#idCard').val(dataCode.data.idcard)
+									} else {
+										$("#uploadImg2").attr("src", dataCode.data.url);
+										$('#cardTime').val("123456")
+									}
 								} else {
-									$('#cardTime').val("123456")
+									tipShow(dataCode.message)
+									if (_self.imgId == 'z') {
+										$("#uploadImg1").attr("src", '../assers/image/card@2x.png');
+									} else {
+										$("#uploadImg2").attr("src", '../assers/image/cardF@2x.png');
+									}
 								}
-							} else {
-								tipShow(dataCode.message)
-								if (_self.imgId == 'z') {
-									$("#uploadImg1").attr("src", '../assers/image/card@2x.png');
-								} else {
-									$("#uploadImg2").attr("src", '../assers/image/cardF@2x.png');
-								}
+														
+							}else{
+								tipShow(data.message)
 							}
+							
+						
+						
 						});
 					uploaderDown.addFile(event, {
 						key: "file"
