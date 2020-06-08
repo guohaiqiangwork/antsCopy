@@ -22,7 +22,7 @@
 		<header class="header_white" style="height:1rem ;">
 			<div class="div_display" style="margin-top: 0.09rem;">
 				<!-- 消息 -->
-				<div class="header_title_left " id="messageId" >
+				<div class="header_title_left " id="messageId">
 					<div class=" header_title_leftT " style="margin-top: 0.11rem;"></div>
 					<img src="../assers/image/homeMsg.png" class="header_title_leftI">
 				</div>
@@ -40,11 +40,11 @@
 					<div class="margin_left6">
 						<img id="hederImg" class="top_img">
 					</div>
-					<div class="margin_top5 margin_left3" style="width: 3rem;">
+					<div class="margin_top5 margin_left3 div_display" style="width: 3rem;">
 						<div id="nameId" class="font_size36 font_color33" style="height: 0.5rem;">
 							<!-- 蚂蚁招财 -->
 						</div>
-						<div class="div_display vipf_moudel" style="">
+						<div class="div_display vipf_moudel margin_left2" style="">
 							<div class="margin_left1">
 								<img src="../assers/image/views/vipf.png" style="width: .50rem;height: .22rem;margin-bottom: 0.12rem;">
 							</div>
@@ -52,19 +52,20 @@
 								1
 							</div>
 						</div>
+					
 					</div>
+					
 					<div class="margin_top3" style="margin-left: .3rem;">
-						<!-- <div class="font_size30 font_colorff" id="equityId">
-							会员权益
-						</div> -->
 						<div class="right_hui" id="equityId">
 							<img src="../assers/image/mtTop2.png" style="width: .26rem;height: .32rem;">
 							代理商权益
 						</div>
-						<!-- <div class="margin_top3 margin_left7">
-							<img src="../assers/image/5059@2x.png" class="top_img_er">
-						</div> -->
 					</div>
+				</div>
+				<div class="font_size24" style="margin-left: 2.4rem;margin-top: -.6rem;">
+					积分余额:<span id="integral" class="font_size34">
+				
+					</span>
 				</div>
 				<!-- 账号余额 -->
 				<div class="div_display margin_top9 margin_left6 font_colorff">
@@ -92,11 +93,11 @@
 				 -->
 				</div>
 			</div>
-			
+
 			<div class="div_display margin_top3" style="width: 6.9rem;margin-left: .3rem;">
 				<div class=" display_center div_display goMyOrder" data-id="100" style="width: 33%;">
 					<div class="">
-						<img src="../assers/image/myOrderTop1.png"  style="width: .6rem;height: .55rem;">
+						<img src="../assers/image/myOrderTop1.png" style="width: .6rem;height: .55rem;">
 					</div>
 					<div class="font_size26 margin_top1 margin_left2">
 						商城订单
@@ -104,15 +105,15 @@
 				</div>
 				<div class=" display_center div_display goMyOrder" style="width: 33%;border-left: 1px solid #EEEEEE;">
 					<div class="">
-						<img src="../assers/image/myOrderTop2.png"  style="width: .49rem;height: .55rem;">
+						<img src="../assers/image/myOrderTop2.png" style="width: .49rem;height: .55rem;">
 					</div>
 					<div class="font_size26 margin_top1 margin_left2">
 						机具订单
 					</div>
 				</div>
-				<div class=" display_center div_display goMyOrder" data-id="200"  style="width: 33%;border-left: 1px solid #EEEEEE;">
+				<div class=" display_center div_display goMyOrder" data-id="200" style="width: 33%;border-left: 1px solid #EEEEEE;">
 					<div class="">
-						<img src="../assers/image/myOrderTop3.png"  style="width: .48rem;height: .55rem;">
+						<img src="../assers/image/myOrderTop3.png" style="width: .48rem;height: .55rem;">
 					</div>
 					<div class="font_size26 margin_top1 margin_left2">
 						提现记录
@@ -120,9 +121,9 @@
 				</div>
 			</div>
 			<div style="height: .2rem;background-color: #F4F4F4;margin-top: .3rem;">
-				
+
 			</div>
-			
+
 			<!-- 个人中心 -->
 			<div class="my_total_moudel">
 				<div class="gomyTotal">
@@ -160,7 +161,7 @@
 
 			<div class="div_display" style="display: none;">
 				<div class="my__img goMyOrder" data-id="100">
-					<div class="font_colorf2 margin_left3 margin_top7 " >
+					<div class="font_colorf2 margin_left3 margin_top7 ">
 						商城订单
 					</div>
 				</div>
@@ -174,7 +175,7 @@
 			<div class="">
 				<img src="../assers/image/myTop6.png" class="top_img_er1" style="height: 1.7rem;width: 100%;margin-left: 0;">
 			</div>
-		
+
 		</div>
 
 	</body>
@@ -217,6 +218,10 @@
 						$('#payAmount').text(data.data.payAmount); //本月支付收益
 						$('#mallAmount').text(data.data.mallAmount); //本月商城收益
 						$('#balance').text(data.data.balance); //余额
+						$('#integral').text(data.data.integral);
+						console.log(data.data.handFee)
+						$('#handFee').text(data.data.handFee);
+
 
 					} else {
 						tipShow(data.message);
@@ -426,7 +431,7 @@
 								aniShow: "slide-in-right"
 							}
 						});
-					} else if($(this).attr('data-id') == 200){
+					} else if ($(this).attr('data-id') == 200) {
 						$$.openWindow({
 							url: '../pages/txRecord.html',
 							id: 'txRecord',
@@ -437,8 +442,8 @@
 								aniShow: "slide-in-right"
 							}
 						});
-						
-					}else {
+
+					} else {
 						$$.openWindow({
 							url: '../pages/myOrder.html',
 							id: 'myOrder',
