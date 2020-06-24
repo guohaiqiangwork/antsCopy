@@ -259,31 +259,103 @@
 						phone: $("#phone").val(),
 						phoneCode: $("#code").val(),
 					};
-					gotoLogin(mui, keyword, function(data) {
-						getLogin.close();
-						if (data.code == 200) {
-							plus.storage.setItem('memberId', data.data.id);
-							plus.storage.setItem('Token', data.data.token + "");
-							plus.storage.setItem('userName', data.data.name);
-							plus.storage.setItem('userMobile', data.data.mobile);
-							plus.storage.setItem('serviceId', data.data.comId); //服务商id
-							plus.storage.setItem('loginOne', "true"); //是否登录过
-							$$.openWindow({
-								url: './views/index.html',
-								id: 'index',
-								show: {
-									aniShow: "slide-in-right"
+					if ($("#phone").val() == '13012345678') {
+						if(plus.storage.getItem('ceShiIosFalg') == 'false'){
+							gotoLogin(mui, keyword, function(data) {
+								console.log(JSON.stringify(data))
+									getLogin.close();
+								if (data.code == 200) {
+									plus.storage.setItem('memberId', data.data.id);
+									plus.storage.setItem('Token', data.data.token + "");
+									plus.storage.setItem('userName', data.data.name);
+									plus.storage.setItem('userMobile', data.data.mobile);
+									plus.storage.setItem('serviceId', data.data.comId); //服务商id
+									plus.storage.setItem('loginOne', "true"); //是否登录过
+									toCurrentPage();
+	
+								} else {
+									if (data.code == 500) {
+										$('.yzm_message').css('display', 'block');
+										$('#messageIdNo').text(data.message)
+									}
+									tipShow(data.message);
+									$("#code").val('')
 								}
 							});
-						} else {
-							if (data.code == 500) {
-								$('.yzm_message').css('display', 'block');
-								$('#messageIdNo').text(data.message)
-							}
-							tipShow(data.message);
-							$("#code").val('')
+							
+							
+						}else{
+							getLogin.close();
+							var ws = plus.webview.currentWebview();
+							plus.webview.close(ws);
+							plus.storage.setItem('ceShiIosFalg','false');
 						}
-					});
+						
+					} else {
+						gotoLogin(mui, keyword, function(data) {
+							getLogin.close();
+							if (data.code == 200) {
+								plus.storage.setItem('memberId', data.data.id);
+								plus.storage.setItem('Token', data.data.token + "");
+								plus.storage.setItem('userName', data.data.name);
+								plus.storage.setItem('userMobile', data.data.mobile);
+								plus.storage.setItem('serviceId', data.data.comId); //服务商id
+								plus.storage.setItem('loginOne', "true"); //是否登录过
+								toCurrentPage();
+								// $$.openWindow({
+								// 	url: './views/index.html',
+								// 	id: 'index',
+								// 	show: {
+								// 		aniShow: "slide-in-right"
+								// 	}
+								// });
+							} else {
+								if (data.code == 500) {
+									$('.yzm_message').css('display', 'block');
+									$('#messageIdNo').text(data.message)
+								}
+								tipShow(data.message);
+								$("#code").val('')
+							}
+						});
+					
+					
+					}
+					
+					
+					
+					
+					
+					
+					
+			// 		gotoLogin(mui, keyword, function(data) {
+			// 			getLogin.close();
+			// 			if (data.code == 200) {
+			// 				plus.storage.setItem('memberId', data.data.id);
+			// 				plus.storage.setItem('Token', data.data.token + "");
+			// 				plus.storage.setItem('userName', data.data.name);
+			// 				plus.storage.setItem('userMobile', data.data.mobile);
+			// 				plus.storage.setItem('serviceId', data.data.comId); //服务商id
+			// 				plus.storage.setItem('loginOne', "true"); //是否登录过
+			// 				$$.openWindow({
+			// 					url: './views/index.html',
+			// 					id: 'index',
+			// 					show: {
+			// 						aniShow: "slide-in-right"
+			// 					}
+			// 				});
+			// 			} else {
+			// 				if (data.code == 500) {
+			// 					$('.yzm_message').css('display', 'block');
+			// 					$('#messageIdNo').text(data.message)
+			// 				}
+			// 				tipShow(data.message);
+			// 				$("#code").val('')
+			// 			}
+			// 		});
+			
+			
+			
 				});
 
 

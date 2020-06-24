@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商品详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../../assers/css/views/home.css" />
+		<script src="../../../assers/js/rem_reset.js"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body onselectstart="return false;">
+		<header class="header_white font_size34 font_color33 title_height" style="z-index: 9999;">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../../../assers/image/returnButton.png" class="headder_img"></i>
+			商品详情
+		</header>
+
+		<div class="content" style="margin-bottom: 1.5rem;">
+			<!-- 轮播图 -->
+			<div class="lobotuTitleDetails back_gd_DC">
+				<div class="lunbo">
+					<div class="mui-slider" style="height:7.5rem;">
+						<div class="mui-slider-group mui-slider-loop">
+
+						</div>
+						<div class="mui-slider-indicator" style="display: none;">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="back_gd_DC" style="display: none;height: 7.5rem;" id="oneimg">
+				<img class="width100" id="pictures" style="height: 7.5rem;">
+			</div>
+
+			<div class="margin_top3 ">
+				<!-- 默认页 -->
+				<div class="back_gd_DC mrPage" style="width: 2.92rem;height: 0.32rem;">
+				</div>
+				<div class="back_gd_DC mrPage" style="width: 1.83rem;height: 0.37rem;margin-top: 0.2rem;">
+				</div>
+
+
+				<div class="font_size34 font_color33 margin_left3" id="title">
+					<!-- 考拉超收移动POS机 -->
+				</div>
+				<div class="font_colorff0 text_left padding_right3 margin_top3 margin_bot3 margin_left3" id="price">
+					<!-- ¥2000 -->
+				</div>
+				<div class="guige margin_left3" id="guigeList">
+
+				</div>
+				<div class="margin_top2" id="details" style="width: 100%;">
+					<!-- <img src="../assers/image/pages/homeDetails2.png" class="width100"> -->
+				</div>
+			</div>
+
+		</div>
+		<div class="homeDetails_bottom_div">
+			<div class="homeDetails_btn">
+				立即购买
+			</div>
+		</div>
+
+	</body>
+	<script src="../../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../../assers/js/mui.min.js"></script>
+	<script src="../../../assers/js/commonFun.js"></script>
+	<script src="../../../assers/js/requestFun.js"></script>
+	<script src="../../../assers/js/variousMethods.js"></script>
+
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var productTypeTitle = '¥'
+			var productType; //商品类型
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+
+				if (_self.productType == 0) {
+					productTypeTitle = '积分:';
+					$('.homeDetails_btn').text('立即兑换')
+				}
+				// 获取产品详情
+				getgoodsDetails(mui, _self.productId, function(data) {
+					$(".mrPage").remove();
+					if (data.code == 200) {
+						if (data.data.type == 0) {
+							productTypeTitle = '积分:';
+							$('.homeDetails_btn').text('立即兑换')
+						}
+						$('#price').text(productTypeTitle + data.data.goodsPrice);
+						//轮播图方法
+						var goodsPicturesdata = data.data.goodsPictures;
+						if (goodsPicturesdata.length == 1) {
+							productType = data.data.type;
+							$('#title').text(data.data.goodsName);
+							$("#oneimg").css('display', 'block');
+							$(".lobotuTitleDetails").css("display", "none");
+							$("#pictures").attr("src", data.data.goodsPictures[0]);
+						} else {
+							productType = data.data.type;
+							$('#title').text(data.data.goodsName);
+							rotationChartFunc(goodsPicturesdata, goodsPicturesdata.length, 2);
+						}
+
+						$.each(data.data.specParam, function(items) {
+							var guigeList =
+								'<div class="div_display margin_top1">' +
+								'<div class="width20 font_size26">' +
+								data.data.specParam[items].name +
+								'</div>' +
+								'<div class="" style="padding-left:.2rem;padding-right:.2rem;height: .44rem;border-radius: .3rem;background-color: #EEEEEE;text-align: center;font-size: .26rem;color: #666666;">' +
+								data.data.specParam[items].value +
+								'</div>' +
+								'</div>';
+							$("#guigeList").append($(guigeList));
+						});
+						var fragmentplanList = document.createDocumentFragment();
+						var mum;
+						$.each(data.data.goodsDetails, function(items) {
+							mum = 0.14 * items;
+							if (items == 0) {
+								var details =
+									'<img src="' + data.data.goodsDetails[items] + '"  class="width100">';
+							} else {
+								var details =
+									'<img src="' + data.data.goodsDetails[items] + '"  class="width100" style="position: relative;bottom: ' +
+									mum + 'rem;">';
+							}
+
+							$(fragmentplanList).append(details);
+						});
+						$("#details").append($(fragmentplanList));
+					} else {
+						tipShow(data.message)
+					}
+				});
+
+				// 立即购买
+				$('.homeDetails_btn').on('tap', function() {
+
+					if (plus.storage.getItem('ceShiIosFalg') == 'true') {
+						$$.openWindow({
+							url: '../../../login.html',
+							id: 'login',
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					} else {
+						$$.openWindow({
+							url: 'jfOrder.html',
+							id: 'jfOrder',
+							createNew: true,
+							extras: {
+								"productIdD": _self.productId,
+								"productType": productType
+							},
+							show: {
+								aniShow: "slide-in-right"
+							}
+						});
+					}
+				})
+
+			}
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>my_setting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../assers/css/mui.min.css">
+		<link rel="stylesheet" href="../../../assers/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../../assers/css/views/home.css" />
+		<script src="../../../assers/js/rem_reset.js"></script>
+
+		<!-- 键盘 -->
+		<link rel="stylesheet" type="text/css" href="../../../assers/fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../../assers/css/lib/keyboard.css" />
+		<link rel="stylesheet" type="text/css" href="../../../assers/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../../../assers/css/index.css" />
+
+		<style type="text/css">
+			body, html {
+			    height: 100%;
+			    font-family: "微软雅黑";
+			    background: #F4F4F4;
+			}
+			#remark {
+				text-align: right;
+				border: none;
+				margin-right: 0.2rem;
+			}
+
+			input[type=number] {
+				width: 1.1rem;
+			}
+
+
+			.bj_model_logisticsx {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.4);
+				z-index: 999;
+				display: none;
+			}
+
+			.model_cashx {
+				width: 6rem;
+				height: 6rem;
+				background-color: #FFFFFF;
+				margin-left: .8rem;
+				border-radius: .5rem;
+				margin-top: 3rem;
+			}
+
+			.btn_moudel {
+				width: 2.2rem;
+				height: .8rem;
+				border-radius: .5rem;
+				text-align: center;
+				color: #FFFFFF;
+				line-height: .8rem;
+				background: linear-gradient(to right, #3DC1BC, #139B8D);
+				margin-left: 2rem;
+				margin-top: .3rem;
+			}
+		</style>
+	</head>
+	<body onselectstart="return false;" class=" div_backgroun_F4">
+		<header class="header_white font_size34 font_color33 title_height">
+			<i class="mui-action-back" style="touch-action: none;"><img src="../../../assers/image/returnButton.png" class="headder_img"></i>
+			填写订单
+		</header>
+		<div class="content">
+
+				
+	
+			<!-- 地址块 -->
+			<div class="homeOrder_address" id="addressMoudelNo" style="display: none;">
+				<div class="goAddressf" style="width: 6.47rem;height: 1.75rem;position: absolute;top: 1.55rem;left: 0.49rem;border-radius: 0.1rem;border: #CCCCCC dashed 1px;"></div>
+				<div class="text_center font_size30 font_color66 padding_top8 goAddressf" id="goAddressE">
+					<img id="updateAddId" style="width: 0.3rem;position: relative;top: 0.06rem;" src="../../../assers/image/default/updateAddress.png">
+					添加收货地址
+				</div>
+			</div>
+			<div class="homeOrder_address" id="addressMoudel" style="display: none;">
+				<div class="margin_left3 padding_top3">
+					<div class="div_display">
+						<div class="width80">
+							<div class="div_display">
+								<img id="codeAddressId" src="../../../assers/image/mr.png" style="width: 0.7rem;height: 0.31rem;position: relative;top: 0.23rem;margin-right: 0.2rem;">
+								<div class="font_color33 font_size28 margin_top2 div_display">
+									<div class="name font_width700 font_color33 font_size30">
+
+									</div>
+									<div class="phone margin_left2 font_width700 font_color33 font_size30">
+
+									</div>
+								</div>
+							</div>
+							<div class="font_size28 font_color66" id="province">
+								<!-- 北京市门头沟区 -->
+							</div>
+
+						</div>
+						<div class="width20 text_right " id='goAddress'>
+							<img src="../../../assers/image/going.png" class="homeOrder_address_img">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 商品块 -->
+			<div class="product_moudel" style="height: 5.7rem;">
+				<!-- 商品数量 -->
+				<div class="div_display">
+					<div class="margin_left3 margin_top3">
+						<img class="homeOrder_img" id="pictures" style="border-radius: 0.1rem;">
+					</div>
+					<div class="margin_left3 margin_top6">
+						<div class="font_color33 font_size30 font_width700" id="title">
+							<!-- 考拉超收移动POS机 -->
+						</div>
+						<div class="div_display margin_top2">
+							<div class="font_colorff0" id="price" style="width: 2.2rem;">
+								<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
+								<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
+								<span class="priceMoneyClas font_size32 font_width700"></span>
+							</div>
+							<div style="">
+								<div id="updateNumId" style="border: none;height: .48rem !important;" class="mui-numbox" data-numbox-min='1'
+								 data-numbox-max=''>
+									<button style="background-color: #FFFFFF;" class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input readonly="readonly" style="border: none;position: relative;bottom: .15rem;right: 0.2rem;padding: 0;margin: 0;background-color: #EEEEEE;text-align: center;"
+									 id="test" class="" type="number" value="1" />
+									<button style="background-color: #FFFFFF;" class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- 运费 -->
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33" style="margin-top: 0.6rem;">
+					<div class="width50">
+						运费
+					</div>
+					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
+					<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
+					<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
+						 <span id="postFee">
+							
+						</span> 
+					</div>
+				</div>
+				<!-- 金额 -->
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33">
+					<div class="width50">
+						商品金额
+					</div>
+					<div class="width50 text_right margin_right6" style="margin-right: 0.3rem;">
+						<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
+						<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
+						<span class="price"></span>
+					</div>
+				</div>
+				<!-- 备注 -->
+				<div class="div_display margin_left3 margin_top4 font_size28 font_color33 moudelFalg">
+					<div class="width40 margin_top2">
+						订单备注
+					</div>
+					<textarea placeholder="选填" id="remark" class="font_size26" style="position: relative;left: 0.2rem;"></textarea>
+
+					<!-- <div class="width50 text_right margin_right6">
+						<input type="" name="" id="remark" value="" placeholder="选填" class="width50" style="border: none;width: 100%;text-align: right;" />
+					</div> -->
+				</div>
+			</div>
+			<!-- 购买按钮 -->
+			<div class="div_display homeOrder_bottom_div">
+				<div class="margin_left3 margin_top3 width60 div_display">
+					<div class="font_colorff0">
+						<span class="priceCodeClas font_size24 productTypeFalg">¥</span>
+						<span class="priceCodeClas font_size28 productTypeFalgj">积分:</span>
+						<span id="totalMoneyId" class="priceMoneyClas font_size36 font_width700 "></span>
+					</div>
+					<div class="font_size26 font_color99">(含运费)</div>
+				</div>
+				<div class="homeOrder_btn">
+					提交订单
+				</div>
+			</div>
+
+
+			<!-- 密码提示框 -->
+			<div id="pay" style="display: none;" data-num="0" data-disable-auto-close='true' class="box mui-popover mui-popover-action mui-popover-middle">
+				<div id="password_div" style="height: 1rem;width: 1rem;float: left;">
+					<img src="../../../assers/image/payimg/close.png" alt="" class="mui-popover-close" style="width: .26rem;height: .26rem;">
+				</div>
+				<p class="title">设置支付密码</p>
+				<div id="mm1" class="font_size30 font_color66" style="margin-left: 1.7rem;">
+					支付密码为6位数字
+				</div>
+				<div id="mm2" class="font_size30 font_color66" style="margin: 0 auto;text-align: center;width: 60%;">
+
+				</div>
+				<div class="table">
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+					<div><span class="blackpwd"></span></div>
+				</div>
+				<input id="money" readOnly='readOnly' orderNo="orderNo" payment="payment" typeName="shopPage" style="margin-left: -100%;width: 200%;opacity: 0;"
+				 type="tel" name='password' class="zfinput">
+			</div>
+
+
+
+			<!-- 支付成功 失败-->
+			<div class="bj_model_logisticsx closeModel">
+				<div class="div_backgroun_ff text_center model_cashx">
+					<div class="chnegong" style="display: none;">
+						<img src="../../../assers/image/payOrde1.png" style="width: 6rem;height: 4.2rem;margin-top: -.8rem;">
+						<div class="font_size36 " style="color: #00A398;">
+							支付积分
+						</div>
+						<div class="font_size50 margin_top2" style="color: #00A398;">
+							888.00
+						</div>
+						<div class="btn_moudel">
+							确认
+						</div>
+					</div>
+					<div class="shibai" style="display: none;">
+						<img src="../../../assers/image/payOrde2.png" style="width: 6rem;height: 4.2rem;margin-top: -.8rem;">
+						<div class="font_size36 margin_top2 shibaiT" style="color: #F34B4B;">
+							支付积分
+						</div>
+						<div class="btn_moudel " style="background: #F34B4B;margin-top: .6rem;">
+							确认
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+	</body>
+	<script src="../../../assers/js/jquery-1.11.2.min.js"></script>
+	<script src="../../../assers/js/mui.min.js"></script>
+	<script src="../../../assers/js/commonFun.js"></script>
+	<script src="../../../assers/js/requestFun.js"></script>
+	<!-- 键盘 -->
+	<script src="../../../assers/js/lib/keyboard.js"></script>
+	<script src="../../../assers/js/lib/index.js"></script>
+	<script src="../../../assers/js/payFunction.js"></script>
+	<script>
+		(function($, doc, $$, undefined) {
+			$$.init();
+			var _self;
+			var shopStock;
+			var productTypeTitle = '¥'
+			var payment; //支付金额
+			// 提交订单数据
+			var keywords = {
+				num: ''
+			};
+			if (window.plus) {
+				plusReady();
+			} else {
+				doc.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady() {
+				plus.navigator.setFullscreen(false);
+				//强制竖屏
+				plus.screen.lockOrientation("portrait-primary");
+				//强制隐藏滚动条
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				_self = plus.webview.currentWebview();
+				Keyboard = new Plugin.Keyboard();
+				//初始化数量和价格
+				$("#test").val(1);
+				var shopPrice = $("#price .priceMoneyClas").text();
+				$("#totalMoneyId").text(moneyFormat((1 - 0) * (shopPrice - 0)));
+				//减 数量
+				$(".mui-btn-numbox-minus").on("tap", function() {
+					var num = ($("#test").val() - 0) - 1;
+					if (num < 1) {
+						tipShow("最少选择1");
+					} else {
+						$("#test").val(num);
+						var shopPrice = $("#price .priceMoneyClas").text();
+						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0) + Number( $('#postFee').text())));
+						payment = moneyFormat((num - 0) * (shopPrice - 0) + Number( $('#postFee').text()));
+					}
+				});
+
+				//加 数量
+				$(".mui-btn-numbox-plus").on("tap", function() {
+					var num = ($("#test").val() - 0) + 1;
+					if (num > shopStock) {
+						tipShow("商品库存不足");
+					} else {
+						$("#test").val(num);
+						var shopPrice = $("#price .priceMoneyClas").text();
+						$("#totalMoneyId").text(moneyFormat((num - 0) * (shopPrice - 0)+ Number( $('#postFee').text())));
+						payment = moneyFormat((num - 0) * (shopPrice - 0) + Number( $('#postFee').text()));
+					}
+				});
+				console.log(_self.productType)
+				if (_self.productType == 0) {
+					productTypeTitle = '积分';
+					$('.productTypeFalg').css('display', 'none');
+					$("#totalMoneyId").css("font-size", ".42rem");
+				}else{
+					productTypeTitle = '¥';
+					$('.productTypeFalgj').css('display', 'none');
+					// $("#totalMoneyId").css("font-size", ".42rem");
+				}
+				keywords.memberId = plus.storage.getItem('memberId');
+				keywords.termId = _self.productIdD; //商品id
+				keywords.type = _self.productType; //商品类型
+				// 获取产品详情
+				getgoodsDetails(mui, _self.productIdD, function(data) {
+					if (data.code == 200) {
+						shopStock = data.data.num;
+						$("#updateNumId").attr("data-numbox-max", shopStock);
+						$('#title').text(data.data.goodsName);
+						$('.price').text(data.data.goodsPrice);
+						payment = data.data.goodsPrice;
+						$('#postFee').text(data.data.postFee);
+						$('.priceMoneyClas').text(Number( data.data.goodsPrice)   );
+						$('#totalMoneyId').text(Number( data.data.goodsPrice) + Number(data.data.postFee)  );
+						$("#pictures").attr("src", data.data.goodsPictures[0]);
+					} else {
+						tipShow(data.message);
+					}
+				});
+				// 获取收货地址
+				getUserAddress(mui, plus.storage.getItem('memberId'), function(data) {
+					// getUserAddressWati().close()
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							$('#addressMoudel').css('display', 'block');
+							data.data.forEach(function(e) {
+								e.mobile = e.mobile.substring(3, 0) + "****" + e.mobile.substring(7, 11);
+								if (e.isDefault == 1) {
+									keywords.addressId = e.id
+									$('#province').text(e.province + " " + e.city + " " + e.area + " " + e.address);
+									$('.name').text(e.receiver);
+									$('.phone').text(e.mobile);
+								}
+							});
+						} else {
+							$('#addressMoudelNo').css('display', 'block')
+						}
+					} else {
+						tipShow(data.message)
+					}
+				});
+
+			};
+			// 获取数量
+			var testBox = document.getElementById("test");
+			testBox.addEventListener('change', function() {
+				keywords.num = testBox.value;
+			});
+			document.getElementById('pay').addEventListener('hidden', function(e) {
+				$("#pay").attr("data-num", "0");
+				Keyboard.hideKeyBoard();
+			});
+			$('#money').on("tap", function() {
+				if ($("#pay").attr("data-num") == 1) {
+					Keyboard.showKeyBoard();
+				}
+			});
+			document.getElementById('pay').addEventListener('shown', function(e) {
+				console.log('shown', e.detail);
+				$("#pay").attr("data-num", "1");
+				Keyboard.showKeyBoard();
+			});
+
+
+			mui('#pay').on('tap', '#password_div', function() {
+				mui('#pay').popover('hide');
+				//$('.goPayment').css("display", "block");
+				$('.table>div>.blackpwd').css('opacity', '0');
+				$('.zfinput').val("");
+			});
+
+			// 关闭
+			$('.btn_moudel').on('tap', function() {
+				$('.bj_model_logisticsx').css('display', 'none');
+					$('.moudelFalg').css('display','block')
+				$$.openWindow({
+					url: '../../../views/index.html',
+					id: 'index',
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 提交订单
+			$('.homeOrder_btn').on('tap', function() {
+				keywords.remark = $('#remark').val();
+				keywords.num = $("#test").val(); //数量
+				// 0 积分订单 1 为现金订单
+				if (keywords.type == 0) {
+					if (!keywords.addressId) {
+						tipShow("请填写地址信息");
+					} else {
+						get_jfsaveOrder(mui, keywords, function(data) {
+							if (data.code == 200) {
+								console.log(JSON.stringify(data));
+								$("#money").attr("orderNo", data.data);
+								//请求后端接口,查看是否设置提现密码
+								isSetPassword(mui, plus.storage.getItem('memberId'), function(data) {
+									mui('#pay').popover('show');
+									if (data.code == 500) {
+										//设置支付密码
+										$("#money").attr("typeName", "shopPageN");
+										numVal = 60;
+										$(".title").css("margin-left", "1.1rem");
+										$("#mm2").text("支付密码与提现密码一致");
+									} else {
+										//有密码直接支付
+										$("#money").attr("typeName", "shopPageYJF");
+										numVal = 6;
+										//$(".ymmyc").css("display", "none");
+										$(".title").text("请输入支付密码");
+										$(".title").css("margin-left", "1.1rem");
+										$("#mm1").text("需支付");
+										$("#mm1").css("margin-left", "2.7rem");
+										$("#mm1").css("color", "#666666");
+										$("#mm2").css("font-weight", "800");
+										$("#mm2").css("color", "#333333");
+										$("#mm2").css("font-size", "0.6rem");
+										$("#mm2").css("margin-top", "0.3rem");
+										/* $("#mm2").css("margin-left", "2rem"); */
+										$("#mm2").text("");
+										$("#mm2").text( payment);
+										$("#money").attr("payment", payment);
+										$('.table>div>.blackpwd').css('opacity', '0');
+										$('.zfinput').val("");
+										un_webFunction();
+									}
+								});
+
+							}
+						});
+					}
+				} else {
+					if (!keywords.addressId) {
+						tipShow("请填写地址信息");
+					} else {
+						get_jfsaveOrder(mui, keywords, function(data) {
+							if (data.code == 200) {
+								$$.openWindow({
+									url: 'jfOrderSub.html',
+									id: 'jfOrderSub',
+									createNew: true,
+									extras: {
+										"orderNo": data.data
+									},
+									show: {
+										aniShow: "slide-in-right"
+									}
+								});
+							}
+						});
+					}
+				}
+
+
+			});
+
+			/* 余额支付 */
+			function un_webFunction() {
+				$('.zfinput').attr("autofocus", "autofocus");
+			}
+			// 去地址添加页面
+			$('.goAddressf').on('tap', function() {
+				$$.openWindow({
+					url: '../address.html',
+					id: 'address',
+					extras: {
+						"typeO": 'new'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			})
+			// 去地址列表
+			$('#goAddress').on('tap', function() {
+				$$.openWindow({
+					url: '../myAddress.html',
+					id: 'myAddress',
+					extras: {
+						pageName: 'confirmOrder'
+					},
+					show: {
+						aniShow: "slide-in-right"
+					}
+				});
+			});
+			//监听子页面方法
+			window.addEventListener('addressFunc', function(e) {
+				//接收子页面传过来的参数
+				console.log("11==" + JSON.stringify(e.detail))
+				keywords.addressId = e.detail.data_id;
+				if (e.detail.isDefault == 2) {
+					$("#codeAddressId").css("display", "none");
+				} else {
+					$("#codeAddressId").css("display", "block");
+				}
+				$('#province').text(e.detail.province + " " + e.detail.city + " " + e.detail.area + " " + e.detail.address);
+				$('#address').text(e.detail.address);
+				$('.name').text(e.detail.receiver);
+				$('.phone').text(e.detail.mobile.substring(3, 0) + "****" + e.detail.mobile.substring(7, 11));
+				if (e.detail.isDefault == 1) { //默认
+					$('.homeOrder_address_moren').css('display', 'block')
+				} else {
+					$('.homeOrder_address_moren').css('display', 'none')
+				}
+
+			});
+			// 添加地址
+			window.addEventListener('newAddressFunc', function(e) {
+				// 获取收货地址
+				getUserAddress(mui, plus.storage.getItem('memberId'), function(data) {
+					// getUserAddressWati().close()
+					if (data.code == 200) {
+						if (data.data.length > 0) {
+							$('#addressMoudel').css('display', 'block');
+							data.data.forEach(function(e) {
+								e.mobile = e.mobile.substring(3, 0) + "****" + e.mobile.substring(7, 11);
+								if (e.isDefault == 1) {
+									keywords.addressId = e.id
+									$('#province').text(e.province + " " + e.city + " " + e.area + " " + e.address);
+									$('#address').text(e.address);
+									$('.name').text(e.receiver);
+									$('.phone').text(e.mobile);
+								}
+							});
+							$('#addressMoudelNo').css('display', 'none')
+						} else {
+							$('#addressMoudelNo').css('display', 'block')
+						}
+					} else {
+						tipShow(data.message)
+					}
+				});
+
+			});
+
+		})(jQuery, document, mui);
+	</script>
+
+</html>

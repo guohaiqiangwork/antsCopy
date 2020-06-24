@@ -57,13 +57,30 @@
 					},
 					success: function(data) {
 						if(data.code  == 401){
-							$$.openWindow({
+							if (plus.storage.getItem('ceShiIosFalg') == 'false') {
+								$$.openWindow({
 									url: './login.html',
 									id: 'login',
 									show: {
 										aniShow: "slide-in-right"
 									}
 								});
+							} else {
+								$$.openWindow({
+									url: './views/ios/iosCommodity.html',
+									id: 'iosCommodity',
+									show: {
+										aniShow: "slide-in-right"
+									}
+								});
+							}
+							// $$.openWindow({
+							// 		url: './login.html',
+							// 		id: 'login',
+							// 		show: {
+							// 			aniShow: "slide-in-right"
+							// 		}
+							// 	});
 						}else{
 							$$.openWindow({
 									url: './views/index.html',

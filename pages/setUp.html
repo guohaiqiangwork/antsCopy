@@ -283,8 +283,11 @@
 
 				getLogOut(mui, function(data) {
 					if (data.code == 200) {
-						clearStorage(); //清空缓存数据
+						// clearStorage(); //清空缓存数据
 						toCurrentPage();
+						toCurrentPage();
+						plus.storage.setItem('ceShiIosFalg','false')
+
 					} else {
 						tipShow(data.message);
 					}

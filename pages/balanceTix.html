@@ -395,10 +395,7 @@
 					if (!balbnce_money) {
 						tipShow("请输入提现金额");
 						return;
-					} else if (Number(balbnce_money) < 100) {
-						tipShow("提现金额最少100.00元");
-						return;
-					}else if (Number(balbnce_money) > 80000) {
+					} else if (Number(balbnce_money) > 80000) {
 						tipShow("单笔体现上限为80,000元");
 						return;
 					}  else if (Number(balbnce_money) > $("#li_four_money").text()) {
